@@ -773,3 +773,79 @@ ul{margin:0;padding:0;list-style:none}
   .gl-side{align-items:flex-start}
   .gl-row{flex-wrap:wrap}
 }
+/* ==========================================================================
+   P0：路径地图 / 红心 / 星币商店 / 每日任务 / 游客态
+   ========================================================================== */
+
+/* ---- 顶栏金币 ---- */
+.pill-coin{color:inherit}
+.pill-coin:hover{border-color:var(--gold)}
+
+/* ---- 游客侧栏 ---- */
+.guest-foot{display:block}
+
+/* ---- 今日任务卡 ---- */
+.quest-list{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.quest-row{display:flex;align-items:center;gap:12px;padding:11px 14px;border:1px solid var(--line-soft);border-radius:var(--r-md);background:var(--surface-2)}
+.quest-row.done{opacity:.78;border-color:rgba(15,130,113,.35);background:rgba(15,130,113,.05)}
+.q-check{width:22px;height:22px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;flex:none;color:#fff;background:var(--surface)}
+.quest-row.done .q-check{background:var(--jade);border-color:var(--jade)}
+.q-check .ico{width:13px;height:13px}
+.q-main{flex:1;min-width:0}
+.q-label{font-weight:600;font-size:14px;margin-bottom:6px}
+.q-reward{flex:none;font-size:12px}
+
+/* ---- 课程路径地图 ---- */
+.pm-unit{margin-bottom:6px}
+.pm-unit-head{display:flex;align-items:baseline;gap:10px;padding:12px 2px 2px}
+.pm-unit-head h3{font-size:16px}
+.pm-track{position:relative;padding:16px 0 10px}
+.pm-track::before{content:"";position:absolute;left:50%;top:10px;bottom:10px;border-left:3px dotted var(--line)}
+.pm-row{position:relative;min-height:98px;display:flex;align-items:center}
+.pm-node{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;z-index:1;background:var(--surface);border:3px solid var(--line);color:var(--muted);box-shadow:var(--shadow-1);transition:transform .15s ease}
+.pm-node .ico{width:22px;height:22px}
+.pm-node:not(.locked):active{transform:translate(-50%,-50%) scale(.94)}
+.pm-node.done{border-color:var(--gold);color:var(--gold);font-size:22px}
+.pm-node.open{border-color:var(--indigo-lite);color:var(--indigo)}
+.pm-node.current{border-color:var(--vermilion);color:var(--vermilion);animation:pmBreath 1.8s ease-in-out infinite}
+.pm-node.locked{opacity:.55;cursor:not-allowed;background:var(--surface-2)}
+.pm-node.boss::before{content:"👑";position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:22px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.18))}
+@keyframes pmBreath{
+  0%,100%{box-shadow:0 0 0 0 rgba(224,72,60,.30)}
+  50%{box-shadow:0 0 0 10px rgba(224,72,60,0)}
+}
+.pm-bubble{position:absolute;top:50%;transform:translateY(-50%);max-width:min(320px,36vw);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:10px 14px;box-shadow:var(--shadow-1)}
+.pm-row.s-left .pm-bubble{left:calc(50% + 46px)}
+.pm-row.s-right .pm-bubble{right:calc(50% + 46px)}
+.pm-row .pm-node.current ~ .pm-bubble{border-color:rgba(224,72,60,.45)}
+.pm-title{font-weight:700;font-size:14px}
+.pm-sub{font-size:12px;color:var(--muted);margin:2px 0 6px}
+.pm-meta{font-size:12px;color:var(--muted-2);margin-right:8px}
+.pm-star{margin-right:2px}
+.pm-go{font-size:10px;vertical-align:middle}
+@media (max-width:720px){
+  .pm-track::before{left:30px}
+  .pm-node{left:30px}
+  .pm-row{min-height:0;padding:12px 0;flex-direction:column;align-items:stretch}
+  .pm-bubble{position:static;transform:none;margin:8px 0 0 54px;max-width:none}
+}
+
+/* ---- 课程内红心 ---- */
+.lh-hearts{margin-left:14px;font-size:14px;font-weight:700;color:var(--vermilion-dark);white-space:nowrap}
+
+/* ---- 星币商店 ---- */
+.shop-balance{display:flex;gap:16px;align-items:center;margin-bottom:18px;flex-wrap:wrap}
+.sb-coin{font-size:34px;line-height:1}
+.sb-hearts{margin-left:auto;text-align:right;font-size:14px}
+.shop-card{display:flex;gap:16px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.sc-ico{width:52px;height:52px;border-radius:14px;background:var(--surface-2);border:1px solid var(--line-soft);display:flex;align-items:center;justify-content:center;font-size:26px;flex:none}
+.sc-main{flex:1;min-width:200px}
+
+/* ---- 红心耗尽引导 ---- */
+.hearts-ways{margin:18px auto 0;max-width:440px;display:flex;flex-direction:column;gap:8px}
+.hw-row{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;border:1px solid var(--line-soft);border-radius:var(--r-md);background:var(--surface-2);font-size:14px}
+
+/* ---- 自由模式开关 ---- */
+.free-mode-row{display:flex;gap:12px;align-items:flex-start;cursor:pointer;padding:4px 0}
+.free-mode-row input{margin-top:4px;width:17px;height:17px;flex:none}
+
