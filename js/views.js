@@ -34,7 +34,10 @@
     globe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.4 2.3 3.6 5.2 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.2-3.6-8.5S9.6 5.8 12 3.5Z"/></svg>',
     flame: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.5 2.5s.6 2.7-1.3 4.6c-1.6 1.6-3.9 3.5-3.9 6.6a5.7 5.7 0 0 0 11.4 0c0-2.2-1-3.5-1.8-4.4-.3 1-1 1.6-1.6 1.6.8-2.6-.3-6.3-2.8-8.4Z"/></svg>',
     lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.4"/><path d="M8.2 10.5V8a3.8 3.8 0 0 1 7.6 0v2.5"/></svg>',
-    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>'
+    target: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>',
+    retry: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8a8.5 8.5 0 1 1-.5 8"/><path d="M3 3.5V8h4.5"/></svg>',
+    bolt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H13L13 2Z"/></svg>',
+    dict: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6.5C10.6 4.8 8.4 4 5.5 4H3v15.5h3.5c2.3 0 4.2.6 5.5 2 1.3-1.4 3.2-2 5.5-2H21V4h-3.5c-2.9 0-5.1.8-6.5 2.5Z"/><path d="M12 6.5v15"/></svg>'
   };
   function icon(n, cls) { return '<span class="ico ' + (cls || "") + '" aria-hidden="true">' + (ICONS[n] || "") + "</span>"; }
 
@@ -109,7 +112,7 @@
       { n: "03", c: "#0F8271", t: "学习进度追踪", d: "连续天数、经验值、技能正确率、活跃热力图，把「学过」变成看得见的数据。" },
       { n: "04", c: "#7A4FA3", t: "账号与多端同步", d: "注册即建立个人学习档案，课程进度、单词熟练度与社区足迹全部保留。" },
       { n: "05", c: "#C2751B", t: "个性化学习路径", d: "按目标语言、当前级别与薄弱技能，自动排出今日该学哪一课、明天补哪一项。" },
-      { n: "06", c: "#2F4B7C", t: "社区与成就激励", d: "发帖交流学习心得，解锁 12 枚成就徽章，与同语种学习者一起在排行榜上进步。" }
+      { n: "06", c: "#2F4B7C", t: "社区与成就激励", d: "发帖交流学习心得，解锁 " + S.BADGES.length + " 枚成就徽章，与同语种学习者一起在排行榜上进步。" }
     ].map(function (f) {
       return '<article class="feature" style="--feature-c:' + f.c + '">' +
         '<span class="fnum">' + f.n + "</span><h3>" + f.t + "</h3><p>" + f.d + "</p></article>";
@@ -225,6 +228,11 @@
       { href: "#/path", icon: "route", text: "学习路径" },
       { href: "#/progress", icon: "chart", text: "进度追踪" }
     ]},
+    { group: "强化训练", items: [
+      { href: "#/review", icon: "retry", text: "错题本" },
+      { href: "#/challenge", icon: "bolt", text: "限时挑战" },
+      { href: "#/glossary", icon: "dict", text: "词汇库" }
+    ]},
     { group: "社区", items: [
       { href: "#/community", icon: "users", text: "学习社区" },
       { href: "#/achievements", icon: "award", text: "成就排行" }
@@ -310,7 +318,20 @@
         '<div class="pc-right"><button class="btn btn-sm ' + (r.today ? "btn-primary" : "") + '" data-link="#/learn/' + r.id + '">' + (r.today ? "开始" : "学习") + "</button></div></div></div>";
     }).join("");
 
-    var content = resume + stats4 +
+    var quick =
+      '<div class="grid grid-3" style="margin-top:18px">' +
+      '<button class="panel quick-card" data-link="#/review" style="text-align:left;cursor:pointer">' +
+      '<div class="qc-ico" style="background:rgba(224,72,60,.12);color:var(--vermilion-dark)">' + icon("retry") + "</div>" +
+      '<div><h3 style="margin-bottom:4px">错题本</h3><div class="tiny muted">' + (st.mistakes ? "还有 <b style=\"color:var(--vermilion-dark)\">" + st.mistakes + "</b> 道错题待攻克" : "当前没有错题，保持！") + "</div></div></button>" +
+      '<button class="panel quick-card" data-link="#/challenge" style="text-align:left;cursor:pointer">' +
+      '<div class="qc-ico" style="background:rgba(194,117,27,.12);color:var(--gold)">' + icon("bolt") + "</div>" +
+      '<div><h3 style="margin-bottom:4px">限时挑战</h3><div class="tiny muted">' + (st.challengeBest ? "最高纪录 <b>" + st.challengeBest + "</b> XP · 来破纪录" : "60 秒快答，连击加成 XP") + "</div></div></button>" +
+      '<button class="panel quick-card" data-link="#/glossary" style="text-align:left;cursor:pointer">' +
+      '<div class="qc-ico" style="background:rgba(15,130,113,.12);color:var(--jade)">' + icon("dict") + "</div>" +
+      '<div><h3 style="margin-bottom:4px">词汇库</h3><div class="tiny muted">共 ' + D.stats().exercises + " 个练习 · 已掌握 " + st.wordsMastered + " 词</div></div></button>" +
+      "</div>";
+
+    var content = resume + stats4 + quick +
       '<div class="grid grid-2" style="margin-top:18px">' +
       '<div class="panel"><div class="panel-head"><h2>技能掌握</h2><div class="ph-actions"><a class="btn btn-sm btn-ghost" href="#/progress">查看详情</a></div></div>' + skills + "</div>" +
       '<div class="panel"><div class="panel-head"><h2>近七天经验</h2><span class="tiny muted" style="margin-left:auto">单位 XP</span></div>' + bars + "</div>" +
@@ -791,9 +812,31 @@
   }
 
   /* 听力 */
-  function stageListening(ctx, revealed, fb) {
+  function stageListening(ctx, revealed, fb, dictate) {
     var it = ctx.item;
     var trBox = fb ? '<div class="explain ok" style="margin-top:14px">' + icon("speaker") + "<div><b>原文与翻译</b>" + esc(it.text) + " —— " + esc(it.tr) + "</div></div>" : "";
+    var dictateBox = "";
+    if (!fb) {
+      if (dictate && dictate.active) {
+        var res = dictate.result;
+        dictateBox = '<div class="dictate-box">' +
+          '<div class="tiny muted" style="margin-bottom:8px">✍️ 听写模式：播放录音，把你听到的句子完整打出来</div>' +
+          '<textarea id="dictate-input" class="dictate-input" rows="2" placeholder="在这里输入听到的内容…">' + esc(dictate.draft || "") + "</textarea>" +
+          '<div style="display:flex;gap:10px;margin-top:10px">' +
+          '<button class="btn btn-sm" data-action="play-slow">0.7x 慢速</button>' +
+          '<button class="btn btn-sm btn-primary" data-action="dictate-submit" style="margin-left:auto">检查听写</button>' +
+          '<button class="btn btn-sm btn-ghost" data-action="dictate">退出听写</button></div>' +
+          (res ? '<div class="speak-result" style="margin-top:12px"><div style="display:flex;align-items:center;gap:14px">' +
+            '<div class="score-big" style="color:' + (res.score >= 85 ? "var(--jade)" : res.score >= 60 ? "var(--gold)" : "var(--vermilion)") + '">' + res.score + '<span style="font-size:14px;color:var(--muted)">分</span></div>' +
+            '<div class="tiny muted">' + (res.score >= 85 ? "听写优秀" : res.score >= 60 ? "大体正确，注意细节" : "再听几遍慢速，逐词核对") + "</div></div>" +
+            '<div style="border-top:1px solid var(--line);padding-top:10px;margin-top:10px">' +
+            res.marks.map(function (mk) { return '<span class="chip ' + (mk.hit ? "chip-jade" : "chip-red") + '" style="margin:0 5px 5px 0">' + esc(mk.token) + "</span>"; }).join("") + "</div>" +
+            '<div class="tiny muted" style="margin-top:8px"><b>原文：</b>' + esc(it.text) + "</div></div>" : "") +
+          "</div>";
+      } else {
+        dictateBox = '<div style="margin-bottom:16px"><button class="btn btn-sm btn-ghost" data-action="dictate">✍️ 听写这句（进阶练习）</button></div>';
+      }
+    }
     return '<div class="stage-head"><h2>听力训练</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
       '<div class="audio-deck">' +
       '<button class="play-big" id="play-big" data-action="play">' + icon("play") + "</button>" +
@@ -803,6 +846,7 @@
       '<div class="play-tools" style="margin-bottom:20px">' +
       '<button class="btn btn-sm" data-action="play-slow">0.7x 慢速</button>' +
       '<button class="btn btn-sm" data-action="toggle-script">' + (revealed ? "隐藏原文" : "显示原文") + "</button></div>" +
+      dictateBox +
       '<div class="quiz-q">' + esc(it.q) + "</div>" +
       '<div class="opts" id="opts">' + optionList(it.opts, it.a, fb) + "</div>" +
       (fb ? trBox : "") +
@@ -898,11 +942,220 @@
       '<div class="tiny muted" style="margin-top:8px">' + (extra || (correct + " / " + total + " 完成")) + "</div></div>";
   }
 
+  /* ======================================================================
+     错题本
+     ====================================================================== */
+  var MODE_NAME = { vocab: "单词", grammar: "语法", listening: "听力", speaking: "口语" };
+
+  function reviewPage() {
+    var list = S.mistakes();
+    var st = S.stats();
+
+    var head = '<div class="grid grid-3">' +
+      statCard("待攻克错题", list.length + " 道", list.length ? "答对即移出错题本" : "太棒了") +
+      statCard("已攻克", (st.mistakesFixed || 0) + " 道", "累计重练答对") +
+      statCard("错题来源", list.length ? langOf(list[0].lang).flag + " 等 " + new Set(list.map(function (m) { return m.lang; })).size + " 门语言" : "—", "语法与听力错题会自动收录") +
+      "</div>";
+
+    var actions = '<div class="panel" style="margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">' +
+      "<div><h2 style=\"font-size:17px\">重练模式</h2><div class=\"tiny muted\">逐题重做错题，答对一道就将其移出错题本，并计入「知错就改」成就。</div></div>" +
+      '<div style="margin-left:auto;display:flex;gap:10px">' +
+      (list.length ? '<button class="btn btn-primary" data-action="rv-start">开始重练（' + list.length + " 题）</button>" : "") +
+      (list.length ? '<button class="btn btn-ghost" data-action="rv-clear">清空错题本</button>' : "") +
+      "</div></div>";
+
+    var cards = list.length ? list.map(function (m) {
+      var lang = langOf(m.lang);
+      return '<div class="panel rv-card">' +
+        '<div class="rv-meta">' + (lang ? lang.flag + " " + esc(lang.name) : "") +
+        '<span class="chip chip-plain">' + (MODE_NAME[m.mode] || m.mode) + "</span>" +
+        '<span class="tiny muted-2">' + S._util.relTime(m.at) + "</span>" +
+        (m.lessonId && D.lessonOf(m.lessonId) ? '<span class="tiny muted-2">出自「' + esc(D.lessonOf(m.lessonId).lesson.title) + "」</span>" : "") +
+        "</div>" +
+        '<div class="rv-prompt">' + esc(m.prompt) + "</div>" +
+        '<div class="rv-answer">正确答案：<b>' + esc(m.opts && m.opts.length ? m.opts[m.answer] : m.answer) + "</b></div>" +
+        (m.why ? '<div class="tiny muted" style="margin-top:6px">' + esc(m.why) + "</div>" : "") +
+        '<div class="rv-actions">' +
+        (m.text ? '<button class="btn btn-sm" data-speak="' + esc(m.text) + '" data-locale="' + (lang ? lang.locale : "") + '">' + icon("speaker") + "听原文</button>" : "") +
+        '<button class="btn btn-sm btn-ghost" data-action="rv-remove" data-id="' + m.id + '" style="margin-left:auto">' + icon("trash") + "移除</button>" +
+        "</div></div>";
+    }).join("") : '<div class="panel"><div class="empty"><div class="em-ico">🎯</div><h3>错题本是空的</h3><p>学习过程中的语法、听力错题会自动收录到这里，方便针对性重练。</p><button class="btn btn-primary" data-link="#/courses" style="margin-top:14px">去上课</button></div></div>';
+
+    return shell("#/review", "错题本", "答错的题自动收录，重练答对即移出", head + actions + '<div style="margin-top:18px;display:grid;gap:14px">' + cards + "</div>");
+  }
+
+  /* 重练答题界面 */
+  function reviewStage(m, idx, total, fb) {
+    var opts = (m.opts || []).map(function (o, i) {
+      var cls = "";
+      if (fb) { if (i === m.answer) cls = "correct"; else if (i === fb.opt) cls = "wrong"; }
+      var attrs = fb ? " disabled" : ' data-action="rv-answer" data-opt="' + i + '"';
+      return '<button class="opt ' + cls + '"' + attrs + '><span class="opt-key">' + "ABCD"[i] + "</span><span>" + esc(o) + "</span></button>";
+    }).join("");
+    var lang = langOf(m.lang);
+    return '<div class="lesson-shell"><div class="lesson-top">' +
+      '<button class="lt-back" data-link="#/review" aria-label="返回错题本">' + icon("left") + "</button>" +
+      '<div class="lesson-progress"><div class="lp-labels"><span>错题重练</span><span>' + (idx + 1) + " / " + total + "</span></div>" +
+      '<div class="bar"><i class="bar-fill" style="width:' + Math.round(idx / total * 100) + '%"></i></div></div></div>' +
+      '<div class="stage">' +
+      '<div class="stage-head"><h2>' + (MODE_NAME[m.mode] || "练习") + ' · 错题重练</h2><span class="sh-step">' + (lang ? lang.flag : "") + "</span></div>" +
+      (m.mode === "listening" && m.text ?
+        '<div class="audio-deck"><button class="play-big" data-speak="' + esc(m.text) + '" data-locale="' + (lang ? lang.locale : "") + '">' + icon("play") + '</button>' +
+        '<div class="ad-label">点击播放，听录音后回答</div></div>' : "") +
+      '<div class="quiz-q">' + esc(m.prompt) + "</div>" +
+      '<div class="opts">' + opts + "</div>" +
+      (fb ? '<div class="explain ' + (fb.correct ? "ok" : "no") + '">' + icon(fb.correct ? "check" : "x") +
+        "<div><b>" + (fb.correct ? "答对了，已移出错题本" : "还差一点，本题保留在错题本") + "</b>" + esc(m.why || "") + "</div></div>" +
+        '<div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="btn btn-primary" data-action="rv-next">' + (idx + 1 >= total ? "查看结果" : "下一题") + "</button></div>" : "") +
+      "</div></div>";
+  }
+
+  function reviewResult(fixed, total) {
+    return '<div class="lesson-shell"><div class="stage result-stage">' +
+      '<div class="result-seal">' + icon("check") + "</div>" +
+      "<h2>重练完成</h2>" +
+      '<p class="muted">本次攻克 ' + fixed + " / " + total + " 道错题</p>" +
+      '<div class="result-stats">' +
+      '<div class="result-stat"><b style="color:var(--jade)">' + fixed + "</b><span>移出错题本</span></div>" +
+      '<div class="result-stat"><b>' + (total - fixed) + "</b><span>仍待巩固</span></div>" +
+      "</div>" +
+      '<div style="display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap">' +
+      '<button class="btn btn-primary btn-lg" data-link="#/review">返回错题本</button>' +
+      '<button class="btn btn-lg btn-ghost" data-link="#/dashboard">回学习中心</button>' +
+      "</div></div></div>";
+  }
+
+  /* ======================================================================
+     限时挑战
+     ====================================================================== */
+  function challengeSetup(setup) {
+    var st = S.stats();
+    var langs = [{ code: "all", flag: "🌍", name: "三语混合" }].concat(D.languages.map(function (l) { return { code: l.code, flag: l.flag, name: l.name }; }));
+    return shell("#/challenge", "限时挑战", "在倒计时内连续作答，连击越高得分越高",
+      '<div class="grid grid-2">' +
+      '<div class="panel"><div class="panel-head"><h2>挑战设置</h2></div>' +
+      '<div class="field"><label>题目范围</label><div class="lang-picker">' +
+      langs.map(function (l) {
+        return '<input type="radio" id="chl-' + l.code + '" name="ch-lang" value="' + l.code + '"' + (setup.lang === l.code ? " checked" : "") + ">" +
+          '<label for="chl-' + l.code + '">' + l.flag + " " + esc(l.name) + "</label>";
+      }).join("") + "</div></div>" +
+      '<div class="field"><label>时长</label><div class="lang-picker">' +
+      [60, 90].map(function (s) {
+        return '<input type="radio" id="chs-' + s + '" name="ch-secs" value="' + s + '"' + (setup.secs === s ? " checked" : "") + ">" +
+          '<label for="chs-' + s + '">' + s + " 秒</label>";
+      }).join("") + "</div></div>" +
+      '<button class="btn btn-primary btn-lg btn-block" data-action="ch-start" style="margin-top:10px">' + icon("bolt") + " 开始挑战</button>" +
+      '<div class="tiny muted-2" style="margin-top:12px">题型：单词释义 · 语法选择 · 听力理解。答对 +' + "5 XP 起步，连击额外加成；听力题记得先点播放。</div>" +
+      "</div>" +
+      '<div class="panel"><div class="panel-head"><h2>我的纪录</h2></div>' +
+      '<div class="grid grid-2">' +
+      statCard("最高单局得分", (st.challengeBest || 0) + " XP", "") +
+      statCard("最高连击", (st.bestCombo || 0) + " 连", "") +
+      statCard("挑战次数", (st.challengePlays || 0) + " 局", "") +
+      statCard("距离成就", (st.challengePlays >= 5 ? "已解锁" : "再玩 " + (5 - (st.challengePlays || 0)) + " 局"), "「限时挑战者」") +
+      "</div>" +
+      '<div class="tiny muted" style="margin-top:14px">完成 5 局解锁成就「限时挑战者」，单局 10 连击解锁「连击高手」。</div>' +
+      "</div></div>");
+  }
+
+  function challengeStage(ch) {
+    var q = ch.q;
+    var fb = ch.answering;
+    var kindName = { vocab: "单词", grammar: "语法", listening: "听力" }[q.kind];
+    var opts = q.opts.map(function (o, i) {
+      var cls = "";
+      if (fb) { if (i === q.a) cls = "correct"; else if (i === fb.opt) cls = "wrong"; }
+      var attrs = fb ? " disabled" : ' data-action="ch-answer" data-opt="' + i + '"';
+      return '<button class="opt ' + cls + '"' + attrs + '><span class="opt-key">' + "ABCD"[i] + "</span><span>" + esc(o) + "</span></button>";
+    }).join("");
+    return '<div class="lesson-shell"><div class="ch-top">' +
+      '<div class="ch-timer"><div class="bar ch-bar"><i class="bar-fill" id="ch-timer-fill" style="width:100%"></i></div><span class="ch-time" id="ch-time">' + Math.ceil(ch.left / 1000) + "s</span></div>" +
+      '<div class="ch-stats"><span class="ch-score" id="ch-score">' + ch.gain + " XP</span>" +
+      '<span class="ch-combo" id="ch-combo">' + (ch.combo >= 2 ? "🔥 " + ch.combo + " 连击" : "") + "</span></div></div>" +
+      '<div class="stage">' +
+      '<div class="stage-head"><h2>' + kindName + "题</h2><span class=\"sh-step\">第 " + (ch.n + 1) + " 题</span></div>" +
+      (q.speakText ? '<div style="margin-bottom:14px"><button class="btn btn-sm" data-action="ch-play">' + icon("speaker") + (q.kind === "listening" ? "播放听力" : "听发音") + "</button></div>" : "") +
+      '<div class="quiz-q ' + (q.kind === "vocab" ? "ch-vocab-q" : "") + '">' + esc(q.prompt) + "</div>" +
+      '<div class="quiz-sub">' + esc(q.sub || "") + "</div>" +
+      '<div class="opts">' + opts + "</div>" +
+      (fb ? '<div class="explain ' + (fb.correct ? "ok" : "no") + '" style="margin-top:14px">' + icon(fb.correct ? "check" : "x") +
+        "<div><b>" + (fb.correct ? "+" + fb.gain + " XP" : "正确答案是 " + "ABCD"[q.a]) + "</b>" + esc(q.why || "") + "</div></div>" : "") +
+      "</div></div>";
+  }
+
+  function challengeResult(res) {
+    return '<div class="lesson-shell"><div class="stage result-stage">' +
+      '<div class="result-seal" style="background:var(--gold)">' + icon("bolt") + "</div>" +
+      "<h2>时间到</h2>" +
+      (res.isRecord ? '<div class="chip chip-gold" style="margin-top:8px">🎉 新纪录！</div>' : "") +
+      '<div class="result-stats">' +
+      '<div class="result-stat"><b style="color:var(--gold)">+' + res.gain + "</b><span>本局 XP</span></div>" +
+      '<div class="result-stat"><b>' + res.correct + "/" + res.n + "</b><span>答对题数</span></div>" +
+      '<div class="result-stat"><b style="color:var(--vermilion)">' + res.bestCombo + "</b><span>最高连击</span></div>" +
+      '<div class="result-stat"><b>' + res.best + "</b><span>历史最佳</span></div>" +
+      "</div>" +
+      '<div style="display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap">' +
+      '<button class="btn btn-primary btn-lg" data-action="ch-again">' + icon("bolt") + " 再来一局</button>" +
+      '<button class="btn btn-lg btn-ghost" data-link="#/dashboard">回学习中心</button>' +
+      "</div></div></div>";
+  }
+
+  /* ======================================================================
+     词汇库
+     ====================================================================== */
+  function glossaryRows(lang, q) {
+    var st = S.stats();
+    var all = D.glossary(lang || null);
+    if (q) {
+      var needle = q.trim().toLowerCase();
+      all = all.filter(function (v) {
+        return (v.t + " " + (v.r || "") + " " + v.m).toLowerCase().indexOf(needle) >= 0;
+      });
+    }
+    if (!all.length) return '<div class="empty"><div class="em-ico">🔍</div><h3>没有匹配的词条</h3><p>换个关键词试试。</p></div>';
+    return all.map(function (v) {
+      var rec = st.vocabBox[v.key];
+      var state = rec && rec.box >= 3 ? '<span class="chip chip-jade">已掌握</span>'
+        : rec && rec.seen > 0 ? '<span class="chip chip-gold">学习中</span>'
+        : '<span class="chip chip-plain">未学</span>';
+      var langMeta = lang ? "" : '<span class="chip chip-plain">' + langOf(v.lang).flag + "</span>";
+      return '<div class="gl-row">' +
+        '<button class="speak-btn gl-speak" data-speak="' + esc(v.t) + '" data-locale="' + langOf(v.lang).locale + '" aria-label="朗读">' + icon("speaker") + "</button>" +
+        '<div class="gl-main"><div class="gl-word">' + esc(v.t) + (v.r ? ' <span class="gl-read">' + esc(v.r) + "</span>" : "") + "</div>" +
+        '<div class="gl-mean">' + esc(v.m) + "</div>" +
+        (v.ex ? '<div class="gl-ex">' + esc(v.ex) + "</div>" : "") + "</div>" +
+        '<div class="gl-side">' + state + langMeta +
+        '<a class="tiny muted-2 gl-lesson" href="#/learn/' + v.lessonId + '">' + v.level + " · " + esc(v.lessonTitle) + "</a></div>" +
+        "</div>";
+    }).join("");
+  }
+
+  function glossary(lang, q) {
+    var st = S.stats();
+    var tabs = '<div class="lang-tabs">' +
+      '<button class="lang-tab ' + (!lang ? "active" : "") + '" data-link="#/glossary">全部</button>' +
+      D.languages.map(function (l) {
+        var cnt = D.glossary(l.code).length;
+        return '<button class="lang-tab ' + (lang === l.code ? "active" : "") + '" data-link="#/glossary/' + l.code + '"><span class="lt-flag">' + l.flag + "</span>" + esc(l.name) + '<span class="tiny" style="opacity:.7">' + cnt + "</span></button>";
+      }).join("") + "</div>";
+
+    var head = '<div class="panel" style="margin-bottom:18px;display:flex;gap:16px;align-items:center;flex-wrap:wrap">' +
+      '<div style="flex:1;min-width:240px"><input id="gl-q" class="gl-search" placeholder="搜索词条 / 读音 / 释义…" value="' + esc(q || "") + '"></div>' +
+      '<span class="tiny muted">已掌握 ' + st.wordsMastered + " 词 · 接触过 " + st.wordsSeen + " 词</span>" +
+      "</div>";
+
+    return shell("#/glossary", "词汇库", "全部课程词条一览，随时检索与跟读",
+      tabs + head + '<div class="panel" style="padding:6px 18px" id="gl-body">' + glossaryRows(lang, q) + "</div>");
+  }
+
   window.Views = {
     icon: icon, esc: esc, avatar: avatar, bar: bar, ring: ring, nextUp: nextUp, recommend: recommend,
     landing: landing, auth: auth, shell: shell,
     dashboard: dashboard, courses: courses, pathPage: pathPage, progressPage: progressPage,
     community: community, achievements: achievements, profile: profile,
+    reviewPage: reviewPage, reviewStage: reviewStage, reviewResult: reviewResult,
+    challengeSetup: challengeSetup, challengeStage: challengeStage, challengeResult: challengeResult,
+    glossary: glossary, glossaryRows: glossaryRows,
     lessonShell: lessonShell, modeToggle: modeToggle, stageVocab: stageVocab, stageVocabRevealed: stageVocabRevealed,
     stageGrammar: stageGrammar, stageListening: stageListening, stageSpeaking: stageSpeaking, stageModeDone: stageModeDone,
     speakResult: speakResult, stageResult: stageResult, modeScoreCard: modeScoreCard,

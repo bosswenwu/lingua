@@ -5,6 +5,11 @@
 (function () {
   var App = document.getElementById("app");
   var LC = null; // 当前学习会话
+  var CH = null; // 限时挑战会话
+  var RV = null; // 错题重练会话
+  var chTimer = null;
+  var CH_SETUP = { lang: "all", secs: 60 };
+  var glQ = "";  // 词汇库搜索词
 
   /* ---------------- Toast ---------------- */
   function toast(msg, type) {
@@ -22,7 +27,7 @@
   }
 
   /* ---------------- 路由 ---------------- */
-  var PROTECTED = { dashboard: 1, courses: 1, path: 1, progress: 1, community: 1, achievements: 1, profile: 1, learn: 1 };
+  var PROTECTED = { dashboard: 1, courses: 1, path: 1, progress: 1, community: 1, achievements: 1, profile: 1, learn: 1, review: 1, challenge: 1, glossary: 1 };
 
   function parse() {
     var h = (location.hash || "").replace(/^#/, "");
@@ -40,7 +45,10 @@
     if (!page && user) { go("#/dashboard"); return; }
 
     Speech.stop();
+    if (chTimer) { clearInterval(chTimer); chTimer = null; }
     if (page !== "learn") LC = null;
+    if (page !== "challenge") CH = null;
+    if (page !== "review") RV = null;
 
     switch (page) {
       case "":
@@ -63,6 +71,12 @@
         App.innerHTML = Views.achievements(); break;
       case "profile":
         App.innerHTML = Views.profile(); break;
+      case "review":
+        if (RV) paintReview(); else App.innerHTML = Views.reviewPage(); break;
+      case "challenge":
+        if (CH && CH.playing) paintChallenge(); else App.innerHTML = Views.challengeSetup(CH_SETUP); break;
+      case "glossary":
+        App.innerHTML = Views.glossary(r.arg || "", glQ); break;
       case "learn":
         startLesson(r.arg); break;
       default:
@@ -113,7 +127,8 @@
       id: lessonId, info: info, lang: info.lang, items: items,
       total: total, pending: pending, done: done, correct: correct,
       active: DATA.MODES.filter(function (m) { return items[m.key].length > 0; })[0].key,
-      revealed: false, answering: null, speakFx: null, said: "", repeats: {}, finished: false
+      revealed: false, answering: null, speakFx: null, said: "", repeats: {}, finished: false,
+      dictate: { active: false, result: null, draft: "" }
     };
   }
 
@@ -174,7 +189,7 @@
       var ctx = { lessonId: LC.id, idx: useIdx, total: LC.total[mode], item: item };
       if (mode === "vocab") stage = LC.revealed ? Views.stageVocabRevealed(ctx) : Views.stageVocab(ctx);
       else if (mode === "grammar") stage = Views.stageGrammar(ctx, LC.answering && LC.answering.mode === mode ? LC.answering : null);
-      else if (mode === "listening") stage = Views.stageListening(ctx, LC.revealed, LC.answering && LC.answering.mode === mode ? LC.answering : null);
+      else if (mode === "listening") stage = Views.stageListening(ctx, LC.revealed, LC.answering && LC.answering.mode === mode ? LC.answering : null, LC.dictate);
       else stage = Views.stageSpeaking(ctx, LC.speakFx || "");
     }
 
@@ -192,6 +207,15 @@
     LC.answering = { mode: mode, idx: LC.done[mode], item: item, opt: opt, correct: correct, isLast: LC.pending[mode].length === 1 };
     var p = Store.progress();
     Store.recordSkill(p, mode, correct);
+    if (!correct) {
+      Store.recordMistake(p, {
+        lang: LC.lang.code, mode: mode, lessonId: LC.id,
+        prompt: item.q, opts: item.opts || [], answer: item.a,
+        why: item.why || (item.text ? item.text + " —— " + item.tr : ""),
+        text: mode === "listening" ? item.text : "",
+        tr: mode === "listening" ? item.tr : ""
+      });
+    }
     Store.saveProgress(p);
     paintLesson();
   }
@@ -204,6 +228,7 @@
     LC.pending[a.mode].shift();
     LC.answering = null;
     LC.revealed = false;
+    LC.dictate = { active: false, result: null, draft: "" };
     if (allDone()) return finishLesson(a.mode);
     paintLesson();
   }
@@ -323,6 +348,164 @@
   }
 
   /* ======================================================================
+     听写模式
+     ====================================================================== */
+  function dictateItem() {
+    return LC && LC.active === "listening" ? LC.items.listening[LC.pending.listening[0]] : null;
+  }
+  function toggleDictate() {
+    if (!LC || LC.active !== "listening") return;
+    var ta = document.getElementById("dictate-input");
+    if (ta) LC.dictate.draft = ta.value;
+    LC.dictate.active = !LC.dictate.active;
+    LC.dictate.result = null;
+    paintLesson();
+  }
+  function submitDictate() {
+    var it = dictateItem();
+    var ta = document.getElementById("dictate-input");
+    if (!it || !ta) return;
+    var val = ta.value.trim();
+    LC.dictate.draft = val;
+    if (!val) { toast("先输入你听到的内容", "bad"); return; }
+    var score = Speech.score(it.text, val, LC.lang.code);
+    var marks = Speech.mark(it.text, val, LC.lang.code);
+    LC.dictate.result = { score: score, marks: marks };
+    if (score >= 85) {
+      var p = Store.progress();
+      p.xp += 3;
+      var t = Store._util.todayKey();
+      p.days[t] = (p.days[t] || 0) + 3;
+      Store.saveProgress(p);
+      toast("听写优秀，+3 XP", "good");
+    }
+    paintLesson();
+    var nt = document.getElementById("dictate-input");
+    if (nt) nt.focus();
+  }
+
+  /* ======================================================================
+     错题重练
+     ====================================================================== */
+  function startReview() {
+    var list = Store.mistakes();
+    if (!list.length) { toast("错题本是空的", "good"); return; }
+    RV = { items: list, idx: 0, fixed: 0, fb: null };
+    paintReview();
+  }
+  function paintReview() {
+    if (!RV) return;
+    App.innerHTML = Views.reviewStage(RV.items[RV.idx], RV.idx, RV.items.length, RV.fb);
+    window.scrollTo(0, 0);
+  }
+  function reviewAnswer(opt) {
+    if (!RV || RV.fb) return;
+    var m = RV.items[RV.idx];
+    var correct = opt === m.answer;
+    RV.fb = { opt: opt, correct: correct };
+    var p = Store.progress();
+    Store.recordSkill(p, m.mode, correct);
+    Store.saveProgress(p);
+    if (correct) {
+      RV.fixed += 1;
+      var badges = Store.resolveMistake(m.id);
+      (badges || []).forEach(function (b, i) { setTimeout(function () { toast("解锁成就：" + b.name, "good"); }, 400 + i * 420); });
+    }
+    paintReview();
+  }
+  function reviewNext() {
+    if (!RV) return;
+    RV.idx += 1;
+    RV.fb = null;
+    if (RV.idx >= RV.items.length) {
+      var fixed = RV.fixed, total = RV.items.length;
+      RV = null;
+      App.innerHTML = Views.reviewResult(fixed, total);
+      window.scrollTo(0, 0);
+      return;
+    }
+    paintReview();
+  }
+
+  /* ======================================================================
+     限时挑战
+     ====================================================================== */
+  function startChallenge() {
+    var codes = CH_SETUP.lang === "all" ? null : [CH_SETUP.lang];
+    var pool = DATA.challengePool(codes);
+    if (!pool.length) { toast("题库为空", "bad"); return; }
+    CH = {
+      playing: true, pool: pool,
+      total: CH_SETUP.secs * 1000, left: CH_SETUP.secs * 1000,
+      gain: 0, combo: 0, bestCombo: 0, n: 0, correct: 0,
+      q: null, answering: null
+    };
+    nextChallengeQ();
+    paintChallenge();
+    chTimer = setInterval(chTick, 200);
+  }
+  function chTick() {
+    if (!CH || !CH.playing) { clearInterval(chTimer); chTimer = null; return; }
+    CH.left -= 200;
+    var fill = document.getElementById("ch-timer-fill");
+    var t = document.getElementById("ch-time");
+    if (fill) fill.style.width = Math.max(0, CH.left / CH.total * 100) + "%";
+    if (t) t.textContent = Math.ceil(Math.max(0, CH.left) / 1000) + "s";
+    if (CH.left <= 0) endChallenge();
+  }
+  function nextChallengeQ() {
+    CH.q = CH.pool[Math.floor(Math.random() * CH.pool.length)];
+    CH.answering = null;
+  }
+  function paintChallenge() {
+    App.innerHTML = Views.challengeStage(CH);
+  }
+  function challengeAnswer(opt) {
+    if (!CH || !CH.playing || CH.answering) return;
+    var q = CH.q;
+    var correct = opt === q.a;
+    var gain = 0;
+    CH.n += 1;
+    if (correct) {
+      CH.combo += 1;
+      CH.bestCombo = Math.max(CH.bestCombo, CH.combo);
+      CH.correct += 1;
+      gain = 5 + Math.min(CH.combo - 1, 10); // 连击加成：5 → 15
+      CH.gain += gain;
+    } else {
+      CH.combo = 0;
+    }
+    CH.answering = { opt: opt, correct: correct, gain: gain };
+    var p = Store.progress();
+    Store.recordSkill(p, q.kind, correct);
+    if (!correct) {
+      Store.recordMistake(p, {
+        lang: q.lang, mode: q.kind, prompt: q.prompt,
+        opts: q.opts, answer: q.a, why: q.why,
+        text: q.kind === "listening" ? q.speakText : ""
+      });
+    }
+    Store.saveProgress(p);
+    paintChallenge();
+    setTimeout(function () {
+      if (!CH || !CH.playing || CH.left <= 0) return;
+      nextChallengeQ();
+      paintChallenge();
+    }, correct ? 550 : 1100);
+  }
+  function endChallenge() {
+    if (!CH) return;
+    clearInterval(chTimer); chTimer = null;
+    var res = Store.saveChallengeResult(CH.gain, CH.bestCombo);
+    var out = { gain: CH.gain, correct: CH.correct, n: CH.n, bestCombo: CH.bestCombo, best: res.best, isRecord: res.isRecord };
+    CH.playing = false;
+    CH = null;
+    App.innerHTML = Views.challengeResult(out);
+    window.scrollTo(0, 0);
+    (res.badges || []).forEach(function (b, i) { setTimeout(function () { toast("解锁成就：" + b.name, "good"); }, 400 + i * 420); });
+  }
+
+  /* ======================================================================
      事件
      ====================================================================== */
   document.addEventListener("click", function (ev) {
@@ -376,7 +559,7 @@
       case "del-post":
         if (confirm("删除这条动态？")) { Store.deletePost(act.getAttribute("data-id")); render(); }
         break;
-      case "mode": if (LC) { LC.active = act.getAttribute("data-mode"); LC.answering = null; LC.revealed = false; LC.speakFx = null; LC.speakFxScore = null; paintLesson(); } break;
+      case "mode": if (LC) { LC.active = act.getAttribute("data-mode"); LC.answering = null; LC.revealed = false; LC.speakFx = null; LC.speakFxScore = null; LC.dictate = { active: false, result: null, draft: "" }; paintLesson(); } break;
       case "reveal": if (LC) { LC.revealed = true; paintLesson(); } break;
       case "known": if (LC) handleVocab(true); break;
       case "unknown": if (LC) handleVocab(false); break;
@@ -390,6 +573,12 @@
       case "toggle-script":
         if (LC) { LC.revealed = !LC.revealed; paintLesson(); }
         break;
+      case "dictate":
+        toggleDictate();
+        break;
+      case "dictate-submit":
+        submitDictate();
+        break;
       case "speak-target":
         if (LC) { var sp2 = LC.items.speaking[LC.pending.speaking[0]]; if (sp2) Speech.speak(sp2.text, LC.lang.locale); }
         break;
@@ -398,6 +587,29 @@
         if (LC && LC.active === "speaking") commitSpeaking(!LC.speakFxScore);
         break;
       case "redo": if (LC) { startLesson(LC.id); } break;
+      /* 错题本 */
+      case "rv-start": startReview(); break;
+      case "rv-clear":
+        if (confirm("确定要清空错题本吗？全部错题记录将被删除。")) Store.clearMistakes();
+        render();
+        break;
+      case "rv-remove": Store.removeMistake(act.getAttribute("data-id")); render(); break;
+      case "rv-answer":
+        if (RV) reviewAnswer(+act.getAttribute("data-opt"));
+        break;
+      case "rv-next": reviewNext(); break;
+      /* 限时挑战 */
+      case "ch-start": startChallenge(); break;
+      case "ch-again":
+        go("#/challenge");
+        setTimeout(function () { startChallenge(); }, 80);
+        break;
+      case "ch-answer":
+        if (CH) challengeAnswer(+act.getAttribute("data-opt"));
+        break;
+      case "ch-play":
+        if (CH && CH.q && CH.q.speakText) Speech.speak(CH.q.speakText, CH.q.locale, { rate: 0.9 });
+        break;
     }
   });
 
@@ -505,6 +717,24 @@
     Store.saveProgress(p);
     Store.evaluateBadges();
   }
+
+  /* 挑战设置单选 & 词汇库搜索 */
+  document.addEventListener("change", function (ev) {
+    var el = ev.target;
+    if (!el || !el.name) return;
+    if (el.name === "ch-lang") CH_SETUP.lang = el.value;
+    if (el.name === "ch-secs") CH_SETUP.secs = +el.value;
+  });
+  document.addEventListener("input", function (ev) {
+    if (ev.target && ev.target.id === "gl-q") {
+      glQ = ev.target.value;
+      var body = document.getElementById("gl-body");
+      if (body) {
+        var lang = (parse().page === "glossary" ? parse().arg : "") || "";
+        body.innerHTML = Views.glossaryRows(lang, glQ);
+      }
+    }
+  });
 
   /* ---------------- 启动 ---------------- */
   window.addEventListener("hashchange", render);

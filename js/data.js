@@ -78,6 +78,82 @@
     };
   }
 
+  /* ---------------- 限时挑战题库 ----------------
+     从词汇 / 语法 / 听力三类内容中抽取选择题，词汇题自动生成干扰项 */
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  function challengePool(codes) {
+    var pool = [];
+    var vocabMeanings = {};
+    LANGS.forEach(function (lang) {
+      vocabMeanings[lang.code] = [];
+      lessonsOfLang(lang.code).forEach(function (id) {
+        INDEX[id].lesson.vocab.forEach(function (v) { vocabMeanings[lang.code].push(v.m); });
+      });
+    });
+    LANGS.forEach(function (lang) {
+      if (codes && codes.length && codes.indexOf(lang.code) < 0) return;
+      lessonsOfLang(lang.code).forEach(function (id) {
+        var ls = INDEX[id].lesson;
+        ls.vocab.forEach(function (v) {
+          var distract = shuffle(vocabMeanings[lang.code].filter(function (m) { return m !== v.m; })).slice(0, 2);
+          if (distract.length < 2) return;
+          var opts = shuffle([v.m].concat(distract));
+          pool.push({
+            kind: "vocab", lang: lang.code, locale: lang.locale,
+            prompt: v.t, sub: (v.r ? v.r + " · " : "") + "选出正确释义",
+            speakText: v.t, opts: opts, a: opts.indexOf(v.m), why: v.ex || ""
+          });
+        });
+        ls.grammar.forEach(function (g) {
+          g.drills.forEach(function (d) {
+            pool.push({
+              kind: "grammar", lang: lang.code, locale: lang.locale,
+              prompt: d.q, sub: "语法 · " + g.point,
+              opts: d.opts.slice(), a: d.a, why: d.why || ""
+            });
+          });
+        });
+        ls.listening.forEach(function (li) {
+          pool.push({
+            kind: "listening", lang: lang.code, locale: lang.locale,
+            prompt: li.q, sub: "听力 · 先听录音再作答", speakText: li.text,
+            opts: li.opts.slice(), a: li.a, why: li.text + " —— " + li.tr
+          });
+        });
+      });
+    });
+    return pool;
+  }
+
+  /* ---------------- 词汇库 ---------------- */
+  function glossary(langCode) {
+    var out = [];
+    LANGS.forEach(function (lang) {
+      if (langCode && lang.code !== langCode) return;
+      lang.levels.forEach(function (level) {
+        level.units.forEach(function (unit) {
+          unit.lessons.forEach(function (ls) {
+            ls.vocab.forEach(function (v, i) {
+              out.push({
+                key: ls.id + "#" + i, t: v.t, r: v.r, m: v.m, ex: v.ex,
+                lang: lang.code, level: level.badge, lessonId: ls.id, lessonTitle: ls.title
+              });
+            });
+          });
+        });
+      });
+    });
+    return out;
+  }
+
   window.DATA = {
     languages: LANGS,
     langIndex: LANG_INDEX,
@@ -90,6 +166,9 @@
     prevLessonId: prevLessonId,
     lessonsOfLang: lessonsOfLang,
     firstLessonOfLang: firstLessonOfLang,
-    stats: stats
+    stats: stats,
+    shuffle: shuffle,
+    challengePool: challengePool,
+    glossary: glossary
   };
 })();

@@ -718,3 +718,58 @@ ul{margin:0;padding:0;list-style:none}
 @media (prefers-reduced-motion:reduce){
   *{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
+
+/* ==========================================================================
+   强化训练（错题本 / 限时挑战 / 词汇库 / 听写）
+   ========================================================================== */
+/* 仪表盘快捷入口 */
+.quick-card{display:flex;gap:14px;align-items:center;border:1px solid var(--line);transition:border-color .18s ease,transform .18s ease}
+.quick-card:hover{border-color:var(--ink);transform:translateY(-2px)}
+.qc-ico{width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.qc-ico .ico{width:22px;height:22px}
+
+/* 限时挑战 */
+.ch-top{display:flex;gap:16px;align-items:center;padding:14px 18px;background:var(--ink);border-radius:14px;margin-bottom:18px}
+.ch-timer{flex:1;display:flex;align-items:center;gap:12px;min-width:0}
+.ch-bar{flex:1;background:rgba(255,255,255,.14)}
+.ch-bar .bar-fill{background:linear-gradient(90deg,var(--gold),var(--vermilion));transition:width .2s linear}
+.ch-time{font-family:var(--font-display);font-weight:700;color:#fff;min-width:44px;text-align:right;font-variant-numeric:tabular-nums}
+.ch-stats{display:flex;align-items:center;gap:14px}
+.ch-score{font-family:var(--font-display);font-weight:700;color:var(--gold);font-size:19px;font-variant-numeric:tabular-nums}
+.ch-combo{font-size:13px;color:#ffb3ab;font-weight:600;min-width:64px;text-align:right}
+.ch-vocab-q{font-size:30px;font-family:var(--font-display)}
+
+/* 错题本 */
+.rv-card{padding:16px 18px}
+.rv-meta{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:13px;font-weight:600;color:var(--muted)}
+.rv-prompt{font-size:16px;font-weight:600;margin-top:10px;line-height:1.6}
+.rv-answer{margin-top:8px;font-size:13.5px;color:var(--jade)}
+.rv-actions{display:flex;gap:10px;margin-top:12px;align-items:center}
+
+/* 词汇库 */
+.gl-search{width:100%;padding:11px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:var(--paper);color:var(--ink);outline:none;transition:border-color .15s ease}
+.gl-search:focus{border-color:var(--indigo)}
+.gl-row{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--line-soft)}
+.gl-row:last-child{border-bottom:none}
+.gl-speak{flex-shrink:0;margin-top:2px}
+.gl-main{flex:1;min-width:0}
+.gl-word{font-size:16px;font-weight:700}
+.gl-read{font-size:12.5px;font-weight:400;color:var(--muted);margin-left:6px}
+.gl-mean{font-size:13.5px;color:var(--ink);margin-top:3px}
+.gl-ex{font-size:12.5px;color:var(--muted);margin-top:4px;line-height:1.6}
+.gl-side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.gl-lesson{text-decoration:none;border-bottom:1px dashed var(--line)}
+.gl-lesson:hover{color:var(--indigo)}
+
+/* 听写模式 */
+.dictate-box{border:1px dashed var(--line);border-radius:12px;padding:14px;margin-bottom:18px;background:var(--paper)}
+.dictate-input{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;font-size:15px;font-family:inherit;background:#fff;color:var(--ink);outline:none;resize:vertical;transition:border-color .15s ease}
+.dictate-input:focus{border-color:var(--indigo)}
+
+@media (max-width:560px){
+  .ch-top{flex-direction:column;gap:10px;align-items:stretch}
+  .ch-stats{justify-content:space-between}
+  .ch-vocab-q{font-size:24px}
+  .gl-side{align-items:flex-start}
+  .gl-row{flex-wrap:wrap}
+}

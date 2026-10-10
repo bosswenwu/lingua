@@ -65,7 +65,10 @@
     { id: "speaker", name: "口语新星", icon: "🎙️", desc: "完成 15 次跟读", target: 15, get: function (s) { return s.skills.speaking.total; } },
     { id: "ten_lessons", name: "十课之功", icon: "🎯", desc: "累计完成 10 节课", target: 10, get: function (s) { return s.lessonsDone; } },
     { id: "polyglot", name: "多语学者", icon: "🌍", desc: "在 2 门语言中都有学习记录", target: 2, get: function (s) { return s.langsTouched; } },
-    { id: "social", name: "社区活跃", icon: "💬", desc: "发布 3 条社区动态", target: 3, get: function (s) { return s.posts; } }
+    { id: "social", name: "社区活跃", icon: "💬", desc: "发布 3 条社区动态", target: 3, get: function (s) { return s.posts; } },
+    { id: "reviewer", name: "知错就改", icon: "🩹", desc: "在错题本中攻克 10 道错题", target: 10, get: function (s) { return s.mistakesFixed; } },
+    { id: "challenger", name: "限时挑战者", icon: "⏱️", desc: "完成 5 次限时挑战", target: 5, get: function (s) { return s.challengePlays; } },
+    { id: "combo10", name: "连击高手", icon: "⚡", desc: "单次限时挑战达成 10 连击", target: 10, get: function (s) { return s.bestCombo; } }
   ];
 
   /* ---------------- 演示数据 ---------------- */
@@ -185,12 +188,22 @@
       vocabBox: {},   // "lessonId#idx" -> { box, seen, correct, next }
       posts: 0,
       badges: [],
-      langsTouched: []
+      langsTouched: [],
+      mistakes: [],        // 错题本 [{ id, lang, mode, lessonId, prompt, opts, answer, why, text, tr, at }]
+      mistakesFixed: 0,    // 重练答对累计
+      challenge: { plays: 0, best: 0, bestCombo: 0 }  // 限时挑战
     };
+  }
+  function migrate(p) {
+    if (!p.mistakes) p.mistakes = [];
+    if (typeof p.mistakesFixed !== "number") p.mistakesFixed = 0;
+    if (!p.challenge) p.challenge = { plays: 0, best: 0, bestCombo: 0 };
+    return p;
   }
   function ensureProgress(userId, langs) {
     var p = read("progress." + userId, null);
     if (!p) { p = blankProgress(); write("progress." + userId, p); }
+    else { p = migrate(p); write("progress." + userId, p); }
     return p;
   }
   function progress() {
@@ -238,6 +251,56 @@
     if (correct) s.correct += 1;
   }
 
+  /* ---------------- 错题本 ---------------- */
+  function recordMistake(p, m) {
+    if (!p.mistakes) p.mistakes = [];
+    var key = m.lang + "|" + m.mode + "|" + m.prompt;
+    var dup = p.mistakes.filter(function (x) { return (x.lang + "|" + x.mode + "|" + x.prompt) === key; })[0];
+    if (dup) { dup.at = Date.now(); return dup; }
+    var item = {
+      id: uid("m"),
+      lang: m.lang, mode: m.mode, lessonId: m.lessonId || "",
+      prompt: m.prompt, opts: m.opts || [], answer: m.answer,
+      why: m.why || "", text: m.text || "", tr: m.tr || "",
+      at: Date.now()
+    };
+    p.mistakes.unshift(item);
+    if (p.mistakes.length > 120) p.mistakes = p.mistakes.slice(0, 120);
+    return item;
+  }
+  function mistakes() { return (progress().mistakes || []).slice(); }
+  function resolveMistake(id) {
+    var p = progress();
+    var before = p.mistakes.length;
+    p.mistakes = p.mistakes.filter(function (x) { return x.id !== id; });
+    if (p.mistakes.length < before) { p.mistakesFixed = (p.mistakesFixed || 0) + 1; saveProgress(p); }
+    return evaluateBadges();
+  }
+  function removeMistake(id) {
+    var p = progress();
+    p.mistakes = p.mistakes.filter(function (x) { return x.id !== id; });
+    saveProgress(p);
+  }
+  function clearMistakes() {
+    var p = progress();
+    p.mistakes = [];
+    saveProgress(p);
+  }
+
+  /* ---------------- 限时挑战 ---------------- */
+  function saveChallengeResult(gain, combo) {
+    var p = progress();
+    var c = p.challenge || (p.challenge = { plays: 0, best: 0, bestCombo: 0 });
+    c.plays += 1;
+    var isRecord = gain > c.best;
+    c.best = Math.max(c.best, gain);
+    c.bestCombo = Math.max(c.bestCombo, combo);
+    addXp(p, gain);
+    saveProgress(p);
+    var badges = evaluateBadges();
+    return { best: c.best, isRecord: isRecord, badges: badges, plays: c.plays };
+  }
+
   function addXp(p, amount) {
     amount = Math.max(0, Math.round(amount));
     p.xp += amount;
@@ -280,6 +343,11 @@
       todayXp: p.days[todayKey()] || 0,
       perLang: perLang,
       langsTouched: Object.keys(perLang).filter(function (c) { return perLang[c].done > 0 || perLang[c].xp > 0; }).length,
+      mistakes: (p.mistakes || []).length,
+      mistakesFixed: p.mistakesFixed || 0,
+      challengePlays: p.challenge ? p.challenge.plays : 0,
+      bestCombo: p.challenge ? p.challenge.bestCombo : 0,
+      challengeBest: p.challenge ? p.challenge.best : 0,
       skills: {
         vocab: { total: sk.vocab.total, correct: sk.vocab.correct, acc: acc(sk.vocab) },
         grammar: { total: sk.grammar.total, correct: sk.grammar.correct, acc: acc(sk.grammar) },
@@ -430,6 +498,12 @@
     completeLesson: completeLesson,
     updateVocabBox: updateVocabBox,
     recordSkill: recordSkill,
+    recordMistake: recordMistake,
+    mistakes: mistakes,
+    resolveMistake: resolveMistake,
+    removeMistake: removeMistake,
+    clearMistakes: clearMistakes,
+    saveChallengeResult: saveChallengeResult,
     feed: feed,
     addPost: addPost,
     deletePost: deletePost,
