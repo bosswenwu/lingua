@@ -1244,6 +1244,316 @@ window.COURSES_EN = {
               ]
             }
           ]
+        },
+        {
+          id: "en-u13",
+          name: "美食与餐饮",
+          theme: "订位、点餐、烹饪与投诉处理",
+          lessons: [
+            {
+              id: "en-l25",
+              title: "订位与点餐",
+              minutes: 10,
+              xp: 50,
+              focus: "餐厅礼貌表达",
+              vocab: [
+                { t: "reservation", r: "/ˌrezərˈveɪʃn/", m: "预订", ex: "I'd like to make a reservation for two at seven." },
+                { t: "appetizer", r: "/ˈæpɪtaɪzər/", m: "开胃菜", ex: "Shall we order an appetizer to share?" },
+                { t: "main course", r: "/meɪn kɔːrs/", m: "主菜", ex: "For the main course, I'll have the grilled salmon." },
+                { t: "medium rare", r: "/ˈmiːdiəm rer/", m: "三分熟", ex: "Please cook the steak medium rare." },
+                { t: "bill", r: "/bɪl/", m: "账单", ex: "Could we have the bill, please?" },
+                { t: "tip", r: "/tɪp/", m: "小费", ex: "It's common to leave a tip of about fifteen percent." }
+              ],
+              grammar: [
+                {
+                  point: "间接问句与礼貌请求",
+                  rule: "礼貌提问用 Could you / Would you mind + 动名词，间接问句用陈述语序。",
+                  examples: ["Could you tell me where the restrooms are?", "Would you mind bringing us some water?", "I was wondering if we could sit by the window."],
+                  drills: [
+                    { q: "Would you mind ___ the bill?", opts: ["bring", "bringing", "brought"], a: 1, why: "Would you mind 后接动名词。" },
+                    { q: "Could you tell me where ___ ?", opts: ["is the station", "the station is", "does the station"], a: 1, why: "间接问句用陈述语序。" },
+                    { q: "___ you mind if I opened the window?", opts: ["Would", "Do", "Should"], a: 0, why: "Would you mind if + 过去式是更委婉的请求。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "I have a reservation under the name Chen, for two people at seven o'clock.", q: "说话人在做什么？", opts: ["取消订单", "确认订位", "点外卖"], a: 1, tr: "我有一个以陈的名义、七点两位的预订。" },
+                { text: "I'll have the steak, medium rare, with a side of roasted vegetables, please.", q: "牛排要几分熟？", opts: ["全熟", "三分熟", "七分熟"], a: 1, tr: "我要一份三分熟牛排，配烤蔬菜。" },
+                { text: "Everything was delicious, but could we get the bill when you have a moment?", q: "说话人的态度如何？", opts: ["非常不满", "满意且礼貌", "着急赶时间"], a: 1, tr: "菜都很美味，方便时能给我们账单吗？" }
+              ],
+              speaking: [
+                { text: "I'd like to make a reservation for two at seven tonight.", tr: "我想订今晚七点两位的位子。" },
+                { text: "For the main course, I'll have the grilled salmon, please.", tr: "主菜我要一份烤三文鱼。" },
+                { text: "Everything was delicious. Could we have the bill, please?", tr: "菜都非常好吃。麻烦给我们账单。" }
+              ]
+            },
+            {
+              id: "en-l26",
+              title: "描述美食",
+              minutes: 10,
+              xp: 50,
+              focus: "味道与口感词汇",
+              vocab: [
+                { t: "crispy", r: "/ˈkrɪspi/", m: "酥脆的", ex: "The skin of the roast duck was perfectly crispy." },
+                { t: "tender", r: "/ˈtendər/", m: "软嫩的", ex: "Slow cooking makes the beef really tender." },
+                { t: "savory", r: "/ˈseɪvəri/", m: "咸香可口的", ex: "The soup has a rich, savory flavor." },
+                { t: "bland", r: "/blænd/", m: "清淡无味的", ex: "The dish was a little bland, so I added some salt." },
+                { t: "ingredient", r: "/ɪnˈɡriːdiənt/", m: "食材", ex: "Fresh ingredients make all the difference." },
+                { t: "portion", r: "/ˈpɔːrʃn/", m: "一份的量", ex: "The portions here are huge, so we ordered less." }
+              ],
+              grammar: [
+                {
+                  point: "关系从句 which / where",
+                  rule: "which 指代事物补充说明，where 指代地点：a restaurant where you can...",
+                  examples: ["This is a dish which is popular with tourists.", "That's the cafe where we first met.", "It's a sauce which goes well with almost anything."],
+                  drills: [
+                    { q: "This is the restaurant ___ I had my first date.", opts: ["which", "where", "when"], a: 1, why: "先行词是地点，用 where。" },
+                    { q: "It's a spice ___ gives the dish its color.", opts: ["who", "which", "where"], a: 1, why: "先行词是事物，用 which。" },
+                    { q: "I love street markets ___ you can try many local snacks.", opts: ["which", "where", "what"], a: 1, why: "在地点里做某事，用 where 引导。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "The dumplings here are amazing — the skin is thin and crispy, and the filling is so juicy.", q: "说话人怎么评价饺子皮？", opts: ["太厚了", "薄而酥脆", "有点硬"], a: 1, tr: "这里的饺子太棒了——皮薄而酥脆，馅料多汁。" },
+                { text: "Honestly, the soup was a bit bland for me, but the portion was generous.", q: "说话人的总体评价是？", opts: ["全都很差", "汤偏淡但分量足", "再也不来了"], a: 1, tr: "说实话汤对我而言偏淡，但分量很足。" },
+                { text: "What makes this dish special is a secret ingredient which the chef refuses to reveal.", q: "这道菜特别在哪？", opts: ["分量超大", "有秘方食材", "价格便宜"], a: 1, tr: "这道菜的特别之处是一种主厨不肯透露的秘方食材。" }
+              ],
+              speaking: [
+                { text: "The roast duck is crispy on the outside and tender inside.", tr: "烤鸭外皮酥脆，里面软嫩。" },
+                { text: "This is the noodle shop where I always bring my friends.", tr: "这是我最常带朋友来的面馆。" },
+                { text: "Fresh ingredients make all the difference in cooking.", tr: "新鲜的食材决定了烹饪的品质。" }
+              ]
+            },
+            {
+              id: "en-l27",
+              title: "烹饪与食谱",
+              minutes: 11,
+              xp: 55,
+              focus: "厨房动作与被动语态",
+              vocab: [
+                { t: "chop", r: "/tʃɑːp/", m: "切碎", ex: "Chop the onions into small pieces first." },
+                { t: "simmer", r: "/ˈsɪmər/", m: "小火慢炖", ex: "Let the soup simmer for about twenty minutes." },
+                { t: "bake", r: "/beɪk/", m: "烘烤", ex: "Bake the cake at 180 degrees for thirty minutes." },
+                { t: "seasoning", r: "/ˈsiːzənɪŋ/", m: "调味料", ex: "Taste it before adding more seasoning." },
+                { t: "batter", r: "/ˈbætər/", m: "面糊", ex: "Whisk the batter until it is smooth." },
+                { t: "garnish", r: "/ˈɡɑːrnɪʃ/", m: "装饰配菜", ex: "Garnish the dish with fresh herbs before serving." }
+              ],
+              grammar: [
+                {
+                  point: "被动语态描述步骤",
+                  rule: "食谱常用被动：be + 过去分词，强调动作而非执行者。",
+                  examples: ["The onions are chopped and fried until golden.", "The dough is left to rest for an hour.", "The dish is served with rice."],
+                  drills: [
+                    { q: "The fish ___ with lemon juice before cooking.", opts: ["marinates", "is marinated", "marinated"], a: 1, why: "食谱步骤用被动语态 be + 过去分词。" },
+                    { q: "The sauce ___ until it thickens.", opts: ["is simmered", "simmered", "is simmering"], a: 0, why: "酱汁被慢炖，用被动 is simmered。" },
+                    { q: "The cake ___ at 180 degrees for half an hour.", opts: ["bakes", "is baked", "is baking"], a: 1, why: "蛋糕被烘烤，用被动语态。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "First, the onions are chopped finely and fried in olive oil until they turn golden.", q: "洋葱要炒到什么状态？", opts: ["变软出汁", "炒至金黄", "微微透明"], a: 1, tr: "首先，洋葱切碎后用橄榄油炒至金黄。" },
+                { text: "Once the batter is smooth, it is poured into a tin and baked for thirty minutes.", q: "面糊之后要做什么？", opts: ["冷藏一小时", "倒入模具烘烤", "撒上糖霜"], a: 1, tr: "面糊搅拌顺滑后倒入模具，烘烤三十分钟。" },
+                { text: "The soup is left to simmer gently, and more seasoning can be added later if needed.", q: "什么时候可以加调味料？", opts: ["一开始就加", "之后按需添加", "完全不能加"], a: 1, tr: "汤小火慢炖，之后如有需要可以再加调味。" }
+              ],
+              speaking: [
+                { text: "The onions are chopped and fried until golden.", tr: "洋葱切碎后炒至金黄。" },
+                { text: "Let the soup simmer for about twenty minutes.", tr: "让汤小火慢炖二十分钟左右。" },
+                { text: "The dish is garnished with fresh herbs before serving.", tr: "上桌前用新鲜香草装饰这道菜。" }
+              ]
+            },
+            {
+              id: "en-l28",
+              title: "投诉与解决",
+              minutes: 11,
+              xp: 55,
+              focus: "委婉表达不满",
+              vocab: [
+                { t: "refund", r: "/ˈriːfʌnd/", m: "退款", ex: "The dish was cold, so we asked for a refund." },
+                { t: "undercooked", r: "/ˌʌndərˈkʊkt/", m: "未熟透的", ex: "The chicken was undercooked in the middle." },
+                { t: "complaint", r: "/kəmˈpleɪnt/", m: "投诉", ex: "I'd like to make a complaint about the service." },
+                { t: "compensation", r: "/ˌkɑːmpenˈseɪʃn/", m: "补偿", ex: "They offered us a free dessert as compensation." },
+                { t: "voucher", r: "/ˈvaʊtʃər/", m: "代金券", ex: "We were given a voucher for our next visit." },
+                { t: "on the house", r: "/ɒn ðə haʊs/", m: "店家请客", ex: "The manager said the drinks were on the house." }
+              ],
+              grammar: [
+                {
+                  point: "委婉投诉句型 I'm afraid / It seems that",
+                  rule: "投诉时先缓冲再说明问题：I'm afraid + 问题，比直接指责更有效。",
+                  examples: ["I'm afraid this isn't what I ordered.", "It seems that the bill is incorrect.", "I'm sorry to bother you, but the soup is cold."],
+                  drills: [
+                    { q: "I'm ___ this isn't what I ordered.", opts: ["afraid", "happily", "gladly"], a: 0, why: "I'm afraid 是委婉表达不满的固定开头。" },
+                    { q: "It ___ that our order has been forgotten.", opts: ["seems", "seem", "seeming"], a: 0, why: "It seems that + 从句，主语 it 用三单。" },
+                    { q: "___ to bother you, but the bill is wrong.", opts: ["I'm sorry", "I sorry", "Sorry am I"], a: 0, why: "I'm sorry to bother you 是礼貌打断的说法。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "I'm afraid the steak is quite undercooked — could you ask the kitchen to grill it a little longer?", q: "说话人希望怎么处理？", opts: ["直接退款", "回炉再烤", "换一家店"], a: 1, tr: "恐怕这份牛排几乎没熟——能让厨房再烤一会儿吗？" },
+                { text: "We're terribly sorry about the wait. Your drinks are on the house tonight.", q: "店家怎么补偿？", opts: ["退款", "饮品免费", "送代金券"], a: 1, tr: "非常抱歉让你们久等了。今晚的饮品由店家请客。" },
+                { text: "Since the order arrived an hour late, we'd like to offer you a voucher for your next meal.", q: "补偿方式是什么？", opts: ["现金退款", "下次用餐代金券", "免费重做"], a: 1, tr: "由于订单迟到了一小时，我们想送您一张下次用餐的代金券。" }
+              ],
+              speaking: [
+                { text: "I'm afraid this isn't what I ordered.", tr: "恐怕这不是我点的菜。" },
+                { text: "Could we get a refund for the undercooked dish?", tr: "这道菜没熟透，可以退款吗？" },
+                { text: "Thank you for handling our complaint so quickly.", tr: "感谢你们这么快处理了我们的投诉。" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "en-u14",
+          name: "环境与未来",
+          theme: "气候、城市发展与未来展望",
+          lessons: [
+            {
+              id: "en-l29",
+              title: "气候与环境",
+              minutes: 11,
+              xp: 55,
+              focus: "环保议题表达",
+              vocab: [
+                { t: "carbon footprint", r: "/ˈkɑːrbən ˈfʊtprɪnt/", m: "碳足迹", ex: "Cycling to work reduces your carbon footprint." },
+                { t: "renewable", r: "/rɪˈnuːəbl/", m: "可再生的", ex: "Solar power is a clean, renewable source of energy." },
+                { t: "emission", r: "/ɪˈmɪʃn/", m: "排放", ex: "New laws aim to cut carbon emissions by half." },
+                { t: "sustainable", r: "/səˈsteɪnəbl/", m: "可持续的", ex: "We should switch to more sustainable farming methods." },
+                { t: "drought", r: "/draʊt/", m: "干旱", ex: "The drought lasted for months and killed most of the crops." },
+                { t: "recycling", r: "/ˌriːˈsaɪklɪŋ/", m: "回收利用", ex: "Recycling paper saves trees and water." }
+              ],
+              grammar: [
+                {
+                  point: "情态动词推测 must / can't / might",
+                  rule: "must be 表肯定推测，can't be 表否定推测，might/could be 表可能性。",
+                  examples: ["The summers must be getting hotter.", "That can't be good for the environment.", "Electric cars might become the norm within a decade."],
+                  drills: [
+                    { q: "The river smells awful — something ___ be wrong.", opts: ["must", "can't", "shouldn't"], a: 0, why: "有明确证据时用 must be 表肯定推测。" },
+                    { q: "Recycling alone ___ possibly solve the whole problem.", opts: ["can't", "must", "might"], a: 0, why: "can't 表「不可能」的否定推测。" },
+                    { q: "Sea levels ___ rise faster than we expected.", opts: ["might", "must not", "would rather"], a: 0, why: "might 表示不确定的可能性。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "If every household switched to renewable energy, urban emissions could drop dramatically.", q: "说话人在讨论什么？", opts: ["家庭开支", "城市减排", "房地产"], a: 1, tr: "如果每个家庭都改用可再生能源，城市排放会大幅下降。" },
+                { text: "The drought this year was the worst in decades, and farmers lost nearly half of their harvest.", q: "农民损失了多少收成？", opts: ["四分之一", "几乎一半", "全部"], a: 1, tr: "今年这场干旱是几十年来最严重的，农民损失了近一半收成。" },
+                { text: "Small habits like recycling and taking the bus can shrink your carbon footprint over time.", q: "说话人的建议是？", opts: ["搬到郊外", "从小习惯做起", "买电动汽车"], a: 1, tr: "回收利用、坐公交这类小习惯能逐渐减少你的碳足迹。" }
+              ],
+              speaking: [
+                { text: "Cycling to work is a simple way to reduce your carbon footprint.", tr: "骑车上班是减少碳足迹的简单方式。" },
+                { text: "Solar power is clean and renewable, but it still costs a lot.", tr: "太阳能清洁可再生，但成本仍然很高。" },
+                { text: "I believe small daily habits can make a real difference.", tr: "我相信每天的小习惯能带来真正的改变。" }
+              ]
+            },
+            {
+              id: "en-l30",
+              title: "城市与交通",
+              minutes: 11,
+              xp: 55,
+              focus: "比较级高级用法",
+              vocab: [
+                { t: "congestion", r: "/kənˈdʒestʃən/", m: "拥堵", ex: "Traffic congestion is worst during the morning rush." },
+                { t: "commute", r: "/kəˈmjuːt/", m: "通勤", ex: "My daily commute takes about fifty minutes." },
+                { t: "infrastructure", r: "/ˈɪnfrəstrʌktʃər/", m: "基础设施", ex: "The city is investing heavily in transport infrastructure." },
+                { t: "pedestrian", r: "/pəˈdestriən/", m: "行人", ex: "The old town center is now closed to cars and open to pedestrians." },
+                { t: "fare", r: "/fer/", m: "车费", ex: "Bus fares went up again this spring." },
+                { t: "suburb", r: "/ˈsʌbɜːrb/", m: "郊区", ex: "More families are moving to the suburbs for cheaper housing." }
+              ],
+              grammar: [
+                {
+                  point: "the more... the more... 结构",
+                  rule: "双重比较表示因果递进：The more..., the more...。",
+                  examples: ["The more buses we add, the less congestion there is.", "The longer the commute, the more tired people feel.", "The better the infrastructure, the faster the city grows."],
+                  drills: [
+                    { q: "The more public transport improves, ___ people drive.", opts: ["the fewer", "fewer", "the less"], a: 0, why: "people 是可数名词，用 the fewer 且结构对称。" },
+                    { q: "The longer the commute, the ___ tired commuters feel.", opts: ["more", "much", "most"], a: 0, why: "the more 对应前半句的 the longer。" },
+                    { q: "The cheaper the fare, ___ passengers take the train.", opts: ["more", "the more", "the most"], a: 1, why: "双重比较结构需要两个 the。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "The city widened the sidewalks and planted trees, so the street feels safer for pedestrians now.", q: "城市做了什么改进？", opts: ["加宽车道", "拓宽人行道", "取消公交"], a: 1, tr: "城市拓宽了人行道并种了树，现在街道对行人来说更安全了。" },
+                { text: "My commute used to take an hour, but since the new metro line opened, it only takes twenty minutes.", q: "现在通勤要多久？", opts: ["一小时", "二十分钟", "五十分钟"], a: 1, tr: "我以前通勤要一小时，新地铁开通后只要二十分钟。" },
+                { text: "The more people move to the suburbs, the heavier the traffic into the city center becomes.", q: "说话人指出了什么问题？", opts: ["郊区房租太贵", "进城交通越来越重", "市中心房价下跌"], a: 1, tr: "搬到郊区的人越多，进城的车流就越重。" }
+              ],
+              speaking: [
+                { text: "The more buses we add, the less congestion there is.", tr: "公交车越多，拥堵越少。" },
+                { text: "My daily commute takes about fifty minutes by metro.", tr: "我每天坐地铁通勤大约五十分钟。" },
+                { text: "Good infrastructure makes a city more livable for everyone.", tr: "好的基础设施让城市对每个人都更宜居。" }
+              ]
+            },
+            {
+              id: "en-l31",
+              title: "未来计划与展望",
+              minutes: 12,
+              xp: 60,
+              focus: "将来完成时",
+              vocab: [
+                { t: "breakthrough", r: "/ˈbreɪkθruː/", m: "突破", ex: "Scientists announced a major breakthrough in battery technology." },
+                { t: "automation", r: "/ˌɔːtəˈmeɪʃn/", m: "自动化", ex: "Automation will change the job market in many industries." },
+                { t: "pursue", r: "/pərˈsuː/", m: "追求", ex: "She decided to pursue a master's degree abroad." },
+                { t: "milestone", r: "/ˈmaɪlstoʊn/", m: "里程碑", ex: "Graduating was an important milestone in her life." },
+                { t: "uncertainty", r: "/ʌnˈsɜːrtnti/", m: "不确定性", ex: "There is still a lot of uncertainty about the future job market." },
+                { t: "long-term", r: "/ˌlɔːŋˈtɜːrm/", m: "长期的", ex: "Learning a language is a long-term investment." }
+              ],
+              grammar: [
+                {
+                  point: "将来完成时 will have done",
+                  rule: "表示到将来某时为止已完成的动作：By + 时间点，will have + 过去分词。",
+                  examples: ["By 2035, most cars will have become electric.", "By next year, I will have worked here for five years.", "She will have finished the report by Friday."],
+                  drills: [
+                    { q: "By 2030, engineers ___ the first fully smart city.", opts: ["will build", "will have built", "are building"], a: 1, why: "By + 将来时间点搭配将来完成时。" },
+                    { q: "By the time you arrive, we ___ dinner already.", opts: ["will finish", "will have finished", "finish"], a: 1, why: "表示将来某时前已完成，用 will have finished。" },
+                    { q: "By May, she ___ in Japan for three years.", opts: ["will live", "will have lived", "lives"], a: 1, why: "持续到将来某时的状态用将来完成时。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "By the time my children grow up, technology will have changed almost every job that exists today.", q: "说话人在谈什么影响？", opts: ["技术对未来职业的影响", "孩子的教育费用", "今天的就业市场"], a: 0, tr: "等我的孩子长大，技术将几乎改变今天存在的每一种工作。" },
+                { text: "I plan to pursue a master's degree, though there's still some uncertainty about the funding.", q: "说话人有什么顾虑？", opts: ["课程太难", "经费不确定", "离家太远"], a: 1, tr: "我计划攻读硕士学位，不过经费方面还有些不确定。" },
+                { text: "Finishing my first marathon was a real milestone — I'd been training for two years.", q: "里程碑指的是什么？", opts: ["完成首个马拉松", "找到新工作", "搬进新房子"], a: 0, tr: "跑完第一个马拉松是真正的里程碑——我为此训练了两年。" }
+              ],
+              speaking: [
+                { text: "By 2035, most cars will have become electric.", tr: "到 2035 年，大多数汽车将已是电动车。" },
+                { text: "Learning a language is a long-term investment in yourself.", tr: "学一门语言是对自己的长期投资。" },
+                { text: "I want to pursue a career that really matters to me.", tr: "我想追求一份对我真正重要的职业。" }
+              ]
+            },
+            {
+              id: "en-l32",
+              title: "演讲与总结",
+              minutes: 12,
+              xp: 60,
+              focus: "演讲框架与强调句",
+              vocab: [
+                { t: "to sum up", r: "/tə sʌm ʌp/", m: "总而言之", ex: "To sum up, small actions add up to big changes." },
+                { t: "highlight", r: "/ˈhaɪlaɪt/", m: "重点；强调", ex: "Let me highlight the three main findings of our survey." },
+                { t: "takeaway", r: "/ˈteɪkəweɪ/", m: "要点", ex: "The main takeaway is that preparation matters more than talent." },
+                { t: "rehearse", r: "/rɪˈhɜːrs/", m: "排练", ex: "Rehearse your speech at least three times beforehand." },
+                { t: "audience", r: "/ˈɔːdiəns/", m: "观众；听众", ex: "Know your audience before you choose your examples." },
+                { t: "in conclusion", r: "/ɪn kənˈkluːʒn/", m: "总之", ex: "In conclusion, the project is both feasible and affordable." }
+              ],
+              grammar: [
+                {
+                  point: "强调句 It is ... that ...",
+                  rule: "It is + 要强调的部分 + that + 其余内容，用来突出重点。",
+                  examples: ["It is preparation that makes a speech convincing.", "It was the data that changed my mind.", "It is practice, not talent, that makes the difference."],
+                  drills: [
+                    { q: "It is practice, not talent, ___ makes the difference.", opts: ["what", "that", "which one"], a: 1, why: "强调句固定用 that 连接。" },
+                    { q: "It was the data ___ changed my mind.", opts: ["that", "who", "what"], a: 0, why: "强调事物用 that。" },
+                    { q: "It is preparation ___ makes a speech convincing.", opts: ["it", "that", "this"], a: 1, why: "强调句框架 It is ... that ..." }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "To sum up, the three takeaways from today's talk are cost, speed, and long-term impact.", q: "演讲总结了几个要点？", opts: ["两个", "三个", "四个"], a: 1, tr: "总而言之，今天演讲的三个要点是成本、速度与长期影响。" },
+                { text: "It was rehearsing in front of my colleagues that helped me overcome my stage fright.", q: "什么帮助说话人克服了怯场？", opts: ["背台词", "在同事面前排练", "看教学视频"], a: 1, tr: "正是在同事面前排练帮助我克服了怯场。" },
+                { text: "Let me highlight one number: our energy use dropped by forty percent in a single year.", q: "能耗下降了多少？", opts: ["百分之十四", "百分之四十", "百分之四"], a: 1, tr: "让我强调一个数字：我们的能耗一年内下降了百分之四十。" }
+              ],
+              speaking: [
+                { text: "To sum up, small actions add up to big changes.", tr: "总而言之，小行动累积成大改变。" },
+                { text: "The main takeaway is that preparation matters more than talent.", tr: "核心要点是：准备比天赋更重要。" },
+                { text: "It is practice, not talent, that makes the difference.", tr: "真正起作用的是练习，而不是天赋。" }
+              ]
+            }
+          ]
         }
       ]
     }
