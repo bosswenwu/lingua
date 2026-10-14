@@ -134,7 +134,7 @@
     return '<div class="landing">' +
       '<header class="landing-nav">' +
       '<div class="brand"><span class="seal">语</span><div><div class="brand-name">Lingua</div></div></div>' +
-      '<nav class="links"><a href="#features">课程特色</a><a href="#languages">语种</a><a href="#/community">社区</a><a href="#/achievements">成就</a></nav>' +
+      '<nav class="links"><a href="#features">课程特色</a><a href="#languages">语种</a><a href="#/achievements">成就</a></nav>' +
       '<div class="actions"><button class="btn btn-ghost" data-link="#/login">选择档案</button><button class="btn btn-ink" data-link="#/register">免费开始</button></div>' +
       "</header>" +
 
@@ -226,24 +226,18 @@
      应用外壳
      ====================================================================== */
   var NAV = [
-    { group: "学习", items: [
-      { href: "#/dashboard", icon: "home", text: "首页", primary: true },
-      { href: "#/courses", icon: "book", text: "课程", primary: true },
-      { href: "#/path", icon: "route", text: "学习路径" },
-      { href: "#/progress", icon: "chart", text: "进度追踪" }
+    { group: "今天", items: [
+      { href: "#/dashboard", icon: "home", text: "今天", primary: true },
+      { href: "#/courses", icon: "book", text: "课程" }
     ]},
-    { group: "强化训练", items: [
+    { group: "复习", items: [
       { href: "#/review", icon: "retry", text: "复习", primary: true },
       { href: "#/challenge", icon: "bolt", text: "限时挑战" },
-      { href: "#/glossary", icon: "dict", text: "词汇库" },
-      { href: "#/shop", icon: "spark", text: "星币商店" }
+      { href: "#/glossary", icon: "dict", text: "词汇库" }
     ]},
-    { group: "社区", items: [
-      { href: "#/community", icon: "users", text: "学习社区" },
-      { href: "#/achievements", icon: "award", text: "成就排行" }
-    ]},
-    { group: "账户", items: [
-      { href: "#/profile", icon: "user", text: "我的", primary: true }
+    { group: "我的", items: [
+      { href: "#/profile", icon: "user", text: "我的", primary: true },
+      { href: "#/achievements", icon: "award", text: "成就" }
     ]}
   ];
 
@@ -275,7 +269,6 @@
       '<div class="main">' +
       '<header class="topbar"><div><h1>' + esc(title) + "</h1>" + (sub ? '<div class="tb-sub">' + esc(sub) + "</div>" : "") + "</div>" +
       '<div class="topbar-right">' +
-      '<a class="pill-stat pill-coin" href="#/shop" title="星币商店"><span class="ps-ico">🪙</span>' + (st.coins || 0) + "</a>" +
       '<span class="pill-stat"><span class="ps-ico">' + icon("flame", "ico-flame") + "</span>" + st.streak + "<small>天</small></span>" +
       '<span class="pill-stat"><span class="ps-ico">⭐</span>' + st.xp.toLocaleString() + "<small>XP</small></span>" +
       (u.guest ? "" : '<button class="btn btn-sm btn-ghost" data-action="logout" title="退出登录">' + icon("logout") + "</button>") +
@@ -290,8 +283,11 @@
     var u = S.actor(), st = S.stats();
     var nextId = nextUp();
     var info = D.lessonOf(nextId);
+    var vs = S.vocabSummary();
     var goalPct = Math.min(100, Math.round(st.todayXp / Math.max(1, u.dailyGoal * 2) * 100));
+    var hasData = st.lessonsDone + st.todayXp > 0;
 
+    /* 继续学习大按钮 */
     var resume = '<div class="resume-card">' +
       '<div><div class="rc-kicker">继续学习</div>' +
       "<h2>" + esc(info.lang.flag + " " + info.lesson.title) +
@@ -305,52 +301,62 @@
       ring(goalPct, 118, "<div><b>" + st.todayXp + "</b><span style=\"font-size:11px;color:rgba(255,255,255,.6)\">今日 XP</span></div>") +
       "</div>";
 
-    var stats4 = '<div class="grid grid-4" style="margin-top:18px">' +
-      statCard("连续学习", st.streak + " 天", "最长记录 " + st.bestStreak + " 天") +
-      statCard("累计经验", st.xp.toLocaleString(), "今日 " + st.todayXp + " XP") +
-      statCard("完成课程", st.lessonsDone + " 节", "共 " + D.order.length + " 节") +
-      statCard("平均得分", st.avgScore + " 分", "掌握 " + st.wordsMastered + " 个单词") +
-      "</div>";
+    /* 到期复习提示 */
+    var reviewHint = "";
+    if (vs.due || st.mistakes) {
+      reviewHint = '<div class="panel" style="margin-top:18px">' +
+        '<div class="panel-head"><h2>复习</h2><a class="btn btn-sm btn-ghost" href="#/review">前往复习</a></div>' +
+        '<div class="review-hint-row">' +
+        (vs.due ? '<div class="hint-chip hint-chip-red"><b>' + vs.due + '</b><span>个单词到期</span></div>' : "") +
+        (st.mistakes ? '<div class="hint-chip"><b>' + st.mistakes + '</b><span>道错题待攻克</span></div>' : "") +
+        '</div></div>';
+    }
 
-    var skills = ["vocab", "grammar", "listening", "speaking"].map(function (k) {
-      var m = D.MODES.filter(function (x) { return x.key === k; })[0];
-      var s = st.skills[k];
-      var val = k === "speaking" ? (s.total ? s.avg : 0) : Math.round(s.acc * 100);
-      return '<div class="skill-row"><span class="sr-name">' + m.name + "</span>" + bar(val, k === "speaking" ? "jade" : "") +
-        '<span class="sr-val">' + (s.total ? val + "%" : "—") + "</span></div>";
-    }).join("");
+    /* 统计块：只在有数据时显示 */
+    var stats4 = "", skills = "", bars = "", recs = "", quick = "";
+    if (hasData) {
+      stats4 = '<div class="grid grid-4" style="margin-top:18px">' +
+        statCard("连续学习", st.streak + " 天", "最长记录 " + st.bestStreak + " 天") +
+        statCard("累计经验", st.xp.toLocaleString(), "今日 " + st.todayXp + " XP") +
+        statCard("完成课程", st.lessonsDone + " 节", "共 " + D.order.length + " 节") +
+        statCard("平均得分", st.avgScore + " 分", "掌握 " + st.wordsMastered + " 个单词") +
+        "</div>";
 
-    var days = lastNDays(7);
-    var maxXp = Math.max(20, Math.max.apply(null, days.map(function (d) { return st.days[d] || 0; })));
-    var bars = '<div class="bars">' + days.map(function (d) {
-      var v = st.days[d] || 0;
-      var h = Math.round(v / maxXp * 100);
-      var dow = ["日", "一", "二", "三", "四", "五", "六"][new Date(d + "T00:00:00").getDay()];
-      return '<div class="bwrap" title="' + d + " · " + v + ' XP"><span class="tiny muted-2 mono" style="font-size:10px">' + v + '</span><div class="bcol" style="height:0" data-target-h="' + h + '"></div><span class="blbl">' + dow + "</span></div>";
-    }).join("") + "</div>";
+      skills = ["vocab", "grammar", "listening", "speaking"].map(function (k) {
+        var m = D.MODES.filter(function (x) { return x.key === k; })[0];
+        var s = st.skills[k];
+        var val = k === "speaking" ? (s.total ? s.avg : 0) : Math.round(s.acc * 100);
+        return '<div class="skill-row"><span class="sr-name">' + m.name + "</span>" + bar(val, k === "speaking" ? "jade" : "") +
+          '<span class="sr-val">' + (s.total ? val + "%" : "—") + "</span></div>";
+      }).join("");
 
-    var recs = recommend().slice(0, 3).map(function (r) {
-      return '<div class="path-node ' + (r.today ? "today" : "") + '"><div class="path-card">' +
-        '<div><h4>' + esc(r.title) + '</h4><div class="pc-sub">' + esc(r.sub) + "</div></div>" +
-        '<div class="pc-right"><button class="btn btn-sm ' + (r.today ? "btn-primary" : "") + '" data-link="#/learn/' + r.id + '">' + (r.today ? "开始" : "学习") + "</button></div></div></div>";
-    }).join("");
+      var days = lastNDays(7);
+      var maxXp = Math.max(20, Math.max.apply(null, days.map(function (d) { return st.days[d] || 0; })));
+      var bars = '<div class="bars">' + days.map(function (d) {
+        var v = st.days[d] || 0;
+        var h = Math.round(v / maxXp * 100);
+        var dow = ["日", "一", "二", "三", "四", "五", "六"][new Date(d + "T00:00:00").getDay()];
+        return '<div class="bwrap" title="' + d + " · " + v + ' XP"><span class="tiny muted-2 mono" style="font-size:10px">' + v + '</span><div class="bcol" style="height:0" data-target-h="' + h + '"></div><span class="blbl">' + dow + "</span></div>";
+      }).join("") + "</div>";
 
-    var quick =
-      '<div class="grid grid-3" style="margin-top:18px">' +
-      '<button class="panel quick-card" data-link="#/review" style="text-align:left;cursor:pointer">' +
-      '<div class="qc-ico" style="background:rgba(224,72,60,.12);color:var(--vermilion-dark)">' + icon("retry") + "</div>" +
-      '<div><h3 style="margin-bottom:4px">复习</h3><div class="tiny muted">' + (S.vocabSummary().due ? "<b style=\"color:var(--vermilion-dark)\">" + S.vocabSummary().due + "</b> 个单词到期" : "单词都复习过了") + ' · ' + (st.mistakes ? "还有 <b style=\"color:var(--vermilion-dark)\">" + st.mistakes + "</b> 道错题" : "无错题") + "</div></div></button>" +
-      '<button class="panel quick-card" data-link="#/challenge" style="text-align:left;cursor:pointer">' +
-      '<div class="qc-ico" style="background:rgba(194,117,27,.12);color:var(--gold)">' + icon("bolt") + "</div>" +
-      '<div><h3 style="margin-bottom:4px">限时挑战</h3><div class="tiny muted">' + (st.challengeBest ? "最高纪录 <b>" + st.challengeBest + "</b> XP · 来破纪录" : "60 秒快答，连击加成 XP") + "</div></div></button>" +
-      '<button class="panel quick-card" data-link="#/glossary" style="text-align:left;cursor:pointer">' +
-      '<div class="qc-ico" style="background:rgba(15,130,113,.12);color:var(--jade)">' + icon("dict") + "</div>" +
-      '<div><h3 style="margin-bottom:4px">词汇库</h3><div class="tiny muted">共 ' + D.stats().exercises + " 个练习 · 已掌握 " + st.wordsMastered + " 词</div></div></button>" +
-      "</div>";
+      var quick =
+        '<div class="grid grid-3" style="margin-top:18px">' +
+        '<button class="panel quick-card" data-link="#/review" style="text-align:left;cursor:pointer">' +
+        '<div class="qc-ico" style="background:rgba(224,72,60,.12);color:var(--vermilion-dark)">' + icon("retry") + "</div>" +
+        '<div><h3 style="margin-bottom:4px">复习</h3><div class="tiny muted">' + (vs.due ? "<b style=\"color:var(--vermilion-dark)\">" + vs.due + "</b> 个单词到期" : "单词都复习过了") + ' · ' + (st.mistakes ? "<b style=\"color:var(--vermilion-dark)\">" + st.mistakes + "</b> 道错题" : "无错题") + "</div></div></button>" +
+        '<button class="panel quick-card" data-link="#/challenge" style="text-align:left;cursor:pointer">' +
+        '<div class="qc-ico" style="background:rgba(194,117,27,.12);color:var(--gold)">' + icon("bolt") + "</div>" +
+        '<div><h3 style="margin-bottom:4px">限时挑战</h3><div class="tiny muted">' + (st.challengeBest ? "最高纪录 <b>" + st.challengeBest + "</b> XP · 来破纪录" : "60 秒快答，连击加成") + "</div></div></button>" +
+        '<button class="panel quick-card" data-link="#/glossary" style="text-align:left;cursor:pointer">' +
+        '<div class="qc-ico" style="background:rgba(15,130,113,.12);color:var(--jade)">' + icon("dict") + "</div>" +
+        '<div><h3 style="margin-bottom:4px">词汇库</h3><div class="tiny muted">已掌握 ' + st.wordsMastered + " / " + D.stats().exercises + " 词</div></div></button>" +
+        "</div>";
+    }
 
+    /* 今日任务 */
     var quests = S.questState();
     var questsCard = '<div class="panel" style="margin-top:18px"><div class="panel-head"><h2>今日任务</h2>' +
-      '<span class="tiny muted" style="margin-left:auto">每项 +20 金币 +10 XP · 全部完成 +30 金币</span></div>' +
+      '<span class="tiny muted" style="margin-left:auto">每项 +15 XP · 全部完成额外 +20 XP</span></div>' +
       '<div class="quest-list">' +
       quests.map(function (q) {
         return '<div class="quest-row' + (q.done ? " done" : "") + '">' +
@@ -361,14 +367,18 @@
       "</div>" +
       '<div class="tiny muted-2" style="margin-top:10px">已完成 ' + quests.filter(function (q) { return q.done; }).length + " / " + quests.length + " · 每天凌晨刷新</div></div>";
 
-    var content = resume + stats4 + quick + questsCard +
-      '<div class="grid grid-2" style="margin-top:18px">' +
-      '<div class="panel"><div class="panel-head"><h2>技能掌握</h2><div class="ph-actions"><a class="btn btn-sm btn-ghost" href="#/progress">查看详情</a></div></div>' + skills + "</div>" +
-      '<div class="panel"><div class="panel-head"><h2>近七天经验</h2><span class="tiny muted" style="margin-left:auto">单位 XP</span></div>' + bars + "</div>" +
-      "</div>" +
-      '<div class="panel" style="margin-top:18px"><div class="panel-head"><h2>为你推荐</h2><div class="ph-actions"><a class="btn btn-sm btn-ghost" href="#/path">完整路径</a></div></div>' + recs + "</div>";
+    var content = resume + reviewHint + questsCard +
+      (quick ? quick : "") +
+      (stats4 ? stats4 : "") +
+      (stats4 ? '<div class="grid grid-2" style="margin-top:18px"><div class="panel"><div class="panel-head"><h2>技能掌握</h2><div class="ph-actions"><a class="btn btn-sm btn-ghost" href="#/progress">查看详情</a></div></div>' + skills + "</div>" +
+      '<div class="panel"><div class="panel-head"><h2>近七天经验</h2><span class="tiny muted" style="margin-left:auto">单位 XP</span></div>' + bars + "</div></div>" : "") +
+      (st.challengeBest || st.xp ? '<div class="panel" style="margin-top:18px"><div class="panel-head"><h2>为你推荐</h2><div class="ph-actions"><a class="btn btn-sm btn-ghost" href="#/courses">全部课程</a></div></div>' + recommend().slice(0, 3).map(function (r) {
+        return '<div class="path-node ' + (r.today ? "today" : "") + '"><div class="path-card">' +
+          '<div><h4>' + esc(r.title) + '</h4><div class="pc-sub">' + esc(r.sub) + "</div></div>" +
+          '<div class="pc-right"><button class="btn btn-sm ' + (r.today ? "btn-primary" : "") + '" data-link="#/learn/' + r.id + '">' + (r.today ? "开始" : "学习") + "</button></div></div></div>";
+      }).join("") + "</div>" : "");
 
-    return shell("#/dashboard", "学习中心", greeting() + "，" + u.name + " · 已坚持 " + st.streak + " 天", content);
+    return shell("#/dashboard", "今天", greeting() + "，" + u.name, content);
   }
 
   function statCard(label, value, foot) {
@@ -821,7 +831,6 @@
     var info = D.lessonOf(lessonId);
     return '<div class="lesson-shell"><div class="lesson-top">' +
       '<button class="lt-back" data-link="#/courses/' + info.lang.code + '" aria-label="返回课程">' + icon("left") + "</button>" +
-      '<span class="lh-hearts" id="lh-hearts">❤️ × 5</span>' +
       '<div class="lesson-progress"><div class="lp-labels"><span id="lp-title">' + esc(info.lang.flag + " " + info.lesson.title) +
       (info.lesson.sub ? " · " + esc(info.lesson.sub) : "") + "</span><span id=\"lp-pct\">0%</span></div>" +
       '<div class="bar" id="lp-bar"><i class="bar-fill" style="width:0"></i></div></div>' +
@@ -1056,66 +1065,10 @@
   }
 
   /* ======================================================================
-     星币商店 & 红心恢复
+     星币商店 & 红心恢复（已下线，保留空壳兼容旧引用）
      ====================================================================== */
-  function shopPage() {
-    var st = S.stats();
-    var p = S.progress();
-    var h = S.hearts();
-    var coins = st.coins || 0;
-
-    var balance = '<div class="panel shop-balance"><div class="sb-coin">🪙</div>' +
-      "<div><h2>" + coins + '</h2><div class="tiny muted">当前金币</div></div>' +
-      '<div class="sb-hearts">' + (h.n > 0 ? "❤️".repeat(h.n) : "💔") + " " + h.n + "/" + h.max +
-      (h.n < h.max ? '<div class="tiny muted-2">下一颗约 ' + Math.ceil(h.nextIn / 60000) + " 分钟后</div>" : '<div class="tiny muted-2">红心满格</div>') +
-      "</div>" +
-      '<button class="btn btn-sm btn-ghost" data-link="#/dashboard" style="margin-left:auto">返回学习</button></div>';
-
-    var items = S.SHOP.map(function (it) {
-      var extra = "";
-      if (it.id === "freeze") extra = '<div class="tiny muted" style="margin-top:8px">已囤 ' + (p.freezes || 0) + " / 2 个</div>";
-      if (it.id === "xp2") {
-        var left = S.boostLeft();
-        extra = left > 0 ?
-          '<div class="chip chip-gold" style="margin-top:8px">生效中 · 剩余 ' + Math.ceil(left / 60000) + " 分钟</div>" :
-          '<div class="tiny muted" style="margin-top:8px">未激活</div>';
-      }
-      var afford = coins >= it.price;
-      return '<div class="panel shop-card">' +
-        '<div class="sc-ico">' + it.icon + "</div>" +
-        '<div class="sc-main"><h3>' + esc(it.name) + '</h3><p class="tiny muted">' + esc(it.desc) + "</p>" + extra + "</div>" +
-        '<button class="btn ' + (afford ? "btn-primary" : "") + '" data-action="buy" data-item="' + it.id + '">' + it.price + " 金币</button>" +
-        "</div>";
-    }).join("");
-
-    var earn = '<div class="panel" style="margin-top:18px"><div class="panel-head"><h2>怎么赚金币</h2></div>' +
-      '<div class="tiny muted" style="line-height:2">' +
-      "📚 完成一节课 +5 ~ 15 金币（复习轮次不计）<br>" +
-      "⏱️ 限时挑战按得分 10% 结算金币<br>" +
-      "✅ 每日任务每项 +20，全完成再 +30<br>" +
-      "🏆 每解锁一枚成就徽章一次性 +50</div></div>";
-
-    return shell("#/shop", "星币商店", "用学习赚来的金币兑换道具", balance + items + earn);
-  }
-
-  function heartsOut(info) {
-    var backLink = info && info.langCode ? "#/courses/" + info.langCode : "#/courses";
-    var h = S.hearts();
-    return '<div class="lesson-shell"><div class="stage result-stage">' +
-      '<div class="result-seal" style="background:var(--vermilion)">💔</div>' +
-      "<h2>红心用完了</h2>" +
-      '<p class="muted">' + (info && info.title ? esc("「" + info.title + "」被暂停，") : "") + "回满红心再继续吧。</p>" +
-      '<div class="hearts-ways">' +
-      '<div class="hw-row"><span>🛍️ 商店购买「红心回满」</span><span class="tiny muted-2">350 金币 · 立即满 5 颗</span></div>' +
-      '<div class="hw-row"><span>🩹 错题本攻克错题</span><span class="tiny muted-2">每攻克 3 题回 1 心</span></div>' +
-      '<div class="hw-row"><span>⏳ 自然恢复</span><span class="tiny muted-2">' + (h.n >= h.max ? "红心已满" : "每 30 分钟回 1 心 · 下一颗约 " + Math.ceil(h.nextIn / 60000) + " 分钟") + "</span></div>" +
-      "</div>" +
-      '<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px">' +
-      '<button class="btn btn-primary btn-lg" data-link="#/shop">去商店回心</button>' +
-      '<button class="btn btn-lg" data-link="#/review">去复习赚红心</button>' +
-      '<button class="btn btn-lg btn-ghost" data-link="' + backLink + '">返回课程目录</button>' +
-      "</div></div></div>";
-  }
+  function shopPage() { return ""; }
+  function heartsOut(info) { return ""; }
 
   /* ======================================================================
      错题本与单词复习
@@ -1346,7 +1299,6 @@
     community: community, achievements: achievements, profile: profile,
     reviewPage: reviewPage, reviewStage: reviewStage, reviewResult: reviewResult,
     challengeSetup: challengeSetup, challengeStage: challengeStage, challengeResult: challengeResult,
-    shopPage: shopPage, heartsOut: heartsOut,
     glossary: glossary, glossaryRows: glossaryRows,
     lessonShell: lessonShell, modeToggle: modeToggle, stageVocab: stageVocab, stageVocabRevealed: stageVocabRevealed,
     stageGrammar: stageGrammar, stageListening: stageListening, stageSpeaking: stageSpeaking, stageModeDone: stageModeDone,

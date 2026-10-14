@@ -125,13 +125,12 @@ t("mistakes() 返回副本，外部修改不影响存储", () => {
   arr.push({ fake: 1 });
   eq(Store.mistakes().length, 120);
 });
-t("resolveMistake 答对移出并累计 mistakesFixed，返回 {badges,quests,heartBack}", () => {
+t("resolveMistake 答对移出并累计 mistakesFixed，返回 {badges,quests}", () => {
   const before = Store.progress().mistakesFixed || 0;
   const target = Store.mistakes()[0];
   const out = Store.resolveMistake(target.id);
   ok(isArr(out.badges), "badges 数组");
   ok(isArr(out.quests), "quests 数组");
-  eq(typeof out.heartBack, "boolean", "heartBack 布尔");
   eq(Store.mistakes().length, 119);
   eq(Store.progress().mistakesFixed, before + 1);
 });
@@ -516,10 +515,10 @@ t("stageListening 听写结果：分数与逐词标记", () => {
   ok(count(html, /chip-jade|chip-red/g) >= marks.length, "逐词 chip 数量");
   has(html, "原文：");
 });
-t("dashboard 含三张强化训练快捷卡", () => {
+t("dashboard 含继续学习、到期复习和今日任务", () => {
   const html = Views.dashboard();
-  eq(count(html, /quick-card/g), 3);
-  ["#/review", "#/challenge", "#/glossary"].forEach(h => has(html, 'data-link="' + h + '"'));
+  has(html, "继续学习");
+  has(html, "今日任务");
 });
 
 /* ==========================================================================
@@ -532,8 +531,6 @@ t("未登录走游客档案，actor 返回游客伪档案", () => {
   ok(sandbox.localStorage.getItem("lingua.v1.progress.guest") !== null, "游客档案应写入 localStorage");
   const a = Store.actor();
   eq(a.id, "guest"); eq(a.guest, true); eq(a.name, "游客学习者");
-  eq(p.hearts.n, Store.MAX_HEARTS, "初始红心 5");
-  eq(p.coins, 0, "初始金币 0");
   eq(p.freeMode, false, "默认线性解锁");
 });
 t("注册继承游客进度：进度迁移到新账号，游客档案重置", () => {
@@ -550,66 +547,12 @@ t("注册继承游客进度：进度迁移到新账号，游客档案重置", ()
   const gg = JSON.parse(sandbox.localStorage.getItem("lingua.v1.progress.guest"));
   eq(gg.xp, 0, "游客档案已重置");
 });
-const uG = freshUser();
-t("loseHeart 扣心 / addHearts 回心 / 上限 5", () => {
-  Store.refillAllHearts();
-  eq(Store.hearts().n, 5);
-  eq(Store.loseHeart().n, 4);
-  eq(Store.loseHeart().n, 3);
-  eq(Store.addHearts(2), 5, "回心后封顶");
-  eq(Store.loseHeart().n, 4);
-});
-t("红心自然回复：30 分钟回 1 心", () => {
-  Store.refillAllHearts();
-  Store.loseHeart();
-  const p = Store.progress();
-  p.hearts.ts = Date.now() - 45 * 60000;
-  Store.saveProgress(p);
-  eq(Store.hearts().n, 5, "45 分钟应回 1 心并封顶");
-});
-t("每攻克 3 道错题返还 1 心", () => {
-  Store.refillAllHearts();
-  Store.loseHeart();
-  const p = Store.progress();
-  p.mistakes = [];
-  p.mistakesFixed = 2;
-  Store.recordMistake(p, { lang: "en", mode: "grammar", prompt: "hb1", opts: ["a"], answer: 0 });
-  Store.recordMistake(p, { lang: "en", mode: "grammar", prompt: "hb2", opts: ["a"], answer: 0 });
-  Store.saveProgress(p);
-  const r1 = Store.resolveMistake(Store.mistakes()[0].id);
-  eq(r1.heartBack, true, "累计第 3 次攻克应回心");
-  eq(Store.hearts().n, 5, "红心 +1");
-  const r2 = Store.resolveMistake(Store.mistakes()[0].id);
-  eq(r2.heartBack, false, "第 4 次攻克不回心");
-});
-t("商店购买：红心回满 / 连胜冻结 / 双倍经验卡", () => {
-  const p = Store.progress();
-  p.coins = 1000; p.hearts = { n: 1, ts: Date.now() }; p.freezes = 0; p.boosts = { xp2until: 0 };
-  Store.saveProgress(p);
-  const r1 = Store.buy("heart");
-  ok(r1.ok); eq(Store.hearts().n, 5); eq(r1.coins, 650);
-  ok(Store.buy("freeze").ok); eq(Store.progress().freezes, 1);
-  ok(Store.buy("xp2").ok);
-  eq(Store.boostMult(), 2, "双倍经验生效"); ok(Store.boostLeft() > 0, "双倍剩余时间");
-  eq(Store.progress().coins, 300, "余额 1000-350-200-150");
-  ok(Store.buy("freeze").ok, "第 2 个冻结");
-  ok(!Store.buy("freeze").ok, "冻结最多囤 2 个");
-  ok(!Store.buy("nope").ok, "未知商品");
-  const broke = Store.progress(); broke.coins = 10; Store.saveProgress(broke);
-  ok(!Store.buy("heart").ok, "金币不足应拒绝");
-});
-t("首次完成课程：发金币 5~15，新徽章一次性 +50", () => {
-  freshUser();
-  const p = Store.progress();
-  p.quests = { date: Store._util.todayKey(), list: [{ id: "correct10", done: false }] };
-  p.questProg = { date: Store._util.todayKey(), correct: 0, lessons: 0, challenges: 0, reviewed: 0, words: 0 };
-  const c0 = p.coins || 0;
-  Store.saveProgress(p);
-  const r = Store.completeLesson("en-l1", { total: 4, correct: 4, perfect: true, modes: {} });
-  ok(r.coins >= 5 && r.coins <= 15, "课程金币实际 " + r.coins);
-  eq(Store.progress().coins, c0 + r.coins + 50, "含 first_step 徽章 +50");
-  ok(r.badges.some(b => b.id === "first_step"), "应解锁初次启程");
-});
+/* （红心/星币/商店系统已在 Phase A 移除，相关测试跳过） */
+
+/* ==========================================================================
+   10. P0 游戏化：游客档案 / 每日任务 / 自由模式
+   ========================================================================== */
+console.log("\n■ P0 游戏化 · 数据层");
 t("每日任务：每日 3 项，进度可查", () => {
   const p = Store.progress();
   p.quests = { date: null, list: [] };
@@ -619,45 +562,25 @@ t("每日任务：每日 3 项，进度可查", () => {
   st.forEach(q => ok(q.label && q.target > 0 && typeof q.value === "number", "任务定义完整"));
   eq(Store.progress().quests.date, Store._util.todayKey(), "任务日期为今天");
 });
-t("checkQuests：完成发 20 币 +10 XP，全完成 +30 币", () => {
+t("checkQuests：完成发 15 XP，全完成额外 +20 XP", () => {
   const p = Store.progress();
   p.quests = { date: Store._util.todayKey(), list: [{ id: "challenge1", done: false }, { id: "lesson1", done: false }] };
   p.questProg = { date: Store._util.todayKey(), correct: 0, lessons: 0, challenges: 0, reviewed: 0, words: 0 };
-  const c0 = p.coins || 0, x0 = p.xp;
+  const x0 = p.xp;
   Store.saveProgress(p);
   p.questProg.challenges = 1; Store.saveProgress(p);
   const d1 = Store.checkQuests();
   eq(d1.length, 1); eq(d1[0].id, "challenge1");
-  eq(Store.progress().coins, c0 + 20); eq(Store.progress().xp, x0 + 10);
+  eq(Store.progress().xp, x0 + 15, "完成单项 +15 XP");
   eq(Store.progress().quests.list[0].done, true);
   const p2 = Store.progress(); p2.questProg.lessons = 1; Store.saveProgress(p2);
   const d2 = Store.checkQuests();
   ok(d2.some(x => x.allBonus), "全部完成应含 allBonus");
-  eq(Store.progress().coins, c0 + 70, "20+20+30");
-});
-t("限时挑战结算发金币（得分的 10%）", () => {
-  const c0 = Store.progress().coins || 0;
-  Store.saveChallengeResult(120, 2);
-  eq(Store.progress().coins, c0 + 12, "120 × 10%");
+  eq(Store.progress().xp, x0 + 50, "15+15+20=50");
 });
 
 console.log("\n■ P0 游戏化 · 视图");
-t("商店页：余额、红心与三张商品卡", () => {
-  const html = Views.shopPage();
-  has(html, "shop-balance");
-  has(html, "当前金币");
-  eq(count(html, /data-action="buy"/g), 3, "3 个商品");
-  ["红心回满", "连胜冻结", "双倍经验卡"].forEach(s => has(html, s));
-  has(html, "怎么赚金币");
-});
-t("红心耗尽页：三种回心方式与跳转", () => {
-  const html = Views.heartsOut(null);
-  has(html, "红心用完了");
-  has(html, "hearts-ways");
-  has(html, 'data-link="#/shop"');
-  has(html, 'data-link="#/review"');
-  has(html, "每攻克 3 题回 1 心");
-});
+/* （商店页/红心耗尽页/顶栏金币 pill 已在 Phase A 移除） */
 t("dashboard 渲染今日任务卡", () => {
   const p = Store.progress();
   p.quests = { date: Store._util.todayKey(), list: [{ id: "xp30", done: false }, { id: "lesson1", done: true }, { id: "correct10", done: false }] };
@@ -665,7 +588,7 @@ t("dashboard 渲染今日任务卡", () => {
   const html = Views.dashboard();
   has(html, "今日任务");
   eq(count(html, /class="quest-row/g), 3, "任务 3 行");
-  has(html, "每项 +20 金币 +10 XP");
+  has(html, "每项 +15 XP");
 });
 t("课程页路径地图：锁定 / 当前课 / 气泡", () => {
   const html = Views.courses();
@@ -680,9 +603,7 @@ t("自由模式开启后路径地图全部开放", () => {
   notHas(Views.courses(), 'data-action="locked"', "自由模式不应有锁定节点");
   const p2 = Store.progress(); p2.freeMode = false; Store.saveProgress(p2);
 });
-t("顶栏显示金币 pill", () => {
-  has(Views.shell("#/dashboard", "学习中心", "t", ""), "pill-coin");
-});
+/* （顶栏金币 pill 已在 Phase A 移除） */
 
 /* ---------------- 汇总 ---------------- */
 console.log("\n========================================");

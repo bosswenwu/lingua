@@ -345,6 +345,14 @@ ul{margin:0;padding:0;list-style:none}
 .resume-card .rc-meta{display:flex;gap:16px;margin-top:16px;font-size:var(--fs-xs);color:rgba(255,255,255,.62)}
 .rc-ring{position:relative;width:118px;height:118px;flex:none}
 
+/* 复习提示卡 */
+.review-hint-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:4px}
+.hint-chip{display:flex;align-items:baseline;gap:6px;padding:10px 16px;border-radius:var(--r-sm);background:rgba(255,255,255,.04);border:1px solid var(--line-soft)}
+.hint-chip b{font-size:22px;font-weight:700;color:#fff}
+.hint-chip span{font-size:var(--fs-xs);color:var(--muted-2)}
+.hint-chip-red{background:rgba(224,72,60,.14);border-color:rgba(224,72,60,.35)}
+.hint-chip-red b{color:var(--vermilion)}
+
 /* 进度条 / 圆环 */
 .bar{height:8px;border-radius:var(--r-pill);background:var(--line-soft);overflow:hidden}
 .bar>i{display:block;height:100%;border-radius:var(--r-pill);background:var(--indigo);transition:width .5s cubic-bezier(.3,.9,.3,1)}

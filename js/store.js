@@ -188,35 +188,28 @@
         listening: { total: 0, correct: 0 },
         speaking: { total: 0, correct: 0, scoreSum: 0 }
       },
-      vocabBox: {},   // "lessonId#idx" -> { box, seen, correct, next }
+      vocabBox: {},
       posts: 0,
       badges: [],
       langsTouched: [],
-      mistakes: [],        // 错题本 [{ id, lang, mode, lessonId, prompt, opts, answer, why, text, tr, at }]
-      mistakesFixed: 0,    // 重练答对累计
-      challenge: { plays: 0, best: 0, bestCombo: 0 },  // 限时挑战
-      coins: 0,                                  // 星币
-      hearts: { n: 5, ts: Date.now() },          // 红心（ts 为回心计时锚点）
-      boosts: { xp2until: 0 },                   // 双倍经验卡截止时间
-      freezes: 0,                                // 连胜冻结（囤积）
-      quests: { date: null, list: [] },          // 每日任务
+      mistakes: [],
+      mistakesFixed: 0,
+      challenge: { plays: 0, best: 0, bestCombo: 0 },
+      freezes: 0,                                // 连胜冻结（免费自动功能）
+      quests: { date: null, list: [] },
       questProg: { date: null, correct: 0, lessons: 0, challenges: 0, reviewed: 0, words: 0 },
-      freeMode: false,                           // 自由模式（跳过线性解锁）
-      badgeRewarded: []                          // 已发过金币奖励的成就
+      freeMode: false
     };
   }
   function migrate(p) {
     if (!p.mistakes) p.mistakes = [];
     if (typeof p.mistakesFixed !== "number") p.mistakesFixed = 0;
     if (!p.challenge) p.challenge = { plays: 0, best: 0, bestCombo: 0 };
-    if (typeof p.coins !== "number") p.coins = 0;
-    if (!p.hearts) p.hearts = { n: 5, ts: Date.now() };
-    if (!p.boosts) p.boosts = { xp2until: 0 };
     if (typeof p.freezes !== "number") p.freezes = 0;
     if (!p.quests) p.quests = { date: null, list: [] };
     if (!p.questProg) p.questProg = { date: null, correct: 0, lessons: 0, challenges: 0, reviewed: 0, words: 0 };
     if (typeof p.freeMode !== "boolean") p.freeMode = false;
-    if (!p.badgeRewarded) p.badgeRewarded = [];
+    /* 兼容老数据遗留字段（coins/hearts/boosts/badgeRewarded）——忽略 */
     return p;
   }
   function ensureProgress(userId, langs) {
@@ -305,19 +298,14 @@
     var p = progress();
     var before = p.mistakes.length;
     p.mistakes = p.mistakes.filter(function (x) { return x.id !== id; });
-    var heartBack = false;
     if (p.mistakes.length < before) {
       p.mistakesFixed = (p.mistakesFixed || 0) + 1;
       bumpQuest(p, "reviewed");
-      if (p.mistakesFixed % 3 === 0) {
-        refillHearts(p);
-        if (p.hearts.n < MAX_HEARTS) { p.hearts.n += 1; heartBack = true; }
-      }
       saveProgress(p);
     }
     var quests = checkQuests();
     var badges = evaluateBadges();
-    return { badges: badges, quests: quests, heartBack: heartBack };
+    return { badges: badges, quests: quests };
   }
   function removeMistake(id) {
     var p = progress();
@@ -377,7 +365,6 @@
     c.best = Math.max(c.best, gain);
     c.bestCombo = Math.max(c.bestCombo, combo);
     addXp(p, gain);
-    addCoins(p, Math.round(gain * 0.1));
     bumpQuest(p, "challenges");
     saveProgress(p);
     var quests = checkQuests();
@@ -432,7 +419,6 @@
       challengePlays: p.challenge ? p.challenge.plays : 0,
       bestCombo: p.challenge ? p.challenge.bestCombo : 0,
       challengeBest: p.challenge ? p.challenge.best : 0,
-      coins: p.coins || 0,
       freezes: p.freezes || 0,
       skills: {
         vocab: { total: sk.vocab.total, correct: sk.vocab.correct, acc: acc(sk.vocab) },
@@ -454,14 +440,10 @@
       if (val >= b.target && p.badges.indexOf(b.id) < 0) {
         p.badges.push(b.id);
         earned.push(b);
+        addXp(p, 50);
       }
     });
-    if (earned.length) {
-      earned.forEach(function (b) {
-        if (p.badgeRewarded.indexOf(b.id) < 0) { p.badgeRewarded.push(b.id); addCoins(p, 50); }
-      });
-      saveProgress(p);
-    }
+    if (earned.length) saveProgress(p);
     return earned;
   }
 
@@ -486,10 +468,8 @@
     var lesson = info.lesson;
     var rec = p.lessons[lessonId] || { done: false, best: 0, attempts: 0, xp: 0, at: 0 };
     var accuracy = result.total ? result.correct / result.total : 0;
-    var mult = (p.boosts && p.boosts.xp2until > Date.now()) ? 2 : 1;
-    var gained = Math.round(lesson.xp * (0.6 + 0.4 * accuracy)) * mult;
+    var gained = Math.round(lesson.xp * (0.6 + 0.4 * accuracy));
     var bonus = result.perfect ? 10 : 0;
-    // 重复学习只给 30% 经验，防止刷分
     var isRepeat = rec.done;
     if (isRepeat) gained = Math.round(gained * 0.3);
     rec.attempts += 1;
@@ -500,16 +480,11 @@
     rec.modes = Object.assign({}, rec.modes, result.modes || {});
     p.lessons[lessonId] = rec;
     addXp(p, gained + bonus);
-    var coinsGained = 0;
-    if (!isRepeat) {
-      coinsGained = Math.round(5 + 10 * accuracy);
-      addCoins(p, coinsGained);
-      bumpQuest(p, "lessons");
-    }
+    if (!isRepeat) bumpQuest(p, "lessons");
     saveProgress(p);
     var quests = checkQuests();
     var badges = evaluateBadges();
-    return { xp: gained + bonus, bonus: bonus, accuracy: Math.round(accuracy * 100), badges: badges, quests: quests, coins: coinsGained, repeat: isRepeat };
+    return { xp: gained + bonus, bonus: bonus, accuracy: Math.round(accuracy * 100), badges: badges, quests: quests, repeat: isRepeat };
   }
 
   /* ---------------- 社区 ---------------- */
@@ -658,14 +633,14 @@
     return { ok: true, msg: "已购买：" + item.name, coins: p.coins };
   }
 
-  /* ---------------- 每日任务 ---------------- */
+  /* ---------------- 每日任务（按用户状态动态生成） ---------------- */
   var QUEST_POOL = [
-    { id: "xp30", label: "获得 30 XP", target: 30, val: function (p, st) { return st.todayXp; } },
-    { id: "lesson1", label: "完成 1 节课", target: 1, val: function (p) { return (p.questProg && p.questProg.lessons) || 0; } },
-    { id: "correct10", label: "答对 10 题", target: 10, val: function (p) { return (p.questProg && p.questProg.correct) || 0; } },
-    { id: "challenge1", label: "参与 1 次限时挑战", target: 1, val: function (p) { return (p.questProg && p.questProg.challenges) || 0; } },
-    { id: "review5", label: "攻克 5 道错题", target: 5, val: function (p) { return (p.questProg && p.questProg.reviewed) || 0; } },
-    { id: "words10", label: "学习 10 个新词", target: 10, val: function (p) { return (p.questProg && p.questProg.words) || 0; } }
+    { id: "xp30",     label: "获得 30 XP",         target: 30, val: function (p, st) { return st.todayXp; } },
+    { id: "lesson1",  label: "完成 1 节课",         target: 1,  val: function (p) { return (p.questProg && p.questProg.lessons) || 0; } },
+    { id: "correct10", label: "答对 10 题",         target: 10, val: function (p) { return (p.questProg && p.questProg.correct) || 0; } },
+    { id: "challenge1", label: "参与 1 次限时挑战", target: 1,  val: function (p) { return (p.questProg && p.questProg.challenges) || 0; } },
+    { id: "review5",   label: "攻克 5 道错题",       target: 5,  val: function (p) { return (p.questProg && p.questProg.reviewed) || 0; }, needsMistakes: true },
+    { id: "words10",   label: "学习 10 个新词",      target: 10, val: function (p) { return (p.questProg && p.questProg.words) || 0; }, needsWords: true }
   ];
   function ensureQuestDay(p) {
     var t = todayKey();
@@ -673,19 +648,29 @@
       p.questProg = { date: t, correct: 0, lessons: 0, challenges: 0, reviewed: 0, words: 0 };
     }
     if (!p.quests || p.quests.date !== t) {
-      var pool = QUEST_POOL.slice();
+      /* 按当前用户状态过滤候选：新用户没错题就跳过 review5，没学过单词就跳过 words10 */
+      var st = stats();
+      var pool = QUEST_POOL.filter(function (q) {
+        if (q.needsMistakes && !((p.mistakes || []).length || p.mistakesFixed)) return false;
+        if (q.needsWords && !(Object.keys(p.vocabBox || {}).length)) return false;
+        return true;
+      });
+      /* 经验低时降低 xp30 目标 */
+      var lowXp = QUEST_POOL.map(function (q) {
+        if (q.id === "xp30") return { id: "xp30", label: "获得 15 XP", target: 15, val: q.val };
+        return q;
+      });
+      if (st.lessonsDone === 0) pool = lowXp.filter(function (q) { return pool.indexOf(q) >= 0 || q.id === "xp30"; });
       var list = [];
-      for (var i = 0; i < 3 && pool.length; i++) {
-        var j = Math.floor(Math.random() * pool.length);
-        list.push({ id: pool.splice(j, 1)[0].id, done: false });
-      }
+      var shuffled = pool.slice().sort(function () { return Math.random() - 0.5; });
+      for (var i = 0; i < 3 && shuffled.length; i++) list.push({ id: shuffled[i].id, done: false });
       p.quests = { date: t, list: list };
     }
     return p;
   }
   function bumpQuest(p, key) {
     ensureQuestDay(p);
-    p.questProg[key] = (p.questProg[key] || 0) + 1;
+    if (p.questProg) p.questProg[key] = (p.questProg[key] || 0) + 1;
   }
   function questState() {
     var p = progress();
@@ -712,15 +697,13 @@
       if (def && (def.val(p, st) || 0) >= def.target) {
         q.done = true;
         doneNow.push(def);
-        addCoins(p, 20);
-        addXp(p, 10);
+        addXp(p, 15);
       }
     });
     if (doneNow.length) {
       var all = p.quests.list.every(function (q) { return q.done; });
-      if (all && !prevAllDone && !p.quests.allBonus) {
-        p.quests.allBonus = true;
-        addCoins(p, 30);
+      if (all && !prevAllDone) {
+        addXp(p, 20);
         doneNow.push({ allBonus: true });
       }
       saveProgress(p);
@@ -741,15 +724,6 @@
     progress: progress,
     saveProgress: saveProgress,
     actor: actor,
-    hearts: hearts,
-    loseHeart: loseHeart,
-    addHearts: addHearts,
-    refillAllHearts: refillAllHearts,
-    boostMult: boostMult,
-    boostLeft: boostLeft,
-    buy: buy,
-    SHOP: SHOP,
-    MAX_HEARTS: MAX_HEARTS,
     questState: questState,
     checkQuests: checkQuests,
     stats: stats,

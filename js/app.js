@@ -77,8 +77,6 @@
         if (CH && CH.playing) paintChallenge(); else App.innerHTML = Views.challengeSetup(CH_SETUP); break;
       case "glossary":
         App.innerHTML = Views.glossary(r.arg || "", glQ); break;
-      case "shop":
-        App.innerHTML = Views.shopPage(); break;
       case "learn":
         startLesson(r.arg); break;
       default:
@@ -135,7 +133,6 @@
   }
 
   function startLesson(lessonId) {
-    if (Store.hearts().n <= 0) { LC = null; App.innerHTML = Views.heartsOut(null); return; }
     var s = buildSession(lessonId);
     if (!s) { toast("没有找到这一课", "bad"); go("#/courses"); return; }
     LC = s;
@@ -171,7 +168,7 @@
     if (!body || !LC) return;
 
     if (LC.finished) {
-      body.innerHTML = LC.resultCtx.heartsOut ? Views.heartsOut(LC.resultCtx) : Views.stageResult(LC.resultCtx);
+      body.innerHTML = Views.stageResult(LC.resultCtx);
       var b = document.querySelector("#lp-bar .bar-fill");
       if (b) b.style.width = "100%";
       var lb = document.getElementById("lp-pct"); if (lb) lb.textContent = "100%";
@@ -198,7 +195,6 @@
 
     body.innerHTML = Views.modeToggle(mode, totals, dones) + '<div class="stage">' + stage + "</div>";
     updateLessonProgress();
-    updateHearts();
   }
 
   /* ---- 作答处理 ---- */
@@ -219,14 +215,8 @@
         text: mode === "listening" ? item.text : "",
         tr: mode === "listening" ? item.tr : ""
       });
-      if (mode !== "vocab") {
-        var hr = Store.loseHeart();
-        LC.hearts = hr.n;
-        if (hr.exhausted) LC.outOfHearts = true;
-      }
     }
     Store.saveProgress(p);
-    if (LC.outOfHearts) { finishHeartsOut(); return; }
     paintLesson();
   }
 
@@ -360,16 +350,10 @@
       var ok = fx ? fx.ok : false;
       Store.recordSkill(p, mode, ok);
       p.skills.speaking.scoreSum += fx ? fx.score : 0;
-      if (!ok) {
-        var hr2 = Store.loseHeart();
-        LC.hearts = hr2.n;
-        if (hr2.exhausted) LC.outOfHearts = true;
-      }
       Store.saveProgress(p);
       LC.done[mode] += 1;
       if (ok) LC.correct[mode] += 1;
     }
-    if (LC.outOfHearts) { LC.pending[mode].shift(); finishHeartsOut(); return; }
     LC.pending[mode].shift();
     LC.speakFx = null; LC.speakFxScore = null; LC.said = "";
     if (allDone()) return finishLesson(mode);
@@ -551,7 +535,7 @@
       CH.combo += 1;
       CH.bestCombo = Math.max(CH.bestCombo, CH.combo);
       CH.correct += 1;
-      gain = (5 + Math.min(CH.combo - 1, 10)) * Store.boostMult(); // 连击加成：5 → 15，双倍卡期间翻倍
+      gain = 5 + Math.min(CH.combo - 1, 10);
       CH.gain += gain;
     } else {
       CH.combo = 0;
@@ -587,24 +571,11 @@
     questToasts(res.quests, 1000);
   }
 
-  /* ---- 红心 / 任务 辅助 ---- */
-  function updateHearts() {
-    var el = document.getElementById("lh-hearts");
-    if (!el) return;
-    var h = Store.hearts();
-    el.innerHTML = h.n > 0 ? "❤️ × " + h.n : "💔";
-    el.title = h.n > 0 ? "红心：语法、听力、口语答错会扣除，翻卡不扣" : "红心耗尽：去商店回满，或去错题本攻克 3 题回 1 心";
-  }
-  function finishHeartsOut() {
-    var info = DATA.lessonOf(LC.id);
-    LC.finished = true;
-    LC.resultCtx = { heartsOut: true, langCode: info ? info.lang.code : "", title: info ? info.lesson.title : "" };
-    paintLesson();
-  }
+  /* ---- 任务 辅助 ---- */
   function questToasts(list, base) {
     (list || []).forEach(function (q, i) {
       setTimeout(function () {
-        toast(q.allBonus ? "今日任务全部完成，+30 金币" : "任务完成：" + q.label + "（+20 金币 +10 XP）", "good");
+        toast(q.allBonus ? "今日任务全部完成，恭喜！" : "任务完成：" + q.label + "（+15 XP）", "good");
       }, (base || 300) + i * 500);
     });
   }
@@ -727,12 +698,6 @@
       case "ch-play":
         if (CH && CH.q && CH.q.speakText) Speech.speak(CH.q.speakText, CH.q.locale, { rate: 0.9 });
         break;
-      case "buy": {
-        var br = Store.buy(act.getAttribute("data-item"));
-        toast(br.msg, br.ok ? "good" : "bad");
-        if (br.ok) render();
-        break;
-      }
       case "locked":
         toast("先完成前面的课程来解锁这一课", "bad");
         break;
