@@ -531,6 +531,18 @@ ul{margin:0;padding:0;list-style:none}
 .result-stat b{display:block;font-family:var(--font-display);font-size:var(--fs-xl)}
 .result-stat span{font-size:var(--fs-xs);color:var(--muted)}
 
+/* 课后小结卡 */
+.lesson-summary{width:100%;max-width:560px;background:var(--surface-2);border:1px solid var(--line);border-radius:var(--r-md);padding:14px 16px;text-align:left}
+.ls-head{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+.ls-head h3{margin:0;font-size:var(--fs-md)}
+.ls-head .btn{margin-left:auto}
+.vocab-chip-row{display:flex;gap:8px;flex-wrap:wrap}
+.ls-chip{background:var(--surface-3);border:1px solid var(--line);border-radius:999px;padding:4px 12px;font-size:var(--fs-sm);display:inline-flex;gap:6px;align-items:center}
+.ls-chip b{color:var(--indigo);font-family:var(--font-display)}
+.sent-list{display:flex;flex-direction:column;gap:8px}
+.sent-row{display:flex;gap:8px;align-items:baseline;font-size:var(--fs-sm);padding:6px 10px;background:var(--surface-1);border-radius:var(--r-sm)}
+.sent-row b{color:var(--ink);font-family:var(--font-display);margin-right:auto}
+
 /* ---------- 进度页 ---------- */
 .heatmap{display:grid;grid-template-columns:repeat(auto-fill,minmax(15px,1fr));gap:4px;max-width:100%}
 .heat-cell{aspect-ratio:1;border-radius:3.5px;background:var(--line-soft)}

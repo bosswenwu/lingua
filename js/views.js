@@ -884,6 +884,21 @@
       "</div>";
   }
 
+  function stageVocabQuiz(ctx) {
+    var v = ctx.item;
+    var q = ctx.quiz;
+    var optsHtml = q.opts.map(function (o, i) {
+      return '<button class="opt" data-action="quiz-opt" data-opt="' + i + '"><span class="opt-key">' + "ABCD"[i] + "</span><span>" + esc(o.label) + "</span></button>";
+    }).join("");
+    var cls = "stage-quiz vocab-quiz";
+    return '<div class="stage-head"><h2>快速验证</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
+      '<div class="' + cls + '">' +
+      '<div class="quiz-prompt">「<b>' + esc(v.t) + "</b>」哪个释义是正确的？</div>" +
+      '<div class="opt-list">' + optsHtml + "</div>" +
+      '<div class="tiny muted-2" style="margin-top:8px">检验通过才计入已掌握 ✓</div>' +
+      "</div>";
+  }
+
   function escapeRe(s) { return String(s).replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 
   /* 语法题 */
@@ -939,17 +954,20 @@
         dictateBox = '<div style="margin-bottom:16px"><button class="btn btn-sm btn-ghost" data-action="dictate">✍️ 听写这句（进阶练习）</button></div>';
       }
     }
+    var listeningLabel = "点击播放，听录音后回答下面的问题";
+    if (it.kind === "respond") listeningLabel = "点击播放，听这句话后选出最合适的回应";
+    else if (it.kind === "judge") listeningLabel = "点击播放，听对话后判断哪个陈述正确";
     return '<div class="stage-head"><h2>听力训练</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
       '<div class="audio-deck">' +
       '<button class="play-big" id="play-big" data-action="play">' + icon("play") + "</button>" +
-      '<div class="ad-label">点击播放，听录音后回答下面的问题</div>' +
+      '<div class="ad-label">' + listeningLabel + '</div>' +
       '<div class="ad-script" id="ad-script" style="display:' + (revealed || fb ? "block" : "none") + '">' + esc(it.text) + "</div>" +
       "</div>" +
       '<div class="play-tools" style="margin-bottom:20px">' +
       '<button class="btn btn-sm" data-action="play-slow">0.7x 慢速</button>' +
       '<button class="btn btn-sm" data-action="toggle-script">' + (revealed ? "隐藏原文" : "显示原文") + "</button></div>" +
       dictateBox +
-      '<div class="quiz-q">' + esc(it.q) + "</div>" +
+      '<div class="quiz-q">' + esc(it.q || listeningLabel) + "</div>" +
       '<div class="opts" id="opts">' + optionList(it.opts, it.a, fb) + "</div>" +
       (fb ? trBox : "") +
       explainBox(it.a, fb && fb.correct ? "答对了，继续保持。" : "再听一遍录音，注意关键词。", fb);
@@ -984,6 +1002,7 @@
       '<div style="display:flex;gap:12px;align-items:center">' +
       '<button class="btn" data-action="speak-target">' + icon("speaker") + "听示范</button>" +
       '<button class="mic-btn" id="mic-btn" data-action="mic" aria-label="开始朗读">' + icon("mic") + "</button>" +
+      '<button class="btn btn-ghost" data-action="speak-skip" title="跳过本句，不计入正确率">跳过本句</button>' +
       "</div>" +
       '<div class="mic-hint" id="mic-hint">' + (Speech.asrAvailable() ? "点击麦克风开始识别" : "无法自动识别发音，可用「录音回放」自评") + "</div>" +
       (slot || "") +
@@ -1019,6 +1038,7 @@
       '<button class="btn btn-sm" data-action="speak-target">' + icon("speaker") + "听原音</button>" +
       '<button class="btn btn-sm ' + (recording ? "btn-primary" : "") + '" data-action="rec">' + icon("mic") + (recording ? "停止录音" : (recorded ? "再录一次" : "录音")) + "</button>" +
       (recorded ? '<button class="btn btn-sm" data-action="rec-play">回放录音</button>' : "") +
+      '<button class="btn btn-sm btn-ghost" data-action="speak-skip" style="margin-left:auto">跳过本句</button>' +
       "</div>" +
       '<div class="tiny muted-2" id="mic-hint" style="margin-top:8px">' + hint + "</div>" +
       (recorded ?
@@ -1035,19 +1055,40 @@
     var badgeHtml = (r.badges || []).map(function (b) {
       return '<div class="badge-card" style="padding:14px;min-width:140px"><div class="badge-ico" style="width:44px;height:44px;font-size:20px">' + b.icon + "</div><h4>" + esc(b.name) + "</h4></div>";
     }).join("");
+    /* 本课学会的词/句 */
+    var vocabHtml = "";
+    var lid = info.lessonId || ctx.lessonId;
+    if (ctx.learnedVocab && ctx.learnedVocab.length) {
+      vocabHtml = '<div class="lesson-summary" style="margin-top:20px"><div class="ls-head"><h3>本课 ' + ctx.learnedVocab.length + ' 个词</h3>' +
+        '<button class="btn btn-sm btn-ghost" data-action="add-review" data-lesson-id="' + lid + '" data-target="vocab">全部加入复习</button></div>' +
+        '<div class="vocab-chip-row">' + ctx.learnedVocab.slice(0, 10).map(function (v) {
+          return '<span class="ls-chip"><b>' + esc(v.t) + "</b>" + esc(v.m) + "</span>";
+        }).join("") +
+        (ctx.learnedVocab.length > 10 ? '<span class="tiny muted-2">…共 ' + ctx.learnedVocab.length + " 词</span>" : "") +
+        "</div></div>";
+    }
+    var sentHtml = "";
+    if (ctx.learnedSentences && ctx.learnedSentences.length) {
+      sentHtml = '<div class="lesson-summary" style="margin-top:14px"><div class="ls-head"><h3>本课 ' + ctx.learnedSentences.length + ' 句</h3>' +
+        '<button class="btn btn-sm btn-ghost" data-action="add-review" data-lesson-id="' + lid + '" data-target="sentences">全部加入复习</button></div>' +
+        '<div class="sent-list">' + ctx.learnedSentences.slice(0, 6).map(function (s) {
+          return '<div class="sent-row"><span class="tiny muted-2">[' + esc(s.kind === "speaking" ? "口语" : "听力") + "]</span>" +
+            '<b>' + esc(s.text) + '</b><span class="tiny muted-2">' + esc(s.tr) + "</span></div>";
+        }).join("") + "</div></div>";
+    }
     return '<div class="stage result-stage">' +
       '<div class="result-seal">' + icon("check") + "</div>" +
       "<h2>这一课完成了</h2>" +
-      '<p class="muted">' + esc(info.lang.flag + " " + info.level.name + " · " + info.lesson.title) + (info.lesson.sub ? "（" + esc(info.lesson.sub) + "）" : "") + (r.repeat ? " · 复习轮次" : "") + "</p>" +
+      '<p class="muted">' + esc(info.lang.flag + " " + info.level.name + " · " + info.lesson.title) + (info.lesson.sub ? "（" + esc(info.lesson.sub) + "）" : "") + "</p>" +
       '<div class="result-stats">' +
       '<div class="result-stat"><b style="color:var(--jade)">' + r.accuracy + "%</b><span>总正确率</span></div>" +
       '<div class="result-stat"><b>+' + r.xp + '</b><span>获得经验</span></div>' +
       '<div class="result-stat"><b>' + ctx.perfectLabel + "</b><span>本轮表现</span></div>" +
       '<div class="result-stat"><b>' + S.stats().streak + "</b><span>连续天数</span></div>" +
-      (r.coins ? '<div class="result-stat"><b style="color:var(--gold)">🪙 +' + r.coins + "</b><span>金币</span></div>" : "") +
       "</div>" +
       (r.bonus ? '<div class="chip chip-gold" style="margin-top:10px">全对奖励 +' + r.bonus + " XP</div>" : "") +
       (badgeHtml ? '<div style="margin-top:24px"><div class="tiny muted-2" style="margin-bottom:10px">解锁新成就</div><div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center">' + badgeHtml + "</div></div>" : "") +
+      vocabHtml + sentHtml +
       '<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px">' +
       (nextId ? '<button class="btn btn-primary btn-lg" data-link="#/learn/' + nextId + '">学习下一课</button>' : "") +
       '<button class="btn btn-lg" data-action="redo">再练一次</button>' +
@@ -1300,7 +1341,7 @@
     reviewPage: reviewPage, reviewStage: reviewStage, reviewResult: reviewResult,
     challengeSetup: challengeSetup, challengeStage: challengeStage, challengeResult: challengeResult,
     glossary: glossary, glossaryRows: glossaryRows,
-    lessonShell: lessonShell, modeToggle: modeToggle, stageVocab: stageVocab, stageVocabRevealed: stageVocabRevealed,
+    lessonShell: lessonShell, modeToggle: modeToggle, stageVocab: stageVocab, stageVocabRevealed: stageVocabRevealed, stageVocabQuiz: stageVocabQuiz,
     stageGrammar: stageGrammar, stageListening: stageListening, stageSpeaking: stageSpeaking, stageModeDone: stageModeDone,
     speakResult: speakResult, speakPractice: speakPractice, stageResult: stageResult, modeScoreCard: modeScoreCard,
     lastNDays: lastNDays, langChip: langChip

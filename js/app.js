@@ -187,7 +187,14 @@
       var useIdx = LC.answering ? LC.answering.idx : LC.done[mode];
       var item = LC.answering && LC.answering.mode === mode ? LC.answering.item : LC.items[mode][cur];
       var ctx = { lessonId: LC.id, idx: useIdx, total: LC.total[mode], item: item };
-      if (mode === "vocab") stage = LC.revealed ? Views.stageVocabRevealed(ctx) : Views.stageVocab(ctx);
+      if (mode === "vocab") {
+        if (LC.quiz) {
+          var quizCtx = { lessonId: LC.id, idx: LC.done[mode], total: LC.total[mode], item: LC.items[mode][LC.quiz.idx], quiz: LC.quiz };
+          stage = Views.stageVocabQuiz(quizCtx);
+        } else {
+          stage = LC.revealed ? Views.stageVocabRevealed(ctx) : Views.stageVocab(ctx);
+        }
+      }
       else if (mode === "grammar") stage = Views.stageGrammar(ctx, LC.answering && LC.answering.mode === mode ? LC.answering : null);
       else if (mode === "listening") stage = Views.stageListening(ctx, LC.revealed, LC.answering && LC.answering.mode === mode ? LC.answering : null, LC.dictate);
       else stage = Views.stageSpeaking(ctx, LC.speakFx || "");
@@ -237,6 +244,38 @@
   function handleVocab(known) {
     var mode = "vocab";
     var cur = LC.pending[mode][0];
+    /* known=true 时先出一道快速检验题（本 lesson 词汇够 4 个才出） */
+    if (known && !LC.quiz) {
+      var allV = LC.items[mode];
+      if (allV.length >= 4) {
+        var ans = allV[cur];
+        var dist = [];
+        for (var di = 0; di < allV.length && dist.length < 3; di++) {
+          if (di !== cur && dist.indexOf(allV[di].m) === -1) dist.push(allV[di].m);
+        }
+        /* 不够 3 个不同释义，跳过检验 */
+        if (dist.length >= 2) {
+          var rawOpts = [{ m: ans.m, cur: true, idx: cur }];
+          dist.forEach(function (dm) { rawOpts.push({ m: dm, cur: false }); });
+          /* Fisher–Yates shuffle */
+          for (var i = rawOpts.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = rawOpts[i]; rawOpts[i] = rawOpts[j]; rawOpts[j] = tmp;
+          }
+          var answerIdx = rawOpts.findIndex(function (o) { return o.cur; });
+          LC.quiz = { idx: cur, opts: rawOpts.map(function (o) { return { label: o.m, isAns: o.cur }; }), answerIdx: answerIdx };
+          LC.revealedQuiz = true;
+          paintLesson();
+          return;
+        }
+      }
+    }
+    commitVocabStep(known);
+  }
+
+  function commitVocabStep(known) {
+    var mode = "vocab";
+    var cur = LC.pending[mode][0];
     var p = Store.progress();
     Store.updateVocabBox(p, LC.id, cur, known);
     Store.recordSkill(p, mode, known);
@@ -246,14 +285,22 @@
       LC.done[mode] += 1; LC.correct[mode] += 1;
     } else if (!LC.repeats[idx]) {
       LC.repeats[idx] = true;
-      LC.pending[mode].push(idx);      // 本轮末尾再出现一次
+      LC.pending[mode].push(idx);
     } else {
       LC.done[mode] += 1;
     }
+    LC.quiz = null;
+    LC.revealedQuiz = false;
     LC.revealed = false;
     if (allDone()) return finishLesson(mode);
     questPulse();
     paintLesson();
+  }
+
+  function handleVocabQuiz(choiceIdx) {
+    if (!LC.quiz) return;
+    var correct = choiceIdx === LC.quiz.answerIdx;
+    commitVocabStep(correct);
   }
 
   /* ---- 口语 ---- */
@@ -370,9 +417,14 @@
     });
     var res = Store.completeLesson(LC.id, { total: total, correct: correct, perfect: correct === total, modes: modes });
     LC.finished = true;
+    var learnedVocab = (LC.items.vocab || []).map(function (v, i) { return { idx: i, t: v.t, m: v.m }; });
+    var learnedSentences = [];
+    (LC.items.speaking || []).forEach(function (v, i) { learnedSentences.push({ idx: i, kind: "speaking", text: v.text, tr: v.tr }); });
+    (LC.items.listening || []).forEach(function (v, i) { learnedSentences.push({ idx: i, kind: "listening", text: v.text, tr: v.tr }); });
     LC.resultCtx = {
       lessonId: LC.id, result: res,
-      perfectLabel: correct === total ? "全对" : Math.round(correct / Math.max(1, total) * 100) + "%"
+      perfectLabel: correct === total ? "全对" : Math.round(correct / Math.max(1, total) * 100) + "%",
+      learnedVocab: learnedVocab, learnedSentences: learnedSentences
     };
     paintLesson();
     if (res.badges && res.badges.length) {
@@ -648,6 +700,7 @@
       case "reveal": if (LC) { LC.revealed = true; paintLesson(); } break;
       case "known": if (LC) handleVocab(true); break;
       case "unknown": if (LC) handleVocab(false); break;
+      case "quiz-opt": if (LC && LC.quiz) handleVocabQuiz(+act.getAttribute("data-opt")); break;
       case "speak-vocab":
         if (LC) { var cv = LC.items.vocab[LC.pending.vocab[0]]; if (cv) Speech.speak(cv.t, LC.lang.locale); }
         break;
@@ -668,12 +721,26 @@
         if (LC) { var sp2 = LC.items.speaking[LC.pending.speaking[0]]; if (sp2) Speech.speak(sp2.text, LC.lang.locale); }
         break;
       case "mic": handleMic(); break;
+      case "speak-skip":
+        if (LC && LC.active === "speaking") commitSpeaking(true);
+        break;
       case "rec": recToggle(); break;
       case "rec-play": recPlay(); break;
       case "next":
         if (LC && LC.active === "speaking") commitSpeaking(!LC.speakFxScore);
         break;
       case "redo": if (LC) { startLesson(LC.id); } break;
+      case "add-review": {
+        var lid2 = act.getAttribute("data-lesson-id");
+        var info2 = DATA.lessonOf(lid2);
+        if (!info2) break;
+        var added = 0;
+        if (info2.lesson.vocab) {
+          info2.lesson.vocab.forEach(function (_, i) { Store.reviewVocab(lid2 + "#" + i, false); added++; });
+        }
+        if (added) toast("已把 " + added + " 个词加入复习队列，到期时自动提醒", "good");
+        break;
+      }
       /* 错题本 / 单词复习 */
       case "rv-start": startReview(); break;
       case "rv-words": startWordReview(); break;

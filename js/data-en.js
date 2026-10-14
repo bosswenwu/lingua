@@ -68,7 +68,8 @@ window.COURSES_EN = {
               ],
               listening: [
                 { text: "Hi, I'm Anna. Nice to meet you.", q: "说话人的名字是什么？", opts: ["Emma", "Anna", "Amy"], a: 1, tr: "你好，我是 Anna。很高兴认识你。" },
-                { text: "Good morning! How are you today?", q: "这句话最可能出现在什么时间？", opts: ["早上", "深夜", "傍晚"], a: 0, tr: "早上好！你今天怎么样？" }
+                { text: "Good morning! How are you today?", q: "这句话最可能出现在什么时间？", opts: ["早上", "深夜", "傍晚"], a: 0, tr: "早上好！你今天怎么样？" },
+                { text: "Nice to meet you. What do you do?", kind: "respond", q: "听到这句话，最合适的回应是？", opts: ["I'm an engineer.", "Yes, nice to meet you too.", "It's sunny today."], a: 0, tr: "很高兴认识你。你做什么工作？" }
               ],
               speaking: [
                 { text: "Hello, I'm Lin. Nice to meet you.", tr: "你好，我是林。很高兴认识你。" },
