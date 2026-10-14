@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Lingua">
+  <defs>
+    <radialGradient id="g" cx="86%" cy="-10%" r="120%">
+      <stop offset="0" stop-color="#2F4B7C"/>
+      <stop offset="1" stop-color="#171A2B"/>
+    </radialGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#g)"/>
+  <circle cx="256" cy="256" r="150" fill="#E0483C"/>
+  <circle cx="256" cy="256" r="150" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="6"/>
+  <text x="256" y="316" text-anchor="middle" font-family="Songti SC, Georgia, serif" font-size="176" fill="#fff">语</text>
+</svg>

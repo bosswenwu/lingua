@@ -314,6 +314,14 @@ t("mark 一一对应：目标词重复时不多记", () => {
   const marks = Speech.mark("go go go", "go", "en");
   eq(marks.filter(m => m.hit).length, 1);
 });
+t("日语：片假名与平假名统一后视为一致", () => {
+  eq(Speech.score("カタカナ", "かたかな", "ja"), 100);
+  eq(Speech.score("コンピュータ", "こんぴゅーた", "ja"), 100);
+});
+t("提供读音时按读音比对（缓解汉字/假名不一致）", () => {
+  eq(Speech.score("私は学生です", "わたしはがくせいです", "ja", "わたしはがくせいです"), 100);
+  eq(Speech.mark("私は学生です", "わたしはがくせい", "ja", "わたしはがくせいです").filter(m => m.hit).length >= 4, true);
+});
 
 /* ==========================================================================
    7. 错题本视图（views）
@@ -355,6 +363,66 @@ t("reviewResult 展示攻克统计", () => {
   const html = Views.reviewResult(2, 3);
   has(html, "重练完成");
   has(html, "2 / 3");
+});
+
+/* ==========================================================================
+   7b. 单词间隔复习（SRS）
+   ========================================================================== */
+console.log("\n■ 单词间隔复习 · SRS");
+const uS = freshUser();
+t("新档案没有到期单词，summary 全为 0", () => {
+  const vs = Store.vocabSummary();
+  eq(vs.total, 0); eq(vs.due, 0); eq(vs.mastered, 0);
+  eq(Store.vocabDue().length, 0);
+});
+t("学过单词后进入复习队列，首次答错即刻到期", () => {
+  const p = Store.progress();
+  Store.updateVocabBox(p, "en-l1", 0, false);
+  Store.saveProgress(p);
+  const vs = Store.vocabSummary();
+  eq(vs.total, 1);
+  eq(vs.due, 1);
+  const due = Store.vocabDue();
+  eq(due.length, 1);
+  eq(due[0].key, "en-l1#0");
+  eq(due[0].lessonId, "en-l1");
+  ok(due[0].vocab && due[0].vocab.t, "附带词条");
+});
+t("答对后进入 box1，当天不再到期", () => {
+  Store.reviewVocab("en-l1#0", true);
+  eq(Store.progress().vocabBox["en-l1#0"].box, 1);
+  eq(Store.vocabSummary().due, 0);
+  eq(Store.vocabDue().length, 0);
+});
+t("熟练度 ≥ 3 计入已掌握", () => {
+  const p = Store.progress();
+  p.vocabBox["en-l1#0"].box = 3;
+  Store.saveProgress(p);
+  eq(Store.vocabSummary().mastered, 1);
+});
+t("到期单词按陌生优先排序", () => {
+  const p = Store.progress();
+  p.vocabBox["en-l1#1"] = { box: 0, seen: 1, correct: 0, next: 0 };   // 陌生
+  p.vocabBox["en-l1#2"] = { box: 2, seen: 3, correct: 2, next: Date.now() - 1000 }; // 较熟
+  Store.saveProgress(p);
+  const due = Store.vocabDue();
+  eq(due[0].box, 0);
+});
+t("reviewPage 展示单词复习与错题两个入口", () => {
+  const html = Views.reviewPage();
+  has(html, "单词间隔复习");
+  has(html, "错题重练");
+  has(html, 'data-action="rv-words"');
+});
+t("reviewStage 单词题使用复习文案", () => {
+  const html = Views.reviewStage({ srs: true, mode: "vocab", lang: "en", prompt: "book", opts: ["书", "水", "猫"], answer: 0, sub: "chu shu · 选出正确释义" }, 0, 1, null);
+  has(html, "单词复习");
+  notHas(html, "错题重练");
+});
+t("reviewResult 单词复习文案", () => {
+  const html = Views.reviewResult(3, 5, true);
+  has(html, "单词复习完成");
+  has(html, "3 / 5");
 });
 
 /* ==========================================================================

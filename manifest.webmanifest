@@ -1,0 +1,16 @@
+{
+  "name": "Lingua · 多语种沉浸式学习平台",
+  "short_name": "Lingua",
+  "description": "英语、日语、韩语 A1→B2 分级课程，单词、语法、听力、口语跟读四类训练，进度保存在本机。",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#F2F3F7",
+  "theme_color": "#171A2B",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

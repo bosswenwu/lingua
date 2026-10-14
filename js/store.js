@@ -330,6 +330,44 @@
     saveProgress(p);
   }
 
+  /* ---------------- 单词间隔复习（Leitner：0 陌生 → 4 熟练） ---------------- */
+  function vocabDue(limit) {
+    var now = Date.now();
+    var p = progress();
+    var out = [];
+    Object.keys(p.vocabBox).forEach(function (k) {
+      var it = p.vocabBox[k];
+      if (it.next && it.next > now) return;   // 未到期
+      var parts = k.split("#");
+      var info = window.DATA.lessonOf(parts[0]);
+      if (!info) return;
+      var v = (info.lesson.vocab || [])[+parts[1]];
+      if (!v) return;
+      out.push({ key: k, lessonId: parts[0], idx: +parts[1], box: it.box || 0, lang: info.lang.code, vocab: v });
+    });
+    out.sort(function (a, b) { return a.box - b.box || (a.key < b.key ? -1 : 1); });
+    return limit ? out.slice(0, limit) : out;
+  }
+  function reviewVocab(key, known) {
+    var p = progress();
+    var parts = key.split("#");
+    updateVocabBox(p, parts[0], +parts[1], known);
+    saveProgress(p);
+    return p.vocabBox[key];
+  }
+  function vocabSummary() {
+    var now = Date.now();
+    var p = progress();
+    var total = 0, due = 0, mastered = 0;
+    Object.keys(p.vocabBox).forEach(function (k) {
+      var it = p.vocabBox[k];
+      total++;
+      if (!it.next || it.next <= now) due++;
+      if ((it.box || 0) >= 3) mastered++;
+    });
+    return { total: total, due: due, mastered: mastered };
+  }
+
   /* ---------------- 限时挑战 ---------------- */
   function saveChallengeResult(gain, combo) {
     var p = progress();
@@ -724,6 +762,9 @@
     resolveMistake: resolveMistake,
     removeMistake: removeMistake,
     clearMistakes: clearMistakes,
+    vocabDue: vocabDue,
+    reviewVocab: reviewVocab,
+    vocabSummary: vocabSummary,
     saveChallengeResult: saveChallengeResult,
     feed: feed,
     addPost: addPost,

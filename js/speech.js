@@ -6,6 +6,7 @@
   var synth = window.speechSynthesis || null;
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition || null;
   var voicesReady = null;
+  var asrBlocked = false;   // 识别服务不可用（如国内网络无法访问识别后端）时置位
 
   function loadVoices() {
     if (!synth) return Promise.resolve([]);
@@ -95,6 +96,11 @@
         "network": "语音识别需要网络连接",
         "aborted": ""
       };
+      // 识别后端不可达（国内常见）→ 标记为不可用，上层将降级为「录音回放 + 自评」
+      if (ev.error === "network" || ev.error === "service-not-allowed") {
+        asrBlocked = true;
+        window.Speech.asrBlocked = true;
+      }
       var msg = map[ev.error] !== undefined ? map[ev.error] : ("识别出错：" + ev.error);
       handlers.onError && handlers.onError(msg, ev.error);
     };
@@ -106,17 +112,26 @@
   }
 
   /* ---------------- 相似度评分 ---------------- */
-  function normalize(s) {
-    return (s || "")
+  /* 片假名 → 平假名：日语 ASR 常返回片假名/汉字，统一假名后再比对 */
+  function toKana(s) {
+    return (s || "").replace(/[\u30A1-\u30F6]/g, function (ch) {
+      return String.fromCharCode(ch.charCodeAt(0) - 0x60);
+    });
+  }
+
+  function normalize(s, lang) {
+    var n = (s || "")
       .toLowerCase()
       .replace(/[\u3000-\u303F\uFF00-\uFFEF\u2000-\u206F]/g, " ")
       .replace(/[.,!?;:'"“”‘’()\[\]{}<>~!@#$%^&*_+=|\\/`-]/g, " ")
       .replace(/\s+/g, " ")
       .trim();
+    if (lang === "ja") n = toKana(n);
+    return n;
   }
 
   function tokenize(s, lang) {
-    var n = normalize(s);
+    var n = normalize(s, lang);
     if (!n) return [];
     if (lang === "ja" || lang === "ko") return n.split(" ").join("").split("");
     return n.split(" ");
@@ -136,19 +151,24 @@
     return prev[n];
   }
 
-  function score(target, said, lang) {
-    var T = tokenize(target, lang), S = tokenize(said, lang);
-    if (!T.length) return 0;
-    if (!S.length) return 0;
-    var L = lcs(T, S);
-    var recall = L / T.length;
-    var precision = L / S.length;
-    var v = 0.68 * recall + 0.32 * precision;
-    return Math.max(0, Math.min(100, Math.round(v * 100)));
+  /* reading：可选的目标语读音（如 vocab.r）。提供时取「原句 / 读音」中较优的一项，
+     以缓解日语 ASR 返回汉字、而文本为假名时的误判。 */
+  function score(target, said, lang, reading) {
+    var best = 0;
+    var cands = reading ? [target, reading] : [target];
+    cands.forEach(function (cand) {
+      var T = tokenize(cand, lang), S = tokenize(said, lang);
+      if (!T.length || !S.length) return;
+      var L = lcs(T, S);
+      var v = 0.68 * (L / T.length) + 0.32 * (L / S.length);
+      if (v > best) best = v;
+    });
+    return Math.max(0, Math.min(100, Math.round(best * 100)));
   }
 
   /* 标记目标句中哪些词被正确读出 */
-  function mark(target, said, lang) {
+  function mark(target, said, lang, reading) {
+    if (reading && score(reading, said, lang) > score(target, said, lang)) target = reading;
     var T = tokenize(target, lang), S = tokenize(said, lang);
     var used = new Array(S.length).fill(false);
     var out = [];
@@ -165,6 +185,8 @@
   window.Speech = {
     ttsSupported: !!synth,
     asrSupported: !!SR,
+    asrAvailable: function () { return !!SR && !asrBlocked; },
+    asrBlocked: false,
     speak: speak,
     stop: stop,
     listen: listen,

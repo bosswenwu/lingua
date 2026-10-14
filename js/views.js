@@ -135,7 +135,7 @@
       '<header class="landing-nav">' +
       '<div class="brand"><span class="seal">语</span><div><div class="brand-name">Lingua</div></div></div>' +
       '<nav class="links"><a href="#features">课程特色</a><a href="#languages">语种</a><a href="#/community">社区</a><a href="#/achievements">成就</a></nav>' +
-      '<div class="actions"><button class="btn btn-ghost" data-link="#/login">登录</button><button class="btn btn-ink" data-link="#/register">免费开始</button></div>' +
+      '<div class="actions"><button class="btn btn-ghost" data-link="#/login">选择档案</button><button class="btn btn-ink" data-link="#/register">免费开始</button></div>' +
       "</header>" +
 
       '<section class="hero"><div class="hero-inner">' +
@@ -166,7 +166,7 @@
       '<div><h2 style="font-size:clamp(26px,3.4vw,36px);color:#fff">今天就上一节，明天就多会一句。</h2>' +
       '<p class="hero-lede" style="margin-top:14px">创建档案后，系统会根据你的目标语言和水平，直接排出第一节课。</p></div>' +
       '<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start"><button class="btn btn-primary btn-lg" data-link="#/register">免费开始学习</button>' +
-      '<button class="btn btn-outline-light btn-lg" data-link="#/login">登录</button></div></div></section>' +
+      '<button class="btn btn-outline-light btn-lg" data-link="#/login">选择档案</button></div></div></section>' +
 
       '<footer class="landing-foot"><div class="brand"><span class="seal">语</span><span class="brand-name">Lingua</span></div>' +
       "<span>多语种沉浸式学习平台 · 英语 / 日语 / 韩语</span></footer></div>";
@@ -294,7 +294,8 @@
 
     var resume = '<div class="resume-card">' +
       '<div><div class="rc-kicker">继续学习</div>' +
-      "<h2>" + esc(info.lang.flag + " " + info.lesson.title) + "</h2>" +
+      "<h2>" + esc(info.lang.flag + " " + info.lesson.title) +
+      (info.lesson.sub ? " <span class=\"sub-lang\">" + esc(info.lesson.sub) + "</span>" : "") + "</h2>" +
       "<p>" + esc(info.level.name + " · " + info.unit.name + " · " + info.lesson.focus) + "</p>" +
       '<div class="rc-meta"><span>约 ' + info.lesson.minutes + " 分钟</span><span>+" + info.lesson.xp + " XP</span><span>" +
       info.lesson._counts.vocab + " 词 · " + info.lesson._counts.grammar + " 题 · " + info.lesson._counts.listening + " 听 · " + info.lesson._counts.speaking + " 说</span></div>" +
@@ -338,7 +339,7 @@
       '<div class="grid grid-3" style="margin-top:18px">' +
       '<button class="panel quick-card" data-link="#/review" style="text-align:left;cursor:pointer">' +
       '<div class="qc-ico" style="background:rgba(224,72,60,.12);color:var(--vermilion-dark)">' + icon("retry") + "</div>" +
-      '<div><h3 style="margin-bottom:4px">错题本</h3><div class="tiny muted">' + (st.mistakes ? "还有 <b style=\"color:var(--vermilion-dark)\">" + st.mistakes + "</b> 道错题待攻克" : "当前没有错题，保持！") + "</div></div></button>" +
+      '<div><h3 style="margin-bottom:4px">复习</h3><div class="tiny muted">' + (S.vocabSummary().due ? "<b style=\"color:var(--vermilion-dark)\">" + S.vocabSummary().due + "</b> 个单词到期" : "单词都复习过了") + ' · ' + (st.mistakes ? "还有 <b style=\"color:var(--vermilion-dark)\">" + st.mistakes + "</b> 道错题" : "无错题") + "</div></div></button>" +
       '<button class="panel quick-card" data-link="#/challenge" style="text-align:left;cursor:pointer">' +
       '<div class="qc-ico" style="background:rgba(194,117,27,.12);color:var(--gold)">' + icon("bolt") + "</div>" +
       '<div><h3 style="margin-bottom:4px">限时挑战</h3><div class="tiny muted">' + (st.challengeBest ? "最高纪录 <b>" + st.challengeBest + "</b> XP · 来破纪录" : "60 秒快答，连击加成 XP") + "</div></div></button>" +
@@ -426,6 +427,7 @@
       return '<div class="pm-row ' + side + '">' +
         '<button class="pm-node ' + state + (isBoss ? " boss" : "") + '"' + click + ' aria-label="' + esc(ls.title) + '">' + inner + "</button>" +
         '<div class="pm-bubble"><div class="pm-title">' + esc(ls.title) + "</div>" +
+        (ls.sub ? '<span class="sub-lang">' + esc(ls.sub) + "</span>" : "") +
         '<div class="pm-sub">' + esc(ls.focus) + "</div>" + meta + "</div></div>";
     }
 
@@ -435,7 +437,8 @@
           return pmNode(ls, li === unit.lessons.length - 1);
         }).join("");
         var unitDone = unit.lessons.filter(function (l) { return st.lessons[l.id] && st.lessons[l.id].done; }).length;
-        return '<div class="pm-unit"><div class="pm-unit-head"><h3>' + esc(unit.name) + "</h3>" +
+        return '<div class="pm-unit"><div class="pm-unit-head"><h3>' + esc(unit.name) +
+          (unit.sub ? ' <span class="sub-lang">' + esc(unit.sub) + "</span>" : "") + "</h3>" +
           '<span class="tiny muted">' + esc(unit.theme) + "</span>" +
           '<span class="chip chip-plain" style="margin-left:auto">' + unitDone + " / " + unit.lessons.length + "</span></div>" +
           '<div class="pm-track">' + rows + "</div></div>";
@@ -819,7 +822,8 @@
     return '<div class="lesson-shell"><div class="lesson-top">' +
       '<button class="lt-back" data-link="#/courses/' + info.lang.code + '" aria-label="返回课程">' + icon("left") + "</button>" +
       '<span class="lh-hearts" id="lh-hearts">❤️ × 5</span>' +
-      '<div class="lesson-progress"><div class="lp-labels"><span id="lp-title">' + esc(info.lang.flag + " " + info.lesson.title) + "</span><span id=\"lp-pct\">0%</span></div>" +
+      '<div class="lesson-progress"><div class="lp-labels"><span id="lp-title">' + esc(info.lang.flag + " " + info.lesson.title) +
+      (info.lesson.sub ? " · " + esc(info.lesson.sub) : "") + "</span><span id=\"lp-pct\">0%</span></div>" +
       '<div class="bar" id="lp-bar"><i class="bar-fill" style="width:0"></i></div></div>' +
       "</div><div id=\"lesson-body\"></div></div>";
   }
@@ -972,7 +976,7 @@
       '<button class="btn" data-action="speak-target">' + icon("speaker") + "听示范</button>" +
       '<button class="mic-btn" id="mic-btn" data-action="mic" aria-label="开始朗读">' + icon("mic") + "</button>" +
       "</div>" +
-      '<div class="mic-hint" id="mic-hint">' + (Speech.asrSupported ? "点击麦克风开始识别" : "当前浏览器不支持语音识别，可点击「我已完成朗读」继续") + "</div>" +
+      '<div class="mic-hint" id="mic-hint">' + (Speech.asrAvailable() ? "点击麦克风开始识别" : "无法自动识别发音，可用「录音回放」自评") + "</div>" +
       (slot || "") +
       "</div>";
   }
@@ -995,6 +999,25 @@
       "</div></div>";
   }
 
+  /* 无 ASR 时的降级练习：听原音 → 录音回放 → 自评 */
+  function speakPractice(state) {
+    var recording = state === "recording";
+    var recorded = state === "recorded";
+    var hint = recording ? "正在录音…再点一次结束" : (recorded ? "回放听听看，满意就继续" : "点「录音」开始跟读");
+    return '<div class="speak-result">' +
+      '<div class="tiny muted">当前环境无法自动识别发音（Web Speech 识别服务不可用）。改用「听原音 → 录音回放 → 自评」练习。</div>' +
+      '<div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;align-items:center">' +
+      '<button class="btn btn-sm" data-action="speak-target">' + icon("speaker") + "听原音</button>" +
+      '<button class="btn btn-sm ' + (recording ? "btn-primary" : "") + '" data-action="rec">' + icon("mic") + (recording ? "停止录音" : (recorded ? "再录一次" : "录音")) + "</button>" +
+      (recorded ? '<button class="btn btn-sm" data-action="rec-play">回放录音</button>' : "") +
+      "</div>" +
+      '<div class="tiny muted-2" id="mic-hint" style="margin-top:8px">' + hint + "</div>" +
+      (recorded ?
+        '<div style="display:flex;gap:10px;margin-top:14px">' +
+        '<button class="btn btn-sm btn-primary" data-action="next" style="margin-left:auto">自评：读得不错，继续</button></div>' : "") +
+      "</div>";
+  }
+
   /* 结果页 */
   function stageResult(ctx) {
     var info = D.lessonOf(ctx.lessonId);
@@ -1006,7 +1029,7 @@
     return '<div class="stage result-stage">' +
       '<div class="result-seal">' + icon("check") + "</div>" +
       "<h2>这一课完成了</h2>" +
-      '<p class="muted">' + esc(info.lang.flag + " " + info.level.name + " · " + info.lesson.title) + (r.repeat ? " · 复习轮次" : "") + "</p>" +
+      '<p class="muted">' + esc(info.lang.flag + " " + info.level.name + " · " + info.lesson.title) + (info.lesson.sub ? "（" + esc(info.lesson.sub) + "）" : "") + (r.repeat ? " · 复习轮次" : "") + "</p>" +
       '<div class="result-stats">' +
       '<div class="result-stat"><b style="color:var(--jade)">' + r.accuracy + "%</b><span>总正确率</span></div>" +
       '<div class="result-stat"><b>+' + r.xp + '</b><span>获得经验</span></div>' +
@@ -1089,28 +1112,36 @@
       "</div>" +
       '<div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:26px">' +
       '<button class="btn btn-primary btn-lg" data-link="#/shop">去商店回心</button>' +
-      '<button class="btn btn-lg" data-link="#/review">去错题本赚红心</button>' +
+      '<button class="btn btn-lg" data-link="#/review">去复习赚红心</button>' +
       '<button class="btn btn-lg btn-ghost" data-link="' + backLink + '">返回课程目录</button>' +
       "</div></div></div>";
   }
 
   /* ======================================================================
-     错题本
+     错题本与单词复习
      ====================================================================== */
   var MODE_NAME = { vocab: "单词", grammar: "语法", listening: "听力", speaking: "口语" };
 
   function reviewPage() {
     var list = S.mistakes();
     var st = S.stats();
+    var vs = S.vocabSummary();
 
     var head = '<div class="grid grid-3">' +
+      statCard("到期单词", vs.due + " 个", vs.due ? "按间隔复习，答对即延长下次间隔" : "今日已复习完") +
       statCard("待攻克错题", list.length + " 道", list.length ? "答对即移出错题本" : "太棒了") +
-      statCard("已攻克", (st.mistakesFixed || 0) + " 道", "累计重练答对") +
-      statCard("错题来源", list.length ? langOf(list[0].lang).flag + " 等 " + new Set(list.map(function (m) { return m.lang; })).size + " 门语言" : "—", "语法与听力错题会自动收录") +
+      statCard("已掌握单词", (st.wordsMastered || 0) + " 个", "熟练度达 3 级及以上") +
       "</div>";
 
+    var wordPanel = '<div class="panel" style="margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">' +
+      "<div><h2 style=\"font-size:17px\">单词间隔复习</h2><div class=\"tiny muted\">按 Leitner 间隔排期（1 / 3 / 7 / 16 天），到期的词会排在这里，答对延长间隔，答错回到最短间隔。</div></div>" +
+      '<div style="margin-left:auto;display:flex;gap:10px;align-items:center">' +
+      '<span class="chip chip-plain">已记录 ' + vs.total + " 个词</span>" +
+      (vs.due ? '<button class="btn btn-primary" data-action="rv-words">开始单词复习（' + Math.min(vs.due, 20) + " 个）</button>" : "") +
+      "</div></div>";
+
     var actions = '<div class="panel" style="margin-top:18px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">' +
-      "<div><h2 style=\"font-size:17px\">重练模式</h2><div class=\"tiny muted\">逐题重做错题，答对一道就将其移出错题本，并计入「知错就改」成就。</div></div>" +
+      "<div><h2 style=\"font-size:17px\">错题重练</h2><div class=\"tiny muted\">逐题重做错题，答对一道就将其移出错题本，并计入「知错就改」成就。</div></div>" +
       '<div style="margin-left:auto;display:flex;gap:10px">' +
       (list.length ? '<button class="btn btn-primary" data-action="rv-start">开始重练（' + list.length + " 题）</button>" : "") +
       (list.length ? '<button class="btn btn-ghost" data-action="rv-clear">清空错题本</button>' : "") +
@@ -1133,11 +1164,12 @@
         "</div></div>";
     }).join("") : '<div class="panel"><div class="empty"><div class="em-ico">🎯</div><h3>错题本是空的</h3><p>学习过程中的语法、听力错题会自动收录到这里，方便针对性重练。</p><button class="btn btn-primary" data-link="#/courses" style="margin-top:14px">去上课</button></div></div>';
 
-    return shell("#/review", "错题本", "答错的题自动收录，重练答对即移出", head + actions + '<div style="margin-top:18px;display:grid;gap:14px">' + cards + "</div>");
+    return shell("#/review", "复习", "单词按间隔排期，错题反复重练", head + wordPanel + actions + '<div style="margin-top:18px;display:grid;gap:14px">' + cards + "</div>");
   }
 
-  /* 重练答题界面 */
+  /* 重练答题界面（错题重练与单词复习共用） */
   function reviewStage(m, idx, total, fb) {
+    var isWord = !!m.srs;
     var opts = (m.opts || []).map(function (o, i) {
       var cls = "";
       if (fb) { if (i === m.answer) cls = "correct"; else if (i === fb.opt) cls = "wrong"; }
@@ -1145,34 +1177,41 @@
       return '<button class="opt ' + cls + '"' + attrs + '><span class="opt-key">' + "ABCD"[i] + "</span><span>" + esc(o) + "</span></button>";
     }).join("");
     var lang = langOf(m.lang);
+    var okMsg = isWord ? "记住了，下次复习间隔已延长" : "答对了，已移出错题本";
+    var noMsg = isWord ? "再巩固一下，稍后会再次遇到" : "还差一点，本题保留在错题本";
     return '<div class="lesson-shell"><div class="lesson-top">' +
-      '<button class="lt-back" data-link="#/review" aria-label="返回错题本">' + icon("left") + "</button>" +
-      '<div class="lesson-progress"><div class="lp-labels"><span>错题重练</span><span>' + (idx + 1) + " / " + total + "</span></div>" +
+      '<button class="lt-back" data-link="#/review" aria-label="返回复习">' + icon("left") + "</button>" +
+      '<div class="lesson-progress"><div class="lp-labels"><span>' + (isWord ? "单词复习" : "错题重练") + "</span><span>" + (idx + 1) + " / " + total + "</span></div>" +
       '<div class="bar"><i class="bar-fill" style="width:' + Math.round(idx / total * 100) + '%"></i></div></div></div>' +
       '<div class="stage">' +
-      '<div class="stage-head"><h2>' + (MODE_NAME[m.mode] || "练习") + ' · 错题重练</h2><span class="sh-step">' + (lang ? lang.flag : "") + "</span></div>" +
-      (m.mode === "listening" && m.text ?
+      '<div class="stage-head"><h2>' + (isWord ? "单词复习" : (MODE_NAME[m.mode] || "练习") + " · 错题重练") + '</h2><span class="sh-step">' + (lang ? lang.flag : "") + "</span></div>" +
+      (m.mode === "listening" && m.text && !isWord ?
         '<div class="audio-deck"><button class="play-big" data-speak="' + esc(m.text) + '" data-locale="' + (lang ? lang.locale : "") + '">' + icon("play") + '</button>' +
         '<div class="ad-label">点击播放，听录音后回答</div></div>' : "") +
-      '<div class="quiz-q">' + esc(m.prompt) + "</div>" +
+      '<div class="quiz-q">' + esc(m.prompt) +
+      (isWord && m.speakText ? ' <button class="btn btn-sm" data-speak="' + esc(m.speakText) + '" data-locale="' + (lang ? lang.locale : "") + '">' + icon("speaker") + "</button>" : "") +
+      "</div>" +
+      (m.sub ? '<div class="quiz-sub">' + esc(m.sub) + "</div>" : "") +
       '<div class="opts">' + opts + "</div>" +
       (fb ? '<div class="explain ' + (fb.correct ? "ok" : "no") + '">' + icon(fb.correct ? "check" : "x") +
-        "<div><b>" + (fb.correct ? "答对了，已移出错题本" : "还差一点，本题保留在错题本") + "</b>" + esc(m.why || "") + "</div></div>" +
+        "<div><b>" + (fb.correct ? okMsg : noMsg) + "</b>" + esc(m.why || "") + "</div></div>" +
         '<div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="btn btn-primary" data-action="rv-next">' + (idx + 1 >= total ? "查看结果" : "下一题") + "</button></div>" : "") +
       "</div></div>";
   }
 
-  function reviewResult(fixed, total) {
+  function reviewResult(fixed, total, isWord) {
+    var unit1 = isWord ? "记住" : "移出错题本";
+    var unit2 = isWord ? "需巩固" : "仍待巩固";
     return '<div class="lesson-shell"><div class="stage result-stage">' +
       '<div class="result-seal">' + icon("check") + "</div>" +
-      "<h2>重练完成</h2>" +
-      '<p class="muted">本次攻克 ' + fixed + " / " + total + " 道错题</p>" +
+      "<h2>" + (isWord ? "单词复习完成" : "重练完成") + "</h2>" +
+      '<p class="muted">' + (isWord ? "本次记住 " + fixed + " / " + total + " 个单词" : "本次攻克 " + fixed + " / " + total + " 道错题") + "</p>" +
       '<div class="result-stats">' +
-      '<div class="result-stat"><b style="color:var(--jade)">' + fixed + "</b><span>移出错题本</span></div>" +
-      '<div class="result-stat"><b>' + (total - fixed) + "</b><span>仍待巩固</span></div>" +
+      '<div class="result-stat"><b style="color:var(--jade)">' + fixed + "</b><span>" + unit1 + "</span></div>" +
+      '<div class="result-stat"><b>' + (total - fixed) + "</b><span>" + unit2 + "</span></div>" +
       "</div>" +
       '<div style="display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap">' +
-      '<button class="btn btn-primary btn-lg" data-link="#/review">返回错题本</button>' +
+      '<button class="btn btn-primary btn-lg" data-link="#/review">返回复习</button>' +
       '<button class="btn btn-lg btn-ghost" data-link="#/dashboard">回学习中心</button>' +
       "</div></div></div>";
   }
@@ -1311,7 +1350,7 @@
     glossary: glossary, glossaryRows: glossaryRows,
     lessonShell: lessonShell, modeToggle: modeToggle, stageVocab: stageVocab, stageVocabRevealed: stageVocabRevealed,
     stageGrammar: stageGrammar, stageListening: stageListening, stageSpeaking: stageSpeaking, stageModeDone: stageModeDone,
-    speakResult: speakResult, stageResult: stageResult, modeScoreCard: modeScoreCard,
+    speakResult: speakResult, speakPractice: speakPractice, stageResult: stageResult, modeScoreCard: modeScoreCard,
     lastNDays: lastNDays, langChip: langChip
   };
 })();

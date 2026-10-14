@@ -4,8 +4,25 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lingua · 多语种沉浸式学习平台</title>
-<meta name="description" content="英语、日语、韩语分级课程，单词记忆、语法练习、口语跟读、听力训练，学习进度追踪与社区成就系统。">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='26' fill='%23E0483C'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='%23fff' font-family='serif'>语</text></svg>">
+<meta name="description" content="英语、日语、韩语 A1→B2 分级课程，单词记忆、语法练习、口语跟读、听力训练，学习进度保存在本机。">
+<meta name="theme-color" content="#171A2B">
+<link rel="canonical" href="https://bosswenwu.github.io/lingua/">
+<link rel="icon" href="icon.svg">
+<link rel="apple-touch-icon" href="icon.svg">
+<link rel="manifest" href="manifest.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lingua">
+<meta property="og:title" content="Lingua · 多语种沉浸式学习平台">
+<meta property="og:description" content="英语、日语、韩语 A1→B2 分级课程，单词、语法、听力、口语跟读四类训练连打，进度保存在本机、无需注册。">
+<meta property="og:url" content="https://bosswenwu.github.io/lingua/">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=language%20learning%20app%20share%20card%2C%20English%20Japanese%20Korean%2C%20dark%20ink%20navy%20background%2C%20vermilion%20red%20accent%2C%20elegant%20serif%20typography%2C%20minimal%20flat%20vector%2C%20premium&image_size=landscape_16_9">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lingua · 多语种沉浸式学习平台">
+<meta name="twitter:description" content="英语、日语、韩语 A1→B2 分级课程，单词、语法、听力、口语跟读四类训练连打，进度保存在本机、无需注册。">
+<meta name="twitter:image" content="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=language%20learning%20app%20share%20card%2C%20English%20Japanese%20Korean%2C%20dark%20ink%20navy%20background%2C%20vermilion%20red%20accent%2C%20elegant%20serif%20typography%2C%20minimal%20flat%20vector%2C%20premium&image_size=landscape_16_9">
 <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
@@ -20,5 +37,12 @@
 <script src="js/speech.js"></script>
 <script src="js/views.js"></script>
 <script src="js/app.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("sw.js").catch(function () {});
+  });
+}
+</script>
 </body>
 </html>

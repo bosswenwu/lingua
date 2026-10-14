@@ -44,6 +44,7 @@
     if (!page && user) { go("#/dashboard"); return; }
 
     Speech.stop();
+    REC = null;
     if (chTimer) { clearInterval(chTimer); chTimer = null; }
     if (page !== "learn") LC = null;
     if (page !== "challenge") CH = null;
@@ -266,18 +267,48 @@
   }
 
   /* ---- 口语 ---- */
+  /* 无 ASR / 识别服务不可达时的降级：听原音 → 录音回放 → 自评 */
+  var REC = null;
+  function speakPractice() {
+    if (LC) { LC.speakFx = Views.speakPractice(""); paintLesson(); }
+  }
+  function recToggle() {
+    if (REC && REC.mr && REC.recording) {
+      try { REC.mr.stop(); } catch (e) {}
+      return;
+    }
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
+      toast("当前浏览器不支持录音回放，可点「听原音」跟读后继续", "bad");
+      return;
+    }
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (stream) {
+      var chunks = [];
+      var mr = new window.MediaRecorder(stream);
+      mr.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+      mr.onstop = function () {
+        stream.getTracks().forEach(function (t) { t.stop(); });
+        var url = "";
+        try { url = URL.createObjectURL(new Blob(chunks, { type: mr.mimeType || "audio/webm" })); } catch (e) {}
+        REC = { recorded: true, url: url };
+        if (LC) { LC.speakFx = Views.speakPractice("recorded"); paintLesson(); }
+      };
+      REC = { mr: mr, recording: true };
+      mr.start();
+      if (LC) { LC.speakFx = Views.speakPractice("recording"); paintLesson(); }
+    }).catch(function () { toast("无法访问麦克风，请允许权限后重试", "bad"); });
+  }
+  function recPlay() {
+    if (REC && REC.url) { try { new Audio(REC.url).play(); } catch (e) {} }
+  }
+
   function handleMic() {
     if (!LC) return;
     var mode = "speaking";
     if (!LC.pending[mode].length) return;
     var btn = document.getElementById("mic-btn");
     var hint = document.getElementById("mic-hint");
-    if (!Speech.asrSupported) {
-      hint.textContent = "当前浏览器不支持语音识别，可点击下方按钮直接完成本句。";
-      LC.speakFx = '<div class="speak-result"><div class="tiny muted">浏览器未提供语音识别能力（建议使用 Chrome / Edge 并允许麦克风权限）。你仍然可以听示范并跟读，然后手动确认。</div>' +
-        '<div style="display:flex;gap:10px;margin-top:14px"><button class="btn btn-sm" data-action="speak-target">听示范</button>' +
-        '<button class="btn btn-sm btn-primary" data-action="next" style="margin-left:auto">我已完成朗读</button></div></div>';
-      paintLesson();
+    if (!Speech.asrAvailable()) {
+      speakPractice();
       return;
     }
     var cur = LC.pending[mode][0];
@@ -290,11 +321,14 @@
       onResult: function (t) { LC.said = t; },
       onError: function (msg) {
         if (btn) btn.classList.remove("rec");
-        if (hint) hint.textContent = msg || "识别失败，请重试";
         if (msg) toast(msg, "bad");
+        // 识别服务不可达 → 立即降级为录音回放练习
+        if (!Speech.asrAvailable()) { speakPractice(); return; }
+        if (hint) hint.textContent = msg || "识别失败，请重试";
       },
       onEnd: function () {
         if (btn) btn.classList.remove("rec");
+        if (!Speech.asrAvailable()) { speakPractice(); return; }
         evaluateSpeech(item);
       }
     });
@@ -303,8 +337,8 @@
   function evaluateSpeech(item) {
     var mode = "speaking";
     var said = LC.said || "";
-    var sc = Speech.score(item.text, said, LC.lang.code);
-    var marks = Speech.mark(item.text, said, LC.lang.code);
+    var sc = Speech.score(item.text, said, LC.lang.code, item.r);
+    var marks = Speech.mark(item.text, said, LC.lang.code, item.r);
     var ok = sc >= 70;
     LC.speakFxScore = { score: sc, ok: ok, said: said, marks: marks };
     LC.speakFx = Views.speakResult(sc, marks, said, ok);
@@ -386,8 +420,8 @@
     var val = ta.value.trim();
     LC.dictate.draft = val;
     if (!val) { toast("先输入你听到的内容", "bad"); return; }
-    var score = Speech.score(it.text, val, LC.lang.code);
-    var marks = Speech.mark(it.text, val, LC.lang.code);
+    var score = Speech.score(it.text, val, LC.lang.code, it.r);
+    var marks = Speech.mark(it.text, val, LC.lang.code, it.r);
     LC.dictate.result = { score: score, marks: marks };
     if (score >= 85) {
       var p = Store.progress();
@@ -404,12 +438,35 @@
   }
 
   /* ======================================================================
-     错题重练
+     错题重练 / 单词间隔复习
      ====================================================================== */
   function startReview() {
     var list = Store.mistakes();
     if (!list.length) { toast("错题本是空的", "good"); return; }
     RV = { items: list, idx: 0, fixed: 0, fb: null };
+    paintReview();
+  }
+  function startWordReview() {
+    var due = Store.vocabDue(20);
+    if (!due.length) { toast("暂时没有到期的单词，先去学几课吧", "good"); return; }
+    var pool = {};
+    var items = due.map(function (d) {
+      var v = d.vocab, lang = d.lang;
+      if (!pool[lang]) {
+        var seen = {};
+        pool[lang] = DATA.glossary(lang).map(function (g) { return g.m; }).filter(function (m) {
+          if (seen[m]) return false; seen[m] = 1; return true;
+        });
+      }
+      var distract = DATA.shuffle(pool[lang].filter(function (m) { return m !== v.m; })).slice(0, 2);
+      var opts = DATA.shuffle([v.m].concat(distract));
+      return {
+        srs: true, key: d.key, lang: lang, mode: "vocab",
+        prompt: v.t, sub: (v.r ? v.r + " · " : "") + "选出正确释义",
+        speakText: v.t, opts: opts, answer: opts.indexOf(v.m), why: v.ex || ""
+      };
+    });
+    RV = { items: items, idx: 0, fixed: 0, fb: null, words: true };
     paintReview();
   }
   function paintReview() {
@@ -425,7 +482,10 @@
     var p = Store.progress();
     Store.recordSkill(p, m.mode, correct);
     Store.saveProgress(p);
-    if (correct) {
+    if (m.srs) {
+      Store.reviewVocab(m.key, correct);
+      if (correct) RV.fixed += 1;
+    } else if (correct) {
       RV.fixed += 1;
       var out = Store.resolveMistake(m.id);
       ((out && out.badges) || []).forEach(function (b, i) { setTimeout(function () { toast("解锁成就：" + b.name, "good"); }, 400 + i * 420); });
@@ -439,9 +499,9 @@
     RV.idx += 1;
     RV.fb = null;
     if (RV.idx >= RV.items.length) {
-      var fixed = RV.fixed, total = RV.items.length;
+      var fixed = RV.fixed, total = RV.items.length, words = !!RV.words;
       RV = null;
-      App.innerHTML = Views.reviewResult(fixed, total);
+      App.innerHTML = Views.reviewResult(fixed, total, words);
       window.scrollTo(0, 0);
       return;
     }
@@ -637,12 +697,15 @@
         if (LC) { var sp2 = LC.items.speaking[LC.pending.speaking[0]]; if (sp2) Speech.speak(sp2.text, LC.lang.locale); }
         break;
       case "mic": handleMic(); break;
+      case "rec": recToggle(); break;
+      case "rec-play": recPlay(); break;
       case "next":
         if (LC && LC.active === "speaking") commitSpeaking(!LC.speakFxScore);
         break;
       case "redo": if (LC) { startLesson(LC.id); } break;
-      /* 错题本 */
+      /* 错题本 / 单词复习 */
       case "rv-start": startReview(); break;
+      case "rv-words": startWordReview(); break;
       case "rv-clear":
         if (confirm("确定要清空错题本吗？全部错题记录将被删除。")) Store.clearMistakes();
         render();
