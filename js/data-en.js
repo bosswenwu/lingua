@@ -14,13 +14,13 @@ window.COURSES_EN = {
   code: "en",
   name: "英语",
   native: "English",
-  flag: "🇬🇧",
+  flag: "EN",
   locale: "en-US",
   scriptFont: "en",
   greeting: "Hello",
   color: "#2F4B7C",
   blurb: "从日常问候到职场表达，用最短的路径打通听说读写。",
-  highlights: ["全球通用度最高", "12 个高频场景", "商务与考试双线"],
+  highlights: ["全球通用度最高", "覆盖问候到职场", "听说读写四线训练"],
   levels: [
     {
       id: "en-a1",

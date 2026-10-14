@@ -103,7 +103,9 @@
       lessonsOfLang(lang.code).forEach(function (id) {
         var ls = INDEX[id].lesson;
         ls.vocab.forEach(function (v) {
-          var distract = shuffle(vocabMeanings[lang.code].filter(function (m) { return m !== v.m; })).slice(0, 2);
+          var uniq = [];
+          vocabMeanings[lang.code].forEach(function (m) { if (m !== v.m && uniq.indexOf(m) < 0) uniq.push(m); });
+          var distract = shuffle(uniq).slice(0, 2);
           if (distract.length < 2) return;
           var opts = shuffle([v.m].concat(distract));
           pool.push({

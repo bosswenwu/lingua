@@ -107,12 +107,12 @@
     }).join("");
 
     var features = [
-      { n: "01", c: "#2F4B7C", t: "分级课程体系", d: "A1 → B1 逐级进阶，每门语言按「问候—日常—叙述—表达」四段式组织单元，学完一节能明确说出自己掌握了什么。" },
+      { n: "01", c: "#2F4B7C", t: "分级课程体系", d: "A1 → B2 逐级进阶，每门语言按「问候—日常—叙述—表达」四段式组织单元，学完一节能明确说出自己掌握了什么。" },
       { n: "02", c: "#E0483C", t: "四类互动训练", d: "单词翻卡记忆、语法选择练习、听力理解、口语跟读评分。一节课内四关连打，输入输出闭环。" },
       { n: "03", c: "#0F8271", t: "学习进度追踪", d: "连续天数、经验值、技能正确率、活跃热力图，把「学过」变成看得见的数据。" },
-      { n: "04", c: "#7A4FA3", t: "账号与多端同步", d: "注册即建立个人学习档案，课程进度、单词熟练度与社区足迹全部保留。" },
+      { n: "04", c: "#7A4FA3", t: "进度保存在本机", d: "建立本机学习档案后，课程进度、单词熟练度与金币成就保存在这台设备的浏览器里，无需注册、不联网也能用。" },
       { n: "05", c: "#C2751B", t: "个性化学习路径", d: "按目标语言、当前级别与薄弱技能，自动排出今日该学哪一课、明天补哪一项。" },
-      { n: "06", c: "#2F4B7C", t: "社区与成就激励", d: "发帖交流学习心得，解锁 " + S.BADGES.length + " 枚成就徽章，与同语种学习者一起在排行榜上进步。" }
+      { n: "06", c: "#2F4B7C", t: "成就与示例社区", d: "解锁 " + S.BADGES.length + " 枚成就徽章。社区与排行榜为本地示例数据，用于演示功能，不与真实用户互通。" }
     ].map(function (f) {
       return '<article class="feature" style="--feature-c:' + f.c + '">' +
         '<span class="fnum">' + f.n + "</span><h3>" + f.t + "</h3><p>" + f.d + "</p></article>";
@@ -134,7 +134,7 @@
     return '<div class="landing">' +
       '<header class="landing-nav">' +
       '<div class="brand"><span class="seal">语</span><div><div class="brand-name">Lingua</div></div></div>' +
-      '<nav class="links"><a href="#features">课程特色</a><a href="#languages">语种</a><a href="#/login">社区</a><a href="#/login">成就</a></nav>' +
+      '<nav class="links"><a href="#features">课程特色</a><a href="#languages">语种</a><a href="#/community">社区</a><a href="#/achievements">成就</a></nav>' +
       '<div class="actions"><button class="btn btn-ghost" data-link="#/login">登录</button><button class="btn btn-ink" data-link="#/register">免费开始</button></div>' +
       "</header>" +
 
@@ -142,9 +142,9 @@
       "<div>" +
       '<h1>把一门语言<em>真正说出口</em></h1>' +
       '<p class="hero-lede">英语、日语、韩语，三门主流语言分级课程。单词、语法、听力、口语跟读四类训练连打，每天 15 分钟，进度与成就会替你记住每一步。</p>' +
-      '<div class="hero-cta"><button class="btn btn-primary btn-lg" data-link="#/register">免费创建学习档案</button>' +
+      '<div class="hero-cta"><button class="btn btn-primary btn-lg" data-link="#/learn/' + D.order[0] + '">立即试学第一课</button>' +
       '<button class="btn btn-outline-light btn-lg" data-link="#/courses">先逛逛课程</button>' +
-      '<button class="btn btn-outline-light btn-lg" data-link="#/login">我已有账号</button></div>' +
+      '<button class="btn btn-outline-light btn-lg" data-link="#/register">创建档案保存进度</button></div>' +
       '<div class="hero-stats">' +
       "<div class=\"hero-stat\"><b>" + st.languages + "</b><span>门语言课程</span></div>" +
       "<div class=\"hero-stat\"><b>" + st.lessons + "</b><span>节分级课程</span></div>" +
@@ -177,7 +177,6 @@
      ====================================================================== */
   function auth(mode) {
     var isReg = mode === "register";
-    var l = D.languages[0];
     var aside = '<aside class="auth-aside">' +
       '<div class="brand"><span class="seal">语</span><div class="brand-name" style="color:#fff">Lingua</div></div>' +
       '<div style="margin-top:auto"><h2>每一次开口，都算数。</h2>' +
@@ -186,35 +185,39 @@
       "</div>" +
       '<p class="quote">学习档案会记录你的连续天数、单词熟练度和技能正确率，随时可以回来看见自己的变化。</p></div></aside>';
 
-    var body = isReg ?
-      '<form id="auth-form" autocomplete="off">' +
-      '<h1>创建学习档案</h1><p class="sub">三十秒完成注册，立刻开始第一节课。</p>' +
-      '<div id="auth-err"></div>' +
-      '<div class="field"><label for="f-name">昵称</label><input id="f-name" name="name" placeholder="例如：林小满" maxlength="16"></div>' +
-      '<div class="field"><label for="f-email">邮箱</label><input id="f-email" name="email" type="email" placeholder="you@example.com"></div>' +
-      '<div class="field"><label for="f-pass">密码</label><input id="f-pass" name="password" type="password" placeholder="至少 6 位"><div class="hint">仅保存在本机浏览器中，用于演示账号体系。</div></div>' +
-      '<div class="field"><label>我想学习</label><div class="lang-picker">' +
-      D.languages.map(function (x, i) {
-        return '<input type="checkbox" id="lang-' + x.code + '" name="targetLangs" value="' + x.code + '"' + (i === 0 ? " checked" : "") + ">" +
-          '<label for="lang-' + x.code + '">' + x.flag + " " + esc(x.name) + "</label>";
-      }).join("") + "</div></div>" +
-      '<div class="field-row">' +
-      '<div class="field"><label for="f-level">当前水平</label><select id="f-level" name="level"><option value="A1">A1 零基础</option><option value="A2">A2 学过一点</option><option value="B1">B1 能简单交流</option></select></div>' +
-      '<div class="field"><label for="f-goal">每日目标</label><select id="f-goal" name="dailyGoal"><option value="15">15 分钟</option><option value="30" selected>30 分钟</option><option value="60">60 分钟</option></select></div>' +
-      "</div>" +
-      '<button class="btn btn-primary btn-block btn-lg" type="submit" style="margin-top:8px">创建档案并进入</button>' +
-      '<div class="auth-switch">已有账号？<a href="#/login">直接登录</a></div>' +
-      "</form>"
-      :
-      '<form id="auth-form" autocomplete="off">' +
-      '<h1>欢迎回来</h1><p class="sub">继续你上一次的学习进度。</p>' +
-      '<div id="auth-err"></div>' +
-      '<div class="field"><label for="f-email">邮箱</label><input id="f-email" name="email" type="email" placeholder="you@example.com"></div>' +
-      '<div class="field"><label for="f-pass">密码</label><input id="f-pass" name="password" type="password" placeholder="请输入密码"></div>' +
-      '<button class="btn btn-primary btn-block btn-lg" type="submit">登录</button>' +
-      '<button class="btn btn-block" type="button" id="demo-login" style="margin-top:10px">使用演示账号体验</button>' +
-      '<div class="auth-switch">还没有账号？<a href="#/register">免费注册</a></div>' +
-      "</form>";
+    var body;
+    if (isReg) {
+      body = '<form id="auth-form" autocomplete="off">' +
+        '<h1>创建本机学习档案</h1><p class="sub">只需一个昵称，档案与进度保存在这台设备的浏览器里。</p>' +
+        '<div id="auth-err"></div>' +
+        '<div class="field"><label for="f-name">昵称</label><input id="f-name" name="name" placeholder="例如：林小满" maxlength="16">' +
+        '<div class="hint">纯本地档案，无需邮箱与密码；换设备或清缓存会重置。</div></div>' +
+        '<div class="field"><label>我想学习</label><div class="lang-picker">' +
+        D.languages.map(function (x, i) {
+          return '<input type="checkbox" id="lang-' + x.code + '" name="targetLangs" value="' + x.code + '"' + (i === 0 ? " checked" : "") + ">" +
+            '<label for="lang-' + x.code + '">' + x.flag + " " + esc(x.name) + "</label>";
+        }).join("") + "</div></div>" +
+        '<div class="field-row">' +
+        '<div class="field"><label for="f-level">当前水平</label><select id="f-level" name="level"><option value="A1">A1 零基础</option><option value="A2">A2 学过一点</option><option value="B1">B1 能简单交流</option></select></div>' +
+        '<div class="field"><label for="f-goal">每日目标</label><select id="f-goal" name="dailyGoal"><option value="15">15 分钟</option><option value="30" selected>30 分钟</option><option value="60">60 分钟</option></select></div>' +
+        "</div>" +
+        '<button class="btn btn-primary btn-block btn-lg" type="submit" style="margin-top:8px">创建档案并进入</button>' +
+        '<div class="auth-switch">已有本机档案？<a href="#/login">切换档案</a></div>' +
+        "</form>";
+    } else {
+      var pros = S.profiles();
+      body = '<h1>选择本机档案</h1><p class="sub">档案与进度都保存在这台设备，没有账号密码，直接选一个继续。</p>' +
+        '<div id="auth-err"></div>' +
+        (pros.length ?
+          '<div style="margin:4px 0 20px">' + pros.map(function (p) {
+            return '<button class="btn btn-block profile-pick" type="button" data-action="pick-profile" data-id="' + p.id + '" style="margin-bottom:10px;display:flex;align-items:center;gap:12px;justify-content:flex-start;text-align:left;padding:10px 14px">' +
+              avatar(p.name, p.avatarVar, "sm") + '<span style="flex:1;font-weight:600">' + esc(p.name) + "</span>" +
+              '<span class="tiny muted-2">建于 ' + S._util.dateKey(new Date(p.createdAt)) + "</span></button>";
+          }).join("") + "</div>"
+          : '<div class="tiny muted" style="margin:4px 0 20px">这台设备上还没有档案。</div>') +
+        '<button class="btn btn-primary btn-block btn-lg" data-link="#/register">新建本机档案</button>' +
+        '<button class="btn btn-block" type="button" id="demo-login" style="margin-top:10px">使用演示档案体验</button>';
+    }
 
     return '<div class="auth-wrap">' + aside + '<div class="auth-main"><div class="auth-card">' + body + "</div></div></div>";
   }
@@ -224,13 +227,13 @@
      ====================================================================== */
   var NAV = [
     { group: "学习", items: [
-      { href: "#/dashboard", icon: "home", text: "学习中心" },
-      { href: "#/courses", icon: "book", text: "课程目录" },
+      { href: "#/dashboard", icon: "home", text: "首页", primary: true },
+      { href: "#/courses", icon: "book", text: "课程", primary: true },
       { href: "#/path", icon: "route", text: "学习路径" },
       { href: "#/progress", icon: "chart", text: "进度追踪" }
     ]},
     { group: "强化训练", items: [
-      { href: "#/review", icon: "retry", text: "错题本" },
+      { href: "#/review", icon: "retry", text: "复习", primary: true },
       { href: "#/challenge", icon: "bolt", text: "限时挑战" },
       { href: "#/glossary", icon: "dict", text: "词汇库" },
       { href: "#/shop", icon: "spark", text: "星币商店" }
@@ -238,6 +241,9 @@
     { group: "社区", items: [
       { href: "#/community", icon: "users", text: "学习社区" },
       { href: "#/achievements", icon: "award", text: "成就排行" }
+    ]},
+    { group: "账户", items: [
+      { href: "#/profile", icon: "user", text: "我的", primary: true }
     ]}
   ];
 
@@ -246,16 +252,16 @@
     var st = S.stats();
     var navHtml = NAV.map(function (g) {
       return '<div class="nav-label">' + g.group + "</div>" + g.items.map(function (it) {
-        return '<a class="nav-item ' + (active === it.href ? "active" : "") + '" href="' + it.href + '">' +
+        return '<a class="nav-item ' + (active === it.href ? "active" : "") + (it.primary ? " nav-primary" : "") + '" href="' + it.href + '">' +
           icon(it.icon) + '<span class="nav-text">' + it.text + "</span></a>";
       }).join("");
     }).join("");
 
     var foot = u.guest ?
       '<div class="sidebar-foot guest-foot">' +
-      '<button class="btn btn-primary btn-sm btn-block" data-link="#/register">注册，保存进度</button>' +
-      '<button class="btn btn-sm btn-block" data-link="#/login" style="margin-top:8px">登录</button>' +
-      '<div class="tiny muted-2" style="margin-top:8px;text-align:center">游客进度保存在本机，注册后自动继承</div></div>'
+      '<button class="btn btn-primary btn-sm btn-block" data-link="#/register">创建档案，保存进度</button>' +
+      '<button class="btn btn-sm btn-block" data-link="#/login" style="margin-top:8px">切换档案</button>' +
+      '<div class="tiny muted-2" style="margin-top:8px;text-align:center">游客进度保存在本机，创建档案后自动继承</div></div>'
       :
       '<div class="sidebar-foot"><a class="sidebar-user" href="#/profile">' +
       avatar(u.name, u.avatarVar) +
@@ -624,7 +630,12 @@
     var all = S.feed();
     var list = filter && filter !== "all" ? all.filter(function (p) { return p.lang === filter; }) : all;
 
-    var composer = '<div class="panel" style="margin-bottom:18px"><div class="composer">' +
+    var intro = '<div class="panel" style="margin-bottom:18px"><div class="tiny muted">' +
+      (u.guest ? "你正在以游客身份浏览示例社区。" : "") +
+      "社区与排行榜内容为本地示例数据，用于演示功能，不会与其他真实用户互通。</div>" +
+      (u.guest ? '<div style="margin-top:12px"><button class="btn btn-primary btn-sm" data-link="#/register">创建本机档案，参与互动</button></div>' : "") +
+      "</div>";
+    var composer = u.guest ? "" : '<div class="panel" style="margin-bottom:18px"><div class="composer">' +
       avatar(u.name, u.avatarVar) +
       '<div class="cp-body"><textarea id="post-text" placeholder="分享你今天的学习心得、记单词的小技巧，或者一句刚学会的句子…" maxlength="500"></textarea>' +
       '<div class="cp-foot">' +
@@ -668,7 +679,7 @@
         "</article>";
     }).join("") : '<div class="empty"><div class="em-ico">💬</div><h3>这个语种还没有动态</h3><p>成为第一个分享学习心得的人。</p></div>';
 
-    return shell("#/community", "学习社区", "和同语种的学习者交换方法与鼓励", composer + tabs + posts);
+    return shell("#/community", "学习社区（示例）", "本地示例数据，用于演示社区功能", intro + composer + tabs + posts);
   }
 
   /* ======================================================================
@@ -707,9 +718,9 @@
       "</div>" +
       '<div class="panel" style="margin-bottom:18px"><div class="panel-head"><h2>成就徽章</h2><span class="tiny muted" style="margin-left:auto">' + earned + " / " + badges.length + " 已解锁</span></div>" +
       '<div class="badge-grid">' + grid + "</div></div>" +
-      '<div class="panel"><div class="panel-head"><h2>经验排行榜</h2><span class="tiny muted" style="margin-left:auto">含平台演示学习者</span></div>' + rows + "</div>";
+      '<div class="panel"><div class="panel-head"><h2>经验排行榜（示例）</h2><span class="tiny muted" style="margin-left:auto">本地示例数据 · 非真实用户</span></div>' + rows + "</div>";
 
-    return shell("#/achievements", "成就与排行", "每一枚徽章都对应一个真实的学习行为", content);
+    return shell("#/achievements", "成就与排行", "徽章对应真实学习行为，排行榜为示例数据", content);
   }
 
   /* ======================================================================
@@ -717,12 +728,34 @@
      ====================================================================== */
   function profile() {
     var u = S.actor(), st = S.stats();
+    if (u.guest) {
+      var g = '<div class="grid grid-2">' +
+        '<div class="panel"><div class="panel-head"><h2>游客模式</h2></div>' +
+        '<div class="tiny muted" style="margin-bottom:16px">你正在以游客身份学习，进度保存在这台设备的浏览器里。创建一个本机档案，即可拥有独立的昵称与档案，解锁成就与排行，游客进度会自动继承。</div>' +
+        '<button class="btn btn-primary" data-link="#/register">创建本机档案</button>' +
+        '<button class="btn" data-link="#/login" style="margin-left:10px">切换本机档案</button></div>' +
+        '<div><div class="panel"><div class="panel-head"><h2>我的数据</h2></div><div class="grid grid-2">' +
+        statCard("累计经验", st.xp.toLocaleString(), "") +
+        statCard("连续天数", st.streak + " 天", "") +
+        statCard("完成课程", st.lessonsDone + " 节", "") +
+        statCard("单词掌握", st.wordsMastered + " 个", "") +
+        "</div></div>" +
+        '<div class="panel" style="margin-top:18px"><div class="panel-head"><h2>学习方式</h2></div>' +
+        '<label class="free-mode-row"><input type="checkbox" name="free-mode"' + (S.progress().freeMode ? " checked" : "") + '>' +
+        "<span><b>自由模式</b><div class=\"tiny muted\">开启后跳过线性解锁，全部课程随意学习；关闭则按顺序一课一课解锁。</div></span></label></div>" +
+        '<div class="panel" style="margin-top:18px;border-color:rgba(224,72,60,.3)"><div class="panel-head"><h2 style="color:var(--vermilion-dark)">危险操作</h2></div>' +
+        '<p class="tiny muted" style="margin-bottom:14px">清空本机保存的全部档案、进度与社区数据，恢复到初始状态。此操作不可撤销。</p>' +
+        '<button class="btn" data-action="reset" style="border-color:var(--vermilion);color:var(--vermilion-dark)">清空所有数据</button></div>' +
+        "</div></div>";
+      return shell("#/profile", "我的", "游客模式 · 进度保存在本机", g);
+    }
+    var pros = S.profiles();
     var content = '<div class="grid grid-2">' +
       '<div class="panel"><div class="panel-head"><h2>学习档案</h2></div>' +
       '<div style="display:flex;gap:16px;align-items:center;margin-bottom:22px">' + avatar(u.name, u.avatarVar, "lg") +
       "<div><div style=\"font-size:19px;font-weight:700\">" + esc(u.name) + "</div>" +
-      '<div class="tiny muted">' + esc(u.email) + "</div>" +
-      '<div class="tiny muted-2">加入于 ' + S._util.dateKey(new Date(u.createdAt)) + "</div></div></div>" +
+      '<div class="tiny muted">本机档案 · 数据保存在此浏览器</div>' +
+      '<div class="tiny muted-2">创建于 ' + S._util.dateKey(new Date(u.createdAt)) + "</div></div></div>" +
       '<form id="profile-form">' +
       '<div class="field"><label for="p-name">昵称</label><input id="p-name" name="name" value="' + esc(u.name) + '" maxlength="16"></div>' +
       '<div class="field"><label for="p-bio">一句话简介</label><input id="p-bio" name="bio" value="' + esc(u.bio || "") + '" maxlength="60" placeholder="例如：正在攻克日语 N4"></div>' +
@@ -760,12 +793,22 @@
           (on ? ' <span class="chip chip-jade" style="font-size:10px">学习中</span>' : "") + "</span>" +
           '<span class="mono tiny muted">' + p.done + "/" + D.countByLang[l.code] + " 课 · " + p.xp + " XP</span></div>";
       }).join("") + "</div>" +
+      '<div class="panel" style="margin-top:18px"><div class="panel-head"><h2>本机档案</h2></div>' +
+      '<div class="tiny muted" style="margin-bottom:12px">这台设备上的全部档案，切换后将加载对应档案的进度：</div>' +
+      pros.map(function (p) {
+        return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--line-soft)">' +
+          avatar(p.name, p.avatarVar, "sm") + '<span style="flex:1;font-weight:600">' + esc(p.name) +
+          (p.id === u.id ? ' <span class="chip chip-jade" style="font-size:10px">当前</span>' : "") + "</span>" +
+          (p.id === u.id ? "" : '<button class="btn btn-sm" data-action="pick-profile" data-id="' + p.id + '">切换</button>') +
+          "</div>";
+      }).join("") +
+      '<div style="margin-top:14px"><button class="btn btn-sm" data-link="#/register">新建档案</button></div></div>' +
       '<div class="panel" style="margin-top:18px;border-color:rgba(224,72,60,.3)"><div class="panel-head"><h2 style="color:var(--vermilion-dark)">危险操作</h2></div>' +
-      '<p class="tiny muted" style="margin-bottom:14px">清空本机保存的全部账号、进度与社区数据，恢复到初始状态。此操作不可撤销。</p>' +
+      '<p class="tiny muted" style="margin-bottom:14px">清空本机保存的全部档案、进度与社区数据，恢复到初始状态。此操作不可撤销。</p>' +
       '<button class="btn" data-action="reset" style="border-color:var(--vermilion);color:var(--vermilion-dark)">清空所有数据</button></div>' +
       "</div></div>";
 
-    return shell("#/profile", "个人中心", "管理你的学习档案与偏好", content);
+    return shell("#/profile", "我的", "管理本机学习档案与偏好", content);
   }
 
   /* ======================================================================

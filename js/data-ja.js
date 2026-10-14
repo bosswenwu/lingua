@@ -14,13 +14,13 @@ window.COURSES_JA = {
   code: "ja",
   name: "日语",
   native: "日本語",
-  flag: "🇯🇵",
+  flag: "JA",
   locale: "ja-JP",
   scriptFont: "ja",
   greeting: "こんにちは",
   color: "#0F8271",
   blurb: "从五十音到实用会话，用最自然的方式掌握日语听说读写。",
-  highlights: ["注重礼貌体表达", "8 个日常高频场景", "从入门直达中阶"],
+  highlights: ["从五十音起步", "注重礼貌体表达", "覆盖日常高频场景"],
   levels: [
     {
       id: "ja-a1",

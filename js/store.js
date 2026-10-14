@@ -26,11 +26,6 @@
 
   /* ---------------- 工具 ---------------- */
   function uid(p) { return (p || "id") + "_" + Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-4); }
-  function hash(str) {
-    var h = 5381;
-    for (var i = 0; i < str.length; i++) h = ((h << 5) + h + str.charCodeAt(i)) >>> 0;
-    return "h" + h.toString(36);
-  }
   function dateKey(d) {
     d = d || new Date();
     var m = String(d.getMonth() + 1).padStart(2, "0");
@@ -127,17 +122,11 @@
 
   function register(data) {
     var list = users();
-    var email = (data.email || "").trim().toLowerCase();
     if (!data.name || !data.name.trim()) return { error: "请填写昵称" };
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return { error: "请输入有效的邮箱地址" };
-    if ((data.password || "").length < 6) return { error: "密码至少 6 位" };
-    if (list.some(function (u) { return u.email === email; })) return { error: "该邮箱已注册，请直接登录" };
 
     var user = {
       id: uid("u"),
       name: data.name.trim(),
-      email: email,
-      pass: hash(data.password),
       avatarVar: 1 + (list.length % 5),
       createdAt: Date.now(),
       targetLangs: data.targetLangs && data.targetLangs.length ? data.targetLangs : ["en"],
@@ -148,7 +137,7 @@
     list.push(user);
     saveUsers(list);
     write("session", user.id);
-    /* 继承游客进度：把本机游客档案搬到新账号，再重置游客档案 */
+    /* 继承游客进度：把本机游客档案搬到新档案，再重置游客档案 */
     var guestP = read("progress.guest", null);
     var inherited = false;
     if (guestP && (guestP.xp > 0 || (guestP.lessons && Object.keys(guestP.lessons).length))) {
@@ -160,13 +149,19 @@
     return { user: user, inherited: inherited };
   }
 
-  function login(email, password) {
-    var u = users().filter(function (x) { return x.email === (email || "").trim().toLowerCase(); })[0];
-    if (!u) return { error: "该邮箱还没有注册" };
-    if (u.pass !== hash(password || "")) return { error: "密码不正确" };
+  /* 本机档案：纯本地，无邮箱与密码；列出并切换到某个档案 */
+  function profiles() { return users(); }
+  function pickProfile(id) {
+    var u = users().filter(function (x) { return x.id === id; })[0];
+    if (!u) return { error: "找不到这个本机档案" };
     write("session", u.id);
     ensureProgress(u.id, u.targetLangs);
     return { user: u };
+  }
+  function removeProfile(id) {
+    saveUsers(users().filter(function (x) { return x.id !== id; }));
+    if (canStore) { try { localStorage.removeItem(PREFIX + "progress." + id); } catch (e) {} }
+    if (read("session", null) === id) write("session", null);
   }
 
   function logout() { write("session", null); }
@@ -249,7 +244,7 @@
     var u = currentUser();
     if (u) return u;
     return {
-      id: "guest", name: "游客学习者", email: "本机游客模式", avatarVar: 1, guest: true,
+      id: "guest", name: "游客学习者", email: "进度保存在本机", avatarVar: 1, guest: true,
       targetLangs: ["en"], level: "A1", dailyGoal: 30, bio: "", createdAt: Date.now()
     };
   }
@@ -700,7 +695,9 @@
     BADGES: BADGES,
     currentUser: currentUser,
     register: register,
-    login: login,
+    profiles: profiles,
+    pickProfile: pickProfile,
+    removeProfile: removeProfile,
     logout: logout,
     updateUser: updateUser,
     progress: progress,

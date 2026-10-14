@@ -14,13 +14,13 @@ window.COURSES_KO = {
   code: "ko",
   name: "韩语",
   native: "한국어",
-  flag: "🇰🇷",
+  flag: "KO",
   locale: "ko-KR",
   scriptFont: "ko",
   greeting: "안녕하세요",
   color: "#7A4FA3",
   blurb: "从谚文到实用会话，掌握韩语敬语与日常交流的完整路径。",
-  highlights: ["系统学习敬语体系", "8 个日常高频场景", "从入门直达中阶"],
+  highlights: ["从谚文起步", "系统学习敬语体系", "覆盖日常高频场景"],
   levels: [
     {
       id: "ko-a1",

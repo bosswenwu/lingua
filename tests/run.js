@@ -62,10 +62,10 @@ function count(html, re) { return (String(html).match(re) || []).length; }
 
 let seq = 0;
 function freshUser() {
-  const email = "t" + Date.now() + "_" + (seq++) + "@t.com";
-  const r = Store.register({ name: "测试员", email, password: "123456", targetLangs: ["en"], level: "A1", dailyGoal: 30 });
-  if (r.error) throw new Error("注册失败：" + r.error);
-  return { user: r.user, email, password: "123456" };
+  const name = "测试员" + Date.now() + "_" + (seq++);
+  const r = Store.register({ name, targetLangs: ["en"], level: "A1", dailyGoal: 30 });
+  if (r.error) throw new Error("创建档案失败：" + r.error);
+  return { user: r.user, name };
 }
 
 /* ==========================================================================
@@ -158,8 +158,8 @@ t("老数据迁移：缺失 mistakes/challenge 字段自动补齐", () => {
   delete old.mistakes; delete old.mistakesFixed; delete old.challenge;
   sandbox.localStorage.setItem(key, JSON.stringify(old));
   Store.logout();
-  const r = Store.login(uB.email, uB.password);
-  ok(!r.error, "重新登录");
+  const r = Store.pickProfile(uB.user.id);
+  ok(!r.error, "重新选择本机档案");
   const p = Store.progress();
   ok(isArr(p.mistakes), "mistakes 补齐为数组");
   eq(p.mistakesFixed, 0);
@@ -473,7 +473,7 @@ t("注册继承游客进度：进度迁移到新账号，游客档案重置", ()
   g.xp = 66;
   Store.recordMistake(g, { lang: "en", mode: "grammar", prompt: "继承测试题", opts: ["a", "b"], answer: 0 });
   Store.saveProgress(g);
-  const r = Store.register({ name: "继承者", email: "inherit@t.com", password: "123456", targetLangs: ["en"] });
+  const r = Store.register({ name: "继承者", targetLangs: ["en"] });
   ok(!r.error, "注册成功");
   eq(r.inherited, true, "应标记 inherited");
   const np = Store.progress();

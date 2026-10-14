@@ -27,7 +27,7 @@
   }
 
   /* ---------------- 路由 ---------------- */
-  var PROTECTED = { community: 1, profile: 1 }; // 游客可直接学习，仅社区与个人中心需登录
+  var PROTECTED = {}; // 纯本机档案：游客可浏览全部页面，互动类操作在页面内再提示创建档案
 
   function parse() {
     var h = (location.hash || "").replace(/^#/, "");
@@ -41,7 +41,6 @@
     var r = parse(), page = r.page;
 
     if (PROTECTED[page] && !user) { go("#/login"); return; }
-    if ((page === "login" || page === "register") && user) { go("#/dashboard"); return; }
     if (!page && user) { go("#/dashboard"); return; }
 
     Speech.stop();
@@ -589,12 +588,21 @@
 
     switch (action) {
       case "logout":
-        Store.logout(); toast("已退出登录"); go("#/"); break;
+        Store.logout(); toast("已退出，当前为游客模式"); go("#/"); break;
+      case "pick-profile": {
+        var pr = Store.pickProfile(act.getAttribute("data-id"));
+        if (pr.error) { toast(pr.error, "bad"); break; }
+        toast("已切换到 " + pr.user.name, "good");
+        if (location.hash === "#/dashboard") render(); else go("#/dashboard");
+        break;
+      }
       case "reset":
         if (confirm("确定要清空本机保存的全部数据吗？此操作不可恢复。")) Store.resetAll();
         break;
       case "post": doPost(); break;
-      case "like": Store.toggleLike(act.getAttribute("data-id")); render(); break;
+      case "like":
+        if (Store.actor().guest) { toast("创建本机档案后即可点赞", "bad"); break; }
+        Store.toggleLike(act.getAttribute("data-id")); render(); break;
       case "toggle-comments": {
         var post = act.closest(".post");
         var box = post && post.querySelector(".comments");
@@ -681,6 +689,7 @@
   }
 
   function doPost() {
+    if (Store.actor().guest) { toast("创建本机档案后即可发布动态", "bad"); return; }
     var ta = document.getElementById("post-text");
     if (!ta || !ta.value.trim()) { toast("写点什么再发布吧", "bad"); return; }
     var sel = document.querySelector('input[name="post-lang"]:checked');
@@ -693,6 +702,7 @@
   }
 
   function doComment(id) {
+    if (Store.actor().guest) { toast("创建本机档案后即可评论", "bad"); return; }
     var input = document.querySelector('[data-comment-input="' + id + '"]');
     if (!input || !input.value.trim()) return;
     Store.addComment(id, input.value);
@@ -707,17 +717,16 @@
       var fd = new FormData(form);
       var box = document.getElementById("auth-err");
       var data = {
-        name: fd.get("name"), email: fd.get("email"), password: fd.get("password"),
+        name: fd.get("name"),
         level: fd.get("level"), dailyGoal: +(fd.get("dailyGoal") || 30),
         targetLangs: fd.getAll("targetLangs")
       };
-      var isReg = form.querySelector('[name="name"]') !== null;
-      var res = isReg ? Store.register(data) : Store.login(fd.get("email"), fd.get("password"));
+      var res = Store.register(data);
       if (res.error) {
         if (box) box.innerHTML = '<div class="form-err">' + Views.esc(res.error) + "</div>";
         return;
       }
-      toast(isReg ? (res.inherited ? "档案创建成功，游客进度已继承到新账号" : "档案创建成功，欢迎加入") : "欢迎回来，" + res.user.name, "good");
+      toast(res.inherited ? "档案创建成功，游客进度已继承到新档案" : "档案创建成功，欢迎加入", "good");
       go("#/dashboard");
       return;
     }
@@ -740,9 +749,8 @@
 
   document.addEventListener("click", function (ev) {
     if (ev.target && ev.target.id === "demo-login") {
-      var res = Store.register({ name: "演示学员", email: "demo@lingua.app", password: "lingua2026", targetLangs: ["en", "ja"], level: "A1", dailyGoal: 30 });
-      if (res.error) res = Store.login("demo@lingua.app", "lingua2026");
-      if (res.user) { seedDemo(); toast("已进入演示账号，数据可随时清空", "good"); go("#/dashboard"); }
+      var res = Store.register({ name: "演示档案", targetLangs: ["en", "ja"], level: "A1", dailyGoal: 30 });
+      if (res.user) { seedDemo(); toast("已进入演示档案，数据可随时清空", "good"); go("#/dashboard"); }
     }
   });
 
