@@ -82,6 +82,8 @@ function main() {
     summary[lang] = writeOutputs(lang, byLevel);
   }
   U.writeJson(path.join(U.RAW, "build", "summary.json"), summary, true);
+  // 站点摘要（语言元数据 + 各级别规模），供前端首页免加载大文件
+  require("./lib/output").writeSiteSummary(targets);
   U.log("转换完成。");
 }
 

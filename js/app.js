@@ -36,6 +36,55 @@
   }
   function go(hash) { location.hash = hash; }
 
+  /* ---------------- 懒加载数据编排 ----------------
+     课程数据按需加载：手写课程（js/data-{lang}.js）+ 生成级别（data/{lang}/{level}.json） */
+  var navSeq = 0; // 导航序号，避免慢请求覆盖新页面
+
+  function showLoading() {
+    App.innerHTML = '<div class="shell"><div class="main"><div class="content fade-in" ' +
+      'style="padding:48px;text-align:center;color:var(--muted,#8a8f9c)">加载中…</div></div></div>';
+  }
+
+  function showLoadError() {
+    App.innerHTML = '<div class="sheet-error" style="padding:48px;text-align:center">' +
+      "<p class=\"muted\">课程数据加载失败，请检查网络后重试。</p>" +
+      '<button class="btn btn-primary" data-action="reload" style="margin-top:16px">重新加载</button></div>';
+  }
+
+  /* 渲染各页面前需要确保的数据：只加载该页真正用到的部分 */
+  function targetLangs() {
+    var u = Store.actor();
+    var list = (u && u.targetLangs && u.targetLangs.length) ? u.targetLangs : ["en"];
+    list = list.filter(function (c) { return DATA.langIndex[c]; });
+    if (!list.length) list = [DATA.languages[0] ? DATA.languages[0].code : "en"];
+    return list;
+  }
+
+  /* 某语言的「全部级别」：课程地图与目标语言页面需要完整目录 */
+  function ensureLangLevels(code) {
+    return DATA.ensureLang(code).then(function () {
+      return Promise.all(DATA.levelIds(code).map(function (id) { return DATA.ensureLevel(code, id); }));
+    });
+  }
+  function ensureAllLevels() {
+    return Promise.all(["en", "ja", "ko"].map(ensureLangLevels));
+  }
+  function courseCode(arg) {
+    if (arg && DATA.langIndex[arg]) return arg;
+    return targetLangs()[0];
+  }
+
+  /* 页面 → 所需数据。首页/登录/注册只加载摘要（约 2KB），不碰课程文件 */
+  function prepare(page, arg) {
+    var summary = DATA.ensureSummary();
+    if (page === "" || page === "login" || page === "register") return summary;
+    if (page === "achievements") return Promise.resolve();          // 无需课程数据
+    if (page === "learn") return summary.then(function () { return DATA.ensureLesson(arg); });
+    if (page === "courses") return summary.then(function () { return ensureLangLevels(courseCode(arg)); });
+    if (page === "glossary") return summary.then(function () { return ensureAllLevels(); });
+    return summary.then(function () { return Promise.all(targetLangs().map(ensureLangLevels)); });
+  }
+
   function render() {
     var user = Store.currentUser();
     var r = parse(), page = r.page;
@@ -50,6 +99,18 @@
     if (page !== "challenge") CH = null;
     if (page !== "review") RV = null;
 
+    var token = ++navSeq;
+    showLoading();
+    prepare(page, r.arg).then(function () {
+      if (token !== navSeq) return;   // 已被更新的导航取代
+      paintPage(page, r.arg, user);
+    }).catch(function () {
+      if (token !== navSeq) return;
+      showLoadError();
+    });
+  }
+
+  function paintPage(page, arg, user) {
     switch (page) {
       case "":
         App.innerHTML = Views.landing(); break;
@@ -60,13 +121,13 @@
       case "dashboard":
         App.innerHTML = Views.dashboard(); break;
       case "courses":
-        App.innerHTML = Views.courses(r.arg); break;
+        App.innerHTML = Views.courses(arg); break;
       case "path":
         App.innerHTML = Views.pathPage(); break;
       case "progress":
         App.innerHTML = Views.progressPage(); break;
       case "community":
-        App.innerHTML = Views.community(r.arg || "all"); break;
+        App.innerHTML = Views.community(arg || "all"); break;
       case "achievements":
         App.innerHTML = Views.achievements(); break;
       case "profile":
@@ -76,9 +137,9 @@
       case "challenge":
         if (CH && CH.playing) paintChallenge(); else App.innerHTML = Views.challengeSetup(CH_SETUP); break;
       case "glossary":
-        App.innerHTML = Views.glossary(r.arg || "", glQ); break;
+        App.innerHTML = Views.glossary(arg || "", glQ); break;
       case "learn":
-        startLesson(r.arg); break;
+        startLesson(arg); break;
       default:
         App.innerHTML = user ? Views.dashboard() : Views.landing();
     }
@@ -728,6 +789,7 @@
       case "reset":
         if (confirm("确定要清空本机保存的全部数据吗？此操作不可恢复。")) Store.resetAll();
         break;
+      case "reload": location.reload(); break;
       case "post": doPost(); break;
       case "like":
         if (Store.actor().guest) { toast("创建本机档案后即可点赞", "bad"); break; }
@@ -893,7 +955,14 @@
   document.addEventListener("click", function (ev) {
     if (ev.target && ev.target.id === "demo-login") {
       var res = Store.register({ name: "演示档案", targetLangs: ["en", "ja"], level: "A1", dailyGoal: 30 });
-      if (res.user) { seedDemo(); toast("已进入演示档案，数据可随时清空", "good"); go("#/dashboard"); }
+      if (res.user) {
+        /* 演示进度依赖英语主线课程，加载后再预置 */
+        DATA.ensureLang("en").then(function () {
+          seedDemo();
+          toast("已进入演示档案，数据可随时清空", "good");
+          go("#/dashboard");
+        }).catch(function () { go("#/dashboard"); });
+      }
     }
   });
 
@@ -948,7 +1017,11 @@
     }
   });
 
-  /* ---------------- 启动 ---------------- */
+  /* ---------------- 启动 ----------------
+     先加载摘要（语言元数据 + 规模），课程文件由当前路由按需加载 */
   window.addEventListener("hashchange", render);
-  render();
+
+  (function boot() {
+    DATA.ensureSummary().then(render, render);
+  })();
 })();

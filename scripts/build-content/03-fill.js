@@ -213,6 +213,8 @@ async function main() {
   const summary = {};
   for (const lang of targets) summary[lang] = await fillLang(lang);
   U.writeJson(path.join(U.RAW, "build", "fill-summary.json"), summary, false);
+  // 站点摘要（语言元数据 + 各级别规模），供前端首页免加载大文件
+  require("./lib/output").writeSiteSummary(targets);
   U.log("释义纠错完成。");
 }
 

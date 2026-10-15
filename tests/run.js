@@ -35,7 +35,7 @@ sandbox.window = sandbox;
 sandbox.localStorage = makeLocalStorage();
 vm.createContext(sandbox);
 
-["data-en.js", "data-ja.js", "data-ko.js", "data-en-ext.js", "data-ja-ext.js", "data-ko-ext.js", "exercise.js", "data.js", "speech.js", "store.js", "views.js"]
+["exercise.js", "data.js", "speech.js", "store.js", "views.js"]
   .forEach(f => {
     const file = path.join(__dirname, "..", "js", f);
     vm.runInContext(fs.readFileSync(file, "utf8"), sandbox, { filename: f });
@@ -46,6 +46,25 @@ const DATA = sandbox.window.DATA;
 const Speech = sandbox.window.Speech;
 const Views = sandbox.window.Views;
 const Exercise = sandbox.window.Exercise;
+
+/* ---------------- 懒加载沙箱适配 ----------------
+   data.js 通过 DATA._loadScript / DATA._fetchJson 间接加载数据，
+   这里把手写课程的 <script> 注入换成「读盘 + runInContext」，
+   并提供 fetch mock：按 data/{lang}/{level}.json 读取真实文件。 */
+DATA._loadScript = function (url) {
+  const file = path.join(__dirname, "..", url);
+  vm.runInContext(fs.readFileSync(file, "utf8"), sandbox, { filename: url });
+  return Promise.resolve();
+};
+sandbox.fetch = function (url) {
+  const file = path.join(__dirname, "..", url);
+  return new Promise(resolve => {
+    fs.readFile(file, "utf8", (err, raw) => {
+      if (err) { resolve({ ok: false }); return; }
+      resolve({ ok: true, json: () => Promise.resolve(JSON.parse(raw)) });
+    });
+  });
+};
 
 /* ---------------- 极简测试框架 ---------------- */
 let pass = 0, fail = 0;
@@ -68,6 +87,74 @@ function freshUser() {
   if (r.error) throw new Error("创建档案失败：" + r.error);
   return { user: r.user, name };
 }
+
+/* ---------------- 懒加载前置：把三门语言 + 四个级别全部加载进沙箱 ---------------- */
+function ensureAll() {
+  return Promise.all(["en", "ja", "ko"].map(code =>
+    DATA.ensureLang(code).then(() => Promise.all(
+      DATA.levelIds(code).map(id => DATA.ensureLevel(code, id))
+    ))
+  ));
+}
+
+(async () => {
+/* ==========================================================================
+   0a. 懒加载 · 首页仅加载摘要（不碰任何课程文件）
+   ========================================================================== */
+console.log("\n■ 懒加载 · 首页仅摘要");
+await DATA.ensureSummary();
+t("首页只加载摘要，未加载任何课程数据", () => {
+  eq(DATA.loadedLangs().length, 0, "不应加载课程文件");
+  eq(DATA.languages.length, 3);
+  eq(DATA.languages.map(l => l.code).join(","), "en,ja,ko");
+  DATA.languages.forEach(l => {
+    ok(l.name && l.flag && l.greeting && l.locale, l.code + " 元数据齐全");
+    ok(isArr(l.highlights), l.code + " 亮点为数组");
+    eq(l.levels.length, 4, l.code + " 级别数");
+    ok(l.levels.every(x => x.id && x.badge && x.name), "级别桩字段");
+  });
+});
+t("摘要提供真实课数/练习总量，无需课程文件", () => {
+  ["en", "ja", "ko"].forEach(code => ok(DATA.countByLang[code] >= 120, code + " 课数 " + DATA.countByLang[code]));
+  const st = DATA.stats();
+  eq(st.languages, 3);
+  ok(st.lessons >= 480, "总课数 " + st.lessons);
+  ok(st.exercises > 1000, "练习总量 " + st.exercises);
+});
+t("落地页/登录页可在无课程数据下渲染", () => {
+  const home = Views.landing();
+  has(home, "三门主流语言");
+  has(home, "#/courses", "无课程数据时试学按钮回退到课程页");
+  has(Views.auth("login"), "选择本机档案");
+  has(Views.auth("register"), "创建本机学习档案");
+});
+t("未加载语言的课程地图为空（懒加载语义）", () => {
+  eq(DATA.lessonsOfLang("ja").length, 0);
+  eq(DATA.lessonsOfLang("ko").length, 0);
+  ok(DATA.countByLang.ja >= 120, "摘要仍报总数 " + DATA.countByLang.ja);
+});
+
+/* ==========================================================================
+   0b. 懒加载 · 生成课可达性（课程地图完整性）
+   ========================================================================== */
+console.log("\n■ 懒加载 · 课程地图可达性");
+await DATA.ensureLang("en");
+await DATA.ensureLevel("en", "en-a1");
+t("ensureLevel 后手写课与生成课同时可见", () => {
+  const ids = DATA.lessonsOfLang("en");
+  ok(ids.indexOf("en-l1") >= 0, "应含手写课 en-l1");
+  ok(ids.indexOf("en-a1-u1-l1") >= 0, "应含生成课 en-a1-u1-l1");
+  ok(ids.some(id => /^en-a2-/.test(id)) === false, "未加载级别不应出现");
+});
+t("课程地图渲染出生成课标题（不再只有手写课）", () => {
+  const genId = DATA.lessonsOfLang("en").filter(id => /^en-a1-/.test(id))[0];
+  ok(genId, "应存在 en-a1 生成课");
+  const html = Views.courses("en");
+  has(html, DATA.lessonOf(genId).lesson.title, "课程地图应含生成课标题");
+  has(html, "en-l1", "课程地图应含手写课");
+});
+
+await ensureAll();
 
 /* ==========================================================================
    0. 模块加载
@@ -690,3 +777,4 @@ if (fail) {
   process.exit(1);
 }
 console.log("全部通过 ✓");
+})().catch(e => { console.error("测试运行失败：", e); process.exit(1); });

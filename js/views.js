@@ -142,7 +142,7 @@
       "<div>" +
       '<h1>把一门语言<em>真正说出口</em></h1>' +
       '<p class="hero-lede">英语、日语、韩语，三门主流语言分级课程。单词、语法、听力、口语跟读四类训练连打，每天 15 分钟，进度与成就会替你记住每一步。</p>' +
-      '<div class="hero-cta"><button class="btn btn-primary btn-lg" data-link="#/learn/' + D.order[0] + '">立即试学第一课</button>' +
+      '<div class="hero-cta"><button class="btn btn-primary btn-lg" data-link="' + (D.order[0] ? "#/learn/" + D.order[0] : "#/courses") + '">立即试学第一课</button>' +
       '<button class="btn btn-outline-light btn-lg" data-link="#/courses">先逛逛课程</button>' +
       '<button class="btn btn-outline-light btn-lg" data-link="#/register">创建档案保存进度</button></div>' +
       '<div class="hero-stats">' +
