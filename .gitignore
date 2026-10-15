@@ -1,2 +1,4 @@
 # 内容构建流水线的原始数据（下载得来，不入库）
 scripts/build-content/raw/
+# 构建期依赖（opencc-js 等），站点运行时不依赖
+scripts/build-content/node_modules/

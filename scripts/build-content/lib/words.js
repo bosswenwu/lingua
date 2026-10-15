@@ -4,6 +4,7 @@ const path = require("path");
 const U = require("./util");
 const C = require("./csv");
 const CFG = require("./config");
+const ZH = require("./zh");
 const { romanize } = require("./roman");
 
 /* ---------------- 词典 ---------------- */
@@ -39,24 +40,57 @@ function loadKengdic() {
   return m;
 }
 
-/* 清洗 ECDICT 中文释义为简短可用形式 */
-function cleanMeaning(raw) {
-  if (!raw) return "";
-  let s = String(raw).replace(/\\n/g, "/").replace(/\r?\n/g, "/");
-  const parts = s.split("/").map(x => x.trim()).filter(Boolean);
-  let core = "";
-  for (const p of parts) {
-    if (/^\[.*\]/.test(p)) continue;     // 丢弃 [医][经] 之类领域标签
-    core = p; break;
+/* 词典式义项：不是词的本义，直接丢弃（例：第一个字母 A / 面孔的一部分(如眼、口等)） */
+const DROP_SENSE = /字母|第一个|的一部分|的缩写|^是$|^表示$|^同上$|^见上$/;
+const CJK_RE = /[\u3400-\u9fff]/;
+/* ECDICT 行首词性标注 */
+const POS_SET = new Set(["n", "v", "vt", "vi", "a", "adj", "adv", "ad", "prep", "conj", "pron", "art",
+  "num", "int", "interj", "aux", "abbr", "pl", "na", "det", "part", "suff", "pref", "poss", "neg", "aux"]);
+
+function stripPos(line) {
+  let out = line;
+  for (;;) {
+    const m = out.match(/^\s*([A-Za-z][A-Za-z.]{0,7})\s*\.\s*&?\s*/);
+    if (!m) break;
+    const tag = m[1].toLowerCase().replace(/\.$/, "");
+    if (!POS_SET.has(tag)) break;
+    out = out.slice(m[0].length);
   }
-  if (!core) core = parts[0] || "";
-  core = core.replace(/^(n|v|vt|vi|a|adj|ad|adv|prep|conj|pron|art|num|int|aux|abbr|pl|vt\.|vi\.)\s*\.?\s+/i, "");
-  const senses = core.split(/[,，;；]/).map(x => x.trim()).filter(Boolean);
-  let out = senses.slice(0, 2).join("；");
-  out = out.replace(/^[.·、\s]+|[.·、\s]+$/g, "");
-  if (out.length > 26) out = out.slice(0, 26);
   return out;
 }
+
+/* 清洗 ECDICT 中文释义为精简的 1–2 个常用义项（每个 ≤8 字，总长 ≤16） */
+function cleanMeaning(raw) {
+  if (!raw) return "";
+  const s = String(raw).replace(/\\r\\n|\\n/g, "\n").replace(/\\r/g, "").replace(/\r/g, "");
+  const senses = [];
+  for (const line of s.split("\n")) {
+    if (/^\s*\[/.test(line)) continue;                                     // 整行是 [计][经] 领域标签
+    const q = stripPos(line.replace(/\[[^\]]*\]/g, " "));                   // 去词性标注与 [计] 标签
+    for (const seg of q.split(/[,，;；]/)) {
+      if (/[A-Za-z]{2,}/.test(seg)) continue;                              // 含英文单词 → 丢弃（P0-1/P0-2）
+      const t = seg.replace(/<[^>]*>/g, "").replace(/[（(][^）)]*[）)]/g, "")
+        .replace(/^[.·、\s]+|[.·、\s]+$/g, "").trim();
+      if (!t) continue;
+      if (DROP_SENSE.test(t)) continue;                                    // 词典式义项
+      if (!CJK_RE.test(t)) continue;                                       // 纯英文残留
+      if (senses.indexOf(t) >= 0) continue;                                // 同一词内义项去重
+      senses.push(t);
+    }
+    if (senses.length >= 2) break;
+  }
+  const out = senses.slice(0, 2).join("；").slice(0, 16);
+  return out;
+}
+
+/* 英语音标统一成标准 IPA 符号 */
+function ipa(s) {
+  if (!s) return "";
+  return String(s).replace(/ә/g, "ə").replace(/'/g, "ˈ").replace(/:/g, "ː");
+}
+
+/* 释义是否含中文（无中文的占位词条不产出） */
+function hasCjk(m) { return !!m && CJK_RE.test(m); }
 
 /* 英文释义（如 "to meet, to see"）→ 中文 */
 function zhFromGloss(gloss, ecdict) {
@@ -113,7 +147,7 @@ function planEnglish(ecdict) {
     words.push({
       t, level: enLevel(e),
       m: cleanMeaning(e.zh),
-      r: e.ph ? "/" + e.ph.replace(/^\/|\/$/g, "") + "/" : "",
+      r: e.ph ? "/" + ipa(e.ph).replace(/^\/|\/$/g, "") + "/" : "",
       en: extra || "", src: "ngsl"
     });
   };
@@ -139,7 +173,7 @@ function planEnglishSupplement(ecdict, exclude) {
   extra.sort((a, b) => a.rank - b.rank);
   return extra.map(o => ({
     t: o.w, level: enLevel(o.e), m: cleanMeaning(o.e.zh),
-    r: o.e.ph ? "/" + o.e.ph.replace(/^\/|\/$/g, "") + "/" : "", en: "", src: "ecdict"
+    r: o.e.ph ? "/" + ipa(o.e.ph).replace(/^\/|\/$/g, "") + "/" : "", en: "", src: "ecdict"
   }));
 }
 
@@ -227,7 +261,8 @@ function splitEvenly(list) {
 function materialize(lang, byLevel) {
   const levels = [];
   for (const L of CFG.LEVELS) {
-    const list = byLevel[L.id] || [];
+    // 无中文释义（仍是英文占位）或释义等于原词的词条不产出：宁可少词，也不要无信息条目
+    const list = (byLevel[L.id] || []).filter(w => hasCjk(w.m) && String(w.m).trim() !== String(w.t).trim());
     if (!list.length) continue;
     const chunks = splitEvenly(list);
     const units = [];
@@ -246,8 +281,8 @@ function materialize(lang, byLevel) {
         id, title: L.badge + " 第 " + unitNo + "-" + lNo + " 课",
         sub: first + " — " + last, minutes: 8, xp: 50, focus: L.badge + " 核心词汇",
         vocab: chunk.map(w => {
-          const o = { t: w.t, m: w.m || w.en || w.t, r: w.r || "" };
-          if (w.ex && w.ex.length) o.ex = w.ex;
+          const o = { t: w.t, m: ZH.normalizeZh(w.m), r: w.r || "" };
+          if (w.ex && w.ex.length) o.ex = w.ex.map(e => ({ t: e.t, tr: ZH.normalizeZh(e.tr) }));
           return o;
         }),
         grammar: [], listening: [], speaking: []
@@ -259,7 +294,7 @@ function materialize(lang, byLevel) {
 }
 
 module.exports = {
-  loadEcdict, loadKengdic, cleanMeaning, zhFromGloss,
+  loadEcdict, loadKengdic, cleanMeaning, zhFromGloss, ipa, hasCjk,
   planEnglish, planEnglishSupplement, planJapanese, planKorean,
   pickLevelWords, materialize
 };

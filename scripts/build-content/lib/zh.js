@@ -1,0 +1,51 @@
+/* 中文文本规范化：OpenCC 繁→简（t2s）+ 标点统一全角 + 空白清理
+   opencc-js 仅作为构建期依赖，站点运行时保持零依赖。 */
+const OpenCC = require("opencc-js");
+
+let _conv = null;
+function conv() {
+  if (!_conv) _conv = OpenCC.Converter({ from: "tw", to: "cn" });
+  return _conv;
+}
+
+/* 繁体 → 简体（含台湾异体字回正） */
+function t2s(text) {
+  if (!text) return "";
+  try { return conv()(String(text)); } catch (e) { return String(text); }
+}
+
+const CJK = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff00-\uffef]/;
+const PUNCT = { ",": "，", ".": "。", "!": "！", "?": "？", ":": "：", ";": "；", "(": "（", ")": "）" };
+
+/* 半角标点 → 全角（仅当紧邻中日韩字符时，避免破坏 3.5 / 1,000 这类数字） */
+function fullWidthPunct(s) {
+  if (!s) return "";
+  let out = "";
+  for (let i = 0; i < s.length; i++) {
+    const ch = s[i];
+    const rep = PUNCT[ch];
+    if (rep) {
+      const prev = s[i - 1] || "", next = s[i + 1] || "";
+      if (CJK.test(prev) || CJK.test(next)) { out += rep; continue; }
+    }
+    out += ch;
+  }
+  return out;
+}
+
+/* 中文字段统一入口：繁转简 → 全角标点 → 压缩多余空白 */
+function normalizeZh(text) {
+  if (!text) return "";
+  let s = t2s(String(text));
+  s = fullWidthPunct(s);
+  s = s.replace(/[ \t\u3000]+/g, " ").replace(/\s+([，。！？：；）])/g, "$1").replace(/（\s+/g, "（");
+  return s.trim();
+}
+
+/* 是否含繁体专用字符（用于校验；只查简繁差异表里"繁→简确有变化"的字） */
+function hasTraditional(text) {
+  if (!text) return false;
+  return t2s(text) !== String(text);
+}
+
+module.exports = { t2s, fullWidthPunct, normalizeZh, hasTraditional };

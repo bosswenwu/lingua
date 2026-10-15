@@ -7,6 +7,8 @@ const fs = require("fs");
 const path = require("path");
 const U = require("./lib/util");
 const CFG = require("./lib/config");
+const ZH = require("./lib/zh");
+const T = require("./lib/tatoeba");
 
 const errors = [];
 const warns = [];
@@ -16,6 +18,28 @@ const WARN = (m) => warns.push(m);
 const LANGS = ["en", "ja", "ko"];
 const MIN_WORDS = 2000, MIN_LESSONS = 120;
 const LESSON_MIN = 15, LESSON_MAX = 20;
+
+/* P2-11：质量检查（命中即报错） */
+const EN_WORD = /[A-Za-z]/;                       // 释义里含英文字母
+const BRACKET = /[<>\[\]]/;                       // 释义里含 <> []
+const BAD_PREFIX = /^(是|表示)/;                   // 词典式占位开头
+
+function qualityChecks(lang, ls, v, trs, exTexts) {
+  const m = String(v.m || "").trim();
+  if (EN_WORD.test(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义含英文单词 → " + m);
+  if (BRACKET.test(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义含 <> [] → " + m);
+  if (BAD_PREFIX.test(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义以「是/表示」开头 → " + m);
+  if (m && m === String(v.t).trim()) E(lang + " " + ls.id + " 词 " + v.t + ": 释义等于原词");
+  if (ZH.hasTraditional(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义含繁体字 → " + m);
+  for (const tr of trs) {
+    if (ZH.hasTraditional(tr)) E(lang + " " + ls.id + " 词 " + v.t + ": 译文含繁体字 → " + tr);
+  }
+  if (lang === "ko") for (const s of exTexts) {
+    if (T.isKoTemplate(v.t, s)) E(lang + " " + ls.id + " 词 " + v.t + ": 残留模板句 → " + s);
+  }
+  const dupe = exTexts.find((s, i) => exTexts.indexOf(s) !== i);
+  if (dupe) E(lang + " " + ls.id + " 词 " + v.t + ": 例句重复 → " + dupe);
+}
 
 /* 英语按词边界判断，日语/韩语按子串判断 */
 function contains(term, text) {
@@ -28,6 +52,7 @@ function contains(term, text) {
 }
 
 const report = {};
+const allVocab = {};
 
 for (const lang of LANGS) {
   const dir = path.join(U.DATA, lang);
@@ -35,6 +60,7 @@ for (const lang of LANGS) {
 
   const levels = CFG.LEVELS.map(L => ({ id: L.id, file: path.join(dir, L.id + ".json") }));
   const seenTerms = new Map();
+  const langVocab = [];
   let totalWords = 0, totalLessons = 0, exCovered = 0;
   const levelStat = {};
   const badges = new Set();
@@ -75,19 +101,25 @@ for (const lang of LANGS) {
           inLesson.add(v.t);
           if (!v.m || !String(v.m).trim()) E(lang + " " + ls.id + " 词 " + v.t + ": 缺释义 m");
           if (v.r !== undefined && typeof v.r !== "string") E(lang + " " + ls.id + " 词 " + v.t + ": r 应为字符串");
+          const trs = [], exTexts = [];
           if (v.ex !== undefined) {
             if (!Array.isArray(v.ex)) E(lang + " " + ls.id + " 词 " + v.t + ": ex 应为数组");
             else {
               if (v.ex.length) exCovered++;
               for (const e of v.ex) {
                 if (!e || !e.t || !e.tr) E(lang + " " + ls.id + " 词 " + v.t + ": 例句缺 t/tr");
-                else if (!contains(v.t, e.t)) E(lang + " " + ls.id + " 词 " + v.t + ": 例句未包含目标词 → " + e.t);
+                else {
+                  if (!contains(v.t, e.t)) E(lang + " " + ls.id + " 词 " + v.t + ": 例句未包含目标词 → " + e.t);
+                  trs.push(e.tr); exTexts.push(e.t);
+                }
               }
             }
           }
+          qualityChecks(lang, ls, v, trs, exTexts);
           const prev = seenTerms.get(v.t);
           if (prev && prev !== ls.id) E(lang + " 词跨课重复：" + v.t + "（" + prev + " 与 " + ls.id + "）");
           else seenTerms.set(v.t, ls.id);
+          langVocab.push(v);
           nWords++;
         }
         nLessons++;
@@ -110,7 +142,35 @@ for (const lang of LANGS) {
     exampleCoverage: Math.round(cov * 100) + "%",
     byLevel: levelStat
   };
+  allVocab[lang] = langVocab;
 }
+
+/* P2-12：固定种子随机抽样，输出 review.md（50 词/语言）与 acceptance.md（100 词/语言） */
+function lcg(seed) { let s = seed >>> 0; return () => (s = (s * 1664525 + 1013904223) >>> 0) / 4294967296; }
+function sample(arr, n, seed) {
+  const a = arr.slice(), r = lcg(seed);
+  for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); const t = a[i]; a[i] = a[j]; a[j] = t; }
+  return a.slice(0, n);
+}
+function esc(s) { return String(s == null ? "" : s).replace(/\|/g, "\\|").replace(/\r?\n/g, " "); }
+function table(list) {
+  const rows = list.map((v, i) => {
+    const ex = (v.ex && v.ex[0]) ? esc(v.ex[0].t) + " ／ " + esc(v.ex[0].tr) : "（无）";
+    return "| " + (i + 1) + " | " + esc(v.t) + " | " + esc(v.r || "") + " | " + esc(v.m) + " | " + ex + " |";
+  });
+  return ["| # | 原词 | 读音 | 释义 | 例句 |", "|---|---|---|---|---|"].concat(rows).join("\n");
+}
+
+const LNAME = { en: "英语", ja: "日语", ko: "韩语" };
+let reviewMd = "# 释义与例句抽检（review.md）\n\n固定种子随机抽样，每次构建结果一致。\n\n";
+let acceptMd = "# 验收抽检表（100 词/语言）\n\n固定种子随机抽样。\n\n";
+for (const lang of LANGS) {
+  const list = allVocab[lang] || [];
+  reviewMd += "## " + LNAME[lang] + "（" + Math.min(50, list.length) + " 词）\n\n" + table(sample(list, 50, 20261015 + lang.length)) + "\n\n";
+  acceptMd += "## " + LNAME[lang] + "（" + Math.min(100, list.length) + " 词）\n\n" + table(sample(list, 100, 813 + lang.charCodeAt(0))) + "\n\n";
+}
+U.writeText(path.join(__dirname, "review.md"), reviewMd);
+U.writeText(path.join(__dirname, "acceptance.md"), acceptMd);
 
 U.log("== 4/4 校验结果 ==");
 for (const lang of Object.keys(report)) {

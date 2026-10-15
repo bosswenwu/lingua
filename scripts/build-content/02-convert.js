@@ -11,7 +11,6 @@ const U = require("./lib/util");
 const CFG = require("./lib/config");
 const W = require("./lib/words");
 const T = require("./lib/tatoeba");
-const TPL = require("./lib/template");
 
 const LANGS = process.argv.slice(2).filter(x => ["en", "ja", "ko"].includes(x));
 const targets = LANGS.length ? LANGS : ["en", "ja", "ko"];
@@ -37,25 +36,28 @@ function buildWordTable(lang, ecdict, kengdic) {
     if (b.length < CFG.PER_LEVEL_CAP) b.push(w);
   }
 
-  // 例句
+  // 例句（带级别信息，a1/a2 只收短句；英语再限生词数）
   const terms = [];
-  for (const k of Object.keys(byLevel)) byLevel[k].forEach(w => terms.push(w.t));
-  const exAll = T.buildExamples(lang, terms);
-
-  let withEx = 0, templated = 0;
+  const levelOf = new Map();
+  const easySet = new Set();
   for (const k of Object.keys(byLevel)) {
     for (const w of byLevel[k]) {
-      let ex = T.pickExamples(exAll, w.t, CFG.EXAMPLES_PER_WORD);
-      if (!ex.length && lang === "ko" && w.pos === "명사") {
-        ex = TPL.koNoun(w.t, w.m).slice(0, 2);
-        if (ex.length) templated++;
-      }
-      w.ex = ex;
-      if (ex.length) withEx++;
+      terms.push(w.t);
+      if (!levelOf.has(w.t)) levelOf.set(w.t, k);
+      if (k === "a1" || k === "a2") easySet.add(lang === "en" ? w.t.toLowerCase() : w.t);
+    }
+  }
+  const exAll = T.buildExamples(lang, terms, { levelOf, easySet });
+
+  let withEx = 0;
+  for (const k of Object.keys(byLevel)) {
+    for (const w of byLevel[k]) {
+      w.ex = T.pickExamples(exAll, w.t, CFG.EXAMPLES_PER_WORD);
+      if (w.ex.length) withEx++;
     }
   }
   const total = Object.keys(byLevel).reduce((a, k) => a + byLevel[k].length, 0);
-  U.log("  " + lang + ": " + total + " 词（例句覆盖 " + withEx + "，其中模板补 " + templated + "）");
+  U.log("  " + lang + ": " + total + " 词（例句覆盖 " + withEx + "）");
   return byLevel;
 }
 
