@@ -1,10 +1,13 @@
 /* Lingua · Service Worker（网络优先，离线时回退缓存） */
-const CACHE = "lingua-v1";
+const CACHE = "lingua-v3";
 const ASSETS = [
   "./", "./index.html", "./icon.svg", "./manifest.webmanifest", "./css/app.css",
-  "./js/data-en.js", "./js/data-ja.js", "./js/data-ko.js", "./js/data.js",
+  "./js/data-en.js", "./js/data-ja.js", "./js/data-ko.js",
+  "./js/data-en-ext.js", "./js/data-ja-ext.js", "./js/data-ko-ext.js",
+  "./js/exercise.js", "./js/data.js",
   "./js/store.js", "./js/speech.js", "./js/views.js", "./js/app.js"
 ];
+/* 懒加载数据：data/ 目录下的 JSON 会被运行时自动缓存 */
 
 self.addEventListener("install", function (e) {
   e.waitUntil(

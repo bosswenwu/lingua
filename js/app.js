@@ -104,17 +104,23 @@
     var info = DATA.lessonOf(lessonId);
     if (!info) return null;
     var l = info.lesson;
+    /* 手写题目优先；课程没带题目时由 Exercise 依词条即时生成 */
+    var gen = window.Exercise ? Exercise.generate(l, info.lang) : { grammar: [], listening: [], speaking: [] };
     var grammarItems = [];
-    (l.grammar || []).forEach(function (g) {
-      (g.drills || []).forEach(function (d) {
-        grammarItems.push({ point: g.point, rule: g.rule, q: d.q, opts: d.opts, a: d.a, why: d.why });
+    if ((l.grammar || []).length) {
+      (l.grammar || []).forEach(function (g) {
+        (g.drills || []).forEach(function (d) {
+          grammarItems.push({ type: "choice", point: g.point, rule: g.rule, q: d.q, opts: d.opts, a: d.a, why: d.why });
+        });
       });
-    });
+    } else {
+      grammarItems = gen.grammar;
+    }
     var items = {
       vocab: (l.vocab || []).slice(),
       grammar: grammarItems,
-      listening: (l.listening || []).slice(),
-      speaking: (l.speaking || []).slice()
+      listening: (l.listening || []).length ? (l.listening || []).slice() : gen.listening,
+      speaking: (l.speaking || []).length ? (l.speaking || []).slice() : gen.speaking
     };
     var total = {}, pending = {}, done = {}, correct = {};
     DATA.MODES.forEach(function (m) {
@@ -301,6 +307,46 @@
     if (!LC.quiz) return;
     var correct = choiceIdx === LC.quiz.answerIdx;
     commitVocabStep(correct);
+  }
+
+  /* ---- 拼写题（键盘输入） ---- */
+  function normSpell(s) {
+    return String(s || "").trim().toLowerCase().replace(/[.!,;:?]+$/g, "");
+  }
+  function submitSpell() {
+    if (!LC || LC.answering) return;
+    var mode = "grammar";
+    var cur = LC.pending[mode][0];
+    var item = LC.items[mode][cur];
+    var el = document.getElementById("spell-input");
+    var val = el ? el.value : "";
+    if (!normSpell(val)) { toast("先输入答案再检查", "bad"); if (el) el.focus(); return; }
+    var correct = normSpell(val) === normSpell(item.answer);
+    LC.answering = { mode: mode, idx: LC.done[mode], item: item, correct: correct, typed: val.trim(), isLast: LC.pending[mode].length === 1 };
+    var p = Store.progress();
+    Store.recordSkill(p, mode, correct);
+    if (!correct) {
+      /* 转成选择题存入错题本，重练时仍可用 */
+      var ropts = DATA.shuffle([item.answer].concat(item.distract || []));
+      Store.recordMistake(p, {
+        lang: LC.lang.code, mode: mode, lessonId: LC.id,
+        prompt: "拼写：" + (item.hint || ""), opts: ropts, answer: ropts.indexOf(item.answer),
+        why: item.why || ""
+      });
+    }
+    Store.saveProgress(p);
+    paintLesson();
+  }
+  function giveUpSpell() {
+    if (!LC || LC.answering) return;
+    var mode = "grammar";
+    var cur = LC.pending[mode][0];
+    var item = LC.items[mode][cur];
+    LC.answering = { mode: mode, idx: LC.done[mode], item: item, correct: false, typed: "", isLast: LC.pending[mode].length === 1 };
+    var p = Store.progress();
+    Store.recordSkill(p, mode, false);
+    Store.saveProgress(p);
+    paintLesson();
   }
 
   /* ---- 口语 ---- */
@@ -705,6 +751,8 @@
         if (LC) { var cv = LC.items.vocab[LC.pending.vocab[0]]; if (cv) Speech.speak(cv.t, LC.lang.locale); }
         break;
       case "answer": if (LC) handleAnswer(+act.getAttribute("data-opt")); break;
+      case "spell-submit": submitSpell(); break;
+      case "spell-giveup": giveUpSpell(); break;
       case "continue": if (LC) handleContinue(); break;
       case "play": playAudio(1); break;
       case "play-slow": playAudio(0.65); break;

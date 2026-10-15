@@ -921,11 +921,32 @@
 
   function stageGrammar(ctx, fb) {
     var d = ctx.item;
+    if (d.type === "spell") return stageSpelling(ctx, fb);
     return '<div class="stage-head"><h2>语法练习</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
       '<div class="quiz-q">' + esc(d.q) + "</div>" +
       '<div class="quiz-sub">' + esc(d.point) + "</div>" +
       '<div class="opts" id="opts">' + optionList(d.opts, d.a, fb) + "</div>" +
       explainBox(d.a, d.why, fb);
+  }
+
+  /* 单词拼写：键盘输入答案 */
+  function stageSpelling(ctx, fb) {
+    var d = ctx.item;
+    var body = fb
+      ? '<div class="explain ' + (fb.correct ? "ok" : "no") + '">' + icon(fb.correct ? "check" : "x") +
+        "<div><b>" + (fb.correct ? "拼写正确" : "正确答案：" + esc(d.answer)) + "</b>" +
+        (fb.correct ? "" : "你写的是 " + esc(fb.typed || "（空）") + "。") + esc(d.why || "") + "</div></div>" +
+        '<div style="display:flex;justify-content:flex-end;margin-top:16px"><button class="btn btn-primary" data-action="continue">' +
+        (fb.isLast ? "完成本组" : "继续") + "</button></div>"
+      : '<input id="spell-input" class="spell-input" type="text" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="在这里输入答案">' +
+        '<div style="display:flex;gap:10px;justify-content:flex-end;margin-top:12px">' +
+        '<button class="btn btn-ghost" data-action="spell-giveup">看答案</button>' +
+        '<button class="btn btn-primary" data-action="spell-submit">检查</button></div>';
+    return '<div class="stage-head"><h2>单词拼写</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
+      '<div class="quiz-q">' + esc(d.q) + "</div>" +
+      '<div class="quiz-sub">' + esc(d.point) + "</div>" +
+      '<div class="spell-hint">' + esc(d.hint) + "</div>" +
+      body;
   }
 
   /* 听力 */
@@ -1298,6 +1319,13 @@
       });
     }
     if (!all.length) return '<div class="empty"><div class="em-ico">🔍</div><h3>没有匹配的词条</h3><p>换个关键词试试。</p></div>';
+    /* 词条数已上万，一次只渲染前 400 条，其余靠搜索或切换语言查看 */
+    var total = all.length;
+    var more = "";
+    if (total > 400) {
+      all = all.slice(0, 400);
+      more = '<div class="gl-more">共 ' + total + " 条，当前显示前 400 条 —— 用上方搜索框或切换语言缩小范围</div>";
+    }
     return all.map(function (v) {
       var rec = st.vocabBox[v.key];
       var state = rec && rec.box >= 3 ? '<span class="chip chip-jade">已掌握</span>'
@@ -1312,7 +1340,7 @@
         '<div class="gl-side">' + state + langMeta +
         '<a class="tiny muted-2 gl-lesson" href="#/learn/' + v.lessonId + '">' + v.level + " · " + esc(v.lessonTitle) + "</a></div>" +
         "</div>";
-    }).join("");
+    }).join("") + more;
   }
 
   function glossary(lang, q) {

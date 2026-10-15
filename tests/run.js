@@ -35,7 +35,7 @@ sandbox.window = sandbox;
 sandbox.localStorage = makeLocalStorage();
 vm.createContext(sandbox);
 
-["data-en.js", "data-ja.js", "data-ko.js", "data.js", "speech.js", "store.js", "views.js"]
+["data-en.js", "data-ja.js", "data-ko.js", "data-en-ext.js", "data-ja-ext.js", "data-ko-ext.js", "exercise.js", "data.js", "speech.js", "store.js", "views.js"]
   .forEach(f => {
     const file = path.join(__dirname, "..", "js", f);
     vm.runInContext(fs.readFileSync(file, "utf8"), sandbox, { filename: f });
@@ -45,6 +45,7 @@ const Store = sandbox.window.Store;
 const DATA = sandbox.window.DATA;
 const Speech = sandbox.window.Speech;
 const Views = sandbox.window.Views;
+const Exercise = sandbox.window.Exercise;
 
 /* ---------------- 极简测试框架 ---------------- */
 let pass = 0, fail = 0;
@@ -81,6 +82,79 @@ t("Store / DATA / Speech / Views 均已导出", () => {
 t("课程规模：3 门语言 / 至少 72 课", () => {
   const s = DATA.stats();
   eq(s.languages, 3); ok(s.lessons >= 72, "课程数 " + s.lessons); ok(s.exercises > 1000, "练习题总量 " + s.exercises);
+});
+t("每门语言 ≥ 2000 词 / ≥ 120 课，四级齐全", () => {
+  DATA.languages.forEach(l => {
+    const ids = DATA.lessonsOfLang(l.code);
+    ok(ids.length >= 120, l.code + " 课程数 " + ids.length);
+    const words = DATA.glossary(l.code).length;
+    ok(words >= 2000, l.code + " 词数 " + words);
+    const badges = l.levels.map(x => x.badge).sort().join(",");
+    eq(badges, "A1,A2,B1,B2", l.code + " 级别");
+  });
+});
+
+/* ==========================================================================
+   0b. 题目自动生成器（exercise）
+   ========================================================================== */
+console.log("\n■ 题目自动生成器");
+t("Exercise 依词条生成三类题目，结构合法", () => {
+  const lid = DATA.lessonsOfLang("en")[0];
+  const info = DATA.lessonOf(lid);
+  const gen = Exercise.generate(info.lesson, info.lang);
+  ok(gen.grammar.length > 0, "语法题");
+  ok(gen.listening.length > 0, "听力题");
+  ok(gen.speaking.length > 0, "口语题");
+  gen.grammar.forEach(d => {
+    if (d.type === "spell") { ok(d.answer && d.hint, "拼写题字段"); return; }
+    ok(isArr(d.opts) && d.opts.length >= 3, "选项数");
+    ok(Number.isInteger(d.a) && d.a >= 0 && d.a < d.opts.length, "答案下标");
+    eq(new Set(d.opts).size, d.opts.length, "选项重复：" + d.q);
+    ok(d.why, "缺少解析");
+  });
+  gen.listening.forEach(d => {
+    ok(d.text && d.q, "听力题文本");
+    ok(isArr(d.opts) && Number.isInteger(d.a) && d.a < d.opts.length, "听力选项");
+  });
+  gen.speaking.forEach(d => ok(d.text, "跟读文本"));
+});
+t("挖空题的句中确实含目标词被挖空", () => {
+  /* 取扩展课的末尾若干课（带结构化例句），确认真能挖出空 */
+  let checked = 0;
+  DATA.lessonsOfLang("en").slice(-30).forEach(lid => {
+    const info = DATA.lessonOf(lid);
+    const gen = Exercise.generate(info.lesson, info.lang);
+    gen.grammar.filter(d => d.point === "例句填词").forEach(d => {
+      checked++;
+      ok(d.q.indexOf("____") >= 0, "未挖空：" + d.q);
+      ok(d.opts[d.a] && d.why.toLowerCase().indexOf(d.opts[d.a].toLowerCase()) >= 0, "答案不在原句：" + d.why);
+    });
+  });
+  ok(checked > 0, "扩展课应能生成挖空题");
+});
+t("生成题目可直接渲染为各关卡 HTML", () => {
+  let spells = 0;
+  DATA.lessonsOfLang("en").slice(-30).forEach(lid => {
+    const info = DATA.lessonOf(lid);
+    const gen = Exercise.generate(info.lesson, info.lang);
+    gen.grammar.forEach((d, i) => {
+      const html = Views.stageGrammar({ lessonId: lid, idx: i, total: gen.grammar.length, item: d }, null);
+      has(html, "stage-head");
+      if (d.type === "spell") { spells++; has(html, 'id="spell-input"'); has(html, 'data-action="spell-submit"'); }
+      else has(html, 'data-action="answer"');
+    });
+    gen.listening.forEach((d, i) => {
+      const html = Views.stageListening({ lessonId: lid, idx: i, total: gen.listening.length, item: d }, false, null, { active: false, result: null, draft: "" });
+      has(html, 'data-action="play"');
+      has(html, 'data-action="answer"');
+    });
+    gen.speaking.forEach((d, i) => {
+      const html = Views.stageSpeaking({ lessonId: lid, idx: i, total: gen.speaking.length, item: d }, "");
+      has(html, "speak-target");
+      has(html, 'data-action="speak-skip"');
+    });
+  });
+  ok(spells > 0, "英语课应生成拼写题");
 });
 
 /* ==========================================================================
@@ -467,17 +541,19 @@ t("challengeResult 新纪录标记与统计", () => {
    9. 词汇库与听写 UI（views）
    ========================================================================== */
 console.log("\n■ 词汇库 / 听写 · 视图");
-t("glossary 全量渲染所有词条", () => {
+t("glossary 全量渲染（上限 400 条 + 提示）", () => {
   const html = Views.glossary("", "");
-  eq(count(html, /class="gl-row"/g), glos.length);
+  const n = count(html, /class="gl-row"/g);
+  ok(n > 0 && n <= 400, "渲染行数 " + n);
   has(html, 'id="gl-q"');
+  has(html, "gl-more", "超出上限应有提示");
   ok(count(html, /class="lang-tab /g) >= 4, "语言筛选页签");
 });
 t("glossaryRows 搜索过滤与空结果提示", () => {
   const word = DATA.glossary("en")[0].t;
   const rows = Views.glossaryRows("en", word);
   const n = count(rows, /class="gl-row"/g);
-  ok(n > 0 && n < glos.length, "过滤后行数 " + n);
+  ok(n > 0 && n <= 400, "过滤后行数 " + n);
   has(rows, word.replace(/&/g, "&amp;").replace(/</g, "&lt;"), "结果包含搜索词");
   has(Views.glossaryRows("en", "zzz不存在zzz"), "没有匹配的词条");
 });
