@@ -842,7 +842,7 @@ window.COURSES_EN = {
                 }
               ],
               listening: [
-                { text: "I'm afraid the steak is quite undercooked — could you ask the kitchen to grill it a little longer?", q: "说话人希望怎么处理？", opts: ["直接退款", "回炉再烤", "换一家店"], a: 1, tr: "恐怕这份牛排几乎没熟——能让厨房再烤一会儿吗？" },
+                { text: "I'm afraid the steak is quite undercooked — could you ask the kitchen to grill it a little longer?", q: "说话人希望怎么处理？", opts: ["直接退款", "回炉再烤", "换一家店"], a: 1, tr: "恐怕这份牛排还很生——能让厨房再烤一会儿吗？" },
                 { text: "We're terribly sorry about the wait. Your drinks are on the house tonight.", q: "店家怎么补偿？", opts: ["退款", "饮品免费", "送代金券"], a: 1, tr: "非常抱歉让你们久等了。今晚的饮品由店家请客。" },
                 { text: "Since the order arrived an hour late, we'd like to offer you a voucher for your next meal.", q: "补偿方式是什么？", opts: ["现金退款", "下次用餐代金券", "免费重做"], a: 1, tr: "由于订单迟到了一小时，我们想送您一张下次用餐的代金券。" }
               ],
@@ -850,6 +850,173 @@ window.COURSES_EN = {
                 { text: "I'm afraid this isn't what I ordered.", tr: "恐怕这不是我点的菜。" },
                 { text: "Could we get a refund for the undercooked dish?", tr: "这道菜没熟透，可以退款吗？" },
                 { text: "Thank you for handling our complaint so quickly.", tr: "感谢你们这么快处理了我们的投诉。" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "en-u16",
+          name: "出行办事",
+          theme: "机场、打车与日常采买",
+          lessons: [
+            {
+              id: "en-l103",
+              title: "机场值机与登机",
+              minutes: 8,
+              xp: 50,
+              focus: "机场流程表达",
+              vocab: [
+                { t: "boarding pass", r: "/ˈbɔːrdɪŋ pæs/", m: "登机牌", ex: "May I see your boarding pass, please? —— 请出示您的登机牌。" },
+                { t: "carry-on", r: "/ˈkæri ɑːn/", m: "随身行李", ex: "You can bring one carry-on bag into the cabin. —— 您可以带一件随身行李上飞机。" },
+                { t: "gate", r: "/ɡeɪt/", m: "登机口", ex: "Flight CA208 boards at Gate 12. —— CA208 航班在 12 号登机口登机。" },
+                { t: "board", r: "/bɔːrd/", m: "登机；上（飞机）", ex: "Passengers in Row 20 can board the plane now. —— 20 排的旅客现在可以登机。" },
+                { t: "security check", r: "/sɪˈkjʊrəti tʃek/", m: "安检", ex: "Take out your laptop at the security check. —— 安检时请取出笔记本电脑。" },
+                { t: "departures", r: "/dɪˈpɑːrtʃərz/", m: "出发；出发大厅", ex: "The departures board shows all the flights for today. —— 出发信息屏显示今天所有的航班。" },
+                { t: "window seat", r: "/ˈwɪndoʊ siːt/", m: "靠窗座位", ex: "I'd like a window seat if possible. —— 如果可以，我想要靠窗的座位。" },
+                { t: "take off", r: "/teɪk ɔːf/", m: "起飞", ex: "Our plane takes off at 9:40. —— 我们的飞机九点四十起飞。" },
+                { t: "land", r: "/lænd/", m: "着陆；降落", ex: "We land in Shanghai just before noon. —— 我们中午前在上海降落。" },
+                { t: "luggage", r: "/ˈlʌɡɪdʒ/", m: "行李", ex: "How many pieces of luggage are you checking in? —— 您要托运几件行李？" }
+              ],
+              grammar: [
+                {
+                  point: "时间状语从句：when / as soon as + 一般现在时",
+                  rule: "主将从现——when / as soon as 从句用一般现在时表将来，主句用 will。",
+                  examples: ["When you check in, you'll get your boarding pass.", "We'll board as soon as the gate opens.", "When the plane lands, you can turn on your phone."],
+                  drills: [
+                    { q: "When the plane ___, you can move around.", opts: ["lands", "will land", "landed", "is landing"], a: 0, why: "主将从现：when 从句用一般现在时 lands，主句用 can。" },
+                    { q: "___ you arrive at the airport, please call me.", opts: ["When", "Where", "What", "Who"], a: 0, why: "表示“当……时”用 When 引导时间从句。" },
+                    { q: "We'll start boarding as soon as the gate ___.", opts: ["opens", "will open", "opened", "open"], a: 0, why: "as soon as 从句用一般现在时，主语 the gate 是单数，动词加 -s。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "Good morning. May I see your passport and boarding pass? — Here you are.", q: "工作人员要检查什么？", opts: ["护照和登机牌", "行李和钱包", "签证和机票"], a: 0, tr: "早上好。请出示您的护照和登机牌。—— 给您。" },
+                { text: "Attention please: Flight CA208 to London will now board at Gate 15 instead of Gate 9.", q: "航班改在几号登机口登机？", opts: ["9 号", "12 号", "15 号"], a: 2, tr: "请注意：飞往伦敦的 CA208 航班现在改到 15 号登机口登机。" },
+                { text: "Please place your carry-on bag on the belt and take out your laptop at the security check.", q: "安检时要求做什么？", opts: ["托运行李", "取出笔记本电脑", "关掉手机"], a: 1, tr: "请把随身行李放在传送带上，安检时取出笔记本电脑。" }
+              ],
+              speaking: [
+                { text: "Excuse me, where is Gate 12?", tr: "打扰一下，12 号登机口在哪里？" },
+                { text: "Our plane takes off at 9:40.", tr: "我们的飞机九点四十起飞。" }
+              ]
+            },
+            {
+              id: "en-l104",
+              title: "打车与出行",
+              minutes: 8,
+              xp: 50,
+              focus: "打车沟通表达",
+              vocab: [
+                { t: "taxi", r: "/ˈtæksi/", m: "出租车", ex: "It's easier to take a taxi than to wait for the bus. —— 打车比等公交更省事。" },
+                { t: "get in", r: "/ɡet ɪn/", m: "上车", ex: "Get in, please. I know a shortcut. —— 请上车，我知道一条近路。" },
+                { t: "destination", r: "/ˌdestəˈneɪʃn/", m: "目的地", ex: "The driver entered the destination into his phone. —— 司机把目的地输进了手机。" },
+                { t: "meter", r: "/ˈmiːtər/", m: "计价器", ex: "The fare is shown on the meter. —— 车费显示在计价器上。" },
+                { t: "traffic", r: "/ˈtræfɪk/", m: "交通；车流", ex: "Sorry I'm late — the traffic was terrible. —— 抱歉我迟到了，路上太堵了。" },
+                { t: "rush hour", r: "/ˈrʌʃ ˌaʊər/", m: "高峰时段", ex: "Try to avoid rush hour in the morning. —— 尽量避开早高峰。" },
+                { t: "seat belt", r: "/ˈsiːt belt/", m: "安全带", ex: "Please fasten your seat belt before we start. —— 出发前请系好安全带。" },
+                { t: "address", r: "/əˈdres/", m: "地址", ex: "Could you repeat the address? I didn't catch it. —— 能重复一下地址吗？我没听清。" },
+                { t: "pick up", r: "/ˈpɪk ʌp/", m: "接载；接（人）", ex: "The taxi will pick you up at eight tomorrow morning. —— 出租车明早八点来接你。" },
+                { t: "drop off", r: "/ˈdrɑːp ɔːf/", m: "让……下车；送至", ex: "Could you drop me off at Terminal 2? —— 能送我到 2 号航站楼吗？" }
+              ],
+              grammar: [
+                {
+                  point: "可分动词短语：pick up / drop off",
+                  rule: "宾语是名词时可放中间或短语后：drop the guest off / drop off the guest；宾语是代词时必须放中间：drop me off。",
+                  examples: ["The driver picked us up at nine.", "Could you drop me off at Terminal 2?", "He picked up the tickets on the way home."],
+                  drills: [
+                    { q: "Could you drop ___ at the museum?", opts: ["me off", "off me", "I off", "off I"], a: 0, why: "代词作宾语必须放在动词短语中间：drop me off。" },
+                    { q: "The taxi will pick ___ at the hotel at six.", opts: ["us up", "up us", "we up", "up we"], a: 0, why: "代词 us 放在 pick 和 up 之间。" },
+                    { q: "I'll ___ you up at the airport at noon.", opts: ["pick", "picking", "picked", "picks"], a: 0, why: "will 后接动词原形 pick。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "Where to, sir? — The Grand Hotel on Park Road, please.", q: "乘客要去哪里？", opts: ["机场", "公园路的大酒店", "火车站"], a: 1, tr: "先生，去哪里？——麻烦去公园路的大酒店。" },
+                { text: "The traffic is really heavy on the highway. It may take another twenty minutes.", q: "为什么还需要二十分钟？", opts: ["走错了路", "路上堵车", "车坏了"], a: 1, tr: "高速公路上非常拥堵，可能还要二十分钟。" },
+                { text: "That comes to thirty-five dollars. — Here's forty. Keep the change, please.", q: "乘客让司机怎么做？", opts: ["慢慢开", "不用找零", "开发票"], a: 1, tr: "一共三十五美元。——这是四十，不用找零了。" }
+              ],
+              speaking: [
+                { text: "Could you drop me off at Terminal 2, please?", tr: "麻烦送我到 2 号航站楼。" },
+                { text: "How long does it take to get downtown?", tr: "到市中心要花多长时间？" }
+              ]
+            },
+            {
+              id: "en-l105",
+              title: "超市购物",
+              minutes: 8,
+              xp: 50,
+              focus: "超市购物表达",
+              vocab: [
+                { t: "groceries", r: "/ˈɡroʊsəriz/", m: "食品杂货", ex: "I do the groceries every Saturday morning. —— 我每周六早上采购食品杂货。" },
+                { t: "aisle", r: "/aɪl/", m: "货架通道", ex: "Milk is in aisle three, next to the cheese. —— 牛奶在第三条通道，奶酪旁边。" },
+                { t: "cart", r: "/kɑːrt/", m: "购物车", ex: "Grab a cart — we're buying a lot today. —— 拿辆购物车吧，今天要买很多东西。" },
+                { t: "checkout", r: "/ˈtʃekaʊt/", m: "收银台；结账", ex: "Only two people are waiting at the checkout. —— 收银台前只有两个人在排队。" },
+                { t: "fresh", r: "/freʃ/", m: "新鲜的", ex: "These strawberries are fresh from the farm. —— 这些草莓是农场新鲜送来的。" },
+                { t: "frozen", r: "/ˈfroʊzn/", m: "冷冻的", ex: "We always keep some frozen dumplings at home. —— 我们家常备一些速冻饺子。" },
+                { t: "expire", r: "/ɪkˈspaɪər/", m: "到期；过期", ex: "Check the date — this yogurt expires tomorrow. —— 看一下日期，这盒酸奶明天到期。" },
+                { t: "brand", r: "/brænd/", m: "品牌；牌子", ex: "This brand is cheaper but just as good. —— 这个牌子更便宜，但一样好。" },
+                { t: "out of stock", r: "/aʊt əv stɑːk/", m: "缺货", ex: "Sorry, this juice is out of stock today. —— 抱歉，这款果汁今天缺货。" },
+                { t: "organic", r: "/ɔːrˈɡænɪk/", m: "有机的", ex: "I prefer organic vegetables for salads. —— 拌沙拉我更喜欢用有机蔬菜。" }
+              ],
+              grammar: [
+                {
+                  point: "不可数名词的数量：a + 量词 + of",
+                  rule: "不可数名词用「a / 数词 + 量词 + of」表示数量：a bottle of milk, two loaves of bread。",
+                  examples: ["I need a bottle of cooking oil.", "We bought two loaves of bread.", "Could you get a dozen eggs?"],
+                  drills: [
+                    { q: "Please buy two ___ of bread.", opts: ["loaves", "loafs", "loaf", "loafes"], a: 0, why: "loaf 的复数是 loaves（f 变 ves）。" },
+                    { q: "I'd like ___ milk, please.", opts: ["a bottle of", "a bottle", "bottle of", "two bottle of"], a: 0, why: "milk 不可数，用 a bottle of milk 表示数量。" },
+                    { q: "We need ___ eggs for the cake.", opts: ["a dozen", "a dozen of", "dozen", "dozens"], a: 0, why: "a dozen eggs 表示“一打鸡蛋”，前面有 a 时 dozen 后不加 of。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "Excuse me, where can I find the milk? — It's in aisle three, next to the cheese.", q: "牛奶在哪里？", opts: ["第三条通道", "第五条通道", "收银台旁边"], a: 0, tr: "打扰一下，牛奶在哪里？——在第三条通道，奶酪旁边。" },
+                { text: "Sorry, this bread is out of stock, but the brown bread on the shelf is fresh from this morning.", q: "哪种面包可以买？", opts: ["这款面包", "货架上的黑面包", "冷冻面包"], a: 1, tr: "抱歉，这种面包缺货了，货架上的黑面包是今早新鲜出炉的。" },
+                { text: "The total is twenty-six dollars and fifty cents. Do you need a bag?", q: "总共多少钱？", opts: ["26.5 美元", "26.15 美元", "62.5 美元"], a: 0, tr: "总共二十六美元五十美分，需要袋子吗？" }
+              ],
+              speaking: [
+                { text: "Excuse me, where is the checkout?", tr: "打扰一下，收银台在哪里？" },
+                { text: "I'd like two loaves of bread and a dozen eggs.", tr: "我要两条面包和一打鸡蛋。" }
+              ]
+            },
+            {
+              id: "en-l106",
+              title: "理发与发型",
+              minutes: 8,
+              xp: 50,
+              focus: "理发服务表达",
+              vocab: [
+                { t: "haircut", r: "/ˈherkʌt/", m: "理发；发型", ex: "You need a haircut before the interview. —— 面试前你该理发了。" },
+                { t: "trim", r: "/trɪm/", m: "修剪", ex: "Just a trim, please. Don't cut too much. —— 只修一下就好，别剪太多。" },
+                { t: "hairdresser", r: "/ˈherdresər/", m: "理发师；美发师", ex: "My hairdresser always knows what suits me. —— 我的发型师总是知道什么适合我。" },
+                { t: "shampoo", r: "/ʃæmˈpuː/", m: "洗发水；洗头", ex: "Is shampoo included in the price? —— 价格包含洗头吗？" },
+                { t: "bangs", r: "/bæŋz/", m: "刘海", ex: "Could you cut my bangs a little shorter? —— 能把我的刘海剪短一点吗？" },
+                { t: "curly", r: "/ˈkɜːrli/", m: "卷曲的", ex: "Her curly hair is hard to manage. —— 她的卷发不太好打理。" },
+                { t: "straight", r: "/streɪt/", m: "直的；笔直的", ex: "I'd love to have straight hair like yours. —— 我真想像你一样有一头直发。" },
+                { t: "dye", r: "/daɪ/", m: "染（发）；染料", ex: "She dyed her hair dark brown last month. —— 她上个月把头发染成了深棕色。" },
+                { t: "mirror", r: "/ˈmɪrər/", m: "镜子", ex: "Can I see the back in the mirror? —— 我能在镜子里看看后面吗？" },
+                { t: "style", r: "/staɪl/", m: "发型；造型", ex: "This new style really suits you. —— 这个新发型真的很适合你。" }
+              ],
+              grammar: [
+                {
+                  point: "have / get sth done（请人做某事）",
+                  rule: "have / get + 宾语 + 过去分词，表示请别人做某事：I had my hair cut（我理了发）。",
+                  examples: ["I had my hair cut yesterday.", "She got her hair dyed last week.", "Where did you get your hair done?"],
+                  drills: [
+                    { q: "I need to get my hair ___ before the wedding.", opts: ["cut", "cutting", "to cut", "cuts"], a: 0, why: "get sth done 中用过去分词，cut 的过去分词仍是 cut。" },
+                    { q: "She had her hair ___ at the new salon.", opts: ["dyed", "dye", "dyeing", "to dye"], a: 0, why: "have sth done 用过去分词 dyed。" },
+                    { q: "Where did you get your hair ___? It looks great!", opts: ["done", "do", "doing", "does"], a: 0, why: "get sth done，done 作宾语补足语。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "How would you like your hair cut? — Just a trim, and please keep the length on the sides.", q: "顾客想怎么剪？", opts: ["剪短很多", "只修剪、两边保留长度", "剃光"], a: 1, tr: "您想怎么剪？——只修剪一下，两边请保留长度。" },
+                { text: "Is shampoo included? — Yes, wash, cut, and blow-dry are all included in the price.", q: "价格包含什么？", opts: ["洗剪吹", "染发", "护理"], a: 0, tr: "包含洗头吗？——是的，洗剪吹都包含在价格里。" },
+                { text: "I'd like to dye my hair a darker color. This brown looks natural.", q: "顾客想染什么颜色？", opts: ["更深的棕色", "金色", "红色"], a: 0, tr: "我想把头发染成更深的颜色，这种棕色看起来很自然。" }
+              ],
+              speaking: [
+                { text: "Just a trim, please. Don't cut too much.", tr: "只修一下就好，别剪太多。" },
+                { text: "I'd like to make an appointment for a haircut.", tr: "我想预约理发。" }
               ]
             }
           ]
@@ -1314,6 +1481,173 @@ window.COURSES_EN = {
                 { text: "To sum up, small actions add up to big changes.", tr: "总而言之，小行动累积成大改变。" },
                 { text: "The main takeaway is that preparation matters more than talent.", tr: "核心要点是：准备比天赋更重要。" },
                 { text: "It is practice, not talent, that makes the difference.", tr: "真正起作用的是练习，而不是天赋。" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "en-u17",
+          name: "职场与安居",
+          theme: "面试、银行、租房与药店",
+          lessons: [
+            {
+              id: "en-l107",
+              title: "求职面试",
+              minutes: 8,
+              xp: 50,
+              focus: "面试问答表达",
+              vocab: [
+                { t: "resume", r: "/ˈrezəmeɪ/", m: "简历", ex: "Please bring two printed copies of your resume. —— 请带两份打印好的简历。" },
+                { t: "apply", r: "/əˈplaɪ/", m: "申请", ex: "I applied for this position online last week. —— 我上周在网上申请了这个职位。" },
+                { t: "position", r: "/pəˈzɪʃn/", m: "职位；位置", ex: "We have an open position for a designer. —— 我们有一个设计师职位空缺。" },
+                { t: "strength", r: "/streŋθ/", m: "优势；长处", ex: "My greatest strength is staying calm under pressure. —— 我最大的优点是能在压力下保持冷静。" },
+                { t: "weakness", r: "/ˈwiːknəs/", m: "弱点；不足", ex: "Choose a weakness you are truly working on. —— 选一个你确实在改进的不足来谈。" },
+                { t: "experience", r: "/ɪkˈspɪriəns/", m: "经验；经历", ex: "I have three years of experience in sales. —— 我有三年销售经验。" },
+                { t: "salary", r: "/ˈsæləri/", m: "薪水", ex: "Let's discuss salary after the offer. —— 等拿到录用再谈薪水吧。" },
+                { t: "hire", r: "/ˈhaɪər/", m: "聘用；雇用", ex: "They decided to hire two new engineers. —— 他们决定聘用两名新工程师。" },
+                { t: "qualification", r: "/ˌkwɑːlɪfɪˈkeɪʃn/", m: "资格；资历", ex: "A teaching certificate is the main qualification for this job. —— 教师资格证是这份工作的主要资质要求。" },
+                { t: "confidence", r: "/ˈkɑːnfɪdəns/", m: "自信；信心", ex: "Answer every question with confidence. —— 自信地回答每一个问题。" }
+              ],
+              grammar: [
+                {
+                  point: "面试高频介词搭配：good at / responsible for / experience in",
+                  rule: "固定搭配记介词：be good at + 名词/动名词，be responsible for + 名词/动名词，experience in + 领域。",
+                  examples: ["I'm good at solving problems.", "She was responsible for training new staff.", "He has a lot of experience in marketing."],
+                  drills: [
+                    { q: "I'm good at ___ with different teams.", opts: ["communicating", "communicate", "to communicate", "communicated"], a: 0, why: "be good at 后接动名词 communicating。" },
+                    { q: "She is responsible ___ training new staff.", opts: ["for", "at", "on", "to"], a: 0, why: "be responsible for 是固定搭配。" },
+                    { q: "He has five years of experience ___ marketing.", opts: ["in", "at", "on", "for"], a: 0, why: "experience in + 领域 是固定搭配。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "First, tell me a little about yourself and your previous role.", q: "面试官先要求什么？", opts: ["自我介绍", "谈薪资", "提问公司"], a: 0, tr: "首先，请简单介绍一下你自己和你之前的工作。" },
+                { text: "I left my last job because I want to grow in a bigger team and take on more challenges.", q: "求职者为什么离职？", opts: ["被辞退", "想寻求更大发展", "公司倒闭"], a: 1, tr: "我离开上一份工作，是因为我想在更大的团队里成长，承担更多挑战。" },
+                { text: "When can you start? — Next Monday. I just need to wrap up my current project this week.", q: "求职者何时能入职？", opts: ["本周一", "下周一", "下个月"], a: 1, tr: "你什么时候能到岗？——下周一，我这周只需把手头的项目收尾。" }
+              ],
+              speaking: [
+                { text: "I have three years of experience in customer service.", tr: "我有三年客户服务经验。" },
+                { text: "I'm a quick learner and I enjoy working in a team.", tr: "我学东西很快，喜欢团队合作。" }
+              ]
+            },
+            {
+              id: "en-l108",
+              title: "银行与换汇",
+              minutes: 8,
+              xp: 50,
+              focus: "银行业务表达",
+              vocab: [
+                { t: "open an account", r: "/ˈoʊpən ən əˈkaʊnt/", m: "开设账户", ex: "I'd like to open an account, please. —— 我想开一个账户。" },
+                { t: "savings account", r: "/ˈseɪvɪŋz əˌkaʊnt/", m: "储蓄账户", ex: "A savings account earns a little interest. —— 储蓄账户有一点利息。" },
+                { t: "withdraw", r: "/wɪðˈdrɔː/", m: "取款；提取", ex: "You can withdraw up to five hundred dollars a day. —— 每天最多可取五百美元。" },
+                { t: "balance", r: "/ˈbæləns/", m: "余额", ex: "Your account balance is three hundred and twenty dollars. —— 您的账户余额是三百二十美元。" },
+                { t: "exchange rate", r: "/ɪksˈtʃeɪndʒ reɪt/", m: "汇率", ex: "The exchange rate is better at the bank than at the airport. —— 银行的汇率比机场划算。" },
+                { t: "currency", r: "/ˈkɜːrənsi/", m: "货币", ex: "Which currency do you need — euros or yen? —— 您需要哪种货币，欧元还是日元？" },
+                { t: "transfer", r: "/trænsˈfɜːr/", m: "转账；转移", ex: "She transfers money to her parents every month. —— 她每月都给父母转账。" },
+                { t: "fee", r: "/fiː/", m: "手续费；费用", ex: "There is a small fee for international transfers. —— 国际转账要收一点手续费。" },
+                { t: "PIN", r: "/ˌpiː aɪ ˈen/", m: "个人密码", ex: "Never tell anyone your PIN. —— 千万别把密码告诉任何人。" },
+                { t: "ID", r: "/ˌaɪ ˈdiː/", m: "身份证明", ex: "You need a valid ID to open an account. —— 开户需要有效身份证件。" }
+              ],
+              grammar: [
+                {
+                  point: "动词不定式表目的：to + 动词原形",
+                  rule: "to + 动词原形放在句末表示目的：I came here to open an account（为了开户）。",
+                  examples: ["I came here to open an account.", "She went to the bank to exchange some currency.", "You need an ID to apply for the card."],
+                  drills: [
+                    { q: "I'm here ___ some money.", opts: ["to deposit", "for deposit", "depositing", "deposited"], a: 0, why: "表目的用 to + 动词原形：to deposit some money。" },
+                    { q: "You need a passport ___ an account.", opts: ["to open", "opening", "opened", "open"], a: 0, why: "不定式 to open an account 表示目的。" },
+                    { q: "She went to the bank ___ the exchange rate.", opts: ["to ask about", "for ask", "to asking about", "ask about"], a: 0, why: "表目的用 to + 动词原形：to ask about。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "I'd like to open a savings account. What documents do I need?", q: "顾客想办理什么业务？", opts: ["兑换货币", "开设储蓄账户", "挂失银行卡"], a: 1, tr: "我想开一个储蓄账户，需要什么材料？" },
+                { text: "The exchange rate today is one to seven point two, and there is a two percent service fee.", q: "手续费是多少？", opts: ["百分之一", "百分之二", "百分之七"], a: 1, tr: "今天汇率是 1 比 7.2，要收百分之二的手续费。" },
+                { text: "Your card was kept by the machine because you entered the wrong PIN three times.", q: "卡被机器扣住的原因是什么？", opts: ["余额不足", "密码连错三次", "机器故障"], a: 1, tr: "您的卡被机器扣住了，因为密码连错了三次。" }
+              ],
+              speaking: [
+                { text: "I'd like to exchange some US dollars for euros.", tr: "我想把一些美元换成欧元。" },
+                { text: "Could you tell me my account balance?", tr: "能告诉我账户余额吗？" }
+              ]
+            },
+            {
+              id: "en-l109",
+              title: "租房看房",
+              minutes: 8,
+              xp: 50,
+              focus: "租房沟通表达",
+              vocab: [
+                { t: "rent", r: "/rent/", m: "租金；租用", ex: "The rent is two thousand a month, utilities included. —— 租金每月两千，含水电费。" },
+                { t: "landlord", r: "/ˈlændlɔːrd/", m: "房东", ex: "Ask the landlord before you paint the walls. —— 刷墙之前先问过房东。" },
+                { t: "tenant", r: "/ˈtenənt/", m: "房客；租户", ex: "The tenant pays the rent on the first of each month. —— 房客每月一号交房租。" },
+                { t: "lease", r: "/liːs/", m: "租约；租期", ex: "Read the lease carefully before signing it. —— 签字前请仔细阅读租约。" },
+                { t: "deposit", r: "/dɪˈpɑːzɪt/", m: "押金", ex: "You'll get the deposit back when you move out. —— 搬走时押金会退还。" },
+                { t: "furnished", r: "/ˈfɜːrnɪʃt/", m: "带家具的", ex: "Is the apartment furnished or unfurnished? —— 这套公寓带不带家具？" },
+                { t: "utilities", r: "/juːˈtɪlətiz/", m: "水电等费用", ex: "Utilities are not included in the rent. —— 水电费不包含在租金里。" },
+                { t: "neighborhood", r: "/ˈneɪbərhʊd/", m: "街区；社区", ex: "The neighborhood is quiet and safe. —— 这个街区安静又安全。" },
+                { t: "move in", r: "/ˈmuːv ɪn/", m: "搬入；迁入", ex: "When can I move in? —— 我什么时候能搬进来？" },
+                { t: "agency", r: "/ˈeɪdʒənsi/", m: "中介；机构", ex: "We found the apartment through an agency. —— 我们是通过中介找到这套房子的。" }
+              ],
+              grammar: [
+                {
+                  point: "must / have to 表必要与禁止",
+                  rule: "must / have to + 动词原形表示必要；mustn't 表禁止，don't have to 表不必。",
+                  examples: ["You have to sign the lease first.", "We must pay the deposit before moving in.", "You don't have to buy furniture — it's furnished."],
+                  drills: [
+                    { q: "Tenants ___ pay the rent on the first of each month.", opts: ["have to", "has to", "having to", "to have"], a: 0, why: "主语 Tenants 是复数，用 have to。" },
+                    { q: "You ___ park here — it's for the landlord only.", opts: ["mustn't", "don't have to", "needn't", "don't need"], a: 0, why: "表示禁止用 mustn't；don't have to / needn't 表示“不必”。" },
+                    { q: "The apartment comes furnished, so you ___ buy any furniture.", opts: ["don't have to", "must not", "can't", "couldn't"], a: 0, why: "表示“没有必要”用 don't have to。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "The apartment is on the third floor. It gets lots of sunshine, and the rent is eighteen hundred a month with utilities included.", q: "房租多少、含不含水电？", opts: ["一千八，含水电", "两千，不含水电", "一千八，不含水电"], a: 0, tr: "公寓在三楼，采光很好，月租一千八，含水电费。" },
+                { text: "You'll need to pay one month's rent as a deposit, and the lease is for twelve months.", q: "押金是多少？", opts: ["一个月房租", "两个月房租", "十二个月房租"], a: 0, tr: "您需要付一个月的房租作为押金，租期十二个月。" },
+                { text: "The subway station is ten minutes away on foot, and there's a supermarket right across the street.", q: "房源周边有什么？", opts: ["地铁站和超市", "健身房和公园", "学校和医院"], a: 0, tr: "步行十分钟到地铁站，马路对面就有一家超市。" }
+              ],
+              speaking: [
+                { text: "Is the apartment furnished? Are utilities included?", tr: "公寓带家具吗？水电费包含吗？" },
+                { text: "I'd like to see the apartment this weekend. Is it still available?", tr: "我想这周末看看房子，还空着吗？" }
+              ]
+            },
+            {
+              id: "en-l110",
+              title: "药店买药",
+              minutes: 8,
+              xp: 50,
+              focus: "买药与用药说明",
+              vocab: [
+                { t: "pharmacy", r: "/ˈfɑːrməsi/", m: "药店", ex: "Is there a 24-hour pharmacy near here? —— 这附近有 24 小时药店吗？" },
+                { t: "pharmacist", r: "/ˈfɑːrmsɪst/", m: "药剂师", ex: "Ask the pharmacist before you mix medicines. —— 混用药之前先咨询药剂师。" },
+                { t: "painkiller", r: "/ˈpeɪnˌkɪlər/", m: "止痛药", ex: "This painkiller works within twenty minutes. —— 这种止痛药二十分钟内起效。" },
+                { t: "cough syrup", r: "/ˈkɔːf ˌsɜːrəp/", m: "止咳糖浆", ex: "Take a spoonful of cough syrup before bed. —— 睡前喝一勺止咳糖浆。" },
+                { t: "pill", r: "/pɪl/", m: "药片", ex: "Swallow the pill whole with water. —— 用水整片吞服药片。" },
+                { t: "dosage", r: "/ˈdoʊsɪdʒ/", m: "剂量", ex: "Follow the dosage on the label. —— 请按标签上的剂量服用。" },
+                { t: "side effect", r: "/ˈsaɪd ɪˌfekt/", m: "副作用", ex: "Drowsiness is a common side effect of this medicine. —— 嗜睡是这种药的常见副作用。" },
+                { t: "allergy", r: "/ˈælərdʒi/", m: "过敏（症）", ex: "Do you have any allergies to medicine? —— 您对药物过敏吗？" },
+                { t: "over-the-counter", r: "/ˌoʊvər ðə ˈkaʊntər/", m: "非处方的", ex: "You can buy it over the counter — no prescription needed. —— 这药不用处方就能买到。" },
+                { t: "antibiotic", r: "/ˌæntibaɪˈɑːtɪk/", m: "抗生素", ex: "Finish the antibiotic even if you feel better. —— 即使感觉好转，也要把抗生素吃完。" }
+              ],
+              grammar: [
+                {
+                  point: "advise / tell / remind sb to do sth",
+                  rule: "advise / tell / remind + 某人 + to do，表示建议/告诉/提醒某人做某事；否定在 to 前加 not。",
+                  examples: ["The pharmacist advised me to take the pills with food.", "The doctor told me to rest for two days.", "Please remind me to take the medicine at noon."],
+                  drills: [
+                    { q: "The doctor advised me ___ the medicine on time.", opts: ["to take", "taking", "take", "took"], a: 0, why: "advise sb to do sth 用不定式。" },
+                    { q: "Please remind him ___ the pill at noon.", opts: ["to take", "taking", "take", "taken"], a: 0, why: "remind sb to do sth 用不定式。" },
+                    { q: "The pharmacist told ___ not to take two painkillers together.", opts: ["me", "to me", "for me", "with me"], a: 0, why: "tell sb sth 中 sb 用宾格 me，前面不加介词。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "What are your symptoms? — I've had a runny nose and a mild headache since yesterday.", q: "顾客有什么症状？", opts: ["流鼻涕和轻微头痛", "发烧和咳嗽", "胃痛和头晕"], a: 0, tr: "您有什么症状？——从昨天起一直流鼻涕，还有轻微头痛。" },
+                { text: "Take one tablet twice a day after meals. If you feel drowsy, don't drive.", q: "用药注意事项是什么？", opts: ["空腹服用", "一天两次、服后别开车", "一次两片"], a: 1, tr: "一次一片，一天两次，饭后服用。如果感到嗜睡，请不要开车。" },
+                { text: "This one is prescription-only, but you can buy the smaller pack over the counter.", q: "小包装的药怎么买？", opts: ["需要处方", "不用处方直接买", "只能网购"], a: 1, tr: "这种是处方药，但小包装的可以不用处方直接购买。" }
+              ],
+              speaking: [
+                { text: "Do you have anything for a sore throat?", tr: "有治嗓子痛的药吗？" },
+                { text: "How often should I take this medicine?", tr: "这药我该多久吃一次？" }
               ]
             }
           ]

@@ -23,6 +23,7 @@ for (const lang of targets) {
     U.writeJson(f, data, false);
   }
   U.log("  " + lang + "：释义 " + (tot.m || 0) + " / 读音 " + (tot.r || 0) + " / 词形 " + (tot.t || 0) +
-    " / 删词 " + (tot.drop || 0) + " / 改译文 " + (tot.exTr || 0) + " / 删例句 " + (tot.exDrop || 0));
+    " / 删词 " + (tot.drop || 0) + " / 改译文 " + (tot.exTr || 0) + " / 删例句 " + (tot.exDrop || 0) +
+    " / 新增例句 " + (tot.addEx || 0));
 }
 writeSiteSummary(["en", "ja", "ko"]);
