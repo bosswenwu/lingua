@@ -1,0 +1,85 @@
+{
+  "examples": {
+    "Do you have a drug problem?": {
+      "drop": true
+    },
+    "Tom died of a drug overdose.": {
+      "drop": true
+    },
+    "Tom has a long history of drug abuse.": {
+      "drop": true
+    },
+    "I slapped his face.": {
+      "drop": true
+    },
+    "We are a couple.": {
+      "drop": true
+    },
+    "What a charming couple!": {
+      "drop": true
+    },
+    "He lost his most beloved son.": {
+      "drop": true
+    },
+    "They are sure to fall in love.": {
+      "drop": true
+    },
+    "We can't get close to the enemy.": {
+      "drop": true
+    },
+    "We regret his death.": {
+      "drop": true
+    },
+    "The news of his death spread.": {
+      "drop": true
+    },
+    "Lay down all arms.": {
+      "drop": true
+    },
+    "Do I sound in love?": {
+      "drop": true
+    },
+    "Marriage is the main cause of all divorces.": {
+      "drop": true
+    },
+    "He died recently.": {
+      "drop": true
+    },
+    "I feel like another beer.": {
+      "drop": true
+    },
+    "Nobody can avoid death.": {
+      "drop": true
+    },
+    "This was a premeditated crime.": {
+      "drop": true
+    },
+    "Drop the knife!": {
+      "drop": true
+    },
+    "Tom is Mary's former husband.": {
+      "drop": true
+    },
+    "Lobbyists for the bill funneled bribes into a campaign fund.": {
+      "drop": true
+    },
+    "Their love has gone to the next level.": {
+      "drop": true
+    },
+    "Tom nearly died tonight.": {
+      "drop": true
+    },
+    "Please don't shoot.": {
+      "drop": true
+    },
+    "We shall all die some day.": {
+      "drop": true
+    },
+    "Some musicians drink on stage.": {
+      "drop": true
+    },
+    "Have you ever gone to a Spanish bar?": {
+      "drop": true
+    }
+  }
+}

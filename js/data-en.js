@@ -399,6 +399,252 @@ window.COURSES_EN = {
               ]
             }
           ]
+        },
+        {
+          id: "en-u18",
+          name: "初一上 · 同步",
+          theme: "人教七上同步：结识、家庭、文具、球类、食物与购物",
+          lessons: [
+            {
+              id: "en-l111",
+              title: "自我介绍与朋友",
+              minutes: 8,
+              xp: 50,
+              focus: "结识新朋友表达",
+              vocab: [
+                { t: "name", r: "/neɪm/", m: "名字", ex: "Please write your name here. —— 请把你的名字写在这里。" },
+                { t: "first name", r: "/fɜːrst neɪm/", m: "名字", ex: "Gina is her first name. —— Gina 是她的名字。" },
+                { t: "last name", r: "/læst neɪm/", m: "姓氏", ex: "Green is her last name. —— Green 是她的姓。" },
+                { t: "telephone", r: "/ˈtelɪfoʊn/", m: "电话；电话机", ex: "My telephone is new. —— 我的电话机是新的。" },
+                { t: "number", r: "/ˈnʌmbər/", m: "号码；数字", ex: "What's your phone number? —— 你的电话号码是多少？" },
+                { t: "friend", r: "/frend/", m: "朋友", ex: "Tom is my good friend. —— Tom 是我的好朋友。" },
+                { t: "classmate", r: "/ˈklæsmeɪt/", m: "同班同学", ex: "Lily is my new classmate. —— Lily 是我的新同学。" },
+                { t: "meet", r: "/miːt/", m: "遇见；结识", ex: "I meet my friends at school. —— 我在学校和朋友们见面。" },
+                { t: "Ms", r: "/mɪz/", m: "女士", ex: "Ms Gao is our English teacher. —— 高老师是我们的英语老师。" },
+                { t: "welcome", r: "/ˈwelkəm/", m: "欢迎", ex: "Welcome to our class! —— 欢迎来到我们班！" }
+              ],
+              grammar: [
+                {
+                  point: "be 动词疑问句与缩写（What's / I'm / name's）",
+                  rule: "疑问句把 am/is/are 提到主语前；陈述句里主语和 be 常缩写：What's your name? — My name's Gina.",
+                  examples: ["What's your name? — My name's Gina.", "Are you a student? — Yes, I am.", "She isn't my classmate. She's my friend."],
+                  drills: [
+                    { q: "___ your name? — My name's Gina.", opts: ["What's", "What", "How's", "Who"], a: 0, why: "询问名字用 What's your name?，What's 是 What is 的缩写，不能丢掉 be 动词。" },
+                    { q: "___ you in Class 3?", opts: ["Am", "Is", "Are", "Do"], a: 2, why: "主语 you 固定搭配 are；Am 只跟 I，Is 只跟 he/she/it 等单数主语。" },
+                    { q: "Tom ___ my brother. He is my friend.", opts: ["isn't", "aren't", "am not", "doesn't"], a: 0, why: "Tom 是第三人称单数，be 动词用 is，否定缩写为 isn't；doesn't 后必须接动词原形。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "What's your name? — My name's Gina Green.", q: "女孩的名字是什么？", opts: ["Gina Green", "Mary Green", "Gina Miller"], a: 0, tr: "——你叫什么名字？——我叫 Gina Green。" },
+                { text: "Is this your new classmate? — Yes, he's in Class 3.", q: "说话人在谈论谁？", opts: ["老师", "新同学", "哥哥"], a: 1, tr: "——这是你的新同学吗？——是的，他在三班。" },
+                { text: "My telephone number is five, five, five, eight, zero, four, six.", q: "电话号码前三位是多少？", opts: ["555", "232", "804"], a: 0, tr: "我的电话号码是 555-8046。" }
+              ],
+              speaking: [
+                { text: "What's your name? My name's Li Lei.", tr: "你叫什么名字？我叫李雷。" },
+                { text: "Nice to meet you. Welcome to our class!", tr: "很高兴认识你，欢迎来到我们班！" }
+              ]
+            },
+            {
+              id: "en-l112",
+              title: "这是我的妹妹",
+              minutes: 8,
+              xp: 50,
+              focus: "介绍家人表达",
+              vocab: [
+                { t: "sister", r: "/ˈsɪstər/", m: "姐；妹", ex: "This is my sister Kate. —— 这是我妹妹 Kate。" },
+                { t: "brother", r: "/ˈbrʌðər/", m: "兄；弟", ex: "My brother is only five. —— 我弟弟只有五岁。" },
+                { t: "grandmother", r: "/ˈɡrænmʌðər/", m: "祖母；外祖母", ex: "My grandmother is seventy years old. —— 我奶奶七十岁了。" },
+                { t: "grandfather", r: "/ˈɡrænfɑːðər/", m: "祖父；外祖父", ex: "His grandfather takes a walk every day. —— 他爷爷每天散步。" },
+                { t: "cousin", r: "/ˈkʌzn/", m: "堂（表）兄弟姐妹", ex: "Those are my cousins over there. —— 那边那些是我的表兄弟姐妹。" },
+                { t: "photo", r: "/ˈfoʊtoʊ/", m: "照片", ex: "Here is a photo of my family. —— 这是一张我的全家福。" },
+                { t: "these", r: "/ðiːz/", m: "这些", ex: "These are my friends, Amy and Ann. —— 这些是我的朋友 Amy 和 Ann。" },
+                { t: "those", r: "/ðoʊz/", m: "那些", ex: "Who are those girls? —— 那些女孩是谁？" },
+                { t: "who", r: "/huː/", m: "谁", ex: "Who's the girl in red? —— 穿红衣服的那个女孩是谁？" }
+              ],
+              grammar: [
+                {
+                  point: "This is... / These are... 介绍人物（指示代词与单复数）",
+                  rule: "近处单个的人或物用 This is...，复数用 These are...；远处用 That is... / Those are...；问人用 Who's this/that?",
+                  examples: ["This is my sister Mary.", "These are my brothers.", "Those are my grandparents.", "Who's that girl? — She's my cousin."],
+                  drills: [
+                    { q: "___ is my sister Mary, and these are my parents.", opts: ["This", "These", "Those", "They"], a: 0, why: "介绍单个的人用 This is...；后句 these are 是复数对比。" },
+                    { q: "___ are my brothers over there.", opts: ["Those", "This", "That", "It"], a: 0, why: "brothers 是复数且在远处，用 Those are...；This/That 只接单数。" },
+                    { q: "Who's that boy? — ___ my cousin Jack.", opts: ["He's", "His", "He", "Him"], a: 0, why: "回答要完整：He's = He is；His 是“他的”，后面不能直接接 be 动词。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "This is my sister Kate, and that's my brother Jim.", q: "Kate 是说话人的什么人？", opts: ["姐姐或妹妹", "妈妈", "表姐"], a: 0, tr: "这是我妹妹 Kate，那是我哥哥 Jim。" },
+                { text: "Who are those two girls? — They're my cousins, Amy and Ann.", q: "那两个女孩是谁？", opts: ["说话人的表姐妹", "说话人的同学", "说话人的老师"], a: 0, tr: "——那两个女孩是谁？——她们是我的表姐妹 Amy 和 Ann。" },
+                { text: "Look at this photo. These are my grandparents.", q: "照片里是谁？", opts: ["说话人的祖父母", "说话人的父母", "说话人的朋友"], a: 0, tr: "看这张照片。这两位是我的祖父母。" }
+              ],
+              speaking: [
+                { text: "This is my sister, and these are my parents.", tr: "这是我妹妹，这两位是我的父母。" },
+                { text: "Who's that girl? She's my cousin Kate.", tr: "那个女孩是谁？她是我的表姐 Kate。" }
+              ]
+            },
+            {
+              id: "en-l113",
+              title: "学期用品",
+              minutes: 8,
+              xp: 50,
+              focus: "文具与失物招领",
+              vocab: [
+                { t: "eraser", r: "/ɪˈreɪsər/", m: "橡皮", ex: "Is this your eraser? —— 这是你的橡皮吗？" },
+                { t: "ruler", r: "/ˈruːlər/", m: "尺子", ex: "I draw lines with a ruler. —— 我用尺子画线。" },
+                { t: "dictionary", r: "/ˈdɪkʃəneri/", m: "词典；字典", ex: "Look up the word in a dictionary. —— 在词典里查这个词。" },
+                { t: "schoolbag", r: "/ˈskuːlbæɡ/", m: "书包", ex: "My schoolbag is blue and white. —— 我的书包是蓝白相间的。" },
+                { t: "watch", r: "/wɑːtʃ/", m: "手表", ex: "I lost my watch this morning. —— 我今天早上把手表弄丢了。" },
+                { t: "lost", r: "/lɔːst/", m: "丢失的；遗失", ex: "I lost my pen in the classroom. —— 我把钢笔丢在教室里了。" },
+                { t: "found", r: "/faʊnd/", m: "找到；发现", ex: "I found your pen under the desk. —— 我在桌子底下找到了你的钢笔。" },
+                { t: "library", r: "/ˈlaɪbreri/", m: "图书馆", ex: "There are many books in the school library. —— 学校图书馆里有很多书。" },
+                { t: "mine", r: "/maɪn/", m: "我的（东西）", ex: "The blue pen is mine. —— 那支蓝钢笔是我的。" },
+                { t: "yours", r: "/jʊrz/", m: "你的（东西）", ex: "Is this schoolbag yours? —— 这个书包是你的吗？" }
+              ],
+              grammar: [
+                {
+                  point: "Is this...? 一般疑问句及其回答",
+                  rule: "把 be 动词提前构成一般疑问句：Is this/that your pencil? 回答用 it：Yes, it is. / No, it isn't.",
+                  examples: ["Is this your pencil? — Yes, it is. It's mine.", "Is that your schoolbag? — No, it isn't.", "This isn't my ruler. It's hers."],
+                  drills: [
+                    { q: "Is this your eraser? — Yes, ___ is.", opts: ["it", "this", "that", "its"], a: 0, why: "回答 Is this/that...? 时统一用 it 指代：Yes, it is.；its 是“它的”，不用于回答。" },
+                    { q: "The blue dictionary is ___. Give it back to me, please.", opts: ["mine", "my", "me", "I"], a: 0, why: "空格后面没有名词，要用名词性物主代词 mine（= my dictionary）。" },
+                    { q: "___ that your watch in the classroom?", opts: ["Is", "Are", "Am", "Do"], a: 0, why: "that 是单数，用 Is 提问；Are 用于 these/those 等复数。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "Excuse me, is this your pencil? — Yes, it is. Thank you.", q: "说话人捡到了什么？", opts: ["一支铅笔", "一块橡皮", "一把尺子"], a: 0, tr: "打扰一下，这是你的铅笔吗？——是的，谢谢你。" },
+                { text: "I lost my schoolbag in the library. — Don't worry. Let's go and find it.", q: "书包丢在哪里了？", opts: ["图书馆", "教室", "操场"], a: 0, tr: "我把书包丢在图书馆了。——别担心，我们去找找。" },
+                { text: "The blue ruler is mine, and the yellow one is yours.", q: "黄尺子是谁的？", opts: ["听者的", "说话人的", "老师的"], a: 0, tr: "蓝尺子是我的，黄尺子是你的。" }
+              ],
+              speaking: [
+                { text: "Is this your pencil? Yes, it is. It's mine.", tr: "这是你的铅笔吗？是的，是我的。" },
+                { text: "I lost my eraser. Can you help me find it?", tr: "我的橡皮丢了，你能帮我找找吗？" }
+              ]
+            },
+            {
+              id: "en-l114",
+              title: "球类与爱好",
+              minutes: 8,
+              xp: 50,
+              focus: "球类运动与评价",
+              vocab: [
+                { t: "soccer", r: "/ˈsɑːkər/", m: "足球（美式）", ex: "I have two soccer balls. —— 我有两个足球。" },
+                { t: "basketball", r: "/ˈbæskɪtbɔːl/", m: "篮球", ex: "Let's play basketball after school. —— 放学后我们打篮球吧。" },
+                { t: "volleyball", r: "/ˈvɑːlibɔːl/", m: "排球", ex: "She plays volleyball with her classmates. —— 她和同学们打排球。" },
+                { t: "sport", r: "/spɔːrt/", m: "体育运动", ex: "Ping-pong is my favorite sport. —— 乒乓球是我最喜欢的运动。" },
+                { t: "interesting", r: "/ˈɪntrəstɪŋ/", m: "有趣的", ex: "That game sounds interesting. —— 那个游戏听起来很有趣。" },
+                { t: "boring", r: "/ˈbɔːrɪŋ/", m: "无聊的；乏味的", ex: "Watching TV all day is boring. —— 整天看电视很无聊。" },
+                { t: "fun", r: "/fʌn/", m: "有趣的；乐趣", ex: "Playing ping-pong is fun. —— 打乒乓球很有趣。" },
+                { t: "difficult", r: "/ˈdɪfɪkəlt/", m: "困难的", ex: "Baseball is difficult for me. —— 棒球对我来说很难。" },
+                { t: "relaxing", r: "/rɪˈlæksɪŋ/", m: "令人放松的", ex: "Listening to music is relaxing. —— 听音乐令人放松。" },
+                { t: "same", r: "/seɪm/", m: "相同的", ex: "We go to the same school. —— 我们上同一所学校。" }
+              ],
+              grammar: [
+                {
+                  point: "一般现在时的疑问与否定：do / does + 动词原形",
+                  rule: "主语是 you/they 等用 do，he/she/it 用 does；does 后动词用原形，否定加 n't：She doesn't have a ball.",
+                  examples: ["Do you have a soccer ball? — Yes, I do.", "Does she have a basketball? — No, she doesn't.", "They don't have a volleyball."],
+                  drills: [
+                    { q: "___ he have a ping-pong bat?", opts: ["Does", "Do", "Is", "Has"], a: 0, why: "主语 he 是第三人称单数，实义动词疑问用 Does，后面动词用原形 have。" },
+                    { q: "They ___ have a volleyball.", opts: ["don't", "doesn't", "isn't", "aren't"], a: 0, why: "主语 they 是复数，否定借助动词 do：don't have；doesn't 用于第三人称单数。" },
+                    { q: "Does your brother ___ soccer after school?", opts: ["play", "plays", "playing", "to play"], a: 0, why: "Does 后面接动词原形 play，不能再加 -s；三单形式已经体现在 Does 上。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "Do you have a soccer ball? — Yes, I have two. Let's play!", q: "说话人想做什么？", opts: ["一起踢足球", "买足球", "看比赛"], a: 0, tr: "你有足球吗？——有两个，我们踢吧！" },
+                { text: "Does Mary like volleyball? — No, she thinks it's boring.", q: "Mary 觉得排球怎么样？", opts: ["很无聊", "很有趣", "很难"], a: 0, tr: "Mary 喜欢排球吗？——不，她觉得排球很无聊。" },
+                { text: "I don't have a basketball, but Tom has one. We can play together.", q: "谁有篮球？", opts: ["Tom", "说话人", "都没有"], a: 0, tr: "我没有篮球，但 Tom 有一个，我们可以一起打。" }
+              ],
+              speaking: [
+                { text: "Do you have a soccer ball? Yes, I do.", tr: "你有足球吗？是的，有。" },
+                { text: "Let's play basketball after school. It's fun.", tr: "放学后我们打篮球吧，很有意思。" }
+              ]
+            },
+            {
+              id: "en-l115",
+              title: "食物与喜好",
+              minutes: 8,
+              xp: 50,
+              focus: "食物喜好表达",
+              vocab: [
+                { t: "banana", r: "/bəˈnænə/", m: "香蕉", ex: "I like bananas for breakfast. —— 早餐我喜欢吃香蕉。" },
+                { t: "hamburger", r: "/ˈhæmbɜːrɡər/", m: "汉堡包", ex: "He doesn't like hamburgers. —— 他不喜欢吃汉堡包。" },
+                { t: "tomato", r: "/təˈmeɪtoʊ/", m: "西红柿", ex: "The salad has two tomatoes in it. —— 沙拉里有两个西红柿。" },
+                { t: "strawberry", r: "/ˈstrɔːberi/", m: "草莓", ex: "These strawberries are sweet. —— 这些草莓很甜。" },
+                { t: "ice-cream", r: "/ˌaɪs ˈkriːm/", m: "冰淇淋", ex: "Do you want some ice-cream? —— 你想要点冰淇淋吗？" },
+                { t: "salad", r: "/ˈsæləd/", m: "沙拉", ex: "We have fruit salad for lunch. —— 我们午餐吃水果沙拉。" },
+                { t: "carrot", r: "/ˈkærət/", m: "胡萝卜", ex: "Rabbits love carrots. —— 兔子爱吃胡萝卜。" },
+                { t: "apple", r: "/ˈæpl/", m: "苹果", ex: "An apple a day keeps the doctor away. —— 一天一苹果，医生远离我。" },
+                { t: "milk", r: "/mɪlk/", m: "牛奶", ex: "I drink milk every morning. —— 我每天早上喝牛奶。" },
+                { t: "fruit", r: "/fruːt/", m: "水果", ex: "Eat more fruit and vegetables. —— 多吃水果和蔬菜。" }
+              ],
+              grammar: [
+                {
+                  point: "可数与不可数名词（名词复数的构成）",
+                  rule: "可数名词用复数表泛指：I like bananas；不可数名词（milk, ice-cream）没有复数；以辅音字母 + o 结尾加 -es：tomato → tomatoes.",
+                  examples: ["I like bananas and apples.", "She doesn't like ice-cream.", "Do you like tomatoes? — Yes, I do."],
+                  drills: [
+                    { q: "I like ___ very much. They are good for us.", opts: ["tomatos", "tomatoes", "tomato", "tomatoe"], a: 1, why: "tomato 以辅音字母 + o 结尾，复数加 -es：tomatoes，不是 tomatos。" },
+                    { q: "Do you like ___? — Yes, a little.", opts: ["milk", "milks", "a milk", "milkes"], a: 0, why: "milk 是不可数名词，没有复数形式，也不能加冠词 a。" },
+                    { q: "My sister ___ like carrots.", opts: ["doesn't", "don't", "isn't", "not like"], a: 0, why: "主语是第三人称单数，否定要借助动词：doesn't like；don't 用于复数主语。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "Do you like bananas? — Yes, I do. I eat one every day.", q: "说话人多久吃一次香蕉？", opts: ["每天", "每周", "从不"], a: 0, tr: "你喜欢香蕉吗？——喜欢，我每天吃一根。" },
+                { text: "Does Tom like hamburgers? — No, he likes salad and carrots.", q: "Tom 喜欢吃什么？", opts: ["沙拉和胡萝卜", "汉堡包", "冰淇淋"], a: 0, tr: "Tom 喜欢汉堡包吗？——不，他喜欢沙拉和胡萝卜。" },
+                { text: "We have milk and bread for breakfast. What about you?", q: "说话人早餐吃了什么？", opts: ["牛奶和面包", "鸡蛋和米饭", "面条"], a: 0, tr: "我们早餐喝牛奶、吃面包。你呢？" }
+              ],
+              speaking: [
+                { text: "Do you like bananas? Yes, I do.", tr: "你喜欢香蕉吗？是的，喜欢。" },
+                { text: "I don't like ice-cream, but my sister loves it.", tr: "我不喜欢冰淇淋，但我妹妹特别喜欢。" }
+              ]
+            },
+            {
+              id: "en-l116",
+              title: "购物与价格",
+              minutes: 8,
+              xp: 50,
+              focus: "问价与购买表达",
+              vocab: [
+                { t: "socks", r: "/sɑːks/", m: "袜子", ex: "How much are these socks? —— 这些袜子多少钱？" },
+                { t: "shorts", r: "/ʃɔːrts/", m: "短裤", ex: "The blue shorts look cool. —— 那条蓝短裤看起来很酷。" },
+                { t: "sweater", r: "/ˈswetər/", m: "毛衣", ex: "Mom buys me a red sweater. —— 妈妈给我买了一件红毛衣。" },
+                { t: "skirt", r: "/skɜːrt/", m: "裙子", ex: "The girl in the yellow skirt is my sister. —— 穿黄裙子的女孩是我妹妹。" },
+                { t: "dollar", r: "/ˈdɑːlər/", m: "美元", ex: "The sweater is twenty dollars. —— 这件毛衣二十美元。" },
+                { t: "pair", r: "/per/", m: "一双；一对", ex: "I need a pair of sports shoes. —— 我需要一双运动鞋。" },
+                { t: "buy", r: "/baɪ/", m: "买", ex: "I want to buy a bag for school. —— 我想买个上学用的书包。" },
+                { t: "sell", r: "/sel/", m: "卖；出售", ex: "The store sells nice clothes. —— 这家店卖的衣服很好看。" },
+                { t: "need", r: "/niːd/", m: "需要", ex: "What do you need for school? —— 你上学需要什么东西？" },
+                { t: "take", r: "/teɪk/", m: "买下；拿", ex: "That's a nice hat. I'll take it. —— 那顶帽子不错，我买了。" }
+              ],
+              grammar: [
+                {
+                  point: "How much 问价格：单数用 is、复数用 are",
+                  rule: "How much is this/that + 单数名词？How much are these/those + 复数名词？回答用 It's / They're + 钱数。",
+                  examples: ["How much is this sweater? — It's twenty dollars.", "How much are these socks? — They're five dollars.", "How much is that pair of shoes?"],
+                  drills: [
+                    { q: "How much ___ these socks?", opts: ["are", "is", "am", "be"], a: 0, why: "socks 是复数名词，问价用 How much are...?" },
+                    { q: "How much ___ that sweater? — It's ninety dollars.", opts: ["is", "are", "does", "do"], a: 0, why: "that sweater 是单数，用 How much is...?；复数物品才用 are。" },
+                    { q: "I like these shoes. I'll ___ them.", opts: ["take", "takes", "taking", "took"], a: 0, why: "购物时说 I'll take it/them 表示“我买了”，will 后接动词原形。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "How much are these socks? — They're three dollars.", q: "袜子多少钱？", opts: ["3 美元", "13 美元", "30 美元"], a: 0, tr: "这些袜子多少钱？——三美元。" },
+                { text: "That sweater looks nice. — Yes, it's only twenty-nine dollars.", q: "毛衣的价格是多少？", opts: ["29 美元", "20 美元", "90 美元"], a: 0, tr: "那件毛衣很好看。——是的，只要 29 美元。" },
+                { text: "Can I help you? — Yes, I need a pair of shorts for PE class.", q: "顾客想买什么？", opts: ["一条短裤", "一双袜子", "一件毛衣"], a: 0, tr: "需要帮忙吗？——是的，我想买一条上体育课穿的短裤。" }
+              ],
+              speaking: [
+                { text: "How much is this sweater? It's twenty dollars.", tr: "这件毛衣多少钱？二十美元。" },
+                { text: "I'll take these socks. Thank you.", tr: "这双袜子我买了，谢谢。" }
+              ]
+            }
+          ]
         }
       ]
     },
@@ -1017,6 +1263,173 @@ window.COURSES_EN = {
               speaking: [
                 { text: "Just a trim, please. Don't cut too much.", tr: "只修一下就好，别剪太多。" },
                 { text: "I'd like to make an appointment for a haircut.", tr: "我想预约理发。" }
+              ]
+            }
+          ]
+        },
+        {
+          id: "en-u19",
+          name: "初一下 · 同步",
+          theme: "人教七下同步：社团、作息、动物与周末",
+          lessons: [
+            {
+              id: "en-l117",
+              title: "能力与社团",
+              minutes: 8,
+              xp: 50,
+              focus: "能力表达与社团",
+              vocab: [
+                { t: "guitar", r: "/ɡɪˈtɑːr/", m: "吉他", ex: "Tom can play the guitar very well. —— Tom 吉他弹得很好。" },
+                { t: "join", r: "/dʒɔɪn/", m: "加入；参加", ex: "Do you want to join the music club? —— 你想加入音乐社吗？" },
+                { t: "club", r: "/klʌb/", m: "社团；俱乐部", ex: "Our school has a chess club. —— 我们学校有一个国际象棋社。" },
+                { t: "sing", r: "/sɪŋ/", m: "唱歌", ex: "She can sing English songs. —— 她会唱英文歌。" },
+                { t: "dance", r: "/dæns/", m: "跳舞", ex: "My sister dances very well. —— 我妹妹舞跳得很好。" },
+                { t: "draw", r: "/drɔː/", m: "画画", ex: "He can draw nice pictures. —— 他能画出好看的画。" },
+                { t: "swim", r: "/swɪm/", m: "游泳", ex: "I can swim, but my brother can't. —— 我会游泳，但我弟弟不会。" },
+                { t: "chess", r: "/tʃes/", m: "国际象棋", ex: "Let's play chess after class. —— 下课后我们下棋吧。" },
+                { t: "drum", r: "/drʌm/", m: "鼓", ex: "He can play the drums. —— 他会打鼓。" },
+                { t: "piano", r: "/piˈænoʊ/", m: "钢琴", ex: "My cousin plays the piano every day. —— 我表姐每天弹钢琴。" }
+              ],
+              grammar: [
+                {
+                  point: "情态动词 can 表能力",
+                  rule: "can + 动词原形，没有人称和数的变化；否定是 can't，疑问把 can 提前：Can you swim? — Yes, I can.",
+                  examples: ["I can play the guitar.", "She can't dance.", "Can you swim? — Yes, I can. / No, I can't."],
+                  drills: [
+                    { q: "Mary can ___ the piano.", opts: ["play", "plays", "playing", "to play"], a: 0, why: "can 后面接动词原形 play，不受主语人称影响，不能加 -s。" },
+                    { q: "___ you play chess? — Yes, I can.", opts: ["Can", "Do", "Are", "Does"], a: 0, why: "问能力用 Can you...?，回答是 Yes, I can. / No, I can't.。" },
+                    { q: "I can sing, ___ I can't dance.", opts: ["but", "and", "so", "or"], a: 0, why: "前后意思转折（会唱歌 / 不会跳舞），用 but 连接；and 表并列。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "What club do you want to join? — The music club. I can play the guitar.", q: "说话人想加入什么社团？", opts: ["音乐社", "美术社", "象棋社"], a: 0, tr: "你想加入什么社团？——音乐社，我会弹吉他。" },
+                { text: "Can your sister swim? — No, she can't, but she can dance very well.", q: "说话人的妹妹会做什么？", opts: ["跳舞", "游泳", "唱歌"], a: 0, tr: "你妹妹会游泳吗？——不会，但她舞跳得很好。" },
+                { text: "We need help for the school show. Can you play the drums?", q: "说话人想找什么人帮忙？", opts: ["会打鼓的", "会弹琴的", "会唱歌的"], a: 0, tr: "学校演出需要帮忙，你会打鼓吗？" }
+              ],
+              speaking: [
+                { text: "Can you play the guitar? Yes, I can.", tr: "你会弹吉他吗？是的，我会。" },
+                { text: "I want to join the music club.", tr: "我想加入音乐社。" }
+              ]
+            },
+            {
+              id: "en-l118",
+              title: "日常作息",
+              minutes: 8,
+              xp: 50,
+              focus: "作息时间表达",
+              vocab: [
+                { t: "get up", r: "/ɡet ʌp/", m: "起床", ex: "I usually get up at six thirty. —— 我通常六点半起床。" },
+                { t: "usually", r: "/ˈjuːʒuəli/", m: "通常", ex: "He usually walks to school. —— 他通常步行上学。" },
+                { t: "shower", r: "/ˈʃaʊər/", m: "淋浴；洗澡", ex: "I take a shower after running. —— 我跑完步后洗个澡。" },
+                { t: "homework", r: "/ˈhoʊmwɜːrk/", m: "作业", ex: "I do my homework after dinner. —— 我晚饭后写作业。" },
+                { t: "never", r: "/ˈnevər/", m: "从不", ex: "He never goes to bed late. —— 他从不晚睡。" },
+                { t: "early", r: "/ˈɜːrli/", m: "早的；提早", ex: "We get to school early every day. —— 我们每天很早就到校。" },
+                { t: "always", r: "/ˈɔːlweɪz/", m: "总是", ex: "He always does his homework first. —— 他总是先写作业。" },
+                { t: "bedtime", r: "/ˈbedtaɪm/", m: "就寝时间", ex: "My bedtime is ten o'clock. —— 我的就寝时间是十点。" },
+                { t: "schedule", r: "/ˈskedʒuːl/", m: "日程表；时间表", ex: "Look at my class schedule. —— 看看我的课程表。" },
+                { t: "quickly", r: "/ˈkwɪkli/", m: "快地", ex: "Eat quickly, or we'll be late for school. —— 快点吃，不然上学要迟到了。" }
+              ],
+              grammar: [
+                {
+                  point: "一般现在时第三人称单数（What time does he...?）",
+                  rule: "主语是第三人称单数时动词加 -s/-es（go → goes）；疑问用 Does 提问，does 后动词用原形：What time does he get up?",
+                  examples: ["He goes to school at seven thirty.", "What time does she do her homework?", "Tom doesn't get up early."],
+                  drills: [
+                    { q: "What time ___ Rick usually get up?", opts: ["does", "do", "is", "has"], a: 0, why: "Rick 是第三人称单数，实义动词疑问用 does 提问，get 恢复原形。" },
+                    { q: "Scott ___ to school at seven forty.", opts: ["goes", "go", "gos", "going"], a: 0, why: "第三人称单数一般现在时，go 加 -es 变 goes，不能只加 -s。" },
+                    { q: "She ___ her homework at seven in the evening.", opts: ["does", "do", "doing", "is do"], a: 0, why: "主语 she 是第三人称单数，一般现在时动词用三单形式 does（do her homework）。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "What time do you usually get up, Jane? — At six thirty. Then I take a shower.", q: "Jane 几点起床？", opts: ["6:30", "7:00", "7:30"], a: 0, tr: "Jane，你通常几点起床？——六点半，然后洗个澡。" },
+                { text: "Does your brother do his homework before dinner? — No, he does it after dinner.", q: "他什么时候写作业？", opts: ["晚饭后", "晚饭前", "睡前"], a: 0, tr: "你弟弟晚饭前写作业吗？——不，他晚饭后写。" },
+                { text: "I never go to bed after eleven o'clock on school nights.", q: "说话人的就寝习惯是什么？", opts: ["从不在十一点后睡", "经常熬夜", "十一点前起床"], a: 0, tr: "上学日的晚上我从不在十一点后睡觉。" }
+              ],
+              speaking: [
+                { text: "What time do you usually get up? At six thirty.", tr: "你通常几点起床？六点半。" },
+                { text: "I do my homework and go to bed at ten.", tr: "我写完作业十点睡觉。" }
+              ]
+            },
+            {
+              id: "en-l119",
+              title: "动物与喜好",
+              minutes: 8,
+              xp: 50,
+              focus: "动物喜好与描述",
+              vocab: [
+                { t: "panda", r: "/ˈpændə/", m: "熊猫", ex: "Let's see the pandas first. —— 我们先去看熊猫吧。" },
+                { t: "lion", r: "/ˈlaɪən/", m: "狮子", ex: "The lion can run very fast. —— 狮子跑得非常快。" },
+                { t: "tiger", r: "/ˈtaɪɡər/", m: "老虎", ex: "The tiger is sleeping in the zoo. —— 老虎正在动物园里睡觉。" },
+                { t: "giraffe", r: "/dʒəˈræf/", m: "长颈鹿", ex: "Giraffes have very long necks. —— 长颈鹿的脖子很长。" },
+                { t: "animal", r: "/ˈænɪml/", m: "动物", ex: "What animals do you like? —— 你喜欢什么动物？" },
+                { t: "cute", r: "/kjuːt/", m: "可爱的", ex: "The baby panda is so cute. —— 熊猫宝宝真可爱。" },
+                { t: "smart", r: "/smɑːrt/", m: "聪明的", ex: "My little dog is very smart. —— 我的小狗非常聪明。" },
+                { t: "lazy", r: "/ˈleɪzi/", m: "懒的；懒散的", ex: "The fat cat looks lazy. —— 那只肥猫看起来很懒。" },
+                { t: "dangerous", r: "/ˈdeɪndʒərəs/", m: "危险的", ex: "Tigers are dangerous, so don't get close. —— 老虎很危险，别靠近。" },
+                { t: "save", r: "/seɪv/", m: "救；拯救", ex: "We must save the animals in danger. —— 我们必须拯救濒危动物。" }
+              ],
+              grammar: [
+                {
+                  point: "Why...? 与 Because... 因果问答",
+                  rule: "Why 问原因，Because 答原因：Why do you like pandas? — Because they're cute.；Because 后接完整的句子。",
+                  examples: ["Why do you like koalas? — Because they're cute.", "Why does he like tigers? — Because they're strong.", "I like giraffes because they are beautiful."],
+                  drills: [
+                    { q: "___ do you like pandas? — Because they're cute.", opts: ["Why", "What", "How", "Where"], a: 0, why: "用 Because 回答原因，提问就要用 Why。" },
+                    { q: "Why ___ he like lions? — Because they're strong.", opts: ["does", "do", "is", "can"], a: 0, why: "主语 he 是第三人称单数，like 是实义动词，Why 后用 does 提问。" },
+                    { q: "I like giraffes ___ they are beautiful.", opts: ["because", "so", "but", "why"], a: 0, why: "后面说明喜欢的原因，用 because 连接；so 表结果，but 表转折。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "Why do you like pandas? — Because they're cute and smart.", q: "说话人为什么喜欢熊猫？", opts: ["可爱又聪明", "跑得快", "个子高"], a: 0, tr: "你为什么喜欢熊猫？——因为它们可爱又聪明。" },
+                { text: "Let's see the lions first. — OK. They're kind of scary.", q: "他们先去看什么动物？", opts: ["狮子", "熊猫", "长颈鹿"], a: 0, tr: "我们先去看狮子吧。——好，它们有点吓人。" },
+                { text: "What animals do you want to see? — Giraffes. They have long necks.", q: "说话人想看什么动物？", opts: ["长颈鹿", "大象", "老虎"], a: 0, tr: "你想看什么动物？——长颈鹿，它们的脖子很长。" }
+              ],
+              speaking: [
+                { text: "Why do you like pandas? Because they're cute.", tr: "你为什么喜欢熊猫？因为它们很可爱。" },
+                { text: "Let's see the giraffes first. They're beautiful.", tr: "我们先去看长颈鹿吧，它们很漂亮。" }
+              ]
+            },
+            {
+              id: "en-l120",
+              title: "周末与过去",
+              minutes: 8,
+              xp: 50,
+              focus: "周末活动叙述",
+              vocab: [
+                { t: "camped", r: "/kæmpt/", m: "野营；露营", ex: "Last weekend we camped by a small lake. —— 上周末我们在小湖边露营了。" },
+                { t: "stayed", r: "/steɪd/", m: "停留；待在", ex: "I stayed at home and read books. —— 我待在家里看书。" },
+                { t: "studied", r: "/ˈstʌdid/", m: "学习", ex: "She studied for the English test last night. —— 她昨晚为英语考试复习了。" },
+                { t: "practiced", r: "/ˈpræktɪst/", m: "练习", ex: "He practiced the guitar on Saturday. —— 他周六练了吉他。" },
+                { t: "played", r: "/pleɪd/", m: "玩；打球", ex: "We played badminton yesterday morning. —— 我们昨天早上打了羽毛球。" },
+                { t: "weekend", r: "/ˈwiːkend/", m: "周末", ex: "What did you do last weekend? —— 你上周末做什么了？" },
+                { t: "museum", r: "/mjuːˈziːəm/", m: "博物馆", ex: "We visited a science museum last Sunday. —— 上周日我们参观了一家科学博物馆。" },
+                { t: "beach", r: "/biːtʃ/", m: "海滩", ex: "We walked along the beach after lunch. —— 午饭后我们沿着海滩散步。" },
+                { t: "lake", r: "/leɪk/", m: "湖；湖泊", ex: "We swam in the lake last summer. —— 去年夏天我们在湖里游过泳。" },
+                { t: "tired", r: "/ˈtaɪərd/", m: "累的；疲倦的", ex: "I was tired after the long trip. —— 长途旅行后我很累。" }
+              ],
+              grammar: [
+                {
+                  point: "规则动词过去式的拼写：-ed / -d / -ied",
+                  rule: "一般加 -ed（played）；以 e 结尾加 -d（practiced）；辅音字母 + y 结尾把 y 变 i 加 -ed（study → studied）；疑问和否定用 did + 动词原形。",
+                  examples: ["I played tennis last weekend.", "She practiced the violin yesterday.", "They studied math last night.", "What did you do? — I stayed at home."],
+                  drills: [
+                    { q: "He ___ for the math test last night.", opts: ["studied", "studyed", "studies", "study"], a: 0, why: "study 以辅音字母 + y 结尾，过去式把 y 变 i 加 -ed：studied，不是 studyed。" },
+                    { q: "What ___ you do last weekend? — I camped by a lake.", opts: ["did", "do", "was", "were"], a: 0, why: "过去时疑问用 did 提问，后面动词用原形 do。" },
+                    { q: "She ___ the piano for an hour yesterday.", opts: ["practice", "practices", "practiced", "practicing"], a: 2, why: "yesterday 提示过去时；practice 以 e 结尾直接加 -d：practiced。" }
+                  ]
+                }
+              ],
+              listening: [
+                { text: "What did you do last weekend, Lisa? — I camped by a lake with my family.", q: "Lisa 上周末做了什么？", opts: ["湖边露营", "参观博物馆", "待在家里"], a: 0, tr: "Lisa，你上周末做什么了？——我和家人在湖边露营了。" },
+                { text: "Did you go to the museum on Saturday? — No, I went there on Sunday.", q: "她什么时候去的博物馆？", opts: ["周六", "周日", "没有去"], a: 1, tr: "你周六去博物馆了吗？——没有，我周日去的。" },
+                { text: "I studied all weekend and now I feel very tired.", q: "说话人现在的感觉如何？", opts: ["很累", "很开心", "很无聊"], a: 0, tr: "我整个周末都在学习，现在感觉非常累。" }
+              ],
+              speaking: [
+                { text: "What did you do last weekend? I camped by a lake.", tr: "你上周末做什么了？我在湖边露营了。" },
+                { text: "I practiced the guitar and studied English yesterday.", tr: "我昨天练了吉他，还学了英语。" }
               ]
             }
           ]

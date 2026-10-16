@@ -84,7 +84,8 @@
 
     var grammar = [], listening = [], speaking = [];
 
-    /* 生成题均为词义类（qtype:"meaning"），错题本据此记「词汇」而非「语法」 */
+    /* 1)–4) 为词义类题（qtype:"meaning"），错题本据此记「词汇」而非「语法」；
+       末尾追加的英语语法选择题为 qtype:"grammar"，错题本记「语法」 */
 
     /* 1) 释义选择：看目标词，选中文释义 */
     sample(withZh, 2).forEach(function (v) {
@@ -150,6 +151,177 @@
         q: "你听到的是哪个词？", opts: c.opts, a: c.a
       });
     });
+
+    /* ======================================================================
+       英语语法选择题（qtype:"grammar"，仅英语课；面向中国初一学生）
+       三类模板：一般现在时·三单 / be 动词 / 现在进行时。
+       素材取自课内词条与例句：动词须命中形态表，名词须命中 be 动词词表。
+       每课最多 3 道（三类各先取 1 道再补齐），候选不足 2 道则不出——宁缺毋滥。
+       ====================================================================== */
+    var VERBS = {
+      /* 原形: { s 三单, ing 现在分词, past 过去式, s3 三单题句, prog 进行时题句 } */
+      go:     { s: "goes",     ing: "going",     past: "went",    s3: "She ___ to school by bus every day." },
+      have:   { s: "has",      ing: "having",    past: "had",     s3: "He ___ breakfast at seven every morning.",
+                prog: "Look! She ___ lunch with her friends now." },
+      do:     { s: "does",     ing: "doing",     past: "did",     s3: "She ___ her homework after dinner.",
+                prog: "Look! He ___ his homework in his room." },
+      watch:  { s: "watches",  ing: "watching",  past: "watched", s3: "He ___ TV for an hour every evening.",
+                prog: "Look! She ___ TV in the living room." },
+      study:  { s: "studies",  ing: "studying",  past: "studied", s3: "She ___ English every evening." },
+      play:   { s: "plays",    ing: "playing",   past: "played",  s3: "He ___ basketball after school.",
+                prog: "Look! The boy ___ basketball over there." },
+      like:   { s: "likes",    ing: "liking",    past: "liked",   s3: "She ___ music very much." },
+      eat:    { s: "eats",     ing: "eating",    past: "ate",     s3: "He ___ an apple after lunch.",
+                prog: "Look! He ___ breakfast now." },
+      read:   { s: "reads",    ing: "reading",   past: "read",    s3: "She ___ a story before bed.",
+                prog: "Look! He ___ a book under the tree." },
+      write:  { s: "writes",   ing: "writing",   past: "wrote",   s3: "He ___ to his pen pal every month.",
+                prog: "Look! She ___ a letter at the desk." },
+      speak:  { s: "speaks",   ing: "speaking",  past: "spoke",   s3: "She ___ English very well." },
+      come:   { s: "comes",    ing: "coming",    past: "came",    s3: "He ___ to school early every day." },
+      give:   { s: "gives",    ing: "giving",    past: "gave",    s3: "She ___ me a gift on my birthday." },
+      live:   { s: "lives",    ing: "living",    past: "lived",   s3: "He ___ in Beijing with his parents." },
+      teach:  { s: "teaches",  ing: "teaching",  past: "taught",  s3: "She ___ math at a middle school." },
+      wash:   { s: "washes",   ing: "washing",   past: "washed",  s3: "He ___ his hands before every meal." },
+      fly:    { s: "flies",    ing: "flying",    past: "flew",    s3: "She ___ a kite in spring.",
+                prog: "Look! He ___ a kite on the playground." },
+      carry:  { s: "carries",  ing: "carrying",  past: "carried", s3: "He ___ a heavy bag to school." },
+      buy:    { s: "buys",     ing: "buying",    past: "bought",  s3: "She ___ some fruit every weekend." },
+      know:   { s: "knows",    ing: "knowing",   past: "knew",    s3: "He ___ the answer to this question." },
+      say:    { s: "says",     ing: "saying",    past: "said",    s3: "She ___ hello to her teacher every morning." },
+      see:    { s: "sees",     ing: "seeing",    past: "saw",     s3: "He ___ a film with his friends on Sunday." },
+      swim:   { s: "swims",    ing: "swimming",  past: "swam",    s3: "She ___ in the pool every summer.",
+                prog: "Look! The boy ___ in the river." },
+      run:    { s: "runs",     ing: "running",   past: "ran",     s3: "He ___ for half an hour every morning.",
+                prog: "Look! The boy ___ over there." },
+      sing:   { s: "sings",    ing: "singing",   past: "sang",    s3: "She ___ an English song every morning.",
+                prog: "Look! The girl ___ in the music room." },
+      dance:  { s: "dances",   ing: "dancing",   past: "danced",  s3: "He ___ after class every Friday.",
+                prog: "Look! The girl ___ over there." },
+      walk:   { s: "walks",    ing: "walking",   past: "walked",  s3: "She ___ to school with her friend." },
+      open:   { s: "opens",    ing: "opening",   past: "opened",  s3: "He ___ the window every morning." },
+      close:  { s: "closes",   ing: "closing",   past: "closed",  s3: "She ___ the door at nine every night." },
+      get:    { s: "gets",     ing: "getting",   past: "got",     s3: "He ___ up at six thirty every day." },
+      drink:  { s: "drinks",   ing: "drinking",  past: "drank",   s3: "She ___ a glass of milk every morning.",
+                prog: "Look! She ___ tea with her grandma." },
+      look:   { s: "looks",    ing: "looking",   past: "looked",  s3: "He ___ happy today." },
+      make:   { s: "makes",    ing: "making",    past: "made",    prog: "Look! Mom ___ a cake for us." },
+      draw:   { s: "draws",    ing: "drawing",   past: "drew",    prog: "Look! He ___ a picture of a cat." },
+      sleep:  { s: "sleeps",   ing: "sleeping",  past: "slept",   prog: "Look! The baby ___ in the room." },
+      talk:   { s: "talks",    ing: "talking",   past: "talked",  prog: "Look! He ___ on the phone." },
+      sit:    { s: "sits",     ing: "sitting",   past: "sat",     prog: "Look! She ___ by the window." },
+      stand:  { s: "stands",   ing: "standing",  past: "stood",   prog: "Look! He ___ at the door." },
+      clean:  { s: "cleans",   ing: "cleaning",  past: "cleaned", prog: "Look! She ___ the classroom." },
+      cook:   { s: "cooks",    ing: "cooking",   past: "cooked",  prog: "Look! Mom ___ dinner in the kitchen." },
+      ride:   { s: "rides",    ing: "riding",    past: "rode",    prog: "Look! She ___ a bike to the park." },
+      listen: { s: "listens",  ing: "listening", past: "listened", prog: "Look! The girl ___ to music." },
+      wait:   { s: "waits",    ing: "waiting",   past: "waited",  prog: "Look! He ___ for the bus at the stop." }
+    };
+
+    /* be 动词题名词表（须在课内词条出现）：单数 p=人 t=物，另有复数/不规则复数 */
+    var BE_SING = {
+      friend: "p", teacher: "p", student: "p", doctor: "p", nurse: "p", worker: "p",
+      driver: "p", farmer: "p", mother: "p", father: "p", sister: "p", brother: "p",
+      cousin: "p", classmate: "p", girl: "p", boy: "p", singer: "p", player: "p",
+      book: "t", pen: "t", pencil: "t", bag: "t", bike: "t", car: "t", phone: "t",
+      photo: "t", picture: "t", desk: "t", chair: "t", ball: "t", kite: "t", toy: "t",
+      box: "t", door: "t", window: "t", room: "t", school: "t", computer: "t",
+      cat: "t", dog: "t", bird: "t", apple: "t", banana: "t", cake: "t", egg: "t",
+      orange: "t", cup: "t", clock: "t", map: "t", key: "t", bed: "t", table: "t",
+      flower: "t", tree: "t", hat: "t", coat: "t", game: "t", gift: "t", card: "t",
+      letter: "t", camera: "t", family: "t"
+    };
+    var BE_PLUR = {};
+    ["books", "pens", "pencils", "bags", "cats", "dogs", "birds", "apples", "bananas",
+     "cakes", "eggs", "friends", "teachers", "students", "doctors", "parents",
+     "sisters", "brothers", "desks", "chairs", "balls", "kites", "toys", "boxes",
+     "photos", "pictures", "cars", "bikes", "girls", "boys", "rooms", "doors",
+     "windows", "children", "people"].forEach(function (n) { BE_PLUR[n] = 1; });
+
+    function beQ(q, ans, why) {
+      var d = [];
+      ["am", "is", "are"].forEach(function (w) { if (w !== ans) d.push(w); });
+      var c = withAnswer(ans, d);
+      return {
+        type: "choice", qtype: "grammar", point: "be 动词",
+        q: "从 am / is / are 中选词填空：" + q, opts: c.opts, a: c.a, why: why
+      };
+    }
+
+    function s3Q(base, v) {
+      var subj = v.s3.indexOf("He ") === 0 ? "He" : "She";
+      var c = withAnswer(v.s, [base, v.ing, "is " + base]);
+      return {
+        type: "choice", qtype: "grammar", point: "一般现在时·三单",
+        q: "用所给动词的适当形式填空：" + v.s3.replace("___", "___（" + base + "）"),
+        opts: c.opts, a: c.a,
+        why: "主语 " + subj + " 是第三人称单数，一般现在时动词要用三单形式 " + v.s + "。"
+      };
+    }
+
+    function progQ(base, v) {
+      var correct = "is " + v.ing;
+      var pool = [base, v.s, v.past, "are " + v.ing], seen = {}, d = [];
+      pool.forEach(function (w) {
+        if (d.length < 3 && !seen[w] && w !== correct) { seen[w] = 1; d.push(w); }
+      });
+      var c = withAnswer(correct, d);
+      return {
+        type: "choice", qtype: "grammar", point: "现在进行时",
+        q: "用所给动词的适当形式填空：" + v.prog.replace("___", "___（" + base + "）"),
+        opts: c.opts, a: c.a,
+        why: "Look! 提示动作正在进行，要用现在进行时（be + 动词-ing）：" + v.prog.replace("___", correct)
+      };
+    }
+
+    var gq = [];
+    if (code === "en") {
+      var terms = {};
+      vocab.forEach(function (v) { terms[String(v.t).toLowerCase()] = 1; });
+      var allEx = "";
+      vocab.forEach(function (v) {
+        exList(v).forEach(function (e) { allEx += "\n" + e.t; });
+      });
+
+      function verbHit(forms) {
+        for (var i = 0; i < forms.length; i++) if (terms[forms[i]]) return true;
+        try { return new RegExp("\\b(" + forms.join("|") + ")\\b", "i").test(allEx); }
+        catch (e) { return false; }
+      }
+
+      var gS3 = [], gBe = [], gProg = [];
+      gBe.push(beQ("I ___ a student.", "am", "主语 I 固定与 am 搭配：I am a student。"));
+      Object.keys(BE_SING).forEach(function (n) {
+        if (!terms[n]) return;
+        if (BE_SING[n] === "p") gBe.push(beQ("She ___ my " + n + ".", "is",
+          "主语 She 是第三人称单数，be 动词用 is：She is my " + n + "。"));
+        else gBe.push(beQ("This ___ my " + n + ".", "is",
+          "主语 This 是单数，be 动词用 is：This is my " + n + "。"));
+      });
+      Object.keys(BE_PLUR).forEach(function (n) {
+        if (!terms[n]) return;
+        gBe.push(beQ("They ___ my " + n + ".", "are",
+          "主语 They 是复数，be 动词用 are：They are my " + n + "。"));
+      });
+      Object.keys(VERBS).forEach(function (base) {
+        var v = VERBS[base];
+        if (!verbHit([base, v.s, v.ing, v.past])) return;
+        if (v.s3) gS3.push(s3Q(base, v));
+        if (v.prog) gProg.push(progQ(base, v));
+      });
+
+      /* 三类各先随机取 1 道，再从剩余候选补齐至 3 道；候选不足 2 道则不出 */
+      [gS3, gBe, gProg].forEach(function (g) {
+        if (g.length && gq.length < 3) gq.push(g[Math.floor(Math.random() * g.length)]);
+      });
+      if (gq.length > 0 && gq.length < 3) {
+        var usedQ = {};
+        gq.forEach(function (x) { usedQ[x.q] = 1; });
+        var rest = shuffle(gS3.concat(gBe, gProg)).filter(function (x) { return !usedQ[x.q]; });
+        while (gq.length < 3 && rest.length) gq.push(rest.pop());
+      }
+      if (gq.length >= 2) grammar = grammar.concat(gq);
+    }
 
     /* 6) 听句选义：播放例句，选出中文意思 */
     var sentCands = [];

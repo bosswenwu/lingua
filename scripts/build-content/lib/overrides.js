@@ -13,10 +13,12 @@ const path = require("path");
 const DIR = path.join(__dirname, "..", "overrides");
 
 function load(lang) {
-  /* 主文件 overrides/{lang}.json 优先；en-calib.json（校准修正）与
-     en-addex.json（补例句）按域合并进来，同词字段互补、后者不覆盖前者已有键 */
+  /* 主文件 overrides/{lang}.json 优先；en-calib.json（校准修正）、en-addex.json（补例句）、
+     en-middle.json（初一适龄删句）按域合并进来，同词字段互补、后者不覆盖前者已有键 */
   const merged = { words: {}, examples: {} };
-  for (const name of [lang + ".json", lang + "-calib.json", lang + "-addex.json"]) {
+  const extra = { en: ["en-calib.json", "en-addex.json", "en-middle.json"] };
+  const files = [lang + ".json"].concat(extra[lang] || []);
+  for (const name of files) {
     const f = path.join(DIR, name);
     if (!fs.existsSync(f)) continue;
     const o = JSON.parse(fs.readFileSync(f, "utf8").replace(/^\uFEFF/, ""));
@@ -54,7 +56,8 @@ function applyToLevel(lang, level, ov) {
           if (w.t) { v.t = w.t; st.t++; }
           if (w.addEx && w.addEx.t) {
             if (!Array.isArray(v.ex)) v.ex = [];
-            if (v.ex.length < 2) { v.ex.push({ t: w.addEx.t, tr: w.addEx.tr || "" }); st.addEx++; }
+            const dup = v.ex.some(e => e.t === w.addEx.t);
+            if (!dup && v.ex.length < 2) { v.ex.push({ t: w.addEx.t, tr: w.addEx.tr || "" }); st.addEx++; }
           }
         }
         if (Array.isArray(v.ex)) {
