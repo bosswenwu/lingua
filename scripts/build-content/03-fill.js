@@ -203,9 +203,47 @@ async function fillLang(lang) {
   }
   const stat = writeOutputs(lang, byLevel, true);
   const bad = Object.keys(mismatch).filter(k => mismatch[k] === "mismatch");
+  const byTerm = new Map(table.map(w => [w.t, w]));
+  const mismatchList = bad.map(t => {
+    const w = byTerm.get(t) || {};
+    return { t, r: w.r || "", m: w.m || "", ex: (w.ex && w.ex[0]) ? w.ex[0].t : "" };
+  });
   U.log("  → " + lang + "：" + (KEY ? ("新处理 " + done + "，失败 " + failed + "，") : "") +
     "自查不匹配 " + bad.length + "，仍缺中文 " + table.filter(missingZh).length);
-  return { lang, done, failed, mismatch: bad.length, ...stat };
+  return { lang, done, failed, mismatch: bad.length, mismatchList, ...stat };
+}
+
+/* 自查判定「释义与原词不匹配」的词导出到仓库内：
+   raw/ 不入库，人工复核清单必须落到被跟踪的文件里才可提交。 */
+function writeMismatchReport(summary) {
+  const esc = s => String(s == null ? "" : s).replace(/\|/g, "\\|").replace(/\r?\n/g, " ");
+  const lines = [];
+  lines.push("# 释义自查：不匹配词清单（mismatch.md）");
+  lines.push("");
+  lines.push("由 `03-fill.js` 的模型自查轮产出；释义与原词不匹配的词在此列出，供人工复核。");
+  lines.push("生成时间：" + new Date().toISOString().slice(0, 19).replace("T", " ") + " UTC");
+  lines.push("");
+  let total = 0;
+  for (const lang of targets) {
+    const list = (summary[lang] && summary[lang].mismatchList) || [];
+    total += list.length;
+    lines.push("## " + (LANG_NAME[lang] || lang) + "（" + list.length + " 词）");
+    lines.push("");
+    if (!list.length) {
+      lines.push(KEY ? "无。" : "尚未执行模型自查（未设置 LINGUA_LLM_API_KEY）。");
+      lines.push("");
+      continue;
+    }
+    lines.push("| # | 原词 | 读音 | 当前释义 | 例句 |");
+    lines.push("|---|---|---|---|---|");
+    list.forEach((v, i) => {
+      lines.push("| " + (i + 1) + " | " + esc(v.t) + " | " + esc(v.r) + " | " + esc(v.m) + " | " + esc(v.ex) + " |");
+    });
+    lines.push("");
+  }
+  lines.push("合计不匹配 " + total + " 词。");
+  lines.push("");
+  U.writeText(path.join(__dirname, "mismatch.md"), lines.join("\n"));
 }
 
 async function main() {
@@ -213,6 +251,7 @@ async function main() {
   const summary = {};
   for (const lang of targets) summary[lang] = await fillLang(lang);
   U.writeJson(path.join(U.RAW, "build", "fill-summary.json"), summary, false);
+  writeMismatchReport(summary);
   // 站点摘要（语言元数据 + 各级别规模），供前端首页免加载大文件
   require("./lib/output").writeSiteSummary(targets);
   U.log("释义纠错完成。");
