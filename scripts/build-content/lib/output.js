@@ -4,6 +4,7 @@ const path = require("path");
 const U = require("./util");
 const W = require("./words");
 const CFG = require("./config");
+const OV = require("./overrides");
 
 /* 在 Node 下加载前端脚本（IIFE 把内容挂到 window） */
 function loadSiteScript(rel) {
@@ -112,6 +113,9 @@ function writeSiteSummary(langs, quiet) {
 
 function writeOutputs(lang, byLevel, quiet) {
   const tree = W.materialize(lang, byLevel);
+  /* 人工审校修正最后套用，重跑流水线也不会丢 */
+  const ov = OV.load(lang);
+  for (const lv of tree.levels) OV.applyToLevel(lang, lv, ov);
 
   for (const lv of tree.levels) {
     U.writeJson(path.join(U.DATA, lang, lv.id.replace(lang + "-", "") + ".json"), lv, false);

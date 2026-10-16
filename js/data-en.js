@@ -721,7 +721,7 @@ window.COURSES_EN = {
               grammar: [
                 {
                   point: "间接问句与礼貌请求",
-                  rule: "礼貌提问用 Could you / Would you mind + 动名词，间接问句用陈述语序。",
+                  rule: "礼貌提问用 Could you + 动词原形 / Would you mind + 动名词，间接问句用陈述语序。",
                   examples: ["Could you tell me where the restrooms are?", "Would you mind bringing us some water?", "I was wondering if we could sit by the window."],
                   drills: [
                     { q: "Would you mind ___ the bill?", opts: ["bring", "bringing", "brought"], a: 1, why: "Would you mind 后接动名词。" },
@@ -800,7 +800,7 @@ window.COURSES_EN = {
                   drills: [
                     { q: "The fish ___ with lemon juice before cooking.", opts: ["marinates", "is marinated", "marinated"], a: 1, why: "食谱步骤用被动语态 be + 过去分词。" },
                     { q: "The sauce ___ until it thickens.", opts: ["is simmered", "simmered", "is simmering"], a: 0, why: "酱汁被慢炖，用被动 is simmered。" },
-                    { q: "The cake ___ at 180 degrees for half an hour.", opts: ["bakes", "is baked", "is baking"], a: 1, why: "蛋糕被烘烤，用被动语态。" }
+                    { q: "The cake ___ at 180 degrees for half an hour.", opts: ["bake", "is baked", "are baked"], a: 1, why: "蛋糕被烘烤，用被动语态。" }
                   ]
                 }
               ],
@@ -827,7 +827,7 @@ window.COURSES_EN = {
                 { t: "complaint", r: "/kəmˈpleɪnt/", m: "投诉", ex: "I'd like to make a complaint about the service." },
                 { t: "compensation", r: "/ˌkɑːmpenˈseɪʃn/", m: "补偿", ex: "They offered us a free dessert as compensation." },
                 { t: "voucher", r: "/ˈvaʊtʃər/", m: "代金券", ex: "We were given a voucher for our next visit." },
-                { t: "on the house", r: "/ɒn ðə haʊs/", m: "店家请客", ex: "The manager said the drinks were on the house." }
+                { t: "on the house", r: "/ɑːn ðə haʊs/", m: "店家请客", ex: "The manager said the drinks were on the house." }
               ],
               grammar: [
                 {
@@ -999,7 +999,7 @@ window.COURSES_EN = {
               listening: [
                 { text: "Let's start with the first item on the agenda — the new deadline.", q: "会议首先讨论什么？", opts: ["新的截止日期", "预算问题", "人员安排"], a: 0, tr: "我们先从议程上的第一项开始——新的截止日期。" },
                 { text: "Sorry to interrupt, but could you clarify the last point?", q: "说话人想做什么？", opts: ["结束会议", "澄清上一点", "提出新议题"], a: 1, tr: "抱歉打断一下，您能澄清一下最后一点吗？" },
-                { text: "We've already made a decision: the launch will be postponed until May.", q: "会议的决定是什么？", opts: ["提前发布", "如期发布", "推迟到五月发布"], a: 2, tr: "我们已经做出决定：发布会将推迟到五月。" }
+                { text: "We've already made a decision: the launch will be postponed until May.", q: "会议的决定是什么？", opts: ["提前发布", "如期发布", "推迟到五月发布"], a: 2, tr: "我们已经做出决定：发布将推迟到五月。" }
               ],
               speaking: [
                 { text: "Let's start with the first item on the agenda.", tr: "我们从议程的第一项开始吧。" },
@@ -1225,7 +1225,7 @@ window.COURSES_EN = {
                   rule: "双重比较表示因果递进：The more..., the more...。",
                   examples: ["The more buses we add, the less congestion there is.", "The longer the commute, the more tired people feel.", "The better the infrastructure, the faster the city grows."],
                   drills: [
-                    { q: "The more public transport improves, ___ people drive.", opts: ["the fewer", "fewer", "the less"], a: 0, why: "people 是可数名词，用 the fewer 且结构对称。" },
+                    { q: "The more public transport improves, ___ people drive.", opts: ["the fewer", "fewer", "the fewest"], a: 0, why: "people 是可数名词，用 the fewer 且结构对称。" },
                     { q: "The longer the commute, the ___ tired commuters feel.", opts: ["more", "much", "most"], a: 0, why: "the more 对应前半句的 the longer。" },
                     { q: "The cheaper the fare, ___ passengers take the train.", opts: ["more", "the more", "the most"], a: 1, why: "双重比较结构需要两个 the。" }
                   ]
@@ -1620,7 +1620,7 @@ window.COURSES_EN = {
                   rule: "If + 一般过去时（be 动词常用 were），主句用 would + 动词原形，表示与现在相反的假设。",
                   examples: ["If I had more time, I would learn another language.", "If I were you, I would take the opportunity.", "What would you do if you won the lottery?"],
                   drills: [
-                    { q: "If I ___ rich, I would travel the world.", opts: ["am", "was", "were"], a: 2, why: "虚拟语气中 be 动词常用 were。" },
+                    { q: "If I ___ rich, I would travel the world.", opts: ["am", "will be", "were"], a: 2, why: "虚拟语气中 be 动词常用 were。" },
                     { q: "If she lived abroad, she ___ a new language.", opts: ["will learn", "would learn", "learns"], a: 1, why: "第二条件句主句用 would + 动词原形。" },
                     { q: "If I were you, I ___ the job.", opts: ["take", "would take", "will take"], a: 1, why: "与现在相反的假设，主句用 would。" }
                   ]

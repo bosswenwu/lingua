@@ -11,7 +11,10 @@ function conv() {
 /* 繁体 → 简体（含台湾异体字回正） */
 function t2s(text) {
   if (!text) return "";
-  try { return conv()(String(text)); } catch (e) { return String(text); }
+  let out;
+  try { out = conv()(String(text)); } catch (e) { return String(text); }
+  /* OpenCC tw→cn 会把「著」一律当成助词「着」，把显著、著作等词转错，这里改回 */
+  return out.replace(/(显|卓|昭|土|名)着/g, "$1著").replace(/着(名|作|称|述)/g, "著$1");
 }
 
 const CJK = /[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff\uff00-\uffef]/;
