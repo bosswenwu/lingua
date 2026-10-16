@@ -2,3 +2,5 @@
 scripts/build-content/raw/
 # 构建期依赖（opencc-js 等），站点运行时不依赖
 scripts/build-content/node_modules/
+# 浏览器调试工具在工作区根目录生成的日志
+debug.log
