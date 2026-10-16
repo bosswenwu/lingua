@@ -42,10 +42,15 @@ function normalizeZh(text) {
   return s.trim();
 }
 
-/* 是否含繁体专用字符（用于校验；只查简繁差异表里"繁→简确有变化"的字） */
+/* 是否含繁体专用字符（用于校验；只查简繁差异表里"繁→简确有变化"的字）
+   白名单：么（U+4E48）是标准简体语气字，OpenCC t2s 会误映射为「幺」，排除该误报 */
+const T2S_FP = new Set(["么", "幺"]);
 function hasTraditional(text) {
   if (!text) return false;
-  return t2s(text) !== String(text);
+  const s = t2s(String(text));
+  if (s === String(text)) return false;
+  const strip = (t) => [...t].filter((ch) => !T2S_FP.has(ch)).join("");
+  return strip(s) !== strip(String(text));
 }
 
 module.exports = { t2s, fullWidthPunct, normalizeZh, hasTraditional };

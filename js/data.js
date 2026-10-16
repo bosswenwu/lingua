@@ -98,6 +98,15 @@
     return { languages: languages, lessons: lessons, exercises: exercises };
   }
 
+  /* 例句统一适配：手写课是纯字符串，生成课是 [{t,tr}]；返回「句子 —— 译文」或句子 */
+  function exText(v) {
+    var e = v && v.ex;
+    if (!e) return "";
+    if (typeof e === "string") return e;
+    var a = e[0];
+    return a && a.t ? (a.t + (a.tr ? " —— " + a.tr : "")) : "";
+  }
+
   /* ---------------- 限时挑战题库 ----------------
      从词汇 / 语法 / 听力三类内容中抽取选择题，词汇题自动生成干扰项 */
   function shuffle(arr) {
@@ -149,7 +158,7 @@
           pool.push({
             kind: "vocab", lang: lang.code, locale: lang.locale,
             prompt: v.t, sub: (v.r ? v.r + " · " : "") + "选出正确释义",
-            speakText: v.t, opts: opts, a: opts.indexOf(v.m), why: v.ex || ""
+            speakText: v.t, opts: opts, a: opts.indexOf(v.m), why: exText(v)
           });
         });
         /* 语法 / 听力：手写题目优先，缺的部分由 Exercise 即时生成 */
@@ -404,6 +413,7 @@
     firstLessonOfLang: firstLessonOfLang,
     stats: stats,
     shuffle: shuffle,
+    exText: exText,
     challengePool: challengePool,
     glossary: glossary,
     ensureSummary: ensureSummary,

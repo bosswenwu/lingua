@@ -15,19 +15,24 @@ const T = require("./lib/tatoeba");
 const LANGS = process.argv.slice(2).filter(x => ["en", "ja", "ko"].includes(x));
 const targets = LANGS.length ? LANGS : ["en", "ja", "ko"];
 
-function buildWordTable(lang, ecdict, kengdic) {
+function buildWordTable(lang, ecdict, kengdic, cmudict) {
   let words;
   if (lang === "en") {
-    words = W.planEnglish(ecdict);
+    words = W.planEnglish(ecdict, cmudict);
     const inNgsl = new Set(words.map(w => w.t));
     // 用 ECDICT 高频词补齐 B1/B2 容量（NGSL 本身只覆盖到约 B1 前半段）
-    const supp = W.planEnglishSupplement(ecdict, inNgsl);
+    const supp = W.planEnglishSupplement(ecdict, inNgsl, cmudict);
     words = words.concat(supp);
   } else if (lang === "ja") {
     words = W.planJapanese(ecdict);
   } else {
     words = W.planKorean(ecdict, kengdic);
   }
+
+  // P0-3：可疑释义先下架（单字、在/是/表示、英文残留），再按级别截断——宁缺毋滥
+  const before = words.length;
+  words = words.filter(w => !W.isSuspicious(w));
+  const removed = before - words.length;
 
   // 按级别截断
   const byLevel = {};
@@ -57,7 +62,7 @@ function buildWordTable(lang, ecdict, kengdic) {
     }
   }
   const total = Object.keys(byLevel).reduce((a, k) => a + byLevel[k].length, 0);
-  U.log("  " + lang + ": " + total + " 词（例句覆盖 " + withEx + "）");
+  U.log("  " + lang + ": " + total + " 词（下架可疑释义 " + removed + "，例句覆盖 " + withEx + "）");
   return byLevel;
 }
 
@@ -69,12 +74,14 @@ function main() {
   U.log("== 2/4 词表转换 ==");
   const ecdict = W.loadEcdict();
   U.log("  ECDICT 载入 " + ecdict.size + " 条");
+  const cmudict = require("./lib/cmudict").loadCmudict();
+  U.log("  CMUdict 载入 " + cmudict.size + " 条" + (cmudict.size ? "" : "（缺文件，英语音标回退 ECDICT）"));
   const kengdic = targets.includes("ko") ? W.loadKengdic() : new Map();
 
   const summary = {};
   for (const lang of targets) {
     U.log("[" + lang + "]");
-    const byLevel = buildWordTable(lang, ecdict, kengdic);
+    const byLevel = buildWordTable(lang, ecdict, kengdic, cmudict);
     // 中间词表（供 03-fill 复用）
     const flat = [];
     for (const k of Object.keys(byLevel)) flat.push(...byLevel[k].map(w => ({ ...w, level: k })));

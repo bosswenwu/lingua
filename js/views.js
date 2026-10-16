@@ -848,13 +848,33 @@
       "</div><div id=\"lesson-body\"></div></div>";
   }
 
-  function modeToggle(active, counts, done) {
+  function modeToggle(active, counts, done, labels) {
     return '<div class="mode-toggle">' + D.MODES.map(function (m) {
       var c = counts[m.key] || 0;
       var d = done[m.key] || 0;
+      var name = (labels && labels[m.key]) || m.name;
       return '<button data-action="mode" data-mode="' + m.key + '" class="' + (active === m.key ? "active" : "") + (d >= c && c > 0 ? " mt-done" : "") + '">' +
-        icon(m.icon) + m.name + '<span class="mt-count">' + d + "/" + c + "</span></button>";
+        icon(m.icon) + name + '<span class="mt-count">' + d + "/" + c + "</span></button>";
     }).join("") + "</div>";
+  }
+
+  /* 例句统一适配：手写课是纯字符串，生成课是 [{t,tr}] 数组；取第一条展示 */
+  function exArr(v) {
+    var e = v && v.ex;
+    if (!e) return [];
+    if (typeof e === "string") return [{ t: e, tr: "" }];
+    return e.filter(function (x) { return x && x.t; });
+  }
+  function exHtml(v, term) {
+    var a = exArr(v)[0];
+    if (!a) return "";
+    var t = esc(a.t).replace(new RegExp(escapeRe(term || v.t), "gi"), function (m) { return '<span class="hl">' + m + "</span>"; });
+    return '<div class="fc-ex">' + t + (a.tr ? '<div class="tiny" style="opacity:.75;margin-top:4px">' + esc(a.tr) + "</div>" : "") + "</div>";
+  }
+  /* 词卡进度：显示第 N 张（不是答对数），已记住数单独展示 */
+  function vocabStep(ctx) {
+    var n = (ctx.seen || 0) + 1;
+    return '<span class="sh-step">第 ' + n + " 张 / 共 " + ctx.total + " 张 · 已记住 " + (ctx.mastered || 0) + "</span>";
   }
 
   /* 单词卡 */
@@ -862,13 +882,13 @@
     var v = ctx.item;
     var front = '<div class="fc-face fc-front"><div class="fc-word">' + esc(v.t) + "</div>" +
       (v.r ? '<div class="fc-read">' + esc(v.r) + "</div>" : "") +
+      (v.note ? '<div class="fc-read" style="font-size:12px;opacity:.7">亦作：' + esc(v.note) + "</div>" : "") +
       '<span class="fc-hint">点击卡片查看释义</span></div>';
-    var ex = v.ex ? esc(v.ex).replace(new RegExp(escapeRe(v.t), "gi"), function (m) { return '<span class="hl">' + m + "</span>"; }) : "";
     var back = '<div class="fc-face fc-back"><div class="fc-meaning">' + esc(v.m) + "</div>" +
-      (ex ? '<div class="fc-ex">' + ex + "</div>" : "") +
+      exHtml(v) +
       '<span class="fc-hint">记住了吗？</span></div>';
 
-    return '<div class="stage-head"><h2>单词记忆</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
+    return '<div class="stage-head"><h2>单词记忆</h2>' + vocabStep(ctx) + "</div>" +
       '<div class="flashcard" id="flashcard"><div class="flashcard-inner">' + front + back + "</div></div>" +
       '<div class="flash-actions" id="flash-actions">' +
       '<button class="btn" data-action="speak-vocab">' + icon("speaker") + "听发音</button>" +
@@ -881,12 +901,12 @@
     var v = ctx.item;
     var front = '<div class="fc-face fc-front"><div class="fc-word">' + esc(v.t) + "</div>" +
       (v.r ? '<div class="fc-read">' + esc(v.r) + "</div>" : "") +
+      (v.note ? '<div class="fc-read" style="font-size:12px;opacity:.7">亦作：' + esc(v.note) + "</div>" : "") +
       '<span class="fc-hint">点击卡片返回</span></div>';
-    var ex = v.ex ? esc(v.ex).replace(new RegExp(escapeRe(v.t), "gi"), function (m) { return '<span class="hl">' + m + "</span>"; }) : "";
     var back = '<div class="fc-face fc-back"><div class="fc-meaning">' + esc(v.m) + "</div>" +
-      (ex ? '<div class="fc-ex">' + ex + "</div>" : "") +
+      exHtml(v) +
       '<span class="fc-hint">记住了吗？</span></div>';
-    return '<div class="stage-head"><h2>单词记忆</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
+    return '<div class="stage-head"><h2>单词记忆</h2>' + vocabStep(ctx) + "</div>" +
       '<div class="flashcard flipped" id="flashcard"><div class="flashcard-inner">' + front + back + "</div></div>" +
       '<div class="flash-actions">' +
       '<button class="btn btn-ink" data-action="speak-vocab">' + icon("speaker") + "听发音</button>" +
@@ -898,15 +918,24 @@
   function stageVocabQuiz(ctx) {
     var v = ctx.item;
     var q = ctx.quiz;
+    var fb = ctx.quizFb;
     var optsHtml = q.opts.map(function (o, i) {
-      return '<button class="opt" data-action="quiz-opt" data-opt="' + i + '"><span class="opt-key">' + "ABCD"[i] + "</span><span>" + esc(o.label) + "</span></button>";
+      var cls = "";
+      if (fb) { if (i === q.answerIdx) cls = "correct"; else if (i === fb.choice) cls = "wrong"; }
+      var attrs = fb ? " disabled" : ' data-action="quiz-opt" data-opt="' + i + '"';
+      return '<button class="opt ' + cls + '"' + attrs + '><span class="opt-key">' + "ABCD"[i] + "</span><span>" + esc(o.label) + "</span></button>";
     }).join("");
     var cls = "stage-quiz vocab-quiz";
-    return '<div class="stage-head"><h2>快速验证</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
+    var tail = fb
+      ? '<div class="explain ' + (fb.correct ? "ok" : "no") + '">' + icon(fb.correct ? "check" : "x") +
+        "<div><b>" + (fb.correct ? "回答正确，已计入掌握" : "正确答案：" + esc(q.opts[q.answerIdx].label)) + "</b>" +
+        esc(v.t) + (v.r ? "（" + esc(v.r) + "）" : "") + " —— " + esc(v.m) + "</div></div>" +
+        '<div style="display:flex;justify-content:flex-end;margin-top:14px"><button class="btn btn-primary" data-action="quiz-continue">继续</button></div>'
+      : '<div class="tiny muted-2" style="margin-top:8px">检验通过才计入已掌握 ✓</div>';
+    return '<div class="stage-head"><h2>快速验证</h2>' + vocabStep(ctx) + "</div>" +
       '<div class="' + cls + '">' +
       '<div class="quiz-prompt">「<b>' + esc(v.t) + "</b>」哪个释义是正确的？</div>" +
-      '<div class="opt-list">' + optsHtml + "</div>" +
-      '<div class="tiny muted-2" style="margin-top:8px">检验通过才计入已掌握 ✓</div>' +
+      '<div class="opt-list">' + optsHtml + "</div>" + tail +
       "</div>";
   }
 
@@ -933,7 +962,8 @@
   function stageGrammar(ctx, fb) {
     var d = ctx.item;
     if (d.type === "spell") return stageSpelling(ctx, fb);
-    return '<div class="stage-head"><h2>语法练习</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
+    var name = ctx.label || "语法练习";
+    return '<div class="stage-head"><h2>' + name + '</h2><span class="sh-step">' + (ctx.idx + 1) + " / " + ctx.total + "</span></div>" +
       '<div class="quiz-q">' + esc(d.q) + "</div>" +
       '<div class="quiz-sub">' + esc(d.point) + "</div>" +
       '<div class="opts" id="opts">' + optionList(d.opts, d.a, fb) + "</div>" +
@@ -1006,18 +1036,19 @@
   }
 
   /* 某一关完成 */
-  function stageModeDone(mode, correct, total, nextMode) {
+  function stageModeDone(mode, correct, total, nextMode, labelOverride) {
     var m = D.MODES.filter(function (x) { return x.key === mode; })[0];
     var pct = total ? Math.round(correct / total * 100) : 100;
     var color = pct >= 80 ? "var(--jade)" : pct >= 60 ? "var(--gold)" : "var(--vermilion)";
     var label = mode === "speaking" ? "本轮跟读已完成" : correct + " / " + total + " 正确";
     var nm = nextMode ? D.MODES.filter(function (x) { return x.key === nextMode; })[0] : null;
-    return '<div class="stage-head"><h2>' + m.name + '</h2><span class="sh-step">本关完成</span></div>' +
+    var nmName = nm ? ((labelOverride && labelOverride[nm.key]) || nm.name) : "";
+    return '<div class="stage-head"><h2>' + (labelOverride && labelOverride[mode] || m.name) + '</h2><span class="sh-step">本关完成</span></div>' +
       '<div style="text-align:center;padding:22px 0 8px">' +
       '<div style="font-family:var(--font-display);font-size:56px;line-height:1;color:' + color + '">' + pct + "%</div>" +
       '<div class="muted" style="margin-top:8px">' + label + "</div>" +
       '<div class="tiny muted-2" style="margin-top:6px">' + m.tip + "</div>" +
-      '<div style="margin-top:24px">' + (nm ? '<button class="btn btn-primary btn-lg" data-action="mode" data-mode="' + nm.key + '">进入：' + nm.name + "</button>" : "") +
+      '<div style="margin-top:24px">' + (nm ? '<button class="btn btn-primary btn-lg" data-action="mode" data-mode="' + nm.key + '">进入：' + nmName + "</button>" : "") +
       "</div></div>";
   }
 
@@ -1347,7 +1378,10 @@
         '<button class="speak-btn gl-speak" data-speak="' + esc(v.t) + '" data-locale="' + langOf(v.lang).locale + '" aria-label="朗读">' + icon("speaker") + "</button>" +
         '<div class="gl-main"><div class="gl-word">' + esc(v.t) + (v.r ? ' <span class="gl-read">' + esc(v.r) + "</span>" : "") + "</div>" +
         '<div class="gl-mean">' + esc(v.m) + "</div>" +
-        (v.ex ? '<div class="gl-ex">' + esc(v.ex) + "</div>" : "") + "</div>" +
+        (function () {
+          var a = exArr(v)[0];
+          return a ? '<div class="gl-ex">' + esc(a.t) + (a.tr ? '<span class="tiny muted-2">　' + esc(a.tr) + "</span>" : "") + "</div>" : "";
+        })() + "</div>" +
         '<div class="gl-side">' + state + langMeta +
         '<a class="tiny muted-2 gl-lesson" href="#/learn/' + v.lessonId + '">' + v.level + " · " + esc(v.lessonTitle) + "</a></div>" +
         "</div>";

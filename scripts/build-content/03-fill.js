@@ -31,6 +31,9 @@ const BATCH = 25;
 const LANG_NAME = { en: "英语", ja: "日语", ko: "韩语" };
 /* 需要联网重生的语言：日、韩释义经英语转译误差大，全量重生；英语走离线精简 */
 const LLM_LANGS = { ja: true, ko: true, en: false };
+/* v2：提示词改为「原词+读音+词性+例句」（不再给英文释义），缓存与自查结果全部换新文件 */
+const CACHE_FILE = "llm-cache-v2-";
+const MISMATCH_FILE = "llm-mismatch-v2-";
 
 /* 是否算「缺中文」（无释义或释义仍是英文/目标语） */
 function missingZh(w) {
@@ -47,22 +50,28 @@ function genPrompt(lang, batch) {
     const ex = (w.ex && w.ex[0] && w.ex[0].t) ? w.ex[0].t : "";
     return (i + 1) + ". " + w.t
       + (w.r ? "  （读音：" + w.r + "）" : "")
-      + (w.en ? "  （英文义：" + w.en + "）" : "")
+      + (w.pos ? "  （词性：" + w.pos + "）" : "")
       + (ex ? "  （例句：" + ex + "）" : "");
   }).join("\n");
-  return "下面是一批" + LANG_NAME[lang] + "词。请为每个词给出**最常用的 1–2 个简体中文义项**。\n" +
-    "要求：每个义项不超过 8 个字；只写释义本身，不要词性标注、不要例句、不要解释；" +
-    "两个义项之间用「；」连接；遇到助词、专有名词等无实义项时留空字符串。\n" +
+  return "下面是一批" + LANG_NAME[lang] + "词。请**只根据原词、读音、词性和例句**，为每个词给出**最常用的 1–2 个简体中文义项**。\n" +
+    "要求：每个义项不超过 8 个字；只写释义本身，不要词性标注、不要例句、不要解释；\n" +
+    "两个义项之间用「；」连接；如果最常用的义项只有一个汉字，请再补一个相关的常用义项（凑成两个义项）；\n" +
+    "遇到助词、专有名词等无实义项的词，留空字符串。\n" +
     "严格按 JSON 数组输出，元素形如 {\"i\":1,\"m\":\"商店；铺子\"}，不要输出任何其它内容。\n\n" + lines;
 }
 
 function checkPrompt(lang, batch) {
-  const lines = batch.map((w, i) => (i + 1) + ". 词：" + w.t
-    + (w.r ? "（读音：" + w.r + "）" : "")
-    + " 释义：" + (w.m || "（空）")).join("\n");
-  return "下面每行给出一个" + LANG_NAME[lang] + "词及其中文释义。请判断**释义与原词是否匹配**" +
-    "（仅当释义明显是别的词的意思、或与该词无关时才判 false；释义不完整、只给一个义项都算匹配）。\n" +
-    "严格按 JSON 数组输出，元素形如 {\"i\":1,\"ok\":true}，不要输出任何其它内容。\n\n" + lines;
+  const lines = batch.map((w, i) => {
+    const ex = (w.ex && w.ex[0] && w.ex[0].t) ? w.ex[0].t : "";
+    return (i + 1) + ". 词：" + w.t
+      + (w.r ? "（读音：" + w.r + "）" : "")
+      + (ex ? "（例句：" + ex + "）" : "")
+      + " 中文释义：" + (w.m || "（空）");
+  }).join("\n");
+  return "下面每行给出一个" + LANG_NAME[lang] + "词及其中文释义。请逐词回答：**这个中文释义是否是该词最常用的意思？**\n" +
+    "判断标准：义项明显是别的词的意思、或与该词无关 → no，并给出正确的最常用义项（不超过 8 个字）；\n" +
+    "义项正确（哪怕不完整、只有一个义项）→ yes。\n" +
+    "严格按 JSON 数组输出，元素形如 {\"i\":1,\"ok\":true} 或 {\"i\":2,\"ok\":false,\"fix\":\"正确义项\"}，不要输出任何其它内容。\n\n" + lines;
 }
 
 async function chat(user, system) {
@@ -99,12 +108,14 @@ async function askMeanings(lang, batch) {
 
 async function askMatch(lang, batch) {
   const arr = await chat(checkPrompt(lang, batch));
-  const bad = new Set();
+  const out = new Map();                       // term → {ok, fix}
   for (const o of arr) {
     const idx = parseInt(o.i, 10) - 1;
-    if (idx >= 0 && idx < batch.length && o.ok === false) bad.add(batch[idx].t);
+    if (idx >= 0 && idx < batch.length && o.ok === false) {
+      out.set(batch[idx].t, { ok: false, fix: typeof o.fix === "string" ? o.fix.trim() : "" });
+    }
   }
-  return bad;
+  return out;
 }
 
 async function runPool(items, worker, conc) {
@@ -133,9 +144,9 @@ function chunksOf(list, size) {
 async function fillLang(lang) {
   const file = path.join(U.RAW, "build", lang + ".words.json");
   let table = JSON.parse(U.readText(file));
-  const cacheFile = path.join(U.RAW, "build", "llm-cache-" + lang + ".json");
+  const cacheFile = path.join(U.RAW, "build", CACHE_FILE + lang + ".json");
   const cache = fs.existsSync(cacheFile) ? JSON.parse(U.readText(cacheFile)) : {};
-  const mismatchFile = path.join(U.RAW, "build", "llm-mismatch-" + lang + ".json");
+  const mismatchFile = path.join(U.RAW, "build", MISMATCH_FILE + lang + ".json");
   let mismatch = fs.existsSync(mismatchFile) ? JSON.parse(U.readText(mismatchFile)) : {};
 
   let todo;
@@ -144,9 +155,9 @@ async function fillLang(lang) {
   } else {
     todo = table.filter(missingZh);                          // 仅补缺失
   }
-  // 命中缓存的跳过
-  const cached = todo.filter(w => cache[w.t]);
-  const need = todo.filter(w => !cache[w.t]);
+  // 命中缓存的跳过（缓存值为空串 = 已判错且无修正，视为已处理、保持下架）
+  const cached = todo.filter(w => Object.prototype.hasOwnProperty.call(cache, w.t));
+  const need = todo.filter(w => !Object.prototype.hasOwnProperty.call(cache, w.t));
   U.log("  " + lang + "：共 " + table.length + " 词，待处理 " + todo.length +
     "（缓存命中 " + cached.length + "，需联网 " + need.length + "）");
 
@@ -171,25 +182,38 @@ async function fillLang(lang) {
     U.log("    未设置 LINGUA_LLM_API_KEY，跳过联网重生（保留离线清洗结果）");
   }
 
-  // 应用缓存
+  // 应用缓存（空串 = 判错且无修正 → 置空，后续由 materialize 下架）
   for (const w of table) {
-    if (cache[w.t]) w.m = cache[w.t];
+    if (Object.prototype.hasOwnProperty.call(cache, w.t)) w.m = cache[w.t] || "";
   }
 
-  // 自查轮：判断释义与原词是否匹配
+  // 第二轮复核：判断「是否最常用义」，no → 应用修正；无修正 → 置空下架
   if (KEY && LLM_LANGS[lang]) {
-    const checkList = table.filter(w => cache[w.t] && !(w.t in mismatch));
+    const checkList = table.filter(w => Object.prototype.hasOwnProperty.call(cache, w.t) && !(w.t in mismatch));
     const cb = chunksOf(checkList, BATCH);
     if (cb.length) {
-      U.log("    自查 " + checkList.length + " 词，" + cb.length + " 批");
+      U.log("    二轮复核 " + checkList.length + " 词，" + cb.length + " 批");
       await runPool(cb, async (batch, bi) => {
         try {
           const bad = await askMatch(lang, batch);
-          for (const w of batch) mismatch[w.t] = bad.has(w.t) ? "mismatch" : "ok";
+          for (const w of batch) {
+            const v = bad.get(w.t);
+            if (!v) { mismatch[w.t] = "ok"; continue; }
+            if (v.fix) {
+              cache[w.t] = ZH.normalizeZh(v.fix).slice(0, 24);
+              w.m = cache[w.t];
+              mismatch[w.t] = "fixed";
+            } else {
+              cache[w.t] = "";
+              w.m = "";
+              mismatch[w.t] = "mismatch";
+            }
+          }
         } catch (e) {
-          U.log("      自查批次 " + (bi + 1) + " 失败：" + e.message);
+          U.log("      复核批次 " + (bi + 1) + " 失败：" + e.message);
         }
       }, CONC);
+      U.writeJson(cacheFile, cache, false);
       U.writeJson(mismatchFile, mismatch, false);
     }
   }
@@ -202,6 +226,7 @@ async function fillLang(lang) {
     b.push(w);
   }
   const stat = writeOutputs(lang, byLevel, true);
+  const fixed = Object.keys(mismatch).filter(k => mismatch[k] === "fixed");
   const bad = Object.keys(mismatch).filter(k => mismatch[k] === "mismatch");
   const byTerm = new Map(table.map(w => [w.t, w]));
   const mismatchList = bad.map(t => {
@@ -209,8 +234,8 @@ async function fillLang(lang) {
     return { t, r: w.r || "", m: w.m || "", ex: (w.ex && w.ex[0]) ? w.ex[0].t : "" };
   });
   U.log("  → " + lang + "：" + (KEY ? ("新处理 " + done + "，失败 " + failed + "，") : "") +
-    "自查不匹配 " + bad.length + "，仍缺中文 " + table.filter(missingZh).length);
-  return { lang, done, failed, mismatch: bad.length, mismatchList, ...stat };
+    "复核修正 " + fixed.length + "，复核不匹配下架 " + bad.length + "，仍缺中文 " + table.filter(missingZh).length);
+  return { lang, done, failed, fixed: fixed.length, mismatch: bad.length, mismatchList, ...stat };
 }
 
 /* 自查判定「释义与原词不匹配」的词导出到仓库内：

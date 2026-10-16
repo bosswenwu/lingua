@@ -17,18 +17,23 @@ const WARN = (m) => warns.push(m);
 
 const LANGS = ["en", "ja", "ko"];
 const MIN_WORDS = 2000, MIN_LESSONS = 120;
-const LESSON_MIN = 15, LESSON_MAX = 20;
+/* 每课词数区间按级别：A1 5–8（目标 6–8），其余 7–10（目标 8–10） */
+const SIZE = {};
+for (const L of CFG.LEVELS) SIZE[L.id] = CFG.lessonSizeRange(L.id);
 
 /* P2-11：质量检查（命中即报错） */
 const EN_WORD = /[A-Za-z]/;                       // 释义里含英文字母
 const BRACKET = /[<>\[\]]/;                       // 释义里含 <> []
-const BAD_PREFIX = /^(是|表示)/;                   // 词典式占位开头
+const BAD_PREFIX = /^(是|表示|在)/;                // 词典式占位开头（含被换成的「在」）
+const PLACEHOLDER = /^(在|是|有)$/;                // 单字占位释义
 
 function qualityChecks(lang, ls, v, trs, exTexts) {
   const m = String(v.m || "").trim();
   if (EN_WORD.test(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义含英文单词 → " + m);
   if (BRACKET.test(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义含 <> [] → " + m);
-  if (BAD_PREFIX.test(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义以「是/表示」开头 → " + m);
+  if (BAD_PREFIX.test(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义以「在/是/表示」开头 → " + m);
+  if (PLACEHOLDER.test(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义是占位单字 → " + m);
+  if ([...m].length === 1) E(lang + " " + ls.id + " 词 " + v.t + ": 释义只有 1 个字 → " + m);
   if (m && m === String(v.t).trim()) E(lang + " " + ls.id + " 词 " + v.t + ": 释义等于原词");
   if (ZH.hasTraditional(m)) E(lang + " " + ls.id + " 词 " + v.t + ": 释义含繁体字 → " + m);
   for (const tr of trs) {
@@ -91,8 +96,17 @@ for (const lang of LANGS) {
         if (typeof ls.minutes !== "number") E(lang + " " + ls.id + ": 缺 minutes");
         if (typeof ls.xp !== "number") E(lang + " " + ls.id + ": 缺 xp");
         if (!Array.isArray(ls.vocab) || !ls.vocab.length) { E(lang + " " + ls.id + ": vocab 为空"); continue; }
-        if (ls.vocab.length < LESSON_MIN || ls.vocab.length > LESSON_MAX)
-          E(lang + " " + ls.id + ": 词数 " + ls.vocab.length + " 超出 " + LESSON_MIN + "–" + LESSON_MAX);
+        const rng = SIZE[lv.id] || { min: 5, max: 10 };
+        if (ls.vocab.length < rng.min || ls.vocab.length > rng.max)
+          E(lang + " " + ls.id + ": 词数 " + ls.vocab.length + " 超出 " + rng.min + "–" + rng.max);
+
+        /* 同一课两个词释义完全相同 → 报警（会造成验证题出现两个正确答案） */
+        const seenMeaning = new Set();
+        for (const v of ls.vocab) {
+          const mm = String(v.m || "").trim();
+          if (mm && seenMeaning.has(mm)) WARN(lang + " " + ls.id + ": 课内释义重复「" + mm + "」（" + v.t + "）");
+          seenMeaning.add(mm);
+        }
 
         const inLesson = new Set();
         for (const v of ls.vocab) {
@@ -153,22 +167,48 @@ function sample(arr, n, seed) {
   return a.slice(0, n);
 }
 function esc(s) { return String(s == null ? "" : s).replace(/\|/g, "\\|").replace(/\r?\n/g, " "); }
-function table(list) {
-  const rows = list.map((v, i) => {
-    const ex = (v.ex && v.ex[0]) ? esc(v.ex[0].t) + " ／ " + esc(v.ex[0].tr) : "（无）";
-    return "| " + (i + 1) + " | " + esc(v.t) + " | " + esc(v.r || "") + " | " + esc(v.m) + " | " + ex + " |";
-  });
-  return ["| # | 原词 | 读音 | 释义 | 例句 |", "|---|---|---|---|---|"].concat(rows).join("\n");
-}
 
 const LNAME = { en: "英语", ja: "日语", ko: "韩语" };
+/* P0-2：复核判定（05-judge.js 产出；无判定时显示「待复核」） */
+let judge = {};
+const judgeFile = path.join(U.RAW, "build", "acceptance-judgement.json");
+if (fs.existsSync(judgeFile)) judge = JSON.parse(U.readText(judgeFile));
+
+function table(list, lang) {
+  const j = judge[lang] || {};
+  const rows = list.map((v, i) => {
+    const ex = (v.ex && v.ex[0]) ? esc(v.ex[0].t) + " ／ " + esc(v.ex[0].tr) : "（无）";
+    const jd = j[v.t];
+    const verdict = jd ? (jd.verdict === "对" || jd.verdict === "yes" ? "对" : "错") + (jd.fix ? "（复核改：" + esc(jd.fix) + "）" : "") : "待复核";
+    return "| " + (i + 1) + " | " + esc(v.t) + " | " + esc(v.r || "") + " | " + esc(v.m) + " | " + ex + " | " + verdict + " |";
+  });
+  return ["| # | 原词 | 读音 | 释义 | 例句 | 判定 |", "|---|---|---|---|---|---|"].concat(rows).join("\n");
+}
+function verdictRate(list, lang) {
+  const j = judge[lang] || {};
+  let done = 0, wrong = 0;
+  for (const v of list) {
+    const jd = j[v.t];
+    if (!jd) continue;
+    done++;
+    if (!(jd.verdict === "对" || jd.verdict === "yes")) wrong++;
+  }
+  if (!done) return "";
+  return "复核 " + done + " 词，判错 " + wrong + "（错误率 " + (wrong / done * 100).toFixed(1) + "%，验收线 ≤3%）";
+}
+
 let reviewMd = "# 释义与例句抽检（review.md）\n\n固定种子随机抽样，每次构建结果一致。\n\n";
-let acceptMd = "# 验收抽检表（100 词/语言）\n\n固定种子随机抽样。\n\n";
+let acceptMd = "# 验收抽检表（100 词/语言）\n\n固定种子随机抽样。「判定」列由 05-judge.js 的复核模型给出（对/错 + 修正建议）。\n\n";
+const acceptanceSample = {};
 for (const lang of LANGS) {
   const list = allVocab[lang] || [];
-  reviewMd += "## " + LNAME[lang] + "（" + Math.min(50, list.length) + " 词）\n\n" + table(sample(list, 50, 20261015 + lang.length)) + "\n\n";
-  acceptMd += "## " + LNAME[lang] + "（" + Math.min(100, list.length) + " 词）\n\n" + table(sample(list, 100, 813 + lang.charCodeAt(0))) + "\n\n";
+  reviewMd += "## " + LNAME[lang] + "（" + Math.min(50, list.length) + " 词）\n\n" + table(sample(list, 50, 20261015 + lang.length), lang) + "\n\n";
+  const acc = sample(list, 100, 813 + lang.charCodeAt(0));
+  acceptanceSample[lang] = acc.map(v => ({ t: v.t, r: v.r || "", m: v.m || "", ex: (v.ex && v.ex[0]) ? v.ex[0].t : "" }));
+  const rate = verdictRate(acc, lang);
+  acceptMd += "## " + LNAME[lang] + "（" + Math.min(100, list.length) + " 词）" + (rate ? "　—　" + rate : "") + "\n\n" + table(acc, lang) + "\n\n";
 }
+U.writeJson(path.join(U.RAW, "build", "acceptance-sample.json"), acceptanceSample, true);
 U.writeText(path.join(__dirname, "review.md"), reviewMd);
 U.writeText(path.join(__dirname, "acceptance.md"), acceptMd);
 

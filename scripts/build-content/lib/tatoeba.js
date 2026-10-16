@@ -23,6 +23,17 @@ function stripKo(token) {
   return token;
 }
 
+/* P0-4：英语意译过滤——原文（去空白/标点）与译文汉字数之比超出直译区间则丢弃
+   （"Nice guys finish last. / 男不坏，女不爱。" 这类俚语意译不可用于教学） */
+function zhHanCount(s) { return (String(s).match(/[\u4e00-\u9fff]/g) || []).length; }
+function passRatio(enText, zhText) {
+  const en = String(enText).replace(/[^A-Za-z]/g, "").length;
+  const zh = zhHanCount(zhText);
+  if (!en || !zh) return false;
+  const a = en / zh, b = zh / en;
+  return a <= CFG.EX_LIMITS.ratioEnToZh && b <= CFG.EX_LIMITS.ratioZhToEn;
+}
+
 /* 载入 cmn 全量句子（体量小） */
 function loadCmn() {
   const m = new Map();
@@ -78,6 +89,7 @@ function buildExamples(lang, terms, opts) {
     const text = tSent.get(tid);
     if (!text || !ctext) continue;
     if (text.length > CFG.EX_LIMITS.maxLen || text.length < MIN_LEN) continue;
+    if (lang === "en" && !passRatio(text, ctext)) continue;   // 意译/长度失配，丢弃
     const cands = matcher(text);
     for (const term of cands) {
       if (lang === "ko" && isKoTemplate(term, text)) continue;    // 模板补句形态，直接弃用

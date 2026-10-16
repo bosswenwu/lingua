@@ -168,7 +168,8 @@
     /* 手写题目优先；课程没带题目时由 Exercise 依词条即时生成 */
     var gen = window.Exercise ? Exercise.generate(l, info.lang) : { grammar: [], listening: [], speaking: [] };
     var grammarItems = [];
-    if ((l.grammar || []).length) {
+    var handwrittenGrammar = (l.grammar || []).length > 0;
+    if (handwrittenGrammar) {
       (l.grammar || []).forEach(function (g) {
         (g.drills || []).forEach(function (d) {
           grammarItems.push({ type: "choice", point: g.point, rule: g.rule, q: d.q, opts: d.opts, a: d.a, why: d.why });
@@ -177,6 +178,19 @@
     } else {
       grammarItems = gen.grammar;
     }
+    /* 自动课没有语法内容：词义题改名「巩固练习」，避免与手写语法课混淆 */
+    var grammarLabel = handwrittenGrammar ? null : "巩固练习";
+    /* 干扰项池：整个级别的全部释义（去重），快速验证与巩固题共用 */
+    var levelMeanings = [];
+    var lmSeen = {};
+    ((info.level && info.level.units) || []).forEach(function (u) {
+      (u.lessons || []).forEach(function (ls) {
+        (ls.vocab || []).forEach(function (v) {
+          var m = v && v.m;
+          if (m && !lmSeen[m]) { lmSeen[m] = 1; levelMeanings.push(m); }
+        });
+      });
+    });
     var items = {
       vocab: (l.vocab || []).slice(),
       grammar: grammarItems,
@@ -193,6 +207,8 @@
     return {
       id: lessonId, info: info, lang: info.lang, items: items,
       total: total, pending: pending, done: done, correct: correct,
+      grammarLabel: grammarLabel, levelMeanings: levelMeanings,
+      vocabSeen: 0,
       active: DATA.MODES.filter(function (m) { return items[m.key].length > 0; })[0].key,
       revealed: false, answering: null, speakFx: null, said: "", repeats: {}, finished: false,
       dictate: { active: false, result: null, draft: "" }
@@ -242,13 +258,14 @@
       return;
     }
 
-    var totals = {}, dones = {};
+    var totals = {}, dones = {}, labels = null;
     DATA.MODES.forEach(function (m) { totals[m.key] = LC.total[m.key]; dones[m.key] = LC.done[m.key]; });
+    if (LC.grammarLabel) labels = { grammar: LC.grammarLabel };
 
     var mode = LC.active;
     var stage;
     if (!LC.pending[mode].length) {
-      stage = Views.stageModeDone(mode, LC.correct[mode], LC.total[mode], nextIncompleteMode(mode));
+      stage = Views.stageModeDone(mode, LC.correct[mode], LC.total[mode], nextIncompleteMode(mode), labels);
     } else {
       var cur = LC.pending[mode][0];
       var useIdx = LC.answering ? LC.answering.idx : LC.done[mode];
@@ -256,18 +273,19 @@
       var ctx = { lessonId: LC.id, idx: useIdx, total: LC.total[mode], item: item };
       if (mode === "vocab") {
         if (LC.quiz) {
-          var quizCtx = { lessonId: LC.id, idx: LC.done[mode], total: LC.total[mode], item: LC.items[mode][LC.quiz.idx], quiz: LC.quiz };
+          var quizCtx = { lessonId: LC.id, total: LC.total[mode], seen: LC.vocabSeen, mastered: LC.correct[mode], item: LC.items[mode][LC.quiz.idx], quiz: LC.quiz, quizFb: LC.quizFb || null };
           stage = Views.stageVocabQuiz(quizCtx);
         } else {
-          stage = LC.revealed ? Views.stageVocabRevealed(ctx) : Views.stageVocab(ctx);
+          var vctx = { lessonId: LC.id, idx: useIdx, total: LC.total[mode], seen: LC.vocabSeen, mastered: LC.correct[mode], item: item };
+          stage = LC.revealed ? Views.stageVocabRevealed(vctx) : Views.stageVocab(vctx);
         }
       }
-      else if (mode === "grammar") stage = Views.stageGrammar(ctx, LC.answering && LC.answering.mode === mode ? LC.answering : null);
+      else if (mode === "grammar") { ctx.label = LC.grammarLabel; stage = Views.stageGrammar(ctx, LC.answering && LC.answering.mode === mode ? LC.answering : null); }
       else if (mode === "listening") stage = Views.stageListening(ctx, LC.revealed, LC.answering && LC.answering.mode === mode ? LC.answering : null, LC.dictate);
       else stage = Views.stageSpeaking(ctx, LC.speakFx || "");
     }
 
-    body.innerHTML = Views.modeToggle(mode, totals, dones) + '<div class="stage">' + stage + "</div>";
+    body.innerHTML = Views.modeToggle(mode, totals, dones, labels) + '<div class="stage">' + stage + "</div>";
     updateLessonProgress();
   }
 
@@ -316,14 +334,27 @@
       var allV = LC.items[mode];
       if (allV.length >= 4) {
         var ans = allV[cur];
+        /* 干扰项：优先从整个级别的词库抽，按释义文本去重，并排除与正确答案同释义的词 */
+        var pool = (LC.levelMeanings && LC.levelMeanings.length >= 6) ? LC.levelMeanings : [];
         var dist = [];
+        var distSeen = {};
+        distSeen[ans.m] = 1;
+        var guard = 0;
+        while (dist.length < 3 && guard < pool.length * 4 + 60) {
+          guard++;
+          var dm = pool[Math.floor(Math.random() * pool.length)];
+          if (!dm || distSeen[dm]) continue;
+          distSeen[dm] = 1; dist.push(dm);
+        }
+        /* 级别池不够时回退本课词汇 */
         for (var di = 0; di < allV.length && dist.length < 3; di++) {
-          if (di !== cur && dist.indexOf(allV[di].m) === -1) dist.push(allV[di].m);
+          var om = allV[di].m;
+          if (di !== cur && !distSeen[om]) { distSeen[om] = 1; dist.push(om); }
         }
         /* 不够 3 个不同释义，跳过检验 */
         if (dist.length >= 2) {
           var rawOpts = [{ m: ans.m, cur: true, idx: cur }];
-          dist.forEach(function (dm) { rawOpts.push({ m: dm, cur: false }); });
+          dist.forEach(function (dmm) { rawOpts.push({ m: dmm, cur: false }); });
           /* Fisher–Yates shuffle */
           for (var i = rawOpts.length - 1; i > 0; i--) {
             var j = Math.floor(Math.random() * (i + 1));
@@ -331,7 +362,7 @@
           }
           var answerIdx = rawOpts.findIndex(function (o) { return o.cur; });
           LC.quiz = { idx: cur, opts: rawOpts.map(function (o) { return { label: o.m, isAns: o.cur }; }), answerIdx: answerIdx };
-          LC.revealedQuiz = true;
+          LC.quizFb = null;
           paintLesson();
           return;
         }
@@ -356,8 +387,9 @@
     } else {
       LC.done[mode] += 1;
     }
+    LC.vocabSeen += 1;
     LC.quiz = null;
-    LC.revealedQuiz = false;
+    LC.quizFb = null;
     LC.revealed = false;
     if (allDone()) return finishLesson(mode);
     questPulse();
@@ -365,9 +397,14 @@
   }
 
   function handleVocabQuiz(choiceIdx) {
-    if (!LC.quiz) return;
-    var correct = choiceIdx === LC.quiz.answerIdx;
-    commitVocabStep(correct);
+    if (!LC.quiz || LC.quizFb) return;      // 已作答，等「继续」
+    LC.quizFb = { choice: choiceIdx, correct: choiceIdx === LC.quiz.answerIdx };
+    paintLesson();
+  }
+
+  function handleVocabQuizContinue() {
+    if (!LC.quizFb) return;
+    commitVocabStep(LC.quizFb.correct);
   }
 
   /* ---- 拼写题（键盘输入） ---- */
@@ -606,7 +643,7 @@
       return {
         srs: true, key: d.key, lang: lang, mode: "vocab",
         prompt: v.t, sub: (v.r ? v.r + " · " : "") + "选出正确释义",
-        speakText: v.t, opts: opts, answer: opts.indexOf(v.m), why: v.ex || ""
+        speakText: v.t, opts: opts, answer: opts.indexOf(v.m), why: DATA.exText(v)
       };
     });
     RV = { items: items, idx: 0, fixed: 0, fb: null, words: true };
@@ -809,6 +846,7 @@
       case "known": if (LC) handleVocab(true); break;
       case "unknown": if (LC) handleVocab(false); break;
       case "quiz-opt": if (LC && LC.quiz) handleVocabQuiz(+act.getAttribute("data-opt")); break;
+      case "quiz-continue": if (LC) handleVocabQuizContinue(); break;
       case "speak-vocab":
         if (LC) { var cv = LC.items.vocab[LC.pending.vocab[0]]; if (cv) Speech.speak(cv.t, LC.lang.locale); }
         break;

@@ -83,10 +83,13 @@ function cleanMeaning(raw) {
   return out;
 }
 
-/* 英语音标统一成标准 IPA 符号 */
+/* 英语音标统一成标准 IPA 符号（ECDICT 兜底路径：去分隔点号、统一符号） */
 function ipa(s) {
   if (!s) return "";
-  return String(s).replace(/ә/g, "ə").replace(/'/g, "ˈ").replace(/:/g, "ː");
+  return String(s)
+    .replace(/ә/g, "ə").replace(/'/g, "ˈ").replace(/:/g, "ː")
+    .replace(/\.(?=[a-zæʃʒθðɔəɪʊːˈˌ])/gi, "")   // 点号是音节分隔符，不是重音符号，去掉
+    .replace(/^\.+|\.+$/g, "");
 }
 
 /* 释义是否含中文（无中文的占位词条不产出） */
@@ -106,19 +109,33 @@ function zhFromGloss(gloss, ecdict) {
 
 /* ---------------- 分级 ---------------- */
 
-/* 英语：按 ECDICT 词频分词级 */
-function enLevel(e) {
+/* 抽象名词后缀：NGSL/ECDICT 是词频表，抽象词按词频混进低级别；
+   这些词一律不进 A1/A2（city/pity/ship 等短词靠最小长度豁免） */
+const ABSTRACT = [
+  /tion$|sion$/, /sis$/, /ment$/, /ness$/, /^.{6,}ity$/, /ance$|ence$/,
+  /ism$/, /olog(y|ies)$/, /^.{7,}ship$/, /^.{6,}hood$/
+];
+/* 无后缀特征但确属抽象词的（A1/A2 不收） */
+const ABSTRACT_EXTRA = new Set(["analysis", "behavior", "aspect", "concept", "context", "factor", "issue", "process", "approach"]);
+function isAbstract(w) { return ABSTRACT.some(re => re.test(w)) || ABSTRACT_EXTRA.has(w); }
+
+/* 英语：按 ECDICT 词频分词级（A1=前1000 具体词，A2=1001–2000，抽象词推到 B1） */
+function enLevel(e, word) {
   const rank = e.frq || e.bnc || 0;
+  let lv;
   if (rank) {
-    if (rank <= 1600) return "a1";
-    if (rank <= 3200) return "a2";
-    if (rank <= 6000) return "b1";
-    return "b2";
+    if (rank <= 1000) lv = "a1";
+    else if (rank <= 2000) lv = "a2";
+    else if (rank <= 4800) lv = "b1";
+    else lv = "b2";
+  } else {
+    if (e.oxford) lv = "a2";
+    else if (/\b(zk|gk)\b/.test(e.tag)) lv = "a2";
+    else if (e.collins >= 3) lv = "b1";
+    else lv = "b2";
   }
-  if (e.oxford) return "a2";
-  if (/\b(zk|gk)\b/.test(e.tag)) return "a2";
-  if (e.collins >= 3) return "b1";
-  return "b2";
+  if ((lv === "a1" || lv === "a2") && word && isAbstract(word)) lv = "b1";
+  return lv;
 }
 
 /* 日语：JLPT N5–N2 → A1–B2 */
@@ -129,7 +146,7 @@ const KO_TOPIK = { "초급": "a1", "중급": "b1", "고급": "b2" };
 
 /* ---------------- 各语言计划 ---------------- */
 
-function planEnglish(ecdict) {
+function planEnglish(ecdict, cmudict) {
   const f = path.join(U.RAW, "dict", "ngsl.csv");
   if (!fs.existsSync(f)) throw new Error("缺少 " + f);
   const ngsl = [];
@@ -144,10 +161,11 @@ function planEnglish(ecdict) {
 
   const words = [];
   const push = (t, e, extra) => {
+    const r = (cmudict && cmudict.get(t)) || (e.ph ? "/" + ipa(e.ph).replace(/^\/|\/$/g, "") + "/" : "");
     words.push({
-      t, level: enLevel(e),
+      t, level: enLevel(e, t),
       m: cleanMeaning(e.zh),
-      r: e.ph ? "/" + ipa(e.ph).replace(/^\/|\/$/g, "") + "/" : "",
+      r,
       en: extra || "", src: "ngsl"
     });
   };
@@ -159,7 +177,7 @@ function planEnglish(ecdict) {
   return words;
 }
 
-function planEnglishSupplement(ecdict, exclude) {
+function planEnglishSupplement(ecdict, exclude, cmudict) {
   const extra = [];
   ecdict.forEach((e, w) => {
     if (exclude.has(w)) return;
@@ -172,9 +190,17 @@ function planEnglishSupplement(ecdict, exclude) {
   });
   extra.sort((a, b) => a.rank - b.rank);
   return extra.map(o => ({
-    t: o.w, level: enLevel(o.e), m: cleanMeaning(o.e.zh),
-    r: o.e.ph ? "/" + ipa(o.e.ph).replace(/^\/|\/$/g, "") + "/" : "", en: "", src: "ecdict"
+    t: o.w, level: enLevel(o.e, o.w), m: cleanMeaning(o.e.zh),
+    r: (cmudict && cmudict.get(o.w)) || (o.e.ph ? "/" + ipa(o.e.ph).replace(/^\/|\/$/g, "") + "/" : ""),
+    en: "", src: "ecdict"
   }));
+}
+
+/* 词条原文形如「足; 脚」：分号前是主词，其余变备注，别整串当标题 */
+function splitTermNote(expr) {
+  const parts = String(expr).split(/[;；]/).map(s => s.trim()).filter(Boolean);
+  if (parts.length <= 1) return { term: parts[0] || "", note: "" };
+  return { term: parts[0], note: parts.slice(1).join("；") };
 }
 
 function planJapanese(ecdict) {
@@ -188,10 +214,14 @@ function planJapanese(ecdict) {
       const expr = (r[0] || "").trim();
       const reading = (r[1] || "").trim();
       const meaning = (r[2] || "").trim();
-      if (!expr || seen.has(expr)) return;
-      seen.add(expr);
+      if (!expr) return;
+      const { term, note } = splitTermNote(expr);
+      if (!term || seen.has(term)) return;
+      seen.add(term);
       const m = zhFromGloss(meaning, ecdict);
-      words.push({ t: expr, level: JA_LEVEL[lv], m, en: meaning, r: reading, src: "jlpt-" + lv });
+      const w = { t: term, level: JA_LEVEL[lv], m, en: meaning, r: reading, src: "jlpt-" + lv };
+      if (note) w.note = note;
+      words.push(w);
     });
   }
   return words;
@@ -240,13 +270,14 @@ function pickLevelWords(words, cap) {
   return byLevel;
 }
 
-/* 把词表均匀切成每课 15–20 词 */
-function splitEvenly(list) {
+/* 把词表均匀切成每课 target±1 词（A1 每课 6–8，其余 8–10；末课兜底允许 target-2） */
+function splitEvenly(list, target) {
   const n = list.length;
   if (!n) return [];
-  let count = Math.max(1, Math.round(n / CFG.WORDS_PER_LESSON));
-  while (Math.ceil(n / count) > 20) count++;
-  while (count > 1 && Math.floor(n / count) < 15) count--;
+  target = target || CFG.WORDS_PER_LESSON;
+  let count = Math.max(1, Math.round(n / target));
+  while (Math.ceil(n / count) > target + 1) count++;
+  while (count > 1 && Math.floor(n / count) < target - 2) count--;
   const base = Math.floor(n / count), extra = n % count;
   const out = [];
   let p = 0;
@@ -258,13 +289,26 @@ function splitEvenly(list) {
   return out;
 }
 
+/* 可疑释义（宁缺毋滥，先下架；等 LLM 重生后再上）：
+   单字释义、以 在/是/表示 开头或含「表示」、含连续英文字母、释义等于原词 */
+function isSuspicious(w) {
+  const m = String(w && w.m || "").trim();
+  if (!m) return true;
+  if ([...m].length <= 1) return true;                    // 单字释义（渇く=在 这类）
+  if (/^(在|是|表示)/.test(m)) return true;
+  if (m.indexOf("表示") >= 0) return true;
+  if (/[A-Za-z]/.test(m)) return true;                    // 中文释义不应含任何拉丁字母（含 u201c 等转义残留）
+  if (m === String(w.t || "").trim()) return true;
+  return false;
+}
+
 function materialize(lang, byLevel) {
   const levels = [];
   for (const L of CFG.LEVELS) {
-    // 无中文释义（仍是英文占位）或释义等于原词的词条不产出：宁可少词，也不要无信息条目
-    const list = (byLevel[L.id] || []).filter(w => hasCjk(w.m) && String(w.m).trim() !== String(w.t).trim());
+    // 无中文释义、可疑释义（单字/在是有/英文残留）或释义等于原词的词条不产出：宁可少词，也不要错条目
+    const list = (byLevel[L.id] || []).filter(w => hasCjk(w.m) && !isSuspicious(w));
     if (!list.length) continue;
-    const chunks = splitEvenly(list);
+    const chunks = splitEvenly(list, CFG.wordsPerLesson(L.id));
     const units = [];
     let unitNo = 0;
     for (let i = 0; i < chunks.length; i++) {
@@ -282,6 +326,7 @@ function materialize(lang, byLevel) {
         sub: first + " — " + last, minutes: 8, xp: 50, focus: L.badge + " 核心词汇",
         vocab: chunk.map(w => {
           const o = { t: w.t, m: ZH.normalizeZh(w.m), r: w.r || "" };
+          if (w.note) o.note = ZH.normalizeZh(w.note);
           if (w.ex && w.ex.length) o.ex = w.ex.map(e => ({ t: e.t, tr: ZH.normalizeZh(e.tr) }));
           return o;
         }),
@@ -294,7 +339,7 @@ function materialize(lang, byLevel) {
 }
 
 module.exports = {
-  loadEcdict, loadKengdic, cleanMeaning, zhFromGloss, ipa, hasCjk,
+  loadEcdict, loadKengdic, cleanMeaning, zhFromGloss, ipa, hasCjk, isSuspicious, isAbstract,
   planEnglish, planEnglishSupplement, planJapanese, planKorean,
-  pickLevelWords, materialize
+  pickLevelWords, splitEvenly, materialize
 };
