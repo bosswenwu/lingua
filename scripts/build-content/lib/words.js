@@ -5,6 +5,7 @@ const U = require("./util");
 const C = require("./csv");
 const CFG = require("./config");
 const ZH = require("./zh");
+const TH = require("./theme");
 const { romanize } = require("./roman");
 
 /* ---------------- 词典 ---------------- */
@@ -302,36 +303,81 @@ function isSuspicious(w) {
   return false;
 }
 
+/* 课名代表词：该课前 3 个有实义的词（跳过单字与常见功能词），不足取实际数量 */
+function repWords(chunk) {
+  const picks = chunk.filter(w => TH.isRepresentative(w.t)).slice(0, 3).map(w => w.t);
+  return (picks.length ? picks : chunk.slice(0, 3).map(w => w.t)).join(" ");
+}
+
 function materialize(lang, byLevel) {
   const levels = [];
   for (const L of CFG.LEVELS) {
     // 无中文释义、可疑释义（单字/在是有/英文残留）或释义等于原词的词条不产出：宁可少词，也不要错条目
     const list = (byLevel[L.id] || []).filter(w => hasCjk(w.m) && !isSuspicious(w));
     if (!list.length) continue;
-    const chunks = splitEvenly(list, CFG.wordsPerLesson(L.id));
+    const target = CFG.wordsPerLesson(L.id);
+    const range = CFG.lessonSizeRange(L.id);
+    const inRange = (chunks) => chunks.every(c => c.length >= range.min && c.length <= range.max);
+
+    /* 先分桶：逐词按释义归主题（主题内保持原字母序/原顺序），保证每课成员同主题 */
+    const buckets = new Map([["base", []]]);
+    for (const w of list) {
+      const slug = TH.wordTheme(w.m).slug;
+      if (!buckets.has(slug)) buckets.set(slug, []);
+      buckets.get(slug).push(w);
+    }
+    /* 切不出 2 课、或切出来有课超出每课词数区间的主题，整桶并入基础词汇，避免碎单元 */
+    for (const t of TH.THEMES) {
+      if (t.slug === "base") continue;
+      const ws = buckets.get(t.slug);
+      if (!ws || !ws.length) continue;
+      const chunks = splitEvenly(ws, target);
+      if (chunks.length < 2 || !inRange(chunks)) {
+        buckets.get("base").push(...ws);
+        buckets.set(t.slug, []);
+      }
+    }
+    /* 基础桶自身切不出合法课时，把最小的主题桶并入（整桶并入不破坏其余课的主题纯度） */
+    let bChunks = splitEvenly(buckets.get("base"), target);
+    while (!inRange(bChunks)) {
+      let minSlug = "";
+      for (const t of TH.THEMES) {
+        if (t.slug === "base") continue;
+        const ws = buckets.get(t.slug);
+        if (ws && ws.length && (!minSlug || ws.length < buckets.get(minSlug).length)) minSlug = t.slug;
+      }
+      if (!minSlug) break;
+      buckets.get("base").push(...buckets.get(minSlug));
+      buckets.set(minSlug, []);
+      bChunks = splitEvenly(buckets.get("base"), target);
+    }
+
+    /* 单元 = 主题：unit.id 形如 ja-a1-food（跨级别唯一稳定），unit.name = 主题名；
+       单元按主题定义顺序排列（基础词汇殿后），单元内课保持主题内原顺序；
+       课 id 按新顺序重排（u{单元序}-l{课序}，格式不变、级别内唯一） */
     const units = [];
     let unitNo = 0;
-    for (let i = 0; i < chunks.length; i++) {
-      if (i % CFG.LESSONS_PER_UNIT === 0) {
-        unitNo++;
-        units.push({ id: lang + "-" + L.id + "-u" + unitNo, name: L.badge + " · 第 " + unitNo + " 单元", lessons: [] });
-      }
-      const chunk = chunks[i];
-      const lNo = ((i % CFG.LESSONS_PER_UNIT) + 1);
-      const unit = units[units.length - 1];
-      const id = lang + "-" + L.id + "-u" + unitNo + "-l" + lNo;
-      const first = chunk[0].t, last = chunk[chunk.length - 1].t;
-      unit.lessons.push({
-        id, title: L.badge + " 第 " + unitNo + "-" + lNo + " 课",
-        sub: first + " — " + last, minutes: 8, xp: 50, focus: L.badge + " 核心词汇",
-        vocab: chunk.map(w => {
-          const o = { t: w.t, m: ZH.normalizeZh(w.m), r: w.r || "" };
-          if (w.note) o.note = ZH.normalizeZh(w.note);
-          if (w.ex && w.ex.length) o.ex = w.ex.map(e => ({ t: e.t, tr: ZH.normalizeZh(e.tr) }));
-          return o;
-        }),
-        grammar: [], listening: [], speaking: []
+    for (const t of TH.THEMES) {
+      const ws = buckets.get(t.slug);
+      if (!ws || !ws.length) continue;
+      unitNo++;
+      const unit = { id: lang + "-" + L.id + "-" + t.slug, name: t.name, lessons: [] };
+      splitEvenly(ws, target).forEach((chunk, i) => {
+        unit.lessons.push({
+          id: lang + "-" + L.id + "-u" + unitNo + "-l" + (i + 1),
+          title: t.name + " · " + repWords(chunk),
+          sub: t.name + "词汇 · 第 " + (i + 1) + " 课", minutes: 8, xp: 50,
+          focus: L.badge + " " + t.name + "词汇",
+          vocab: chunk.map(w => {
+            const o = { t: w.t, m: ZH.normalizeZh(w.m), r: w.r || "" };
+            if (w.note) o.note = ZH.normalizeZh(w.note);
+            if (w.ex && w.ex.length) o.ex = w.ex.map(e => ({ t: e.t, tr: ZH.normalizeZh(e.tr) }));
+            return o;
+          }),
+          grammar: [], listening: [], speaking: []
+        });
       });
+      units.push(unit);
     }
     levels.push({ id: lang + "-" + L.id, name: L.name, badge: L.badge, target: list.length, units });
   }

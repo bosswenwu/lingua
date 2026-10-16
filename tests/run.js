@@ -695,10 +695,14 @@ t("stageListening 听写结果：分数与逐词标记", () => {
   ok(count(html, /chip-jade|chip-red/g) >= marks.length, "逐词 chip 数量");
   has(html, "原文：");
 });
-t("dashboard 含继续学习、到期复习和今日任务", () => {
+t("今天页瘦身：只留继续学习 + 今日目标 + 到期复习，任务卡移至我的页", () => {
   const html = Views.dashboard();
   has(html, "继续学习");
-  has(html, "今日任务");
+  has(html, "已学 / 目标");
+  notHas(html, "今日任务");
+  const prof = Views.profile();
+  has(prof, "今日任务");
+  has(prof, "前往复习");
 });
 
 /* ==========================================================================
@@ -761,11 +765,11 @@ t("checkQuests：完成发 15 XP，全完成额外 +20 XP", () => {
 
 console.log("\n■ P0 游戏化 · 视图");
 /* （商店页/红心耗尽页/顶栏金币 pill 已在 Phase A 移除） */
-t("dashboard 渲染今日任务卡", () => {
+t("我的页渲染今日任务卡", () => {
   const p = Store.progress();
   p.quests = { date: Store._util.todayKey(), list: [{ id: "xp30", done: false }, { id: "lesson1", done: true }, { id: "correct10", done: false }] };
   Store.saveProgress(p);
-  const html = Views.dashboard();
+  const html = Views.profile();
   has(html, "今日任务");
   eq(count(html, /class="quest-row/g), 3, "任务 3 行");
   has(html, "每项 +15 XP");

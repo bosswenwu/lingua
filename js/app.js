@@ -113,7 +113,13 @@
   function paintPage(page, arg, user) {
     switch (page) {
       case "":
-        App.innerHTML = Views.landing(); break;
+        /* 无档案首次进入：一屏引导（选语言 → 选水平），完成后直达第一课 */
+        if (!user && !Store.profiles().length && !onboardDismissed()) {
+          App.innerHTML = Views.onboarding();
+        } else {
+          App.innerHTML = Views.landing();
+        }
+        break;
       case "login":
         App.innerHTML = Views.auth("login"); break;
       case "register":
@@ -144,6 +150,24 @@
         App.innerHTML = user ? Views.dashboard() : Views.landing();
     }
     postRender();
+  }
+
+  /* ---- 首次引导：本机标记（跳过后不再弹出） ---- */
+  function onboardDismissed() {
+    try { return localStorage.getItem("lingua.v1.onboarded") === "1"; } catch (e) { return true; }
+  }
+  function markOnboarded() {
+    try { localStorage.setItem("lingua.v1.onboarded", "1"); } catch (e) {}
+  }
+
+  /* 「立即试学第一课」：进入当前档案语言的第一课（未加载先 loadLang），失败回落课程目录 */
+  function goFirstLesson() {
+    var u = Store.actor();
+    var code = (u && u.targetLangs && u.targetLangs[0] && DATA.langIndex[u.targetLangs[0]]) ? u.targetLangs[0] : "en";
+    DATA.ensureLang(code).then(function () {
+      var id = DATA.firstLessonOfLang(code);
+      go(id ? "#/learn/" + id : "#/courses");
+    }).catch(function () { go("#/courses"); });
   }
 
   function postRender() {
@@ -377,6 +401,19 @@
     var p = Store.progress();
     Store.updateVocabBox(p, LC.id, cur, known);
     Store.recordSkill(p, mode, known);
+    /* 快速验证答错的词义题进入错题本，类型标「词汇」 */
+    if (LC.quiz && LC.quizFb && !LC.quizFb.correct) {
+      var qv = LC.items.vocab[LC.quiz.idx];
+      if (qv) {
+        Store.recordMistake(p, {
+          lang: LC.lang.code, mode: "vocab", lessonId: LC.id,
+          prompt: qv.t,
+          opts: LC.quiz.opts.map(function (o) { return o.label; }),
+          answer: LC.quiz.answerIdx,
+          why: qv.m + (qv.r ? "（" + qv.r + "）" : "")
+        });
+      }
+    }
     Store.saveProgress(p);
     var idx = LC.pending[mode].shift();
     if (known) {
@@ -814,6 +851,13 @@
     var action = act.getAttribute("data-action");
 
     switch (action) {
+      case "try-first-lesson":
+        goFirstLesson();
+        break;
+      case "onboard-skip":
+        markOnboarded();
+        render();
+        break;
       case "logout":
         Store.logout(); toast("已退出，当前为游客模式"); go("#/"); break;
       case "pick-profile": {
@@ -955,6 +999,30 @@
   /* ---- 表单 ---- */
   document.addEventListener("submit", function (ev) {
     var form = ev.target;
+    if (form.id === "onboard-form") {
+      ev.preventDefault();
+      var fo = new FormData(form);
+      var box = document.getElementById("auth-err");
+      var code = (fo.getAll("targetLangs")[0]) || "en";
+      if (!DATA.langIndex[code]) code = "en";
+      var res = Store.register({
+        name: (fo.get("name") || "").trim() || "学习者",
+        targetLangs: [code],
+        level: fo.get("level") || "A1",
+        dailyGoal: 30
+      });
+      if (res.error) {
+        if (box) box.innerHTML = '<div class="form-err">' + Views.esc(res.error) + "</div>";
+        return;
+      }
+      markOnboarded();
+      toast("档案创建成功，开始第一课", "good");
+      DATA.ensureLang(code).then(function () {
+        var id = DATA.firstLessonOfLang(code);
+        go(id ? "#/learn/" + id : "#/dashboard");
+      }).catch(function () { go("#/dashboard"); });
+      return;
+    }
     if (form.id === "auth-form") {
       ev.preventDefault();
       var fd = new FormData(form);

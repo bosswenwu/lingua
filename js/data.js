@@ -98,6 +98,18 @@
     return { languages: languages, lessons: lessons, exercises: exercises };
   }
 
+  /* 摘要口径总量（与 data/summary.json 一致，不随当前已加载数据波动） */
+  function summaryTotals() {
+    var out = { lessons: 0, words: 0, exercises: 0 };
+    LANG_ORDER.forEach(function (code) {
+      var t = SUMMARY_TOTAL[code];
+      if (!t) return;
+      out.lessons += t.lessons; out.words += t.words; out.exercises += t.exercises;
+    });
+    return out;
+  }
+  function summaryLang(code) { return SUMMARY_TOTAL[code] || null; }
+
   /* 例句统一适配：手写课是纯字符串，生成课是 [{t,tr}]；返回「句子 —— 译文」或句子 */
   function exText(v) {
     var e = v && v.ex;
@@ -412,6 +424,8 @@
     lessonsOfLang: lessonsOfLang,
     firstLessonOfLang: firstLessonOfLang,
     stats: stats,
+    summaryTotals: summaryTotals,
+    summaryLang: summaryLang,
     shuffle: shuffle,
     exText: exText,
     challengePool: challengePool,
