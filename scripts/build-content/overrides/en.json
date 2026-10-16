@@ -1,3596 +1,3596 @@
 {
- "words": {
-  "arm": {
-   "m": "手臂；胳膊"
-  },
-  "professor": {
-   "m": "教授"
-  },
-  "read": {
-   "r": "/ˈriːd/"
-  },
-  "student": {
-   "m": "学生"
-  },
-  "do": {
-   "m": "做；干（亦作助动词）"
-  },
-  "figure": {
-   "m": "数字；人物；弄明白（figure out）"
-  },
-  "lead": {
-   "r": "/ˈliːd/"
-  },
-  "live": {
-   "m": "居住；生活",
-   "r": "/ˈlɪv/"
-  },
-  "record": {
-   "r": "/ˈrɛkərd/"
-  },
-  "song": {
-   "m": "歌曲；歌"
-  },
-  "bad": {
-   "m": "坏的；糟糕的"
-  },
-  "significant": {
-   "m": "重要的；显著的"
-  },
-  "cell": {
-   "m": "细胞；手机"
-  },
-  "course": {
-   "m": "课程；路线"
-  },
-  "international": {
-   "r": "/ˌɪntərˈnæʃənəl/"
-  },
-  "mean": {
-   "m": "意思是；刻薄的"
-  },
-  "actor": {
-   "m": "演员"
-  },
-  "associate": {
-   "m": "联想；（生意）伙伴"
-  },
-  "engineer": {
-   "r": "/ˌɛndʒəˈnɪr/"
-  },
-  "tear": {
-   "r": "/ˈtɪr/"
-  },
-  "bear": {
-   "m": "熊；忍受"
-  },
-  "beat": {
-   "m": "打败；敲打"
-  },
-  "cite": {
-   "m": "引用；援引"
-  },
-  "recall": {
-   "r": "/rɪkˈɔːl/"
-  },
-  "bright": {
-   "m": "明亮的；聪明的"
-  },
-  "absolutely": {
-   "m": "绝对地；完全"
-  },
-  "combine": {
-   "r": "/kəmbˈaɪn/"
-  },
-  "email": {
-   "r": "/ˈiːmeɪl/"
-  },
-  "gender": {
-   "m": "性别"
-  },
-  "judge": {
-   "m": "判断；法官"
-  },
-  "male": {
-   "m": "男性的；雄性的"
-  },
-  "perfect": {
-   "r": "/pˈɜːrfɪkt/"
-  },
-  "positive": {
-   "m": "积极的；肯定的"
-  },
-  "separate": {
-   "r": "/sˈɛpərət/"
-  },
-  "significantly": {
-   "m": "显著地；明显地"
-  },
-  "cast": {
-   "m": "投射；投掷"
-  },
-  "convert": {
-   "r": "/kənvˈɜːrt/"
-  },
-  "damn": {
-   "drop": true
-  },
-  "discount": {
-   "r": "/dˈɪskaʊnt/"
-  },
-  "found": {
-   "m": "创立；建立"
-  },
-  "mate": {
-   "m": "伙伴；朋友"
-  },
-  "chocolate": {
-   "m": "巧克力"
-  },
-  "dramatically": {
-   "m": "显著地；急剧地"
-  },
-  "electronic": {
-   "m": "电子的"
-  },
-  "essay": {
-   "r": "/ˈɛseɪ/"
-  },
-  "flat": {
-   "m": "平坦的；（轮胎）瘪的"
-  },
-  "implement": {
-   "r": "/ˈɪmpləmɛnt/"
-  },
-  "impressive": {
-   "m": "令人印象深刻的；令人赞叹的"
-  },
-  "log": {
-   "m": "原木；日志；登录"
-  },
-  "net": {
-   "m": "网；净的"
-  },
-  "draft": {
-   "m": "草稿；草案"
-  },
-  "function": {
-   "m": "功能；函数"
-  },
-  "concrete": {
-   "r": "/kˈɑnkriːt/"
-  },
-  "pistol": {
-   "m": "手枪"
-  },
-  "satisfied": {
-   "m": "满意的；满足的"
-  },
-  "naval": {
-   "m": "海军的"
-  },
-  "fossil": {
-   "m": "化石；化石的"
-  },
-  "lime": {
-   "m": "青柠；石灰"
-  },
-  "extract": {
-   "r": "/ɪkstrˈækt/"
-  },
-  "coordinate": {
-   "r": "/koʊˈɔːrdənˌeɪt/"
-  },
-  "alert": {
-   "m": "警觉的；提醒"
-  },
-  "cutting": {
-   "m": "切割；剪下的部分"
-  },
-  "substantially": {
-   "m": "大幅地；实质上"
-  },
-  "vacuum": {
-   "m": "真空；吸尘器"
-  },
-  "bass": {
-   "m": "低音；贝斯",
-   "r": "/bˈeɪs/"
-  },
-  "illuminate": {
-   "r": "/ɪlˈuːmənˌeɪt/"
-  },
-  "nominate": {
-   "r": "/nˈɑmənˌeɪt/"
-  },
-  "ward": {
-   "m": "病房；选区"
-  },
-  "australian": {
-   "t": "Australian"
-  },
-  "notably": {
-   "m": "尤其；显著地"
-  },
-  "compile": {
-   "m": "编纂；汇编"
-  },
-  "notable": {
-   "m": "显著的；著名的"
-  },
-  "remains": {
-   "m": "遗迹；残余；仍然是"
-  },
-  "circulation": {
-   "r": "/sˌɜːrkjəlˈeɪʃən/"
-  },
-  "tokyo": {
-   "drop": true
-  },
-  "egyptian": {
-   "t": "Egyptian"
-  },
-  "imf": {
-   "drop": true
-  },
-  "confused": {
-   "m": "困惑的；糊涂的"
-  },
-  "permanently": {
-   "r": "/pˈɜːrmənəntliː/"
-  },
-  "bitch": {
-   "drop": true
-  },
-  "duration": {
-   "r": "/dʊrˈeɪʃən/"
-  },
-  "fountain": {
-   "m": "喷泉；泉源"
+  "words": {
+    "arm": {
+      "m": "手臂；胳膊"
+    },
+    "professor": {
+      "m": "教授"
+    },
+    "read": {
+      "r": "/ˈriːd/"
+    },
+    "student": {
+      "m": "学生"
+    },
+    "do": {
+      "m": "做；干（亦作助动词）"
+    },
+    "figure": {
+      "m": "数字；人物；理解"
+    },
+    "lead": {
+      "r": "/ˈliːd/"
+    },
+    "live": {
+      "m": "居住；生活",
+      "r": "/ˈlɪv/"
+    },
+    "record": {
+      "r": "/ˈrɛkərd/"
+    },
+    "song": {
+      "m": "歌曲；歌"
+    },
+    "bad": {
+      "m": "坏的；糟糕的"
+    },
+    "significant": {
+      "m": "重要的；显著的"
+    },
+    "cell": {
+      "m": "细胞；手机"
+    },
+    "course": {
+      "m": "课程；路线"
+    },
+    "international": {
+      "r": "/ˌɪntərˈnæʃənəl/"
+    },
+    "mean": {
+      "m": "意思是；刻薄的"
+    },
+    "actor": {
+      "m": "演员"
+    },
+    "associate": {
+      "m": "联想；（生意）伙伴"
+    },
+    "engineer": {
+      "r": "/ˌɛndʒəˈnɪr/"
+    },
+    "tear": {
+      "r": "/ˈtɪr/"
+    },
+    "bear": {
+      "m": "熊；忍受"
+    },
+    "beat": {
+      "m": "打败；敲打"
+    },
+    "cite": {
+      "m": "引用；援引"
+    },
+    "recall": {
+      "r": "/rɪkˈɔːl/"
+    },
+    "bright": {
+      "m": "明亮的；聪明的"
+    },
+    "absolutely": {
+      "m": "绝对地；完全"
+    },
+    "combine": {
+      "r": "/kəmbˈaɪn/"
+    },
+    "email": {
+      "r": "/ˈiːmeɪl/"
+    },
+    "gender": {
+      "m": "性别"
+    },
+    "judge": {
+      "m": "判断；法官"
+    },
+    "male": {
+      "m": "男性的；雄性的"
+    },
+    "perfect": {
+      "r": "/pˈɜːrfɪkt/"
+    },
+    "positive": {
+      "m": "积极的；肯定的"
+    },
+    "separate": {
+      "r": "/sˈɛpərət/"
+    },
+    "significantly": {
+      "m": "显著地；明显地"
+    },
+    "cast": {
+      "m": "投射；投掷"
+    },
+    "convert": {
+      "r": "/kənvˈɜːrt/"
+    },
+    "damn": {
+      "drop": true
+    },
+    "discount": {
+      "r": "/dˈɪskaʊnt/"
+    },
+    "found": {
+      "m": "创立；建立"
+    },
+    "mate": {
+      "m": "伙伴；朋友"
+    },
+    "chocolate": {
+      "m": "巧克力"
+    },
+    "dramatically": {
+      "m": "显著地；急剧地"
+    },
+    "electronic": {
+      "m": "电子的"
+    },
+    "essay": {
+      "r": "/ˈɛseɪ/"
+    },
+    "flat": {
+      "m": "平坦的；（轮胎）瘪的"
+    },
+    "implement": {
+      "r": "/ˈɪmpləmɛnt/"
+    },
+    "impressive": {
+      "m": "令人印象深刻的；令人赞叹的"
+    },
+    "log": {
+      "m": "原木；日志；登录"
+    },
+    "net": {
+      "m": "网；净的"
+    },
+    "draft": {
+      "m": "草稿；草案"
+    },
+    "function": {
+      "m": "功能；函数"
+    },
+    "concrete": {
+      "r": "/kˈɑnkriːt/"
+    },
+    "pistol": {
+      "m": "手枪"
+    },
+    "satisfied": {
+      "m": "满意的；满足的"
+    },
+    "naval": {
+      "m": "海军的"
+    },
+    "fossil": {
+      "m": "化石；化石的"
+    },
+    "lime": {
+      "m": "青柠；石灰"
+    },
+    "extract": {
+      "r": "/ɪkstrˈækt/"
+    },
+    "coordinate": {
+      "r": "/koʊˈɔːrdənˌeɪt/"
+    },
+    "alert": {
+      "m": "警觉的；提醒"
+    },
+    "cutting": {
+      "m": "切割；剪下的部分"
+    },
+    "substantially": {
+      "m": "大幅地；实质上"
+    },
+    "vacuum": {
+      "m": "真空；吸尘器"
+    },
+    "bass": {
+      "m": "低音；贝斯",
+      "r": "/bˈeɪs/"
+    },
+    "illuminate": {
+      "r": "/ɪlˈuːmənˌeɪt/"
+    },
+    "nominate": {
+      "r": "/nˈɑmənˌeɪt/"
+    },
+    "ward": {
+      "m": "病房；选区"
+    },
+    "australian": {
+      "t": "Australian"
+    },
+    "notably": {
+      "m": "尤其；显著地"
+    },
+    "compile": {
+      "m": "编纂；汇编"
+    },
+    "notable": {
+      "m": "显著的；著名的"
+    },
+    "remains": {
+      "m": "遗迹；残余；仍然是"
+    },
+    "circulation": {
+      "r": "/sˌɜːrkjəlˈeɪʃən/"
+    },
+    "tokyo": {
+      "drop": true
+    },
+    "egyptian": {
+      "t": "Egyptian"
+    },
+    "imf": {
+      "drop": true
+    },
+    "confused": {
+      "m": "困惑的；糊涂的"
+    },
+    "permanently": {
+      "r": "/pˈɜːrmənəntliː/"
+    },
+    "bitch": {
+      "drop": true
+    },
+    "duration": {
+      "r": "/dʊrˈeɪʃən/"
+    },
+    "fountain": {
+      "m": "喷泉；泉源"
+    }
+  },
+  "examples": {
+    "She is a young artist.": {
+      "tr": "她是一位年轻的艺术家。"
+    },
+    "No one can control him.": {
+      "tr": "没人能控制他。"
+    },
+    "Shall I go for the doctor?": {
+      "tr": "要我去请医生来吗？"
+    },
+    "I feel happy in her firm.": {
+      "drop": true
+    },
+    "This new market may improve the entire industry.": {
+      "tr": "这个新市场可能会改善整个行业。"
+    },
+    "I can manage on my own.": {
+      "tr": "我自己能应付。"
+    },
+    "Yes, she's our manager.": {
+      "drop": true
+    },
+    "Yes, he's our manager.": {
+      "tr": "对，他是我们的经理。"
+    },
+    "How will the project work?": {
+      "tr": "这个项目要怎么运作？"
+    },
+    "The project was a great success.": {
+      "tr": "这个项目非常成功。"
+    },
+    "Serve the people.": {
+      "drop": true
+    },
+    "Now it's your serve.": {
+      "drop": true
+    },
+    "Oh boy...": {
+      "drop": true
+    },
+    "Each boy has a bike.": {
+      "tr": "每个男孩都有一辆自行车。"
+    },
+    "What has become of her son?": {
+      "tr": "她儿子后来怎么样了？"
+    },
+    "Over my dead body.": {
+      "drop": true
+    },
+    "Do you have a drug problem?": {
+      "tr": "你有吸毒问题吗？"
+    },
+    "I opened one eye.": {
+      "drop": true
+    },
+    "She writes a very good hand.": {
+      "drop": true
+    },
+    "Mind your head.": {
+      "tr": "小心碰头。"
+    },
+    "Just follow your heart.": {
+      "tr": "听从你的内心吧。"
+    },
+    "Don't pull my leg!": {
+      "drop": true
+    },
+    "What a pain!": {
+      "drop": true
+    },
+    "No pain, no gain.": {
+      "drop": true
+    },
+    "Jim was afraid of physical labor.": {
+      "tr": "吉姆害怕体力劳动。"
+    },
+    "Let's give it a try.": {
+      "drop": true
+    },
+    "This amount includes tax.": {
+      "tr": "这笔金额已含税。"
+    },
+    "We are a couple.": {
+      "tr": "我们是一对恋人。"
+    },
+    "Every dog has his day.": {
+      "drop": true
+    },
+    "Every man has his price.": {
+      "drop": true
+    },
+    "He cut the apple in half.": {
+      "tr": "他把苹果切成了两半。"
+    },
+    "Most people think I'm crazy.": {
+      "tr": "大部分人觉得我疯了。"
+    },
+    "Once bitten, twice shy.": {
+      "drop": true
+    },
+    "Must I go there at once?": {
+      "drop": true
+    },
+    "No one ran ahead of him.": {
+      "drop": true
+    },
+    "He came several times.": {
+      "tr": "他来过好几次。"
+    },
+    "We're the same age.": {
+      "tr": "我们同岁。"
+    },
+    "I have nothing to fall back on.": {
+      "drop": true
+    },
+    "I got up late this morning.": {
+      "tr": "我今天早上起晚了。"
+    },
+    "She wept all the night.": {
+      "drop": true
+    },
+    "I do not like spring.": {
+      "drop": true
+    },
+    "You can take your time.": {
+      "drop": true
+    },
+    "I want to eat pizza tonight.": {
+      "tr": "我今晚想吃披萨。"
+    },
+    "You never have class or what?!": {
+      "drop": true
+    },
+    "A little knowledge is a dangerous thing.": {
+      "tr": "一知半解是危险的。"
+    },
+    "No music, no life.": {
+      "drop": true
+    },
+    "No problem.": {
+      "tr": "没问题。"
+    },
+    "Then there is a problem...": {
+      "tr": "那就有问题了……"
+    },
+    "Let's clear up this problem.": {
+      "tr": "我们来解决这个问题吧。"
+    },
+    "I am a professor.": {
+      "drop": true
+    },
+    "I am a new student.": {
+      "drop": true
+    },
+    "Don't study.": {
+      "drop": true
+    },
+    "May I speak with the teacher?": {
+      "drop": true
+    },
+    "\"The accused\" is a legal term.": {
+      "tr": "“被告人”是一个法律术语。"
+    },
+    "Which country are you from?": {
+      "drop": true
+    },
+    "Do you have any light beer?": {
+      "drop": true
+    },
+    "This damp match won't light.": {
+      "drop": true
+    },
+    "He had no place to live.": {
+      "tr": "他没有地方住。"
+    },
+    "Availability may vary by region and device compatibility.": {
+      "tr": "具体可用情况可能因地区和设备兼容性而异。"
+    },
+    "I am the state.": {
+      "drop": true
+    },
+    "Let's cross the street.": {
+      "tr": "我们过马路吧。"
+    },
+    "I don't know, nor do I care.": {
+      "tr": "我不知道，也不在乎。"
+    },
+    "This doesn't concern you.": {
+      "tr": "这与你无关。"
+    },
+    "It's only a dream.": {
+      "drop": true
+    },
+    "You have nothing to fear.": {
+      "tr": "没有什么好怕的。"
+    },
+    "I feel dead.": {
+      "drop": true
+    },
+    "He laughed a hearty laugh.": {
+      "tr": "他开怀大笑。"
+    },
+    "It makes no sense at all.": {
+      "drop": true
+    },
+    "That doesn't make sense.": {
+      "tr": "这说不通。"
+    },
+    "I didn't add this sentence.": {
+      "tr": "我没有添加这个句子。"
+    },
+    "This rule does not apply in all cases.": {
+      "drop": true
+    },
+    "This rule doesn't apply to every case.": {
+      "tr": "这条规则并不适用于所有情况。"
+    },
+    "Can I ask a question?": {
+      "drop": true
+    },
+    "He will be back soon.": {
+      "drop": true
+    },
+    "We'll begin work soon.": {
+      "tr": "我们很快就要开始工作了。"
+    },
+    "We'll buy one car for each.": {
+      "drop": true
+    },
+    "We started a campaign against smoking.": {
+      "tr": "我们发起了一场反吸烟运动。"
+    },
+    "You'll catch it from Mummy.": {
+      "drop": true
+    },
+    "I could not catch her words.": {
+      "tr": "我没听清她说的话。"
+    },
+    "Could I have the check?": {
+      "tr": "可以给我账单吗？"
+    },
+    "Measure thrice, cut once.": {
+      "drop": true
+    },
+    "Never try to die.": {
+      "drop": true
+    },
+    "He didn't die happily.": {
+      "drop": true
+    },
+    "Search; find; discover!": {
+      "drop": true
+    },
+    "This is the end.": {
+      "tr": "这就是结局。"
+    },
+    "Everything has an end.": {
+      "tr": "凡事都有结束的时候。"
+    },
+    "He hardly ever opens a book.": {
+      "tr": "他几乎从来不翻书。"
+    },
+    "Words fail me.": {
+      "drop": true
+    },
+    "Fight like a man!": {
+      "drop": true
+    },
+    "Nice guys finish last.": {
+      "drop": true
+    },
+    "Forget it.": {
+      "tr": "算了吧。"
+    },
+    "May it not happen!": {
+      "drop": true
+    },
+    "Hit me.": {
+      "drop": true
+    },
+    "She hit the ball hard.": {
+      "tr": "她用力击球。"
+    },
+    "Hold your horses, young man.": {
+      "drop": true
+    },
+    "That's how I imagine it.": {
+      "tr": "我就是这样想象的。"
+    },
+    "Can you imagine a blue Ferrari?": {
+      "tr": "你能想象一辆蓝色的法拉利吗？"
+    },
+    "I ran into an old friend.": {
+      "tr": "我碰见了一个老朋友。"
+    },
+    "Don't pry into my private life.": {
+      "tr": "不要打探我的私生活。"
+    },
+    "Tom tried to kill Mary.": {
+      "drop": true
+    },
+    "Damned if I know.": {
+      "drop": true
+    },
+    "I lay down to rest.": {
+      "drop": true
+    },
+    "All roads lead to Rome.": {
+      "drop": true
+    },
+    "I lead a fast way of living.": {
+      "drop": true
+    },
+    "I lead a busy life.": {
+      "tr": "我过着忙碌的生活。"
+    },
+    "Where does it leave from?": {
+      "tr": "它从哪里出发？"
+    },
+    "This is the life.": {
+      "tr": "这才叫生活！"
+    },
+    "Use it or lose it.": {
+      "drop": true
+    },
+    "Can you make it on time?": {
+      "tr": "你能按时赶到吗？"
+    },
+    "Do you miss me?": {
+      "tr": "你想我吗？"
+    },
+    "Did you miss me?": {
+      "tr": "你想我了吗？"
+    },
+    "I need it ASAP.": {
+      "tr": "我需要尽快拿到它。"
+    },
+    "What am I to do next?": {
+      "tr": "我接下来该做什么？"
+    },
+    "\"Next time,\" he said.": {
+      "tr": "“下次吧。”他说道。"
+    },
+    "That did occur to me.": {
+      "tr": "我确实想到过这一点。"
+    },
+    "Open Sesame!": {
+      "drop": true
+    },
+    "She took her own life.": {
+      "drop": true
+    },
+    "He would have his own way.": {
+      "tr": "他总是坚持按自己的方式做事。"
+    },
+    "This work doesn't pay.": {
+      "drop": true
+    },
+    "What's your home phone number?": {
+      "tr": "你家的电话号码是多少？"
+    },
+    "I approve of your plan.": {
+      "drop": true
+    },
+    "My sister will prepare breakfast.": {
+      "tr": "我妹妹会准备早餐。"
+    },
+    "Protect me.": {
+      "drop": true
+    },
+    "It wasn't an easy race.": {
+      "tr": "这不是一场轻松的比赛。"
+    },
+    "Can I borrow your radio?": {
+      "tr": "我可以借你的收音机吗？"
+    },
+    "I can't reach it.": {
+      "tr": "我够不着它。"
+    },
+    "How can I reach you?": {
+      "tr": "我怎样才能联系到你？"
+    },
+    "Put a record on the stereo.": {
+      "tr": "在音响上放一张唱片。"
+    },
+    "Reduce to pulp by boiling.": {
+      "drop": true
+    },
+    "You can remove the NNC.": {
+      "drop": true
+    },
+    "I require an apple.": {
+      "drop": true
+    },
+    "Don't respond to that.": {
+      "tr": "别理会那个。"
+    },
+    "I'll return immediately.": {
+      "tr": "我马上回来。"
+    },
+    "The plan gave rise to much trouble.": {
+      "drop": true
+    },
+    "I just don't know what to say.": {
+      "tr": "我真不知道该说什么。"
+    },
+    "I sell two flowers.": {
+      "drop": true
+    },
+    "We sell orange juice.": {
+      "tr": "我们卖橙汁。"
+    },
+    "I sell clothing online.": {
+      "tr": "我在网上卖衣服。"
+    },
+    "Send for the doctor at once.": {
+      "drop": true
+    },
+    "You must send for the doctor.": {
+      "drop": true
+    },
+    "Set it down there.": {
+      "tr": "把它放在那儿。"
+    },
+    "What's that sound?": {
+      "tr": "那是什么声音？"
+    },
+    "All of my software is open source.": {
+      "drop": true
+    },
+    "Do you speak Italian?": {
+      "tr": "你会说意大利语吗？"
+    },
+    "His success is out of question.": {
+      "drop": true
+    },
+    "Dead men tell no tales.": {
+      "drop": true
+    },
+    "Tell me exactly where he lives.": {
+      "tr": "请确切地告诉我他住在哪里。"
+    },
+    "Throw in!": {
+      "drop": true
+    },
+    "Throw this rotten banana.": {
+      "drop": true
+    },
+    "I'm going to go.": {
+      "drop": true
+    },
+    "I like to travel.": {
+      "drop": true
+    },
+    "This dog is almost human.": {
+      "tr": "这条狗简直通人性。"
+    },
+    "He always wears dark glasses.": {
+      "tr": "他总是戴着墨镜。"
+    },
+    "It will clear up soon.": {
+      "tr": "天很快就会放晴了吧。"
+    },
+    "Things are not clearly defined.": {
+      "tr": "事情还没有明确界定。"
+    },
+    "The Japanese have dark eyes.": {
+      "drop": true
+    },
+    "Beauty is but skin deep.": {
+      "drop": true
+    },
+    "He described the incident in detail.": {
+      "tr": "他详细地描述了这件事。"
+    },
+    "Is it large enough?": {
+      "tr": "它够大吗？"
+    },
+    "We don't have enough time.": {
+      "tr": "我们没有足够的时间。"
+    },
+    "How exactly did you do it?": {
+      "tr": "你到底是怎么做到的？"
+    },
+    "That's exactly how I feel.": {
+      "tr": "那正是我的感受。"
+    },
+    "Fill in.": {
+      "drop": true
+    },
+    "Finally, Oedipus replied.": {
+      "tr": "最后，俄狄浦斯回答了。"
+    },
+    "You're good with women.": {
+      "drop": true
+    },
+    "More money for education will spur economic growth.": {
+      "tr": "在教育上投入更多资金会促进经济增长。"
+    },
+    "This news is important to us.": {
+      "tr": "这条消息对我们很重要。"
+    },
+    "Nothing's as important as peace.": {
+      "tr": "没有什么比和平更重要。"
+    },
+    "Reformers aim to improve the government.": {
+      "drop": true
+    },
+    "A friend in need is a friend indeed.": {
+      "drop": true
+    },
+    "At last, the bus stopped.": {
+      "tr": "公交车终于停了下来。"
+    },
+    "You might at least say \"thank you.\"": {
+      "tr": "你至少该说声“谢谢”吧。"
+    },
+    "He's a little pale.": {
+      "tr": "他脸色有点苍白。"
+    },
+    "A long day has passed on.": {
+      "drop": true
+    },
+    "Can you speak Low German?": {
+      "drop": true
+    },
+    "He told us many lessons.": {
+      "drop": true
+    },
+    "Maybe you licked it?": {
+      "drop": true
+    },
+    "You must learn from mistakes.": {
+      "tr": "你必须从错误中吸取教训。"
+    },
+    "This pear smells nice.": {
+      "tr": "这个梨闻起来很香。"
+    },
+    "I'm North Korean.": {
+      "drop": true
+    },
+    "I love Fist of the North Star!": {
+      "drop": true
+    },
+    "I like music, particularly classical music.": {
+      "drop": true
+    },
+    "Perhaps you are right.": {
+      "drop": true
+    },
+    "They didn't act quickly.": {
+      "tr": "他们没有迅速行动。"
+    },
+    "I don't really know.": {
+      "tr": "我不太清楚。"
+    },
+    "Oh, I'm really sorry.": {
+      "tr": "哦，我真的很抱歉。"
+    },
+    "This a recent photo?": {
+      "drop": true
+    },
+    "What's his most recent novel?": {
+      "tr": "他最新的小说叫什么名字？"
+    },
+    "Did you meet him recently?": {
+      "tr": "你最近见过他吗？"
+    },
+    "Forget about that right now.": {
+      "drop": true
+    },
+    "No risk, no reward.": {
+      "drop": true
+    },
+    "We're all at risk.": {
+      "tr": "我们都处于危险之中。"
+    },
+    "No security system is foolproof.": {
+      "tr": "没有万无一失的安全系统。"
+    },
+    "His story was pretty simple.": {
+      "tr": "他的故事很简单。"
+    },
+    "They're all the same size.": {
+      "tr": "它们都是一样大小。"
+    },
+    "He's not South Korean.": {
+      "drop": true
+    },
+    "She's not South Korean.": {
+      "drop": true
+    },
+    "What did you suggest?": {
+      "tr": "你建议了什么？"
+    },
+    "We are at school together.": {
+      "tr": "我们在同一所学校上学。"
+    },
+    "He is a man of ability.": {
+      "drop": true
+    },
+    "But I am able to cook well.": {
+      "tr": "但我很会做饭。"
+    },
+    "Don't act so surprised!": {
+      "tr": "别装得这么惊讶！"
+    },
+    "What actually happened?": {
+      "tr": "到底发生了什么事？"
+    },
+    "I work at a travel agency.": {
+      "drop": true
+    },
+    "OK. I agree.": {
+      "drop": true
+    },
+    "I'll never allow you to do that.": {
+      "drop": true
+    },
+    "I won't allow you to do that.": {
+      "tr": "我不会允许你那样做。"
+    },
+    "The buses left one after another.": {
+      "tr": "公交车一辆接一辆地开走了。"
+    },
+    "I can't do any better.": {
+      "tr": "我没法做得更好了。"
+    },
+    "Take any train on track 5.": {
+      "tr": "在5号轨道乘坐任何一班火车都可以。"
+    },
+    "As a man sows, so he shall reap.": {
+      "drop": true
+    },
+    "Attack!": {
+      "drop": true
+    },
+    "Tom had a heart attack last year.": {
+      "tr": "汤姆去年心脏病发作过一次。"
+    },
+    "Roll the ball to me.": {
+      "tr": "把球滚给我。"
+    },
+    "This is a very good data base.": {
+      "drop": true
+    },
+    "Because we're worth it.": {
+      "drop": true
+    },
+    "That's because you're a girl.": {
+      "drop": true
+    },
+    "He can't come because he's ill.": {
+      "tr": "他因为生病来不了。"
+    },
+    "This work is beyond me.": {
+      "tr": "这项工作超出了我的能力。"
+    },
+    "He is a member of the parochial board.": {
+      "drop": true
+    },
+    "Stick a notice on the board.": {
+      "tr": "把告示贴在布告板上。"
+    },
+    "That box is made of wood.": {
+      "tr": "那个箱子是木头做的。"
+    },
+    "But I don't have money.": {
+      "drop": true
+    },
+    "Can I pay by credit card?": {
+      "tr": "我可以用信用卡付账吗？"
+    },
+    "In case I forget, please remind me.": {
+      "drop": true
+    },
+    "What is the central aim of this plan?": {
+      "tr": "这个计划的主要目的是什么？"
+    },
+    "He had a certain charm.": {
+      "tr": "他有某种魅力。"
+    },
+    "It is by no means certain.": {
+      "tr": "这还远远不能确定。"
+    },
+    "If I could be like that...": {
+      "tr": "要是我能像那样就好了……"
+    },
+    "Yes, of course.": {
+      "tr": "是的，当然。"
+    },
+    "Let moss cover my grave.": {
+      "drop": true
+    },
+    "Underage drinking is a crime.": {
+      "tr": "未成年人饮酒是违法行为。"
+    },
+    "Is PC culture good or bad?": {
+      "drop": true
+    },
+    "Deal us the cards.": {
+      "drop": true
+    },
+    "To what degree can we trust him?": {
+      "tr": "我们能在多大程度上信任他？"
+    },
+    "Taiwan is a democratic country.": {
+      "drop": true
+    },
+    "He studies French and web design.": {
+      "tr": "他学习法语和网页设计。"
+    },
+    "Why should it be different?": {
+      "tr": "为什么它就该不一样？"
+    },
+    "This is difficult to believe.": {
+      "tr": "这很难让人相信。"
+    },
+    "He is a talented young director.": {
+      "drop": true
+    },
+    "Drop the knife.": {
+      "drop": true
+    },
+    "Drop that knife.": {
+      "drop": true
+    },
+    "Can we effect a compromise?": {
+      "drop": true
+    },
+    "Either you or I am right.": {
+      "tr": "不是你对，就是我对。"
+    },
+    "So, what else is new?": {
+      "drop": true
+    },
+    "Even if he is busy, he will come.": {
+      "tr": "即使他很忙，他也会来。"
+    },
+    "Everybody loves him.": {
+      "drop": true
+    },
+    "One must be an executive in some company.": {
+      "drop": true
+    },
+    "My period hasn't come.": {
+      "drop": true
+    },
+    "We expect a lot from him.": {
+      "drop": true
+    },
+    "Even expert drivers can make mistakes.": {
+      "tr": "即使是老练的司机也会犯错。"
+    },
+    "In fact, she lied.": {
+      "drop": true
+    },
+    "In fact she lied.": {
+      "tr": "事实上，她撒谎了。"
+    },
+    "No one can deny the fact.": {
+      "tr": "谁也不能否认这个事实。"
+    },
+    "Focus on progress.": {
+      "tr": "专注于进步。"
+    },
+    "Follow your desire.": {
+      "drop": true
+    },
+    "The Foreign Minister was a puppet.": {
+      "drop": true
+    },
+    "Fill out this form, please.": {
+      "drop": true
+    },
+    "Kyoto is Japan's former capital.": {
+      "tr": "京都是日本以前的首都。"
+    },
+    "She slowly moved forward.": {
+      "tr": "她慢慢向前移动。"
+    },
+    "I'm looking forward to the party.": {
+      "tr": "我很期待这次聚会。"
+    },
+    "I'm free now.": {
+      "drop": true
+    },
+    "He is my friend.": {
+      "drop": true
+    },
+    "Football is my favorite game.": {
+      "tr": "足球是我最喜欢的运动。"
+    },
+    "What time will the game start?": {
+      "tr": "比赛什么时候开始？"
+    },
+    "This room's location is great.": {
+      "tr": "这个房间的位置很好。"
+    },
+    "Break new ground.": {
+      "drop": true
+    },
+    "He lay injured on the ground.": {
+      "tr": "他受伤躺在地上。"
+    },
+    "I'd like to join your group.": {
+      "tr": "我想加入你们的小组。"
+    },
+    "I know a guy named Smith.": {
+      "tr": "我认识一个叫史密斯的人。"
+    },
+    "Hang on.": {
+      "drop": true
+    },
+    "Wanna hang out tonight?": {
+      "drop": true
+    },
+    "Miss Thomas teaches us history.": {
+      "tr": "汤姆斯小姐教我们历史。"
+    },
+    "The demand is huge.": {
+      "tr": "需求很大。"
+    },
+    "Sami has a huge camel.": {
+      "tr": "萨米有一头巨大的骆驼。"
+    },
+    "He lives inside an apple.": {
+      "drop": true
+    },
+    "Someone pushed me inside.": {
+      "tr": "有人把我推了进去。"
+    },
+    "Latin is a dead language.": {
+      "tr": "拉丁语是一种死语言。"
+    },
+    "Taxes are just legal robbery.": {
+      "drop": true
+    },
+    "No day without a line.": {
+      "drop": true
+    },
+    "Make a list.": {
+      "tr": "列个清单。"
+    },
+    "Think global, act local.": {
+      "drop": true
+    },
+    "Sami frequented local sex shops.": {
+      "drop": true
+    },
+    "He is mean.": {
+      "tr": "他很刻薄。"
+    },
+    "What does this mean?": {
+      "tr": "这是什么意思？"
+    },
+    "She's a middle-aged fat woman.": {
+      "drop": true
+    },
+    "I wash myself.": {
+      "tr": "我自己洗澡。"
+    },
+    "I forgot his name.": {
+      "drop": true
+    },
+    "Tom nearly died tonight.": {
+      "tr": "汤姆今晚差点死了。"
+    },
+    "Why should it be necessary?": {
+      "tr": "为什么有这个必要？"
+    },
+    "I'll go with you if necessary.": {
+      "tr": "如果必要的话，我会和你一起去。"
+    },
+    "Love is never wasted.": {
+      "tr": "爱从来不会白费。"
+    },
+    "He has nothing in him.": {
+      "drop": true
+    },
+    "I saw nothing.": {
+      "tr": "我什么都没看见。"
+    },
+    "I accepted the offer.": {
+      "drop": true
+    },
+    "Now it is official.": {
+      "drop": true
+    },
+    "Now it's official.": {
+      "tr": "现在正式确定了。"
+    },
+    "Is death the only release?": {
+      "drop": true
+    },
+    "I did not order this.": {
+      "drop": true
+    },
+    "I didn't order this.": {
+      "tr": "我没有点这个。"
+    },
+    "Maybe some other time.": {
+      "tr": "也许改天吧。"
+    },
+    "Let's begin on page 30.": {
+      "drop": true
+    },
+    "They will not pass!": {
+      "drop": true
+    },
+    "This bill is safe to pass.": {
+      "drop": true
+    },
+    "Love and Peace.": {
+      "drop": true
+    },
+    "Who is this person?": {
+      "tr": "这个人是谁？"
+    },
+    "Personal privacy is a joke.": {
+      "drop": true
+    },
+    "You have a point there.": {
+      "tr": "你说得有道理。"
+    },
+    "His political career is done for.": {
+      "drop": true
+    },
+    "I abhor politics.": {
+      "drop": true
+    },
+    "I hate the new president.": {
+      "drop": true
+    },
+    "I abhor the new president.": {
+      "drop": true
+    },
+    "I loathe the new president.": {
+      "drop": true
+    },
+    "The price of gas is rising.": {
+      "tr": "汽油价格在上涨。"
+    },
+    "We got a good price for that.": {
+      "tr": "那个东西我们卖了个好价钱。"
+    },
+    "Could I see you in private?": {
+      "drop": true
+    },
+    "I've had enough of this program.": {
+      "tr": "我已经受够了这个节目。"
+    },
+    "I put quantity after quality.": {
+      "tr": "对我来说，质量比数量更重要。"
+    },
+    "I quite forget your name.": {
+      "drop": true
+    },
+    "That car is quite new.": {
+      "tr": "那辆车相当新。"
+    },
+    "No one can tell the reason.": {
+      "tr": "没有人能说出原因。"
+    },
+    "He has no reason to be late.": {
+      "tr": "他没有理由迟到。"
+    },
+    "Do you think I'd recognize Tom?": {
+      "tr": "你觉得我认得出汤姆吗？"
+    },
+    "If you recognize this person, call 110!": {
+      "tr": "如果你认出这个人，请拨打110！"
+    },
+    "Words fly, texts remain.": {
+      "drop": true
+    },
+    "The result was modest.": {
+      "tr": "结果一般。"
+    },
+    "Much depends upon the result.": {
+      "tr": "许多事情取决于结果。"
+    },
+    "It's the same to me.": {
+      "tr": "对我来说都一样。"
+    },
+    "God save Ukraine!": {
+      "drop": true
+    },
+    "He shuddered at the terrible scene.": {
+      "tr": "可怕的场面让他不寒而栗。"
+    },
+    "What is oral sex?": {
+      "drop": true
+    },
+    "Taiwan legalized same-sex marriage today.": {
+      "drop": true
+    },
+    "I felt the earth shake.": {
+      "tr": "我感觉到大地在摇晃。"
+    },
+    "Stop, or I'll shoot.": {
+      "drop": true
+    },
+    "Did you mean to shoot Tom?": {
+      "drop": true
+    },
+    "Admission to the show is $5.": {
+      "tr": "这场演出的入场费是5美元。"
+    },
+    "Could you sign here?": {
+      "drop": true
+    },
+    "The sign says \"Exit.\"": {
+      "tr": "告示牌上写着“出口”。"
+    },
+    "Your opinion is similar to mine.": {
+      "drop": true
+    },
+    "He died some years since.": {
+      "drop": true
+    },
+    "We live in a society.": {
+      "drop": true
+    },
+    "He felt alienated from society.": {
+      "tr": "他感到自己与社会格格不入。"
+    },
+    "We shall all die some day.": {
+      "tr": "我们终有一天都会死去。"
+    },
+    "Somebody just called.": {
+      "tr": "刚刚有人打电话来。"
+    },
+    "Tom is a decent sort of guy.": {
+      "tr": "汤姆是个正派的人。"
+    },
+    "Let's study a specific example.": {
+      "tr": "让我们来研究一个具体的例子。"
+    },
+    "Sami spend a lot of money on Layla.": {
+      "drop": true
+    },
+    "Step on it!": {
+      "drop": true
+    },
+    "We're out of stock now.": {
+      "tr": "我们现在没货了。"
+    },
+    "Stuff happens.": {
+      "drop": true
+    },
+    "Which team are you a fan of?": {
+      "tr": "你是哪一队的球迷？"
+    },
+    "We organized a project team.": {
+      "tr": "我们组建了一个项目团队。"
+    },
+    "Mom is older than Dad.": {
+      "tr": "妈妈比爸爸年纪大。"
+    },
+    "He can do it better than I can.": {
+      "tr": "他能比我做得更好。"
+    },
+    "Thank you.": {
+      "drop": true
+    },
+    "What did you do then?": {
+      "tr": "那时你做了什么？"
+    },
+    "What is this?": {
+      "drop": true
+    },
+    "Though young, he is wise.": {
+      "tr": "他虽然年轻，但很明智。"
+    },
+    "I have supported you throughout.": {
+      "tr": "我自始至终都在支持你。"
+    },
+    "Thus I tell you don't just go alone.": {
+      "drop": true
+    },
+    "Can I eat this orange?": {
+      "tr": "我能吃这个橙子吗？"
+    },
+    "Can your mother drive a car?": {
+      "drop": true
+    },
+    "Birds fly.": {
+      "tr": "鸟会飞。"
+    },
+    "This site is great!": {
+      "drop": true
+    },
+    "Why does he look black?": {
+      "drop": true
+    },
+    "Everything went black.": {
+      "tr": "眼前一片漆黑。"
+    },
+    "I like this color as well.": {
+      "drop": true
+    },
+    "Green suits Alice.": {
+      "drop": true
+    },
+    "What fruit is red?": {
+      "tr": "什么水果是红色的？"
+    },
+    "You must go through with your plan.": {
+      "tr": "你必须把你的计划进行到底。"
+    },
+    "\"Fire!\" he cried.": {
+      "tr": "“着火了！”他大叫。"
+    },
+    "What is your natural hair color?": {
+      "drop": true
+    },
+    "What's your natural hair color?": {
+      "tr": "你天生的发色是什么？"
+    },
+    "It's human nature.": {
+      "tr": "这是人的天性。"
+    },
+    "I want to give Mum a plant.": {
+      "drop": true
+    },
+    "I want to give Mom a plant.": {
+      "tr": "我想送妈妈一盆植物。"
+    },
+    "This is Brian Rock.": {
+      "drop": true
+    },
+    "Not a star was to be seen.": {
+      "tr": "一颗星星也看不见。"
+    },
+    "Dinner will be ready soon.": {
+      "tr": "晚餐很快就好了。"
+    },
+    "Mother prepared lunch for me.": {
+      "drop": true
+    },
+    "Coffee ends a meal.": {
+      "drop": true
+    },
+    "There's no more salt.": {
+      "tr": "没有盐了。"
+    },
+    "I've got a boat.": {
+      "drop": true
+    },
+    "Don't miss the bus.": {
+      "tr": "别错过公交车。"
+    },
+    "Modern ships only need a small crew.": {
+      "tr": "现代船只只需要少量船员。"
+    },
+    "Tom wants to be a pilot.": {
+      "tr": "汤姆想成为一名飞行员。"
+    },
+    "Tom can't ride a horse.": {
+      "tr": "汤姆不会骑马。"
+    },
+    "I've never been on a ship.": {
+      "tr": "我从来没坐过船。"
+    },
+    "The ship set sail for Bombay.": {
+      "tr": "这艘船启航驶往孟买。"
+    },
+    "Please show your ticket.": {
+      "tr": "请出示您的票。"
+    },
+    "A truck ran over our dog.": {
+      "tr": "一辆卡车碾过了我们的狗。"
+    },
+    "Who is your favorite actor?": {
+      "drop": true
+    },
+    "\"To hire a good lawyer?\" Al-Sayib asked.": {
+      "tr": "“要雇一个好律师吗？”Al-Sayib问道。"
+    },
+    "I'm a computer scientist.": {
+      "tr": "我是一名计算机科学家。"
+    },
+    "Do you think that chest hair is sexy?": {
+      "drop": true
+    },
+    "Tom held up a finger.": {
+      "tr": "汤姆竖起一根手指。"
+    },
+    "Our baby was born healthy.": {
+      "tr": "我们的宝宝出生时很健康。"
+    },
+    "This medicine may cure him.": {
+      "tr": "这种药也许能治好他的病。"
+    },
+    "Keep not two tongues in one mouth.": {
+      "drop": true
+    },
+    "My nose is itchy.": {
+      "drop": true
+    },
+    "Do you have a soup bowl?": {
+      "tr": "你有汤碗吗？"
+    },
+    "You can count on Jack.": {
+      "drop": true
+    },
+    "Mark Zuckerberg stole my idea!": {
+      "drop": true
+    },
+    "Mark graduated from Harvard in 1991.": {
+      "drop": true
+    },
+    "I need a new pair of shoes.": {
+      "drop": true
+    },
+    "It's a quarter to seven.": {
+      "drop": true
+    },
+    "I would like mine rare.": {
+      "tr": "我的牛排要三分熟。"
+    },
+    "People like Tom are rare.": {
+      "tr": "像汤姆这样的人很少见。"
+    },
+    "Can you tell me your address?": {
+      "tr": "能告诉我你的地址吗？"
+    },
+    "The bridge saved us a lot of time.": {
+      "tr": "那座桥为我们节省了不少时间。"
+    },
+    "He's a citizen of China.": {
+      "drop": true
+    },
+    "That's not fair.": {
+      "drop": true
+    },
+    "If only we had a garden!": {
+      "tr": "要是我们有个花园就好了！"
+    },
+    "I have lost the key.": {
+      "tr": "我把钥匙弄丢了。"
+    },
+    "Does this bus go to the museum?": {
+      "tr": "这辆公交车去博物馆吗？"
+    },
+    "Where is the coffee shop?": {
+      "tr": "咖啡馆在哪里？"
+    },
+    "He is still somewhere about.": {
+      "drop": true
+    },
+    "No smoking in the theater.": {
+      "tr": "剧院内禁止吸烟。"
+    },
+    "He is very angry.": {
+      "drop": true
+    },
+    "He felt perfectly content.": {
+      "tr": "他感到心满意足。"
+    },
+    "No cross, no crown.": {
+      "drop": true
+    },
+    "\"Don't cry,\" she said.": {
+      "tr": "“别哭。”她说。"
+    },
+    "Please pay at this counter.": {
+      "tr": "请在这个柜台付款。"
+    },
+    "He lives for nothing but pleasure.": {
+      "tr": "他活着只为享乐。"
+    },
+    "Which one do you prefer?": {
+      "tr": "你更喜欢哪一个？"
+    },
+    "Russians never smile.": {
+      "drop": true
+    },
+    "That's the spirit!": {
+      "tr": "这就对了！"
+    },
+    "I was a forest.": {
+      "drop": true
+    },
+    "They are digging a hole.": {
+      "drop": true
+    },
+    "We swam by the lake.": {
+      "tr": "我们在湖边游了泳。"
+    },
+    "The sky looks angry.": {
+      "tr": "天色看起来很阴沉。"
+    },
+    "I'll admit I'm wrong.": {
+      "drop": true
+    },
+    "He put a Band-Aid on his hand.": {
+      "drop": true
+    },
+    "She didn't even attempt to help him.": {
+      "tr": "她甚至都没试着去帮他。"
+    },
+    "I'm aware of that.": {
+      "drop": true
+    },
+    "You must bear it in mind.": {
+      "drop": true
+    },
+    "Bear in mind what he said.": {
+      "drop": true
+    },
+    "I'm beat.": {
+      "drop": true
+    },
+    "Let's blow the fans.": {
+      "drop": true
+    },
+    "I wear contact lenses.": {
+      "drop": true
+    },
+    "May I pay with a credit card?": {
+      "drop": true
+    },
+    "I doubt if Tom is single.": {
+      "tr": "我不太确定汤姆是不是单身。"
+    },
+    "We went due north.": {
+      "drop": true
+    },
+    "Examine this.": {
+      "tr": "检查一下这个。"
+    },
+    "Can I fix you a hot drink?": {
+      "drop": true
+    },
+    "No pain no gain.": {
+      "drop": true
+    },
+    "The children gather into groups to play.": {
+      "tr": "孩子们聚成几群一起玩。"
+    },
+    "Grab Tom.": {
+      "drop": true
+    },
+    "I get a kick out of life.": {
+      "drop": true
+    },
+    "Did you mean to link me that?": {
+      "drop": true
+    },
+    "Did you notice Tom's hair?": {
+      "tr": "你注意到汤姆的头发了吗？"
+    },
+    "Tom fell into the pool.": {
+      "tr": "汤姆掉进了游泳池。"
+    },
+    "He goes to replace his father.": {
+      "drop": true
+    },
+    "He left to replace his father.": {
+      "tr": "他去接替他父亲了。"
+    },
+    "He shot at me.": {
+      "drop": true
+    },
+    "A fool's bolt is soon shot.": {
+      "drop": true
+    },
+    "Tom shot himself in the head.": {
+      "drop": true
+    },
+    "His speech bored me.": {
+      "tr": "他的演讲让我觉得很无聊。"
+    },
+    "Her speech was excellent.": {
+      "tr": "她的演讲非常精彩。"
+    },
+    "He is the last man to steal.": {
+      "tr": "他绝不是会偷东西的人。"
+    },
+    "Strike two!": {
+      "drop": true
+    },
+    "Strike one!": {
+      "drop": true
+    },
+    "Strike three!": {
+      "drop": true
+    },
+    "I forget to telephone him.": {
+      "drop": true
+    },
+    "I bought him a tie.": {
+      "tr": "我给他买了一条领带。"
+    },
+    "Local people can give appropriate advice.": {
+      "tr": "当地人可以给出恰当的建议。"
+    },
+    "I like bright colours.": {
+      "drop": true
+    },
+    "Honesty is a capital virtue.": {
+      "drop": true
+    },
+    "Be careful, Tom!": {
+      "drop": true
+    },
+    "We elected James chairman.": {
+      "drop": true
+    },
+    "The well has run dry.": {
+      "drop": true
+    },
+    "The jar is empty.": {
+      "drop": true
+    },
+    "All the patients eventually died.": {
+      "drop": true
+    },
+    "It is expensive running this car.": {
+      "tr": "养这辆车很费钱。"
+    },
+    "I'm extremely grateful to you.": {
+      "tr": "我非常感激你。"
+    },
+    "Is my new hair style funny?": {
+      "tr": "我的新发型是不是很好笑？"
+    },
+    "Smog was very heavy today.": {
+      "tr": "今天雾霾很严重。"
+    },
+    "History is a highly politicized subject.": {
+      "drop": true
+    },
+    "I'm sorry, but it's impossible.": {
+      "tr": "很抱歉，但这是不可能的。"
+    },
+    "Come quick.": {
+      "drop": true
+    },
+    "Quick, help me!": {
+      "tr": "快，帮帮我！"
+    },
+    "Who is to say this isn't a relief?": {
+      "drop": true
+    },
+    "It's safe to say so.": {
+      "tr": "可以这么说。"
+    },
+    "I must learn seriously.": {
+      "drop": true
+    },
+    "It's a slip of the pen.": {
+      "drop": true
+    },
+    "Tom walks very slowly.": {
+      "drop": true
+    },
+    "Update my software.": {
+      "tr": "更新我的软件。"
+    },
+    "Tom is now a software engineer.": {
+      "tr": "汤姆现在是软件工程师。"
+    },
+    "Straight ahead, right?": {
+      "drop": true
+    },
+    "He is as tall as she.": {
+      "drop": true
+    },
+    "No context, no text.": {
+      "drop": true
+    },
+    "We grow a variety of crops.": {
+      "tr": "我们种植各种各样的作物。"
+    },
+    "No! Absolutely not!": {
+      "tr": "不！绝对不行！"
+    },
+    "I have a Facebook account.": {
+      "drop": true
+    },
+    "How do you account for that?": {
+      "drop": true
+    },
+    "I sold the house to advantage.": {
+      "drop": true
+    },
+    "The boy took the radio apart.": {
+      "tr": "这个男孩把收音机拆散了。"
+    },
+    "Japan's army was very powerful.": {
+      "drop": true
+    },
+    "He had barely enough to eat.": {
+      "tr": "他几乎吃不饱。"
+    },
+    "Tom died in battle.": {
+      "drop": true
+    },
+    "We won the battle.": {
+      "tr": "我们打赢了这场战斗。"
+    },
+    "Do you belong to any clubs?": {
+      "tr": "你参加了什么俱乐部吗？"
+    },
+    "This bomb can kill many people.": {
+      "drop": true
+    },
+    "Yanni hit rock bottom.": {
+      "drop": true
+    },
+    "It's as smooth as a baby's bottom.": {
+      "drop": true
+    },
+    "She held her breath.": {
+      "drop": true
+    },
+    "He held his breath.": {
+      "tr": "他屏住了呼吸。"
+    },
+    "He did not die of cancer.": {
+      "drop": true
+    },
+    "My father died of lung cancer.": {
+      "drop": true
+    },
+    "I like watching Code Lyoko.": {
+      "drop": true
+    },
+    "Why do people commit suicide?": {
+      "drop": true
+    },
+    "I'm completely exhausted.": {
+      "tr": "我彻底筋疲力尽了。"
+    },
+    "I've never believed that conflict is good.": {
+      "tr": "我从来不认为冲突是好事。"
+    },
+    "A conservative is not always a reactionary.": {
+      "drop": true
+    },
+    "Metals contract when they cool.": {
+      "drop": true
+    },
+    "Make a copy of this report.": {
+      "tr": "请把这份报告复印一份。"
+    },
+    "Defend Taiwan!": {
+      "drop": true
+    },
+    "We need to defend Taiwan's sovereignty.": {
+      "drop": true
+    },
+    "It'll definitely rain.": {
+      "tr": "肯定会下雨。"
+    },
+    "How to arouse a woman's desire?": {
+      "drop": true
+    },
+    "My email has changed.": {
+      "tr": "我的邮箱地址换了。"
+    },
+    "All animals are equal.": {
+      "drop": true
+    },
+    "He was equal to the job.": {
+      "drop": true
+    },
+    "The camera was essential for me.": {
+      "tr": "相机对我来说必不可少。"
+    },
+    "God doesn't exist.": {
+      "drop": true
+    },
+    "Need they have sold the farm?": {
+      "drop": true
+    },
+    "I have a female cow.": {
+      "drop": true
+    },
+    "That female student is American.": {
+      "tr": "那个女学生是美国人。"
+    },
+    "Freedom is not free.": {
+      "drop": true
+    },
+    "My house is fully insured.": {
+      "tr": "我的房子上了全额保险。"
+    },
+    "John makes fun of his dog.": {
+      "drop": true
+    },
+    "I smell gas.": {
+      "tr": "我闻到了煤气味。"
+    },
+    "He took up golf this spring.": {
+      "tr": "他今年春天开始打高尔夫球。"
+    },
+    "Be my guest.": {
+      "tr": "请便。"
+    },
+    "I can't stand this heat.": {
+      "drop": true
+    },
+    "Go to hell!": {
+      "drop": true
+    },
+    "I have to hide.": {
+      "drop": true
+    },
+    "Ignore it.": {
+      "tr": "别理它。"
+    },
+    "Insist.": {
+      "drop": true
+    },
+    "We have to thoroughly investigate it.": {
+      "tr": "我们必须彻底调查这件事。"
+    },
+    "I was as sober as a judge.": {
+      "drop": true
+    },
+    "Tom is out of your league.": {
+      "drop": true
+    },
+    "Even jokes have a limit.": {
+      "tr": "开玩笑也要有个限度。"
+    },
+    "Women like male attention.": {
+      "drop": true
+    },
+    "Skura liked male attention.": {
+      "drop": true
+    },
+    "Oil does not mix with water.": {
+      "drop": true
+    },
+    "Modern cats don't eat rats.": {
+      "drop": true
+    },
+    "He lived a moral life.": {
+      "tr": "他过着有道德的生活。"
+    },
+    "Did you murder Tom?": {
+      "drop": true
+    },
+    "Send that newspaper to him.": {
+      "tr": "把那份报纸送给他。"
+    },
+    "No love is foul nor prison fair.": {
+      "drop": true
+    },
+    "It's obvious that he lied.": {
+      "tr": "很明显他撒了谎。"
+    },
+    "Tom obviously lied.": {
+      "drop": true
+    },
+    "Obviously not!": {
+      "tr": "显然不是！"
+    },
+    "Let's organize a search party.": {
+      "tr": "我们组织一支搜寻队吧。"
+    },
+    "I didn't mean to imply otherwise.": {
+      "tr": "我并不是想暗示相反的意思。"
+    },
+    "We ought to obey the law.": {
+      "tr": "我们应该遵守法律。"
+    },
+    "Are you the owner of this house?": {
+      "drop": true
+    },
+    "Where is your package?": {
+      "tr": "你的包裹在哪里？"
+    },
+    "He held a package under his arm.": {
+      "tr": "他把一个包裹夹在腋下。"
+    },
+    "I noticed a pattern.": {
+      "tr": "我注意到了一个规律。"
+    },
+    "That's so perfect.": {
+      "tr": "太完美了。"
+    },
+    "You've done a perfect job.": {
+      "tr": "你干得非常出色。"
+    },
+    "May I take a photo?": {
+      "tr": "我可以拍张照片吗？"
+    },
+    "Where is my plate?": {
+      "drop": true
+    },
+    "My blood type is A positive.": {
+      "drop": true
+    },
+    "Every man is a potential corpse.": {
+      "drop": true
+    },
+    "Penny wise, pound foolish.": {
+      "drop": true
+    },
+    "4.5 yuan for one pound, now isn't that cheap!": {
+      "drop": true
+    },
+    "I can't predict what'll happen.": {
+      "tr": "我无法预料会发生什么。"
+    },
+    "He died previous to my arrival.": {
+      "drop": true
+    },
+    "The boy is full of promise.": {
+      "drop": true
+    },
+    "I agree to your proposal.": {
+      "drop": true
+    },
+    "What's your real purpose?": {
+      "tr": "你的真正目的是什么？"
+    },
+    "He didn't do it on purpose.": {
+      "tr": "他不是故意的。"
+    },
+    "Have you ever tried virtual reality?": {
+      "tr": "你体验过虚拟现实吗？"
+    },
+    "Sometimes reality surpasses fiction.": {
+      "tr": "有时候现实比小说还离奇。"
+    },
+    "Five gallons of regular, please.": {
+      "drop": true
+    },
+    "The Baha'i Faith is a really cool religion.": {
+      "drop": true
+    },
+    "I am responsible for that.": {
+      "drop": true
+    },
+    "Roll up your right sleeve.": {
+      "drop": true
+    },
+    "The root cause of any divorce is marriage.": {
+      "drop": true
+    },
+    "I prefer a phone with a large screen.": {
+      "tr": "我更喜欢屏幕大的手机。"
+    },
+    "Search me.": {
+      "drop": true
+    },
+    "Get up, search.": {
+      "drop": true
+    },
+    "How did the secret get out?": {
+      "tr": "这秘密是怎么泄露出去的？"
+    },
+    "The fire spread out in a fan-shape.": {
+      "drop": true
+    },
+    "Tadashi has a soft voice.": {
+      "tr": "Tadashi的声音很温柔。"
+    },
+    "Could you solve the problem?": {
+      "drop": true
+    },
+    "Can you solve this problem?": {
+      "tr": "你能解决这个问题吗？"
+    },
+    "I'm sorry.": {
+      "tr": "对不起。"
+    },
+    "Butterflies of this species are now extinct.": {
+      "tr": "这种蝴蝶现在已经灭绝了。"
+    },
+    "Did Spot go, too?": {
+      "drop": true
+    },
+    "A cold beer would hit the spot!": {
+      "drop": true
+    },
+    "I'll stick to my principles.": {
+      "tr": "我会坚守我的原则。"
+    },
+    "What surpasses strength?": {
+      "drop": true
+    },
+    "Layla will survive.": {
+      "drop": true
+    },
+    "I had to do that to survive.": {
+      "tr": "为了活下去，我不得不这么做。"
+    },
+    "I've caught a terrible cold.": {
+      "tr": "我得了重感冒。"
+    },
+    "Don't threaten me with a good time.": {
+      "drop": true
+    },
+    "Tom has a tiny dick.": {
+      "drop": true
+    },
+    "The buildings look so tiny.": {
+      "tr": "那些楼看上去好小。"
+    },
+    "Tom is totally into you.": {
+      "tr": "汤姆完全被你迷住了。"
+    },
+    "Life is tough.": {
+      "tr": "生活很艰难。"
+    },
+    "Tom seems tough.": {
+      "tr": "汤姆看起来很强硬。"
+    },
+    "Tom certainly has a tough job.": {
+      "tr": "汤姆的工作确实很辛苦。"
+    },
+    "He is a typical Japanese.": {
+      "drop": true
+    },
+    "You are unique.": {
+      "drop": true
+    },
+    "He did not speak unless spoken to.": {
+      "drop": true
+    },
+    "The shooting victim is alive, but just barely.": {
+      "drop": true
+    },
+    "Could you turn the volume down?": {
+      "drop": true
+    },
+    "Don't marry. Be happy!": {
+      "drop": true
+    },
+    "Will you marry me?": {
+      "tr": "你愿意嫁给我吗？"
+    },
+    "This bird cannot fly.": {
+      "drop": true
+    },
+    "Mr Brown is a doctor.": {
+      "drop": true
+    },
+    "Do you know Mr. Brown?": {
+      "drop": true
+    },
+    "I have brown hair.": {
+      "tr": "我的头发是棕色的。"
+    },
+    "I bought a Daily News.": {
+      "drop": true
+    },
+    "Where's your date tonight?": {
+      "tr": "你今晚的约会对象在哪儿？"
+    },
+    "Damn, she's going to score.": {
+      "drop": true
+    },
+    "Every cloud has a silver lining.": {
+      "drop": true
+    },
+    "There's not a cloud in sight.": {
+      "tr": "一朵云也看不到。"
+    },
+    "It's about to rain.": {
+      "drop": true
+    },
+    "Snow has begun to melt.": {
+      "tr": "雪已经开始融化了。"
+    },
+    "My mother took my temperature.": {
+      "drop": true
+    },
+    "I made a desk of wood.": {
+      "drop": true
+    },
+    "This desk is used by Tom.": {
+      "tr": "这张桌子是汤姆在用的。"
+    },
+    "She wore a white dress.": {
+      "tr": "她穿了一条白色的连衣裙。"
+    },
+    "Fashion isn't my specialty.": {
+      "tr": "时尚不是我的专长。"
+    },
+    "Put the money in my pocket.": {
+      "tr": "把钱放进我的口袋里。"
+    },
+    "I'll give you a ring.": {
+      "drop": true
+    },
+    "Give me a ring tomorrow.": {
+      "drop": true
+    },
+    "Whose ring is that?": {
+      "tr": "那是谁的戒指？"
+    },
+    "Tom drinks craft beer.": {
+      "drop": true
+    },
+    "She hopes to become a designer.": {
+      "drop": true
+    },
+    "These dresses were designed by the same designer.": {
+      "tr": "这几件衣服是同一位设计师设计的。"
+    },
+    "A great Empire, like a great Cake, is most easily diminished at the Edges.": {
+      "drop": true
+    },
+    "To govern a country is not an easy job.": {
+      "drop": true
+    },
+    "To govern a country is no easy job.": {
+      "tr": "治理一个国家不是件容易的事。"
+    },
+    "Tom is a journalist.": {
+      "drop": true
+    },
+    "She is a journalist.": {
+      "drop": true
+    },
+    "He is something of a musician.": {
+      "tr": "他算得上是个音乐家。"
+    },
+    "Mennad's anxiety was kicking.": {
+      "drop": true
+    },
+    "Wish big, aim high, be gentle, be careful.": {
+      "tr": "心怀大愿，志存高远，待人温和，做事细心。"
+    },
+    "I am an honest person.": {
+      "drop": true
+    },
+    "To travel hopefully is a better thing than to arrive.": {
+      "drop": true
+    },
+    "It's not a joke.": {
+      "drop": true
+    },
+    "It is no joke.": {
+      "tr": "这可不是开玩笑的。"
+    },
+    "The demon grabbed my sister and, with howling laughter, cast her into a bottomless pit.": {
+      "drop": true
+    },
+    "A day without laughter is a day wasted.": {
+      "tr": "没有欢笑的一天就是虚度的一天。"
+    },
+    "You have lovely eyes, don't you?": {
+      "drop": true
+    },
+    "He is a lover of sports.": {
+      "drop": true
+    },
+    "I will not abandon you.": {
+      "drop": true
+    },
+    "In addition, coincidences inevitably come in threes.": {
+      "drop": true
+    },
+    "In addition to being a great statesman, Churchill was a great writer.": {
+      "tr": "丘吉尔不仅是一位伟大的政治家，还是一位伟大的作家。"
+    },
+    "We should approach this problem from different angles.": {
+      "tr": "我们应该从不同的角度来处理这个问题。"
+    },
+    "Many on-line companies need to have a new approach to business to survive.": {
+      "tr": "许多网络公司要想生存，需要采用新的经营方式。"
+    },
+    "Arise!": {
+      "drop": true
+    },
+    "He will assist this project.": {
+      "drop": true
+    },
+    "Tom knows how to behave in public.": {
+      "tr": "汤姆知道在公共场合该怎么表现。"
+    },
+    "I bet he doesn't make it.": {
+      "tr": "我打赌他做不到。"
+    },
+    "I want to brush up my English.": {
+      "drop": true
+    },
+    "The cow cast a calf.": {
+      "drop": true
+    },
+    "His leg was put in a cast.": {
+      "drop": true
+    },
+    "The spatulas, ramekins, plates, and mugs are all from the collection.": {
+      "tr": "这些锅铲、烤盅、盘子和马克杯都出自这个系列。"
+    },
+    "I learned to use a command block today.": {
+      "drop": true
+    },
+    "They had a good command of French.": {
+      "tr": "他们的法语掌握得很好。"
+    },
+    "How did you arrive at that conclusion?": {
+      "drop": true
+    },
+    "My internet connection was cut off.": {
+      "tr": "我的网络连接断了。"
+    },
+    "That parrot was Tobias's only connection with his late father.": {
+      "tr": "那只鹦鹉是托比亚斯与已故父亲之间唯一的联系。"
+    },
+    "I don't approve your decision.": {
+      "drop": true
+    },
+    "Let's leave the decision to Tom.": {
+      "tr": "让汤姆来做决定吧。"
+    },
+    "To those who would tear the world down: we will defeat you.": {
+      "drop": true
+    },
+    "But a man is not made for defeat. A man can be destroyed but not defeated.": {
+      "tr": "人不是为失败而生的。一个人可以被毁灭，但不能被打败。"
+    },
+    "I have already missed the delivery time, what should I do next?": {
+      "drop": true
+    },
+    "I have missed the delivery time, what should I do next?": {
+      "tr": "已经错过了交货时间，接下来该怎么办？"
+    },
+    "Nowadays it's not possible to protect oneself against weapons of mass destruction.": {
+      "drop": true
+    },
+    "Is France trying to suppress Algeria's development?": {
+      "drop": true
+    },
+    "Can you give me a discount?": {
+      "tr": "能给我打个折吗？"
+    },
+    "Why do women want to sleep in a man's embrace?": {
+      "drop": true
+    },
+    "If a person doesn't have a strong will, he will be unable to embrace profound wisdom.": {
+      "drop": true
+    },
+    "Could you do me a favor?": {
+      "drop": true
+    },
+    "Would you do me a favor?": {
+      "drop": true
+    },
+    "I found this book interesting.": {
+      "drop": true
+    },
+    "I greet my teacher on the street.": {
+      "tr": "我在街上向老师问好。"
+    },
+    "The witch hunt has begun.": {
+      "drop": true
+    },
+    "Bats hunt at night.": {
+      "tr": "蝙蝠在夜间捕食。"
+    },
+    "It's just your imagination.": {
+      "tr": "这只是你的想象而已。"
+    },
+    "I want you to use your imagination.": {
+      "tr": "我希望你发挥自己的想象力。"
+    },
+    "It was not my intention.": {
+      "drop": true
+    },
+    "That wasn't my intention.": {
+      "drop": true
+    },
+    "Let's invest in Taiwan.": {
+      "drop": true
+    },
+    "Tom doubled his investment in a year.": {
+      "tr": "汤姆一年内让投资翻了一番。"
+    },
+    "Kiss me, you fool!": {
+      "drop": true
+    },
+    "Will you lend me your bicycle?": {
+      "drop": true
+    },
+    "It's mate in three.": {
+      "drop": true
+    },
+    "My beer was finished off by my room-mate.": {
+      "tr": "我的啤酒被我的室友喝光了。"
+    },
+    "Don't mention it.": {
+      "tr": "不客气。"
+    },
+    "They looked relieved only when it was in motion.": {
+      "drop": true
+    },
+    "The \"drop the T\" movement was started by a guy who now identifies as ex-gay.": {
+      "drop": true
+    },
+    "He is an aggressive person.": {
+      "tr": "他是个咄咄逼人的人。"
+    },
+    "Tom was driving too fast on the bend and ended up in the ditch.": {
+      "drop": true
+    },
+    "I feel that I am a burden to everyone, that no one will ever love me.": {
+      "drop": true
+    },
+    "Tom is looking closely at the map.": {
+      "tr": "汤姆正仔细地看地图。"
+    },
+    "They are watching what's happening closely.": {
+      "tr": "他们正密切关注事态的发展。"
+    },
+    "Let's decide with a coin toss.": {
+      "drop": true
+    },
+    "The next four to six weeks are crucial in controlling the massive Ebola outbreak.": {
+      "tr": "接下来的四到六周对控制埃博拉疫情的大规模暴发至关重要。"
+    },
+    "I am curious.": {
+      "drop": true
+    },
+    "Every time I read the Bible, I am deeply moved.": {
+      "drop": true
+    },
+    "My camera can shoot high-definition video.": {
+      "tr": "我的相机能拍高清视频。"
+    },
+    "The beauty of the scene was beyond description.": {
+      "drop": true
+    },
+    "He gave a detailed description of the accident.": {
+      "tr": "他详细地叙述了那场事故的经过。"
+    },
+    "“One dollar store” is my favorite store.": {
+      "drop": true
+    },
+    "As people get older, their brain cells become less efficient.": {
+      "tr": "随着年龄的增长，人的脑细胞效率会降低。"
+    },
+    "It's stable because all the roots of this equation are negative.": {
+      "tr": "它是稳定的，因为这个方程的所有根都是负的。"
+    },
+    "When did the error occur?": {
+      "tr": "错误是什么时候发生的？"
+    },
+    "He put his hand gently on her shoulder.": {
+      "drop": true
+    },
+    "He's making it clear that he's an ideal husband.": {
+      "drop": true
+    },
+    "He proved to be an ideal husband.": {
+      "tr": "事实证明他是个理想的丈夫。"
+    },
+    "Today's paper contains nothing of importance.": {
+      "tr": "今天的报纸没有什么重要的新闻。"
+    },
+    "He took it literally.": {
+      "tr": "他按字面意思理解了。"
+    },
+    "No money, no job, no friends. He was truly at loose ends.": {
+      "drop": true
+    },
+    "This button is loose.": {
+      "tr": "这个纽扣松了。"
+    },
+    "It's too loud.": {
+      "tr": "太吵了。"
+    },
+    "Scientists deal mainly with physical matters.": {
+      "tr": "科学家主要研究物质方面的问题。"
+    },
+    "Don't come and mess around!": {
+      "drop": true
+    },
+    "What is the minimum wage in Georgia?": {
+      "tr": "请问佐治亚州的最低工资是多少？"
+    },
+    "This program cannot be run in DOS mode.": {
+      "tr": "这个程序无法在DOS模式下运行。"
+    },
+    "Are you for or against abortion?": {
+      "drop": true
+    },
+    "Absence makes the heart grow fonder.": {
+      "drop": true
+    },
+    "My prediction was accurate.": {
+      "tr": "我的预测是准确的。"
+    },
+    "How can you accuse me of such a thing? I would never lay a hand on my child.": {
+      "drop": true
+    },
+    "Our eyes take time to adjust to the darkness.": {
+      "drop": true
+    },
+    "I admire your ignorance.": {
+      "drop": true
+    },
+    "Our plans are to advance toward the city.": {
+      "tr": "我们的计划是向那座城市推进。"
+    },
+    "We made an agreement to meet exactly at ten.": {
+      "tr": "我们约好十点整见面。"
+    },
+    "My album is here.": {
+      "tr": "我的相册在这里。"
+    },
+    "She showed me her album.": {
+      "tr": "她给我看了她的相册。"
+    },
+    "Ally loves playing with her twin sister Anne.": {
+      "drop": true
+    },
+    "Algeria is a close ally of both Russia and China.": {
+      "drop": true
+    },
+    "Tom is anxious to see you.": {
+      "drop": true
+    },
+    "She lives in an apartment alone.": {
+      "drop": true
+    },
+    "Can you arrange for a night tour bus?": {
+      "tr": "你能帮我安排夜游观光巴士吗？"
+    },
+    "Trump is a Russian asset.": {
+      "drop": true
+    },
+    "I can assure success.": {
+      "drop": true
+    },
+    "My aunt gave me a camera.": {
+      "tr": "我姑姑给了我一台相机。"
+    },
+    "All plans automatically renew until cancelled.": {
+      "tr": "所有套餐都会自动续订，直到取消为止。"
+    },
+    "What an awful lot of books you have!": {
+      "drop": true
+    },
+    "Tom lost his balance and fell down.": {
+      "drop": true
+    },
+    "Tom lost his balance and fell.": {
+      "tr": "汤姆失去平衡摔倒了。"
+    },
+    "I bid you greetings and may there be peace through fellowship between us.": {
+      "drop": true
+    },
+    "God bless America.": {
+      "drop": true
+    },
+    "They say love is blind.": {
+      "drop": true
+    },
+    "Do you need as many licenses as you have operating systems installed in a multi-boot PC?": {
+      "drop": true
+    },
+    "There is a fence marking the boundary between our yard and the neighbor's.": {
+      "tr": "我家院子和邻居家院子之间有一道篱笆作为分界线。"
+    },
+    "It's brand new.": {
+      "drop": true
+    },
+    "Tom bought a brand-new car.": {
+      "drop": true
+    },
+    "Have you bought a brand-new car?": {
+      "drop": true
+    },
+    "Breathe, damn you!": {
+      "drop": true
+    },
+    "I've had a brilliant idea.": {
+      "tr": "我想到了一个绝妙的主意。"
+    },
+    "Stay calm whatever happens.": {
+      "tr": "无论发生什么事，你都要保持镇定。"
+    },
+    "We want a new carpet.": {
+      "tr": "我们想要一条新地毯。"
+    },
+    "I held a wedding ceremony last month.": {
+      "tr": "我上个月举行了婚礼。"
+    },
+    "Welcome to the channel.": {
+      "drop": true
+    },
+    "What is on Channel 10?": {
+      "tr": "第十频道在播什么节目？"
+    },
+    "The old cottage has a certain charm about it.": {
+      "tr": "这座老农舍别有一番魅力。"
+    },
+    "Let's chase out corrupt politicians!": {
+      "drop": true
+    },
+    "Yanni has a star chip in his windshield.": {
+      "drop": true
+    },
+    "The chip in Yanni's windshield became a huge crack.": {
+      "drop": true
+    },
+    "How about some chocolate cheese?": {
+      "drop": true
+    },
+    "Betty likes classical music.": {
+      "drop": true
+    },
+    "Did you hear the click?": {
+      "tr": "你听到咔嗒一声了吗？"
+    },
+    "The prices of raw materials such as oil or coal continue to rise.": {
+      "tr": "石油、煤炭等原材料的价格持续上涨。"
+    },
+    "Algeria will not collapse.": {
+      "drop": true
+    },
+    "His regime is bound to collapse.": {
+      "drop": true
+    },
+    "Algeria isn't going to collapse.": {
+      "drop": true
+    },
+    "Tom is an activist in his community.": {
+      "tr": "汤姆是他所在社区的积极分子。"
+    },
+    "I had Mr. Jones correct my composition.": {
+      "drop": true
+    },
+    "I'm fairly confident that I can do that.": {
+      "drop": true
+    },
+    "We must never confuse the two.": {
+      "tr": "我们决不能把这两者混淆。"
+    },
+    "Tom found Mary's constant criticism of him hard to cope with.": {
+      "tr": "汤姆觉得玛丽对他没完没了的批评让他难以应对。"
+    },
+    "Constantly blowing his nose in allergy season.": {
+      "drop": true
+    },
+    "After reading his books I feel I can construct a house.": {
+      "tr": "读了他的书之后，我觉得自己能盖一栋房子。"
+    },
+    "You'd better consult your doctor.": {
+      "drop": true
+    },
+    "Zeal for your house will consume me.": {
+      "drop": true
+    },
+    "She won first prize in the speech contest.": {
+      "drop": true
+    },
+    "Get the meaning of a word from its context.": {
+      "tr": "根据上下文推断一个词的意思。"
+    },
+    "But your function isn't Lipschitz continuous!": {
+      "drop": true
+    },
+    "You should run for city council.": {
+      "tr": "你应该去竞选市议员。"
+    },
+    "The plane crash was only last week.": {
+      "tr": "那次空难就发生在上周。"
+    },
+    "Love is what gives joy to all creation.": {
+      "tr": "爱给万物带来喜悦。"
+    },
+    "I don't know how long I'll have to wait before I become more creative.": {
+      "tr": "我不知道还要等多久才能变得更有创造力。"
+    },
+    "Algeria is in the midst of a political crisis.": {
+      "drop": true
+    },
+    "What currency do you use in England?": {
+      "tr": "在英国用什么货币？"
+    },
+    "Bob got impatient at his wife's delay.": {
+      "tr": "鲍勃因妻子的拖延而不耐烦了。"
+    },
+    "Excuse me, do you know where the economics department library is?": {
+      "tr": "不好意思，请问你知道经济系图书馆在哪里吗？"
+    },
+    "It doesn’t matter what you say, he’ll be acquitted because of depression.": {
+      "drop": true
+    },
+    "She seems to devote all her effects to her career.": {
+      "drop": true
+    },
+    "Is there any difference between your idea and hers?": {
+      "tr": "你的想法和她的想法有什么不同吗？"
+    },
+    "A person views things differently according to whether they are rich or poor.": {
+      "drop": true
+    },
+    "People look at things differently depending on whether they are rich or poor.": {
+      "drop": true
+    },
+    "One views things differently according to whether one is rich or poor.": {
+      "tr": "人们看待事物的方式因贫富不同而有所不同。"
+    },
+    "You may disagree with me.": {
+      "tr": "你可能不同意我的看法。"
+    },
+    "This discovery will be recorded in history.": {
+      "tr": "这一发现将被载入史册。"
+    },
+    "Edit your work better before you submit it, it's sloppy.": {
+      "tr": "提交之前把你的作品好好修改一下，太粗糙了。"
+    },
+    "It will be able to edit the pictures you don't like, then print them out.": {
+      "tr": "它能修改你不喜欢的照片，然后把它们打印出来。"
+    },
+    "My father is an electric engineer.": {
+      "tr": "我父亲是电气工程师。"
+    },
+    "This man is like a filthy electronic without a battery.": {
+      "drop": true
+    },
+    "When you encounter difficulties, friends can help you deal with them.": {
+      "tr": "遇到困难时，朋友可以帮你应对。"
+    },
+    "Stick another stamp on the envelope.": {
+      "drop": true
+    },
+    "That has been an evil rabbit.": {
+      "drop": true
+    },
+    "That was an evil bunny.": {
+      "tr": "那是一只邪恶的兔子。"
+    },
+    "I'm not a woman hater; and if I were, I would make an exception for you.": {
+      "drop": true
+    },
+    "How can he deny God's existence?": {
+      "tr": "他怎么能否认上帝的存在呢？"
+    },
+    "Save it on the external hard drive.": {
+      "tr": "把它保存到外接硬盘上。"
+    },
+    "Extreme cold covered Europe.": {
+      "tr": "极度的严寒笼罩了欧洲。"
+    },
+    "When applying to American universities, your TOEFL score is only one factor.": {
+      "tr": "申请美国大学时，托福成绩只是其中一个因素。"
+    },
+    "You are fantastic.": {
+      "tr": "你太棒了。"
+    },
+    "He is a good fellow.": {
+      "drop": true
+    },
+    "I left your flash drive at home.": {
+      "drop": true
+    },
+    "Thanks God, Apple is dumping that Flash crap!": {
+      "drop": true
+    },
+    "Shit! I've got a flat.": {
+      "drop": true
+    },
+    "One of your tires is flat.": {
+      "tr": "你有一个轮胎瘪了。"
+    },
+    "Bill, if you'll come with me, you'll float, too.": {
+      "drop": true
+    },
+    "I waited for her forever.": {
+      "tr": "我等了她好久好久。"
+    },
+    "Fred left his wife a large fortune.": {
+      "drop": true
+    },
+    "We need to keep Algeria within the socialist framework.": {
+      "drop": true
+    },
+    "The third most frequent letter in Esperanto is \"e\".": {
+      "tr": "在世界语中，出现频率第三高的字母是“e”。"
+    },
+    "Nothing is more important than friendship.": {
+      "drop": true
+    },
+    "Furthermore, I still don't think this a huge cultural difference.": {
+      "drop": true
+    },
+    "The best hairdressers are gay.": {
+      "drop": true
+    },
+    "Should we use genetic engineering on people?": {
+      "tr": "我们应该对人类使用基因工程吗？"
+    },
+    "Through genetic modification, we can improve crops.": {
+      "tr": "通过基因改造，我们可以改良农作物。"
+    },
+    "Giant pandas live only in China.": {
+      "tr": "大熊猫只生活在中国。"
+    },
+    "God willing...": {
+      "tr": "如果老天允许的话……"
+    },
+    "Why does the US government let people have guns?": {
+      "drop": true
+    },
+    "A stable economy is the aim of every government.": {
+      "tr": "稳定的经济是每个政府的目标。"
+    },
+    "No matter what grand and lofty reason you have, it's not right to do this.": {
+      "drop": true
+    },
+    "They guarantee this clock for a year.": {
+      "tr": "他们为这个钟提供一年保修。"
+    },
+    "We guarantee our products for one year.": {
+      "tr": "我们的产品保修一年。"
+    },
+    "Writing in a diary is a good habit.": {
+      "drop": true
+    },
+    "I don't mean to harm you.": {
+      "drop": true
+    },
+    "Reporters do not hesitate to intrude into people's privacy.": {
+      "tr": "记者会毫不犹豫地侵犯他人隐私。"
+    },
+    "A farewell meeting was held in honor of Mr Jones.": {
+      "tr": "为琼斯先生举行了一场欢送会。"
+    },
+    "He asked me to do what I can to hook them up.": {
+      "drop": true
+    },
+    "What horrible weather!": {
+      "drop": true
+    },
+    "Humor me.": {
+      "drop": true
+    },
+    "I find her very impressive.": {
+      "tr": "我觉得她很了不起。"
+    },
+    "Lachin hosted concert marking May 28 – Independence Day.": {
+      "drop": true
+    },
+    "You may injure yourself if you don't follow safety procedures.": {
+      "tr": "如果你不遵守安全规程，可能会受伤。"
+    },
+    "Politicians never tell us their inner thoughts.": {
+      "drop": true
+    },
+    "Is mayonnaise an instrument?": {
+      "drop": true
+    },
+    "Do you play any instrument other than the piano?": {
+      "tr": "除了钢琴，你还会演奏别的乐器吗？"
+    },
+    "If you sign up to Facebook, your information will be sent to intelligence agencies.": {
+      "drop": true
+    },
+    "It is subject to interpretation.": {
+      "tr": "这可以有不同的解读。"
+    },
+    "I came to work here though his introduction.": {
+      "drop": true
+    },
+    "Children were apt to invent their own games.": {
+      "tr": "孩子们总爱发明自己的游戏。"
+    },
+    "Don't use \"discover\" when you mean \"invent\".": {
+      "tr": "当你想说“发明”时，不要用“发现”这个词。"
+    },
+    "No investigation, no right to speak.": {
+      "drop": true
+    },
+    "The report proved true as a result of their investigation.": {
+      "tr": "他们的调查证明这篇报道属实。"
+    },
+    "Iron is a useful metal.": {
+      "tr": "铁是一种有用的金属。"
+    },
+    "The end does not always justify the means.": {
+      "tr": "目的正当并不总能使手段正当。"
+    },
+    "The king crushed his enemies.": {
+      "drop": true
+    },
+    "\"Thanks a lot for letting me play with your Xbox.\" \"No problem dude, knock yourself out.\"": {
+      "drop": true
+    },
+    "I prefer Noh to Kabuki because I find the former to be more elegant than the latter.": {
+      "tr": "比起歌舞伎，我更喜欢能乐，因为我觉得前者比后者更优雅。"
+    },
+    "I cannot follow your logic.": {
+      "drop": true
+    },
+    "The girl vanished like magic.": {
+      "tr": "女孩像变魔术一样消失了。"
+    },
+    "Do you have an e-mail address?": {
+      "drop": true
+    },
+    "You are no longer a mere child.": {
+      "drop": true
+    },
+    "This bag is mine.": {
+      "tr": "这个包是我的。"
+    },
+    "Can you play the key of C minor?": {
+      "drop": true
+    },
+    "Air is a mixture of various gases.": {
+      "drop": true
+    },
+    "The mixture of these substances is dangerous.": {
+      "tr": "这些物质的混合物很危险。"
+    },
+    "My mobile has been stolen.": {
+      "tr": "我的手机被偷了。"
+    },
+    "The USS Monitor was designated the first National Marine Sanctuary on January 30, 1975.": {
+      "drop": true
+    },
+    "Moreover, I can fly.": {
+      "drop": true
+    },
+    "They want to talk to you about areas of mutual interest.": {
+      "tr": "他们想和你谈谈双方共同感兴趣的领域。"
+    },
+    "Nature is full of mystery.": {
+      "tr": "大自然充满了奥秘。"
+    },
+    "There's a big supermarket in my neighborhood.": {
+      "tr": "我家附近有一家大超市。"
+    },
+    "I'm not allowed to drink alcohol.": {
+      "tr": "我不可以喝酒。"
+    },
+    "We eat butter on bread.": {
+      "tr": "我们在面包上抹黄油吃。"
+    },
+    "The cake tastes divine!": {
+      "tr": "这蛋糕太好吃了！"
+    },
+    "Don't you know cheese is made from milk?": {
+      "drop": true
+    },
+    "Jane wanted an ice cream cone.": {
+      "drop": true
+    },
+    "We don't sell draft beer.": {
+      "drop": true
+    },
+    "I'd like to buy menu of the day.": {
+      "drop": true
+    },
+    "Please stand one meter away.": {
+      "drop": true
+    },
+    "I need it for the parking meter.": {
+      "tr": "我要用它来付停车计时器的费用。"
+    },
+    "Butter is made from milk.": {
+      "tr": "黄油是用牛奶做的。"
+    },
+    "Holy cow!": {
+      "drop": true
+    },
+    "When did you learn of Mary's divorce?": {
+      "tr": "你什么时候得知玛丽离婚的？"
+    },
+    "My grandmother can't see very well.": {
+      "tr": "我祖母视力不太好。"
+    },
+    "Always fasten your seat belt.": {
+      "drop": true
+    },
+    "The gap between them has narrowed.": {
+      "tr": "他们之间的差距已经缩小了。"
+    },
+    "What a tender gesture.": {
+      "tr": "多么体贴的举动啊。"
+    },
+    "He cured my illness.": {
+      "tr": "他治好了我的病。"
+    },
+    "How do you interpret these words?": {
+      "tr": "你怎么理解这些话？"
+    },
+    "A dragon is a creature of fancy.": {
+      "drop": true
+    },
+    "Smokers are a bunch of idiots.": {
+      "drop": true
+    },
+    "He foisted a bunch of hard work on me.": {
+      "tr": "他把一大堆难做的活儿推给了我。"
+    },
+    "My cell phone has a built-in digital camera.": {
+      "tr": "我的手机内置数码相机。"
+    },
+    "With a glance of her, he left swiftly.": {
+      "drop": true
+    },
+    "I overslept because my alarm didn't go off.": {
+      "tr": "因为闹钟没响，我睡过头了。"
+    },
+    "I studied around the clock.": {
+      "drop": true
+    },
+    "How much is your monthly gas bill?": {
+      "tr": "你每个月的燃气费是多少钱？"
+    },
+    "Smoking one cigarette a day is a good habit.": {
+      "drop": true
+    },
+    "If only I can go to the concert!": {
+      "drop": true
+    },
+    "Education in this world disappoints me.": {
+      "drop": true
+    },
+    "I think exams ruin education.": {
+      "tr": "我认为考试毁了教育。"
+    },
+    "We took an examination in math last week.": {
+      "tr": "我们上星期参加了数学考试。"
+    },
+    "He won't go on to graduate school.": {
+      "tr": "他不会继续读研究生。"
+    },
+    "An intellectual is a person who has discovered something more interesting than sex.": {
+      "drop": true
+    },
+    "In China, software piracy is a serious issue.": {
+      "drop": true
+    },
+    "How do you feel about the issue?": {
+      "tr": "你对这个问题有什么看法？"
+    },
+    "I need to go to the China Construction Bank.": {
+      "drop": true
+    },
+    "The construction straddled two centuries.": {
+      "tr": "这项工程跨越了两个世纪。"
+    },
+    "A green carpet will not go with this blue curtain.": {
+      "tr": "绿色地毯和这条蓝色窗帘不搭。"
+    },
+    "No language, no nation.": {
+      "drop": true
+    },
+    "Taiwan is an island nation.": {
+      "drop": true
+    },
+    "He gave his life for the nation.": {
+      "tr": "他为国家献出了生命。"
+    },
+    "This boy is a wolf in sheep's clothing.": {
+      "drop": true
+    },
+    "I don't like this jacket.": {
+      "tr": "我不喜欢这件夹克。"
+    },
+    "His cottage is on the coast.": {
+      "tr": "他的小屋在海边。"
+    },
+    "When we looked down, we saw a concrete jungle.": {
+      "drop": true
+    },
+    "They were marooned on a desert isle.": {
+      "tr": "他们被困在一座荒岛上。"
+    },
+    "Skilled soldiers know how to use their environment as a weapon.": {
+      "drop": true
+    },
+    "The rest follows naturally.": {
+      "tr": "其余的自然就水到渠成了。"
+    },
+    "This pub has very beautiful waitresses.": {
+      "drop": true
+    },
+    "What's your favorite soda?": {
+      "tr": "你最喜欢哪种汽水？"
+    },
+    "Lemons are sour.": {
+      "drop": true
+    },
+    "This politician is a typical champagne socialist.": {
+      "drop": true
+    },
+    "Hi, I'd like a deep-fried pizza roll.": {
+      "tr": "嗨，我要一个油炸披萨卷。"
+    },
+    "You're such a jerk.": {
+      "tr": "你真是个混蛋。"
+    },
+    "Lips that touch liquor shall not touch mine.": {
+      "drop": true
+    },
+    "Love and cough cannot be hidden.": {
+      "drop": true
+    },
+    "What helps cure a cough?": {
+      "tr": "什么能帮助治好咳嗽？"
+    },
+    "If only I read the user manual properly.": {
+      "drop": true
+    },
+    "Never trust a woman with a pistol in hand.": {
+      "drop": true
+    },
+    "He showed me the manuscript of his new play.": {
+      "tr": "他给我看了他新剧本的手稿。"
+    },
+    "He got injured in a traffic accident.": {
+      "drop": true
+    },
+    "One man's meat is another man's poison.": {
+      "drop": true
+    },
+    "Plug your nose.": {
+      "tr": "堵住你的鼻子。"
+    },
+    "I put my suitcase in the trunk.": {
+      "tr": "我把手提箱放进了汽车后备箱。"
+    },
+    "The thermometer fell to zero last night.": {
+      "drop": true
+    },
+    "One out of 455 women doesn't realize she's pregnant until the twentieth week of pregnancy.": {
+      "tr": "每455名女性中就有一人直到怀孕第二十周才意识到自己怀孕。"
+    },
+    "\"How old are you?\" \"I'm sixteen.\"": {
+      "tr": "“你几岁？”“我十六岁。”"
+    },
+    "My mother put thirteen candles on my birthday cake.": {
+      "tr": "母亲在我的生日蛋糕上插了十三支蜡烛。"
+    },
+    "It was a fabulous show which brought us an endless delight.": {
+      "tr": "那是一场精彩的演出，给我们带来了无穷的乐趣。"
+    },
+    "You'll embarrass her.": {
+      "tr": "你会让她难堪的。"
+    },
+    "We're troubled.": {
+      "drop": true
+    },
+    "He was troubled.": {
+      "drop": true
+    },
+    "He's troubled.": {
+      "tr": "他心烦意乱。"
+    },
+    "The girl made an awkward bow.": {
+      "tr": "这个女孩笨拙地鞠了一躬。"
+    },
+    "She was satisfied with the new skirt.": {
+      "drop": true
+    },
+    "I feel hopeful about the future.": {
+      "tr": "我对未来充满希望。"
+    },
+    "Though passion may have strained, it must not break our bonds of affection.": {
+      "drop": true
+    },
+    "Optimism is like the lamp of hope. Pessimism [or negativity] is like a drug of sorrow.": {
+      "drop": true
+    },
+    "Sammy spends most of the time crying in despair.": {
+      "drop": true
+    },
+    "His class makes us despair.": {
+      "tr": "他的课让我们绝望。"
+    },
+    "She helped him overcome his sadness.": {
+      "tr": "她帮他走出了悲伤。"
+    },
+    "My mother did nothing but weep.": {
+      "tr": "我母亲只是一个劲地哭。"
+    },
+    "\"He used to love me,\" she answered sadly.": {
+      "tr": "“他以前爱我。”她伤心地回答。"
+    },
+    "Is this the bus for Park Ridge?": {
+      "drop": true
+    },
+    "Tom is studying to become a marine biologist.": {
+      "tr": "汤姆正在为成为海洋生物学家而学习。"
+    },
+    "If and only if the ice-cream is vanilla flavour will Xiao Wang eat it.": {
+      "drop": true
+    },
+    "Your sentences were like a green meadow in winter.": {
+      "drop": true
+    },
+    "I'm not a cherry! I've gotten laid lots of times!": {
+      "drop": true
+    },
+    "It's almost time for the cherry blossoms.": {
+      "tr": "樱花快开了。"
+    },
+    "I'll wait here till he comes back.": {
+      "drop": true
+    },
+    "Am I disturbing you?": {
+      "drop": true
+    },
+    "I hope I'm not disturbing you.": {
+      "drop": true
+    },
+    "I hope I am not disturbing you.": {
+      "drop": true
+    },
+    "I honestly don't think Tom and Mary care.": {
+      "tr": "说实话，我觉得汤姆和玛丽并不在乎。"
+    },
+    "He is doing very well considering he lacks experience.": {
+      "tr": "考虑到他缺乏经验，他已经做得非常好了。"
+    },
+    "Loser!": {
+      "drop": true
+    },
+    "If you're not a loser by nature, then people won't trust you.": {
+      "drop": true
+    },
+    "I'm a loser.": {
+      "tr": "我是个失败者。"
+    },
+    "If Tom doesn't surrender, shoot him.": {
+      "drop": true
+    },
+    "I borrowed this comic from his sister.": {
+      "tr": "我向他妹妹借了这本漫画。"
+    },
+    "I don't care a rap.": {
+      "drop": true
+    },
+    "She has blonde hair and a slim figure.": {
+      "tr": "她有一头金发，身材苗条。"
+    },
+    "Alert, in Nunavut, Canada, is the northernmost permanently inhabited place in the world.": {
+      "drop": true
+    },
+    "Xueyou is holding a map of China.": {
+      "tr": "学友正拿着一张中国地图。"
+    },
+    "Avoid sudden movements around the rabbit, they can startle them.": {
+      "drop": true
+    },
+    "Your hair wants cutting.": {
+      "tr": "你的头发该剪了。"
+    },
+    "He's also a salesman.": {
+      "drop": true
+    },
+    "Hop in.": {
+      "tr": "上车吧。"
+    },
+    "Monopoly is a popular game for families to play.": {
+      "drop": true
+    },
+    "He looks every inch a gentleman.": {
+      "drop": true
+    },
+    "He knows every inch of this area.": {
+      "tr": "他对这一带了如指掌。"
+    },
+    "Update the app.": {
+      "tr": "更新这个应用。"
+    },
+    "Straighten up.": {
+      "drop": true
+    },
+    "He seldom writes to his parents.": {
+      "drop": true
+    },
+    "It started raining on my way to the convenience store.": {
+      "tr": "在我去便利店的路上，天开始下雨了。"
+    },
+    "A cat abhors a vacuum.": {
+      "drop": true
+    },
+    "What's the number for the Tokyo Dome?": {
+      "drop": true
+    },
+    "He is a thief.": {
+      "tr": "他是个小偷。"
+    },
+    "The poor people were at the mercy of the cruel dictator.": {
+      "drop": true
+    },
+    "Have mercy.": {
+      "tr": "发发慈悲吧。"
+    },
+    "Life is a magnificent gown full of lice.": {
+      "drop": true
+    },
+    "I think you will find it convenient to put a short-cut on the desktop.": {
+      "tr": "我想你会发现在桌面上建一个快捷方式很方便。"
+    },
+    "I need to renew my passport.": {
+      "drop": true
+    },
+    "I have to renew my passport.": {
+      "drop": true
+    },
+    "She repeated her name slowly.": {
+      "drop": true
+    },
+    "He thought to himself, \"No!\" Aloud he said, \"Yes.\"": {
+      "tr": "他心里想：“不！”嘴上却说：“好。”"
+    },
+    "This measure is in accord with our policy.": {
+      "tr": "这项措施符合我们的政策。"
+    },
+    "Bill was in Japan.": {
+      "drop": true
+    },
+    "Bill called me last night.": {
+      "drop": true
+    },
+    "Bung it in the bin.": {
+      "drop": true
+    },
+    "Throw it in the bin.": {
+      "tr": "把它扔进垃圾桶。"
+    },
+    "She's a blog addict.": {
+      "tr": "她是个博客迷。"
+    },
+    "When was the castle built?": {
+      "tr": "这座城堡是什么时候建成的？"
+    },
+    "I am fortunate compared with him.": {
+      "tr": "和他比起来，我还算幸运。"
+    },
+    "Luxury!": {
+      "drop": true
+    },
+    "The sun rose from the sea.": {
+      "drop": true
+    },
+    "Every rose has its thorns.": {
+      "drop": true
+    },
+    "Please specify any conditions you have for the use of this information.": {
+      "tr": "如果您对这些信息的使用有任何条件，请具体说明。"
+    },
+    "I need to get a stamp.": {
+      "drop": true
+    },
+    "Summarize the contents in 60 English words.": {
+      "tr": "请用60个英语单词概括内容。"
+    },
+    "A complete intransitive verb takes neither complement nor object.": {
+      "tr": "完全不及物动词既不带补语也不带宾语。"
+    },
+    "He paid the prostitute the fee without being aware of the surveillance camera.": {
+      "drop": true
+    },
+    "He believes that there is a spy among us.": {
+      "drop": true
+    },
+    "She had a vague feeling of guilt.": {
+      "tr": "她隐约有一种内疚感。"
+    },
+    "My father is a skilled fisherman.": {
+      "tr": "我爸爸是个技术娴熟的渔夫。"
+    },
+    "The position requires applicants to be skilled in spoken English.": {
+      "tr": "这个职位要求应聘者精通英语口语。"
+    },
+    "Don't shoot the devil in the back. You might miss.": {
+      "drop": true
+    },
+    "What a bizarre story!": {
+      "drop": true
+    },
+    "We've been horsing around too much; it's high time we got down to brass tacks.": {
+      "drop": true
+    },
+    "Why are you so unfortunate?": {
+      "tr": "你怎么这么倒霉？"
+    },
+    "Algeria needs to get rid of its bureaucracy.": {
+      "drop": true
+    },
+    "Old pal! Where are you working now?": {
+      "tr": "老朋友！你现在在哪儿工作？"
+    },
+    "She writes to her pen pal in London twice a month.": {
+      "tr": "她每个月给伦敦的笔友写两封信。"
+    },
+    "I'll still have a scar from that accident.": {
+      "tr": "那次事故会给我留下伤疤。"
+    },
+    "Meet me at the lobby of the Imperial Hotel at 6:30 p.m.": {
+      "drop": true
+    },
+    "In fact, there are countless, varied uses for the Internet.": {
+      "tr": "事实上，互联网有无数种不同的用途。"
+    },
+    "I used to feel it dull.": {
+      "drop": true
+    },
+    "The Queen's crown was made of gold.": {
+      "tr": "女王的王冠是用黄金制成的。"
+    },
+    "Sometimes it's fun to creep yourself out thinking about it.": {
+      "drop": true
+    },
+    "He thought, If I don't study hard, how can I be worthy of my countrymen?": {
+      "drop": true
+    },
+    "Capitalism is poverty.": {
+      "drop": true
+    },
+    "Instead of eating real food, we just ate junk food all day.": {
+      "tr": "我们没吃正经饭，整天只吃垃圾食品。"
+    },
+    "Everyone ought to be a master of his own destiny.": {
+      "drop": true
+    },
+    "He did pioneering work in the field of physical geography.": {
+      "tr": "他在自然地理学领域做了开创性的工作。"
+    },
+    "Famous vibraphonist Stefon Harris has recorded at least one balafon solo.": {
+      "drop": true
+    },
+    "The explosion may have been caused by a gas leak.": {
+      "tr": "这场爆炸可能是燃气泄漏引起的。"
+    },
+    "He bent over backward to please his wife.": {
+      "drop": true
+    },
+    "The condom broke.": {
+      "drop": true
+    },
+    "Do you have a condom?": {
+      "drop": true
+    },
+    "Did you use a condom?": {
+      "drop": true
+    },
+    "I felt my hands tremble.": {
+      "tr": "我感觉到我的手在发抖。"
+    },
+    "The terrible scene made him tremble in fear.": {
+      "tr": "可怕的场面让他吓得发抖。"
+    },
+    "His success is due more to his persistent hard work than to his talent.": {
+      "tr": "他的成功更多归功于他坚持不懈的努力，而不是天赋。"
+    },
+    "The phrase \"humanitarian bombing\" is an oxymoron.": {
+      "drop": true
+    },
+    "You killed my father. Today, I want revenge.": {
+      "drop": true
+    },
+    "They set fire to their neighbor's house in revenge.": {
+      "drop": true
+    },
+    "They set fire to their neighbour's house in revenge.": {
+      "drop": true
+    },
+    "No man can resist the lure of a woman.": {
+      "drop": true
+    },
+    "I am not a witch.": {
+      "drop": true
+    },
+    "I'm not a witch.": {
+      "tr": "我不是女巫。"
+    },
+    "This is the fifth concert by this orchestra.": {
+      "tr": "这是这个管弦乐团的第五场音乐会。"
+    },
+    "He works for a newspaper with a large circulation.": {
+      "tr": "他在一家发行量很大的报社工作。"
+    },
+    "I don't care that you're the Pope; you can't touch my feet.": {
+      "drop": true
+    },
+    "Your team is very good, but theirs is the best.": {
+      "tr": "你们队很棒，但他们队是最好的。"
+    },
+    "The atomic number for iron is 26.": {
+      "drop": true
+    },
+    "Tom ran downstairs.": {
+      "tr": "汤姆跑下了楼。"
+    },
+    "She used apples to do the jam.": {
+      "drop": true
+    },
+    "And yet, the contrary is always true as well.": {
+      "tr": "然而，反过来也总是成立的。"
+    },
+    "Men are hunters, and women are prey.": {
+      "drop": true
+    },
+    "\"God is our salvation,\" said the priest.": {
+      "tr": "“上帝是我们的救赎。”牧师说。"
+    },
+    "The Swiss keyboard doesn't have a ß.": {
+      "tr": "瑞士键盘上没有“ß”这个字母。"
+    },
+    "I'm a communist.": {
+      "drop": true
+    },
+    "Tom is a communist.": {
+      "drop": true
+    },
+    "Comrades! Let's transform Moscow into a model communist city.": {
+      "drop": true
+    },
+    "Tom is a socialist.": {
+      "drop": true
+    },
+    "Jesus was a socialist.": {
+      "drop": true
+    },
+    "The Socialist Party only got 18% of the votes.": {
+      "drop": true
+    },
+    "When it comes to love, women are experts and men eternal novices.": {
+      "drop": true
+    },
+    "She is a nursery-school teacher.": {
+      "drop": true
+    },
+    "She's a nursery-school teacher.": {
+      "tr": "她是幼儿园老师。"
+    },
+    "Matías is from Uruguay. He is Uruguayan.": {
+      "drop": true
+    },
+    "She will be the first Japanese woman astronaut.": {
+      "tr": "她将成为日本第一位女宇航员。"
+    },
+    "That's just useless.": {
+      "tr": "这根本没用。"
+    },
+    "He was discovered unconscious on the floor of the kitchen.": {
+      "drop": true
+    },
+    "Being challenged in life is inevitable, being defeated is optional.": {
+      "tr": "人生中遭遇挑战不可避免，但是否被打败可以由自己选择。"
+    },
+    "Legal frameworks exist to hold war criminals accountable.": {
+      "drop": true
+    },
+    "The Japanese attacked Pearl Harbor on December 7, 1941.": {
+      "drop": true
+    },
+    "That way is very far, so we took a taxi.": {
+      "tr": "那条路很远，所以我们打了车。"
+    },
+    "A huge tanker just pulled out from the dock.": {
+      "drop": true
+    },
+    "The huge tanker has just left the dock.": {
+      "tr": "一艘巨大的油轮刚刚驶离码头。"
+    },
+    "Turn here to get on the subway.": {
+      "tr": "在这里拐弯就能去坐地铁。"
+    },
+    "Could I have a subway map, please?": {
+      "tr": "能给我一张地铁线路图吗？"
+    },
+    "Tom is a flight attendant.": {
+      "tr": "汤姆是空乘人员。"
+    },
+    "I'm a waiter.": {
+      "tr": "我是服务员。"
+    },
+    "Who's your daddy?": {
+      "drop": true
+    },
+    "A beard does not make a philosopher.": {
+      "drop": true
+    },
+    "I have a frog in my throat.": {
+      "drop": true
+    },
+    "He is like a frog in a well.": {
+      "drop": true
+    },
+    "Our goose is cooked.": {
+      "drop": true
+    },
+    "When I hear the news, I get goose bumps. How could there be such a dangerous thing?": {
+      "drop": true
+    },
+    "I'm a starved spider.": {
+      "drop": true
+    },
+    "The spider was black.": {
+      "drop": true
+    },
+    "Her dress was made of coarse wool.": {
+      "tr": "她的裙子是用粗羊毛做的。"
+    },
+    "Minnesota's state bird is the mosquito.": {
+      "drop": true
+    },
+    "My blue dress appeared with a blood stain.": {
+      "drop": true
+    },
+    "The first time feels like a sunny day.": {
+      "drop": true
+    },
+    "I left my umbrella on the train.": {
+      "tr": "我把雨伞落在火车上了。"
+    },
+    "Tom had a cigar in his mouth.": {
+      "tr": "汤姆嘴里叼着一根雪茄。"
+    },
+    "It's all grammar nazis up in here.": {
+      "drop": true
+    },
+    "In the light of what you told us, I think we should revise our plan.": {
+      "tr": "根据你告诉我们的情况，我认为我们应该修改计划。"
+    },
+    "My fountain pen is new.": {
+      "drop": true
+    },
+    "I lost my fountain pen.": {
+      "drop": true
+    },
+    "I've lost my new fountain pen.": {
+      "drop": true
+    },
+    "This hut is a very special place.": {
+      "tr": "这间小屋是个很特别的地方。"
+    },
+    "I am not sure how to pronounce the word.": {
+      "drop": true
+    }
   }
- },
- "examples": {
-  "She is a young artist.": {
-   "tr": "她是一位年轻的艺术家。"
-  },
-  "No one can control him.": {
-   "tr": "没人能控制他。"
-  },
-  "Shall I go for the doctor?": {
-   "tr": "要我去请医生来吗？"
-  },
-  "I feel happy in her firm.": {
-   "drop": true
-  },
-  "This new market may improve the entire industry.": {
-   "tr": "这个新市场可能会改善整个行业。"
-  },
-  "I can manage on my own.": {
-   "tr": "我自己能应付。"
-  },
-  "Yes, she's our manager.": {
-   "drop": true
-  },
-  "Yes, he's our manager.": {
-   "tr": "对，他是我们的经理。"
-  },
-  "How will the project work?": {
-   "tr": "这个项目要怎么运作？"
-  },
-  "The project was a great success.": {
-   "tr": "这个项目非常成功。"
-  },
-  "Serve the people.": {
-   "drop": true
-  },
-  "Now it's your serve.": {
-   "drop": true
-  },
-  "Oh boy...": {
-   "drop": true
-  },
-  "Each boy has a bike.": {
-   "tr": "每个男孩都有一辆自行车。"
-  },
-  "What has become of her son?": {
-   "tr": "她儿子后来怎么样了？"
-  },
-  "Over my dead body.": {
-   "drop": true
-  },
-  "Do you have a drug problem?": {
-   "tr": "你有吸毒问题吗？"
-  },
-  "I opened one eye.": {
-   "drop": true
-  },
-  "She writes a very good hand.": {
-   "drop": true
-  },
-  "Mind your head.": {
-   "tr": "小心碰头。"
-  },
-  "Just follow your heart.": {
-   "tr": "听从你的内心吧。"
-  },
-  "Don't pull my leg!": {
-   "drop": true
-  },
-  "What a pain!": {
-   "drop": true
-  },
-  "No pain, no gain.": {
-   "drop": true
-  },
-  "Jim was afraid of physical labor.": {
-   "tr": "吉姆害怕体力劳动。"
-  },
-  "Let's give it a try.": {
-   "drop": true
-  },
-  "This amount includes tax.": {
-   "tr": "这笔金额已含税。"
-  },
-  "We are a couple.": {
-   "tr": "我们是一对恋人。"
-  },
-  "Every dog has his day.": {
-   "drop": true
-  },
-  "Every man has his price.": {
-   "drop": true
-  },
-  "He cut the apple in half.": {
-   "tr": "他把苹果切成了两半。"
-  },
-  "Most people think I'm crazy.": {
-   "tr": "大部分人觉得我疯了。"
-  },
-  "Once bitten, twice shy.": {
-   "drop": true
-  },
-  "Must I go there at once?": {
-   "drop": true
-  },
-  "No one ran ahead of him.": {
-   "drop": true
-  },
-  "He came several times.": {
-   "tr": "他来过好几次。"
-  },
-  "We're the same age.": {
-   "tr": "我们同岁。"
-  },
-  "I have nothing to fall back on.": {
-   "drop": true
-  },
-  "I got up late this morning.": {
-   "tr": "我今天早上起晚了。"
-  },
-  "She wept all the night.": {
-   "drop": true
-  },
-  "I do not like spring.": {
-   "drop": true
-  },
-  "You can take your time.": {
-   "drop": true
-  },
-  "I want to eat pizza tonight.": {
-   "tr": "我今晚想吃披萨。"
-  },
-  "You never have class or what?!": {
-   "drop": true
-  },
-  "A little knowledge is a dangerous thing.": {
-   "tr": "一知半解是危险的。"
-  },
-  "No music, no life.": {
-   "drop": true
-  },
-  "No problem.": {
-   "tr": "没问题。"
-  },
-  "Then there is a problem...": {
-   "tr": "那就有问题了……"
-  },
-  "Let's clear up this problem.": {
-   "tr": "我们来解决这个问题吧。"
-  },
-  "I am a professor.": {
-   "drop": true
-  },
-  "I am a new student.": {
-   "drop": true
-  },
-  "Don't study.": {
-   "drop": true
-  },
-  "May I speak with the teacher?": {
-   "drop": true
-  },
-  "\"The accused\" is a legal term.": {
-   "tr": "“被告人”是一个法律术语。"
-  },
-  "Which country are you from?": {
-   "drop": true
-  },
-  "Do you have any light beer?": {
-   "drop": true
-  },
-  "This damp match won't light.": {
-   "drop": true
-  },
-  "He had no place to live.": {
-   "tr": "他没有地方住。"
-  },
-  "Availability may vary by region and device compatibility.": {
-   "tr": "具体可用情况可能因地区和设备兼容性而异。"
-  },
-  "I am the state.": {
-   "drop": true
-  },
-  "Let's cross the street.": {
-   "tr": "我们过马路吧。"
-  },
-  "I don't know, nor do I care.": {
-   "tr": "我不知道，也不在乎。"
-  },
-  "This doesn't concern you.": {
-   "tr": "这与你无关。"
-  },
-  "It's only a dream.": {
-   "drop": true
-  },
-  "You have nothing to fear.": {
-   "tr": "没有什么好怕的。"
-  },
-  "I feel dead.": {
-   "drop": true
-  },
-  "He laughed a hearty laugh.": {
-   "tr": "他开怀大笑。"
-  },
-  "It makes no sense at all.": {
-   "drop": true
-  },
-  "That doesn't make sense.": {
-   "tr": "这说不通。"
-  },
-  "I didn't add this sentence.": {
-   "tr": "我没有添加这个句子。"
-  },
-  "This rule does not apply in all cases.": {
-   "drop": true
-  },
-  "This rule doesn't apply to every case.": {
-   "tr": "这条规则并不适用于所有情况。"
-  },
-  "Can I ask a question?": {
-   "drop": true
-  },
-  "He will be back soon.": {
-   "drop": true
-  },
-  "We'll begin work soon.": {
-   "tr": "我们很快就要开始工作了。"
-  },
-  "We'll buy one car for each.": {
-   "drop": true
-  },
-  "We started a campaign against smoking.": {
-   "tr": "我们发起了一场反吸烟运动。"
-  },
-  "You'll catch it from Mummy.": {
-   "drop": true
-  },
-  "I could not catch her words.": {
-   "tr": "我没听清她说的话。"
-  },
-  "Could I have the check?": {
-   "tr": "可以给我账单吗？"
-  },
-  "Measure thrice, cut once.": {
-   "drop": true
-  },
-  "Never try to die.": {
-   "drop": true
-  },
-  "He didn't die happily.": {
-   "drop": true
-  },
-  "Search; find; discover!": {
-   "drop": true
-  },
-  "This is the end.": {
-   "tr": "这就是结局。"
-  },
-  "Everything has an end.": {
-   "tr": "凡事都有结束的时候。"
-  },
-  "He hardly ever opens a book.": {
-   "tr": "他几乎从来不翻书。"
-  },
-  "Words fail me.": {
-   "drop": true
-  },
-  "Fight like a man!": {
-   "drop": true
-  },
-  "Nice guys finish last.": {
-   "drop": true
-  },
-  "Forget it.": {
-   "tr": "算了吧。"
-  },
-  "May it not happen!": {
-   "drop": true
-  },
-  "Hit me.": {
-   "drop": true
-  },
-  "She hit the ball hard.": {
-   "tr": "她用力击球。"
-  },
-  "Hold your horses, young man.": {
-   "drop": true
-  },
-  "That's how I imagine it.": {
-   "tr": "我就是这样想象的。"
-  },
-  "Can you imagine a blue Ferrari?": {
-   "tr": "你能想象一辆蓝色的法拉利吗？"
-  },
-  "I ran into an old friend.": {
-   "tr": "我碰见了一个老朋友。"
-  },
-  "Don't pry into my private life.": {
-   "tr": "不要打探我的私生活。"
-  },
-  "Tom tried to kill Mary.": {
-   "drop": true
-  },
-  "Damned if I know.": {
-   "drop": true
-  },
-  "I lay down to rest.": {
-   "drop": true
-  },
-  "All roads lead to Rome.": {
-   "drop": true
-  },
-  "I lead a fast way of living.": {
-   "drop": true
-  },
-  "I lead a busy life.": {
-   "tr": "我过着忙碌的生活。"
-  },
-  "Where does it leave from?": {
-   "tr": "它从哪里出发？"
-  },
-  "This is the life.": {
-   "tr": "这才叫生活！"
-  },
-  "Use it or lose it.": {
-   "drop": true
-  },
-  "Can you make it on time?": {
-   "tr": "你能按时赶到吗？"
-  },
-  "Do you miss me?": {
-   "tr": "你想我吗？"
-  },
-  "Did you miss me?": {
-   "tr": "你想我了吗？"
-  },
-  "I need it ASAP.": {
-   "tr": "我需要尽快拿到它。"
-  },
-  "What am I to do next?": {
-   "tr": "我接下来该做什么？"
-  },
-  "\"Next time,\" he said.": {
-   "tr": "“下次吧。”他说道。"
-  },
-  "That did occur to me.": {
-   "tr": "我确实想到过这一点。"
-  },
-  "Open Sesame!": {
-   "drop": true
-  },
-  "She took her own life.": {
-   "drop": true
-  },
-  "He would have his own way.": {
-   "tr": "他总是坚持按自己的方式做事。"
-  },
-  "This work doesn't pay.": {
-   "drop": true
-  },
-  "What's your home phone number?": {
-   "tr": "你家的电话号码是多少？"
-  },
-  "I approve of your plan.": {
-   "drop": true
-  },
-  "My sister will prepare breakfast.": {
-   "tr": "我妹妹会准备早餐。"
-  },
-  "Protect me.": {
-   "drop": true
-  },
-  "It wasn't an easy race.": {
-   "tr": "这不是一场轻松的比赛。"
-  },
-  "Can I borrow your radio?": {
-   "tr": "我可以借你的收音机吗？"
-  },
-  "I can't reach it.": {
-   "tr": "我够不着它。"
-  },
-  "How can I reach you?": {
-   "tr": "我怎样才能联系到你？"
-  },
-  "Put a record on the stereo.": {
-   "tr": "在音响上放一张唱片。"
-  },
-  "Reduce to pulp by boiling.": {
-   "drop": true
-  },
-  "You can remove the NNC.": {
-   "drop": true
-  },
-  "I require an apple.": {
-   "drop": true
-  },
-  "Don't respond to that.": {
-   "tr": "别理会那个。"
-  },
-  "I'll return immediately.": {
-   "tr": "我马上回来。"
-  },
-  "The plan gave rise to much trouble.": {
-   "drop": true
-  },
-  "I just don't know what to say.": {
-   "tr": "我真不知道该说什么。"
-  },
-  "I sell two flowers.": {
-   "drop": true
-  },
-  "We sell orange juice.": {
-   "tr": "我们卖橙汁。"
-  },
-  "I sell clothing online.": {
-   "tr": "我在网上卖衣服。"
-  },
-  "Send for the doctor at once.": {
-   "drop": true
-  },
-  "You must send for the doctor.": {
-   "drop": true
-  },
-  "Set it down there.": {
-   "tr": "把它放在那儿。"
-  },
-  "What's that sound?": {
-   "tr": "那是什么声音？"
-  },
-  "All of my software is open source.": {
-   "drop": true
-  },
-  "Do you speak Italian?": {
-   "tr": "你会说意大利语吗？"
-  },
-  "His success is out of question.": {
-   "drop": true
-  },
-  "Dead men tell no tales.": {
-   "drop": true
-  },
-  "Tell me exactly where he lives.": {
-   "tr": "请确切地告诉我他住在哪里。"
-  },
-  "Throw in!": {
-   "drop": true
-  },
-  "Throw this rotten banana.": {
-   "drop": true
-  },
-  "I'm going to go.": {
-   "drop": true
-  },
-  "I like to travel.": {
-   "drop": true
-  },
-  "This dog is almost human.": {
-   "tr": "这条狗简直通人性。"
-  },
-  "He always wears dark glasses.": {
-   "tr": "他总是戴着墨镜。"
-  },
-  "It will clear up soon.": {
-   "tr": "天很快就会放晴了吧。"
-  },
-  "Things are not clearly defined.": {
-   "tr": "事情还没有明确界定。"
-  },
-  "The Japanese have dark eyes.": {
-   "drop": true
-  },
-  "Beauty is but skin deep.": {
-   "drop": true
-  },
-  "He described the incident in detail.": {
-   "tr": "他详细地描述了这件事。"
-  },
-  "Is it large enough?": {
-   "tr": "它够大吗？"
-  },
-  "We don't have enough time.": {
-   "tr": "我们没有足够的时间。"
-  },
-  "How exactly did you do it?": {
-   "tr": "你到底是怎么做到的？"
-  },
-  "That's exactly how I feel.": {
-   "tr": "那正是我的感受。"
-  },
-  "Fill in.": {
-   "drop": true
-  },
-  "Finally, Oedipus replied.": {
-   "tr": "最后，俄狄浦斯回答了。"
-  },
-  "You're good with women.": {
-   "drop": true
-  },
-  "More money for education will spur economic growth.": {
-   "tr": "在教育上投入更多资金会促进经济增长。"
-  },
-  "This news is important to us.": {
-   "tr": "这条消息对我们很重要。"
-  },
-  "Nothing's as important as peace.": {
-   "tr": "没有什么比和平更重要。"
-  },
-  "Reformers aim to improve the government.": {
-   "drop": true
-  },
-  "A friend in need is a friend indeed.": {
-   "drop": true
-  },
-  "At last, the bus stopped.": {
-   "tr": "公交车终于停了下来。"
-  },
-  "You might at least say \"thank you.\"": {
-   "tr": "你至少该说声“谢谢”吧。"
-  },
-  "He's a little pale.": {
-   "tr": "他脸色有点苍白。"
-  },
-  "A long day has passed on.": {
-   "drop": true
-  },
-  "Can you speak Low German?": {
-   "drop": true
-  },
-  "He told us many lessons.": {
-   "drop": true
-  },
-  "Maybe you licked it?": {
-   "drop": true
-  },
-  "You must learn from mistakes.": {
-   "tr": "你必须从错误中吸取教训。"
-  },
-  "This pear smells nice.": {
-   "tr": "这个梨闻起来很香。"
-  },
-  "I'm North Korean.": {
-   "drop": true
-  },
-  "I love Fist of the North Star!": {
-   "drop": true
-  },
-  "I like music, particularly classical music.": {
-   "drop": true
-  },
-  "Perhaps you are right.": {
-   "drop": true
-  },
-  "They didn't act quickly.": {
-   "tr": "他们没有迅速行动。"
-  },
-  "I don't really know.": {
-   "tr": "我不太清楚。"
-  },
-  "Oh, I'm really sorry.": {
-   "tr": "哦，我真的很抱歉。"
-  },
-  "This a recent photo?": {
-   "drop": true
-  },
-  "What's his most recent novel?": {
-   "tr": "他最新的小说叫什么名字？"
-  },
-  "Did you meet him recently?": {
-   "tr": "你最近见过他吗？"
-  },
-  "Forget about that right now.": {
-   "drop": true
-  },
-  "No risk, no reward.": {
-   "drop": true
-  },
-  "We're all at risk.": {
-   "tr": "我们都处于危险之中。"
-  },
-  "No security system is foolproof.": {
-   "tr": "没有万无一失的安全系统。"
-  },
-  "His story was pretty simple.": {
-   "tr": "他的故事很简单。"
-  },
-  "They're all the same size.": {
-   "tr": "它们都是一样大小。"
-  },
-  "He's not South Korean.": {
-   "drop": true
-  },
-  "She's not South Korean.": {
-   "drop": true
-  },
-  "What did you suggest?": {
-   "tr": "你建议了什么？"
-  },
-  "We are at school together.": {
-   "tr": "我们在同一所学校上学。"
-  },
-  "He is a man of ability.": {
-   "drop": true
-  },
-  "But I am able to cook well.": {
-   "tr": "但我很会做饭。"
-  },
-  "Don't act so surprised!": {
-   "tr": "别装得这么惊讶！"
-  },
-  "What actually happened?": {
-   "tr": "到底发生了什么事？"
-  },
-  "I work at a travel agency.": {
-   "drop": true
-  },
-  "OK. I agree.": {
-   "drop": true
-  },
-  "I'll never allow you to do that.": {
-   "drop": true
-  },
-  "I won't allow you to do that.": {
-   "tr": "我不会允许你那样做。"
-  },
-  "The buses left one after another.": {
-   "tr": "公交车一辆接一辆地开走了。"
-  },
-  "I can't do any better.": {
-   "tr": "我没法做得更好了。"
-  },
-  "Take any train on track 5.": {
-   "tr": "在5号轨道乘坐任何一班火车都可以。"
-  },
-  "As a man sows, so he shall reap.": {
-   "drop": true
-  },
-  "Attack!": {
-   "drop": true
-  },
-  "Tom had a heart attack last year.": {
-   "tr": "汤姆去年心脏病发作过一次。"
-  },
-  "Roll the ball to me.": {
-   "tr": "把球滚给我。"
-  },
-  "This is a very good data base.": {
-   "drop": true
-  },
-  "Because we're worth it.": {
-   "drop": true
-  },
-  "That's because you're a girl.": {
-   "drop": true
-  },
-  "He can't come because he's ill.": {
-   "tr": "他因为生病来不了。"
-  },
-  "This work is beyond me.": {
-   "tr": "这项工作超出了我的能力。"
-  },
-  "He is a member of the parochial board.": {
-   "drop": true
-  },
-  "Stick a notice on the board.": {
-   "tr": "把告示贴在布告板上。"
-  },
-  "That box is made of wood.": {
-   "tr": "那个箱子是木头做的。"
-  },
-  "But I don't have money.": {
-   "drop": true
-  },
-  "Can I pay by credit card?": {
-   "tr": "我可以用信用卡付账吗？"
-  },
-  "In case I forget, please remind me.": {
-   "drop": true
-  },
-  "What is the central aim of this plan?": {
-   "tr": "这个计划的主要目的是什么？"
-  },
-  "He had a certain charm.": {
-   "tr": "他有某种魅力。"
-  },
-  "It is by no means certain.": {
-   "tr": "这还远远不能确定。"
-  },
-  "If I could be like that...": {
-   "tr": "要是我能像那样就好了……"
-  },
-  "Yes, of course.": {
-   "tr": "是的，当然。"
-  },
-  "Let moss cover my grave.": {
-   "drop": true
-  },
-  "Underage drinking is a crime.": {
-   "tr": "未成年人饮酒是违法行为。"
-  },
-  "Is PC culture good or bad?": {
-   "drop": true
-  },
-  "Deal us the cards.": {
-   "drop": true
-  },
-  "To what degree can we trust him?": {
-   "tr": "我们能在多大程度上信任他？"
-  },
-  "Taiwan is a democratic country.": {
-   "drop": true
-  },
-  "He studies French and web design.": {
-   "tr": "他学习法语和网页设计。"
-  },
-  "Why should it be different?": {
-   "tr": "为什么它就该不一样？"
-  },
-  "This is difficult to believe.": {
-   "tr": "这很难让人相信。"
-  },
-  "He is a talented young director.": {
-   "drop": true
-  },
-  "Drop the knife.": {
-   "drop": true
-  },
-  "Drop that knife.": {
-   "drop": true
-  },
-  "Can we effect a compromise?": {
-   "drop": true
-  },
-  "Either you or I am right.": {
-   "tr": "不是你对，就是我对。"
-  },
-  "So, what else is new?": {
-   "drop": true
-  },
-  "Even if he is busy, he will come.": {
-   "tr": "即使他很忙，他也会来。"
-  },
-  "Everybody loves him.": {
-   "drop": true
-  },
-  "One must be an executive in some company.": {
-   "drop": true
-  },
-  "My period hasn't come.": {
-   "drop": true
-  },
-  "We expect a lot from him.": {
-   "drop": true
-  },
-  "Even expert drivers can make mistakes.": {
-   "tr": "即使是老练的司机也会犯错。"
-  },
-  "In fact, she lied.": {
-   "drop": true
-  },
-  "In fact she lied.": {
-   "tr": "事实上，她撒谎了。"
-  },
-  "No one can deny the fact.": {
-   "tr": "谁也不能否认这个事实。"
-  },
-  "Focus on progress.": {
-   "tr": "专注于进步。"
-  },
-  "Follow your desire.": {
-   "drop": true
-  },
-  "The Foreign Minister was a puppet.": {
-   "drop": true
-  },
-  "Fill out this form, please.": {
-   "drop": true
-  },
-  "Kyoto is Japan's former capital.": {
-   "tr": "京都是日本以前的首都。"
-  },
-  "She slowly moved forward.": {
-   "tr": "她慢慢向前移动。"
-  },
-  "I'm looking forward to the party.": {
-   "tr": "我很期待这次聚会。"
-  },
-  "I'm free now.": {
-   "drop": true
-  },
-  "He is my friend.": {
-   "drop": true
-  },
-  "Football is my favorite game.": {
-   "tr": "足球是我最喜欢的运动。"
-  },
-  "What time will the game start?": {
-   "tr": "比赛什么时候开始？"
-  },
-  "This room's location is great.": {
-   "tr": "这个房间的位置很好。"
-  },
-  "Break new ground.": {
-   "drop": true
-  },
-  "He lay injured on the ground.": {
-   "tr": "他受伤躺在地上。"
-  },
-  "I'd like to join your group.": {
-   "tr": "我想加入你们的小组。"
-  },
-  "I know a guy named Smith.": {
-   "tr": "我认识一个叫史密斯的人。"
-  },
-  "Hang on.": {
-   "drop": true
-  },
-  "Wanna hang out tonight?": {
-   "drop": true
-  },
-  "Miss Thomas teaches us history.": {
-   "tr": "汤姆斯小姐教我们历史。"
-  },
-  "The demand is huge.": {
-   "tr": "需求很大。"
-  },
-  "Sami has a huge camel.": {
-   "tr": "萨米有一头巨大的骆驼。"
-  },
-  "He lives inside an apple.": {
-   "drop": true
-  },
-  "Someone pushed me inside.": {
-   "tr": "有人把我推了进去。"
-  },
-  "Latin is a dead language.": {
-   "tr": "拉丁语是一种死语言。"
-  },
-  "Taxes are just legal robbery.": {
-   "drop": true
-  },
-  "No day without a line.": {
-   "drop": true
-  },
-  "Make a list.": {
-   "tr": "列个清单。"
-  },
-  "Think global, act local.": {
-   "drop": true
-  },
-  "Sami frequented local sex shops.": {
-   "drop": true
-  },
-  "He is mean.": {
-   "tr": "他很刻薄。"
-  },
-  "What does this mean?": {
-   "tr": "这是什么意思？"
-  },
-  "She's a middle-aged fat woman.": {
-   "drop": true
-  },
-  "I wash myself.": {
-   "tr": "我自己洗澡。"
-  },
-  "I forgot his name.": {
-   "drop": true
-  },
-  "Tom nearly died tonight.": {
-   "tr": "汤姆今晚差点死了。"
-  },
-  "Why should it be necessary?": {
-   "tr": "为什么有这个必要？"
-  },
-  "I'll go with you if necessary.": {
-   "tr": "如果必要的话，我会和你一起去。"
-  },
-  "Love is never wasted.": {
-   "tr": "爱从来不会白费。"
-  },
-  "He has nothing in him.": {
-   "drop": true
-  },
-  "I saw nothing.": {
-   "tr": "我什么都没看见。"
-  },
-  "I accepted the offer.": {
-   "drop": true
-  },
-  "Now it is official.": {
-   "drop": true
-  },
-  "Now it's official.": {
-   "tr": "现在正式确定了。"
-  },
-  "Is death the only release?": {
-   "drop": true
-  },
-  "I did not order this.": {
-   "drop": true
-  },
-  "I didn't order this.": {
-   "tr": "我没有点这个。"
-  },
-  "Maybe some other time.": {
-   "tr": "也许改天吧。"
-  },
-  "Let's begin on page 30.": {
-   "drop": true
-  },
-  "They will not pass!": {
-   "drop": true
-  },
-  "This bill is safe to pass.": {
-   "drop": true
-  },
-  "Love and Peace.": {
-   "drop": true
-  },
-  "Who is this person?": {
-   "tr": "这个人是谁？"
-  },
-  "Personal privacy is a joke.": {
-   "drop": true
-  },
-  "You have a point there.": {
-   "tr": "你说得有道理。"
-  },
-  "His political career is done for.": {
-   "drop": true
-  },
-  "I abhor politics.": {
-   "drop": true
-  },
-  "I hate the new president.": {
-   "drop": true
-  },
-  "I abhor the new president.": {
-   "drop": true
-  },
-  "I loathe the new president.": {
-   "drop": true
-  },
-  "The price of gas is rising.": {
-   "tr": "汽油价格在上涨。"
-  },
-  "We got a good price for that.": {
-   "tr": "那个东西我们卖了个好价钱。"
-  },
-  "Could I see you in private?": {
-   "drop": true
-  },
-  "I've had enough of this program.": {
-   "tr": "我已经受够了这个节目。"
-  },
-  "I put quantity after quality.": {
-   "tr": "对我来说，质量比数量更重要。"
-  },
-  "I quite forget your name.": {
-   "drop": true
-  },
-  "That car is quite new.": {
-   "tr": "那辆车相当新。"
-  },
-  "No one can tell the reason.": {
-   "tr": "没有人能说出原因。"
-  },
-  "He has no reason to be late.": {
-   "tr": "他没有理由迟到。"
-  },
-  "Do you think I'd recognize Tom?": {
-   "tr": "你觉得我认得出汤姆吗？"
-  },
-  "If you recognize this person, call 110!": {
-   "tr": "如果你认出这个人，请拨打110！"
-  },
-  "Words fly, texts remain.": {
-   "drop": true
-  },
-  "The result was modest.": {
-   "tr": "结果一般。"
-  },
-  "Much depends upon the result.": {
-   "tr": "许多事情取决于结果。"
-  },
-  "It's the same to me.": {
-   "tr": "对我来说都一样。"
-  },
-  "God save Ukraine!": {
-   "drop": true
-  },
-  "He shuddered at the terrible scene.": {
-   "tr": "可怕的场面让他不寒而栗。"
-  },
-  "What is oral sex?": {
-   "drop": true
-  },
-  "Taiwan legalized same-sex marriage today.": {
-   "drop": true
-  },
-  "I felt the earth shake.": {
-   "tr": "我感觉到大地在摇晃。"
-  },
-  "Stop, or I'll shoot.": {
-   "drop": true
-  },
-  "Did you mean to shoot Tom?": {
-   "drop": true
-  },
-  "Admission to the show is $5.": {
-   "tr": "这场演出的入场费是5美元。"
-  },
-  "Could you sign here?": {
-   "drop": true
-  },
-  "The sign says \"Exit.\"": {
-   "tr": "告示牌上写着“出口”。"
-  },
-  "Your opinion is similar to mine.": {
-   "drop": true
-  },
-  "He died some years since.": {
-   "drop": true
-  },
-  "We live in a society.": {
-   "drop": true
-  },
-  "He felt alienated from society.": {
-   "tr": "他感到自己与社会格格不入。"
-  },
-  "We shall all die some day.": {
-   "tr": "我们终有一天都会死去。"
-  },
-  "Somebody just called.": {
-   "tr": "刚刚有人打电话来。"
-  },
-  "Tom is a decent sort of guy.": {
-   "tr": "汤姆是个正派的人。"
-  },
-  "Let's study a specific example.": {
-   "tr": "让我们来研究一个具体的例子。"
-  },
-  "Sami spend a lot of money on Layla.": {
-   "drop": true
-  },
-  "Step on it!": {
-   "drop": true
-  },
-  "We're out of stock now.": {
-   "tr": "我们现在没货了。"
-  },
-  "Stuff happens.": {
-   "drop": true
-  },
-  "Which team are you a fan of?": {
-   "tr": "你是哪一队的球迷？"
-  },
-  "We organized a project team.": {
-   "tr": "我们组建了一个项目团队。"
-  },
-  "Mom is older than Dad.": {
-   "tr": "妈妈比爸爸年纪大。"
-  },
-  "He can do it better than I can.": {
-   "tr": "他能比我做得更好。"
-  },
-  "Thank you.": {
-   "drop": true
-  },
-  "What did you do then?": {
-   "tr": "那时你做了什么？"
-  },
-  "What is this?": {
-   "drop": true
-  },
-  "Though young, he is wise.": {
-   "tr": "他虽然年轻，但很明智。"
-  },
-  "I have supported you throughout.": {
-   "tr": "我自始至终都在支持你。"
-  },
-  "Thus I tell you don't just go alone.": {
-   "drop": true
-  },
-  "Can I eat this orange?": {
-   "tr": "我能吃这个橙子吗？"
-  },
-  "Can your mother drive a car?": {
-   "drop": true
-  },
-  "Birds fly.": {
-   "tr": "鸟会飞。"
-  },
-  "This site is great!": {
-   "drop": true
-  },
-  "Why does he look black?": {
-   "drop": true
-  },
-  "Everything went black.": {
-   "tr": "眼前一片漆黑。"
-  },
-  "I like this color as well.": {
-   "drop": true
-  },
-  "Green suits Alice.": {
-   "drop": true
-  },
-  "What fruit is red?": {
-   "tr": "什么水果是红色的？"
-  },
-  "You must go through with your plan.": {
-   "tr": "你必须把你的计划进行到底。"
-  },
-  "\"Fire!\" he cried.": {
-   "tr": "“着火了！”他大叫。"
-  },
-  "What is your natural hair color?": {
-   "drop": true
-  },
-  "What's your natural hair color?": {
-   "tr": "你天生的发色是什么？"
-  },
-  "It's human nature.": {
-   "tr": "这是人的天性。"
-  },
-  "I want to give Mum a plant.": {
-   "drop": true
-  },
-  "I want to give Mom a plant.": {
-   "tr": "我想送妈妈一盆植物。"
-  },
-  "This is Brian Rock.": {
-   "drop": true
-  },
-  "Not a star was to be seen.": {
-   "tr": "一颗星星也看不见。"
-  },
-  "Dinner will be ready soon.": {
-   "tr": "晚餐很快就好了。"
-  },
-  "Mother prepared lunch for me.": {
-   "drop": true
-  },
-  "Coffee ends a meal.": {
-   "drop": true
-  },
-  "There's no more salt.": {
-   "tr": "没有盐了。"
-  },
-  "I've got a boat.": {
-   "drop": true
-  },
-  "Don't miss the bus.": {
-   "tr": "别错过公交车。"
-  },
-  "Modern ships only need a small crew.": {
-   "tr": "现代船只只需要少量船员。"
-  },
-  "Tom wants to be a pilot.": {
-   "tr": "汤姆想成为一名飞行员。"
-  },
-  "Tom can't ride a horse.": {
-   "tr": "汤姆不会骑马。"
-  },
-  "I've never been on a ship.": {
-   "tr": "我从来没坐过船。"
-  },
-  "The ship set sail for Bombay.": {
-   "tr": "这艘船启航驶往孟买。"
-  },
-  "Please show your ticket.": {
-   "tr": "请出示您的票。"
-  },
-  "A truck ran over our dog.": {
-   "tr": "一辆卡车碾过了我们的狗。"
-  },
-  "Who is your favorite actor?": {
-   "drop": true
-  },
-  "\"To hire a good lawyer?\" Al-Sayib asked.": {
-   "tr": "“要雇一个好律师吗？”Al-Sayib问道。"
-  },
-  "I'm a computer scientist.": {
-   "tr": "我是一名计算机科学家。"
-  },
-  "Do you think that chest hair is sexy?": {
-   "drop": true
-  },
-  "Tom held up a finger.": {
-   "tr": "汤姆竖起一根手指。"
-  },
-  "Our baby was born healthy.": {
-   "tr": "我们的宝宝出生时很健康。"
-  },
-  "This medicine may cure him.": {
-   "tr": "这种药也许能治好他的病。"
-  },
-  "Keep not two tongues in one mouth.": {
-   "drop": true
-  },
-  "My nose is itchy.": {
-   "drop": true
-  },
-  "Do you have a soup bowl?": {
-   "tr": "你有汤碗吗？"
-  },
-  "You can count on Jack.": {
-   "drop": true
-  },
-  "Mark Zuckerberg stole my idea!": {
-   "drop": true
-  },
-  "Mark graduated from Harvard in 1991.": {
-   "drop": true
-  },
-  "I need a new pair of shoes.": {
-   "drop": true
-  },
-  "It's a quarter to seven.": {
-   "drop": true
-  },
-  "I would like mine rare.": {
-   "tr": "我的牛排要三分熟。"
-  },
-  "People like Tom are rare.": {
-   "tr": "像汤姆这样的人很少见。"
-  },
-  "Can you tell me your address?": {
-   "tr": "能告诉我你的地址吗？"
-  },
-  "The bridge saved us a lot of time.": {
-   "tr": "那座桥为我们节省了不少时间。"
-  },
-  "He's a citizen of China.": {
-   "drop": true
-  },
-  "That's not fair.": {
-   "drop": true
-  },
-  "If only we had a garden!": {
-   "tr": "要是我们有个花园就好了！"
-  },
-  "I have lost the key.": {
-   "tr": "我把钥匙弄丢了。"
-  },
-  "Does this bus go to the museum?": {
-   "tr": "这辆公交车去博物馆吗？"
-  },
-  "Where is the coffee shop?": {
-   "tr": "咖啡馆在哪里？"
-  },
-  "He is still somewhere about.": {
-   "drop": true
-  },
-  "No smoking in the theater.": {
-   "tr": "剧院内禁止吸烟。"
-  },
-  "He is very angry.": {
-   "drop": true
-  },
-  "He felt perfectly content.": {
-   "tr": "他感到心满意足。"
-  },
-  "No cross, no crown.": {
-   "drop": true
-  },
-  "\"Don't cry,\" she said.": {
-   "tr": "“别哭。”她说。"
-  },
-  "Please pay at this counter.": {
-   "tr": "请在这个柜台付款。"
-  },
-  "He lives for nothing but pleasure.": {
-   "tr": "他活着只为享乐。"
-  },
-  "Which one do you prefer?": {
-   "tr": "你更喜欢哪一个？"
-  },
-  "Russians never smile.": {
-   "drop": true
-  },
-  "That's the spirit!": {
-   "tr": "这就对了！"
-  },
-  "I was a forest.": {
-   "drop": true
-  },
-  "They are digging a hole.": {
-   "drop": true
-  },
-  "We swam by the lake.": {
-   "tr": "我们在湖边游了泳。"
-  },
-  "The sky looks angry.": {
-   "tr": "天色看起来很阴沉。"
-  },
-  "I'll admit I'm wrong.": {
-   "drop": true
-  },
-  "He put a Band-Aid on his hand.": {
-   "drop": true
-  },
-  "She didn't even attempt to help him.": {
-   "tr": "她甚至都没试着去帮他。"
-  },
-  "I'm aware of that.": {
-   "drop": true
-  },
-  "You must bear it in mind.": {
-   "drop": true
-  },
-  "Bear in mind what he said.": {
-   "drop": true
-  },
-  "I'm beat.": {
-   "drop": true
-  },
-  "Let's blow the fans.": {
-   "drop": true
-  },
-  "I wear contact lenses.": {
-   "drop": true
-  },
-  "May I pay with a credit card?": {
-   "drop": true
-  },
-  "I doubt if Tom is single.": {
-   "tr": "我不太确定汤姆是不是单身。"
-  },
-  "We went due north.": {
-   "drop": true
-  },
-  "Examine this.": {
-   "tr": "检查一下这个。"
-  },
-  "Can I fix you a hot drink?": {
-   "drop": true
-  },
-  "No pain no gain.": {
-   "drop": true
-  },
-  "The children gather into groups to play.": {
-   "tr": "孩子们聚成几群一起玩。"
-  },
-  "Grab Tom.": {
-   "drop": true
-  },
-  "I get a kick out of life.": {
-   "drop": true
-  },
-  "Did you mean to link me that?": {
-   "drop": true
-  },
-  "Did you notice Tom's hair?": {
-   "tr": "你注意到汤姆的头发了吗？"
-  },
-  "Tom fell into the pool.": {
-   "tr": "汤姆掉进了游泳池。"
-  },
-  "He goes to replace his father.": {
-   "drop": true
-  },
-  "He left to replace his father.": {
-   "tr": "他去接替他父亲了。"
-  },
-  "He shot at me.": {
-   "drop": true
-  },
-  "A fool's bolt is soon shot.": {
-   "drop": true
-  },
-  "Tom shot himself in the head.": {
-   "drop": true
-  },
-  "His speech bored me.": {
-   "tr": "他的演讲让我觉得很无聊。"
-  },
-  "Her speech was excellent.": {
-   "tr": "她的演讲非常精彩。"
-  },
-  "He is the last man to steal.": {
-   "tr": "他绝不是会偷东西的人。"
-  },
-  "Strike two!": {
-   "drop": true
-  },
-  "Strike one!": {
-   "drop": true
-  },
-  "Strike three!": {
-   "drop": true
-  },
-  "I forget to telephone him.": {
-   "drop": true
-  },
-  "I bought him a tie.": {
-   "tr": "我给他买了一条领带。"
-  },
-  "Local people can give appropriate advice.": {
-   "tr": "当地人可以给出恰当的建议。"
-  },
-  "I like bright colours.": {
-   "drop": true
-  },
-  "Honesty is a capital virtue.": {
-   "drop": true
-  },
-  "Be careful, Tom!": {
-   "drop": true
-  },
-  "We elected James chairman.": {
-   "drop": true
-  },
-  "The well has run dry.": {
-   "drop": true
-  },
-  "The jar is empty.": {
-   "drop": true
-  },
-  "All the patients eventually died.": {
-   "drop": true
-  },
-  "It is expensive running this car.": {
-   "tr": "养这辆车很费钱。"
-  },
-  "I'm extremely grateful to you.": {
-   "tr": "我非常感激你。"
-  },
-  "Is my new hair style funny?": {
-   "tr": "我的新发型是不是很好笑？"
-  },
-  "Smog was very heavy today.": {
-   "tr": "今天雾霾很严重。"
-  },
-  "History is a highly politicized subject.": {
-   "drop": true
-  },
-  "I'm sorry, but it's impossible.": {
-   "tr": "很抱歉，但这是不可能的。"
-  },
-  "Come quick.": {
-   "drop": true
-  },
-  "Quick, help me!": {
-   "tr": "快，帮帮我！"
-  },
-  "Who is to say this isn't a relief?": {
-   "drop": true
-  },
-  "It's safe to say so.": {
-   "tr": "可以这么说。"
-  },
-  "I must learn seriously.": {
-   "drop": true
-  },
-  "It's a slip of the pen.": {
-   "drop": true
-  },
-  "Tom walks very slowly.": {
-   "drop": true
-  },
-  "Update my software.": {
-   "tr": "更新我的软件。"
-  },
-  "Tom is now a software engineer.": {
-   "tr": "汤姆现在是软件工程师。"
-  },
-  "Straight ahead, right?": {
-   "drop": true
-  },
-  "He is as tall as she.": {
-   "drop": true
-  },
-  "No context, no text.": {
-   "drop": true
-  },
-  "We grow a variety of crops.": {
-   "tr": "我们种植各种各样的作物。"
-  },
-  "No! Absolutely not!": {
-   "tr": "不！绝对不行！"
-  },
-  "I have a Facebook account.": {
-   "drop": true
-  },
-  "How do you account for that?": {
-   "drop": true
-  },
-  "I sold the house to advantage.": {
-   "drop": true
-  },
-  "The boy took the radio apart.": {
-   "tr": "这个男孩把收音机拆散了。"
-  },
-  "Japan's army was very powerful.": {
-   "drop": true
-  },
-  "He had barely enough to eat.": {
-   "tr": "他几乎吃不饱。"
-  },
-  "Tom died in battle.": {
-   "drop": true
-  },
-  "We won the battle.": {
-   "tr": "我们打赢了这场战斗。"
-  },
-  "Do you belong to any clubs?": {
-   "tr": "你参加了什么俱乐部吗？"
-  },
-  "This bomb can kill many people.": {
-   "drop": true
-  },
-  "Yanni hit rock bottom.": {
-   "drop": true
-  },
-  "It's as smooth as a baby's bottom.": {
-   "drop": true
-  },
-  "She held her breath.": {
-   "drop": true
-  },
-  "He held his breath.": {
-   "tr": "他屏住了呼吸。"
-  },
-  "He did not die of cancer.": {
-   "drop": true
-  },
-  "My father died of lung cancer.": {
-   "drop": true
-  },
-  "I like watching Code Lyoko.": {
-   "drop": true
-  },
-  "Why do people commit suicide?": {
-   "drop": true
-  },
-  "I'm completely exhausted.": {
-   "tr": "我彻底筋疲力尽了。"
-  },
-  "I've never believed that conflict is good.": {
-   "tr": "我从来不认为冲突是好事。"
-  },
-  "A conservative is not always a reactionary.": {
-   "drop": true
-  },
-  "Metals contract when they cool.": {
-   "drop": true
-  },
-  "Make a copy of this report.": {
-   "tr": "请把这份报告复印一份。"
-  },
-  "Defend Taiwan!": {
-   "drop": true
-  },
-  "We need to defend Taiwan's sovereignty.": {
-   "drop": true
-  },
-  "It'll definitely rain.": {
-   "tr": "肯定会下雨。"
-  },
-  "How to arouse a woman's desire?": {
-   "drop": true
-  },
-  "My email has changed.": {
-   "tr": "我的邮箱地址换了。"
-  },
-  "All animals are equal.": {
-   "drop": true
-  },
-  "He was equal to the job.": {
-   "drop": true
-  },
-  "The camera was essential for me.": {
-   "tr": "相机对我来说必不可少。"
-  },
-  "God doesn't exist.": {
-   "drop": true
-  },
-  "Need they have sold the farm?": {
-   "drop": true
-  },
-  "I have a female cow.": {
-   "drop": true
-  },
-  "That female student is American.": {
-   "tr": "那个女学生是美国人。"
-  },
-  "Freedom is not free.": {
-   "drop": true
-  },
-  "My house is fully insured.": {
-   "tr": "我的房子上了全额保险。"
-  },
-  "John makes fun of his dog.": {
-   "drop": true
-  },
-  "I smell gas.": {
-   "tr": "我闻到了煤气味。"
-  },
-  "He took up golf this spring.": {
-   "tr": "他今年春天开始打高尔夫球。"
-  },
-  "Be my guest.": {
-   "tr": "请便。"
-  },
-  "I can't stand this heat.": {
-   "drop": true
-  },
-  "Go to hell!": {
-   "drop": true
-  },
-  "I have to hide.": {
-   "drop": true
-  },
-  "Ignore it.": {
-   "tr": "别理它。"
-  },
-  "Insist.": {
-   "drop": true
-  },
-  "We have to thoroughly investigate it.": {
-   "tr": "我们必须彻底调查这件事。"
-  },
-  "I was as sober as a judge.": {
-   "drop": true
-  },
-  "Tom is out of your league.": {
-   "drop": true
-  },
-  "Even jokes have a limit.": {
-   "tr": "开玩笑也要有个限度。"
-  },
-  "Women like male attention.": {
-   "drop": true
-  },
-  "Skura liked male attention.": {
-   "drop": true
-  },
-  "Oil does not mix with water.": {
-   "drop": true
-  },
-  "Modern cats don't eat rats.": {
-   "drop": true
-  },
-  "He lived a moral life.": {
-   "tr": "他过着有道德的生活。"
-  },
-  "Did you murder Tom?": {
-   "drop": true
-  },
-  "Send that newspaper to him.": {
-   "tr": "把那份报纸送给他。"
-  },
-  "No love is foul nor prison fair.": {
-   "drop": true
-  },
-  "It's obvious that he lied.": {
-   "tr": "很明显他撒了谎。"
-  },
-  "Tom obviously lied.": {
-   "drop": true
-  },
-  "Obviously not!": {
-   "tr": "显然不是！"
-  },
-  "Let's organize a search party.": {
-   "tr": "我们组织一支搜寻队吧。"
-  },
-  "I didn't mean to imply otherwise.": {
-   "tr": "我并不是想暗示相反的意思。"
-  },
-  "We ought to obey the law.": {
-   "tr": "我们应该遵守法律。"
-  },
-  "Are you the owner of this house?": {
-   "drop": true
-  },
-  "Where is your package?": {
-   "tr": "你的包裹在哪里？"
-  },
-  "He held a package under his arm.": {
-   "tr": "他把一个包裹夹在腋下。"
-  },
-  "I noticed a pattern.": {
-   "tr": "我注意到了一个规律。"
-  },
-  "That's so perfect.": {
-   "tr": "太完美了。"
-  },
-  "You've done a perfect job.": {
-   "tr": "你干得非常出色。"
-  },
-  "May I take a photo?": {
-   "tr": "我可以拍张照片吗？"
-  },
-  "Where is my plate?": {
-   "drop": true
-  },
-  "My blood type is A positive.": {
-   "drop": true
-  },
-  "Every man is a potential corpse.": {
-   "drop": true
-  },
-  "Penny wise, pound foolish.": {
-   "drop": true
-  },
-  "4.5 yuan for one pound, now isn't that cheap!": {
-   "drop": true
-  },
-  "I can't predict what'll happen.": {
-   "tr": "我无法预料会发生什么。"
-  },
-  "He died previous to my arrival.": {
-   "drop": true
-  },
-  "The boy is full of promise.": {
-   "drop": true
-  },
-  "I agree to your proposal.": {
-   "drop": true
-  },
-  "What's your real purpose?": {
-   "tr": "你的真正目的是什么？"
-  },
-  "He didn't do it on purpose.": {
-   "tr": "他不是故意的。"
-  },
-  "Have you ever tried virtual reality?": {
-   "tr": "你体验过虚拟现实吗？"
-  },
-  "Sometimes reality surpasses fiction.": {
-   "tr": "有时候现实比小说还离奇。"
-  },
-  "Five gallons of regular, please.": {
-   "drop": true
-  },
-  "The Baha'i Faith is a really cool religion.": {
-   "drop": true
-  },
-  "I am responsible for that.": {
-   "drop": true
-  },
-  "Roll up your right sleeve.": {
-   "drop": true
-  },
-  "The root cause of any divorce is marriage.": {
-   "drop": true
-  },
-  "I prefer a phone with a large screen.": {
-   "tr": "我更喜欢屏幕大的手机。"
-  },
-  "Search me.": {
-   "drop": true
-  },
-  "Get up, search.": {
-   "drop": true
-  },
-  "How did the secret get out?": {
-   "tr": "这秘密是怎么泄露出去的？"
-  },
-  "The fire spread out in a fan-shape.": {
-   "drop": true
-  },
-  "Tadashi has a soft voice.": {
-   "tr": "Tadashi的声音很温柔。"
-  },
-  "Could you solve the problem?": {
-   "drop": true
-  },
-  "Can you solve this problem?": {
-   "tr": "你能解决这个问题吗？"
-  },
-  "I'm sorry.": {
-   "tr": "对不起。"
-  },
-  "Butterflies of this species are now extinct.": {
-   "tr": "这种蝴蝶现在已经灭绝了。"
-  },
-  "Did Spot go, too?": {
-   "drop": true
-  },
-  "A cold beer would hit the spot!": {
-   "drop": true
-  },
-  "I'll stick to my principles.": {
-   "tr": "我会坚守我的原则。"
-  },
-  "What surpasses strength?": {
-   "drop": true
-  },
-  "Layla will survive.": {
-   "drop": true
-  },
-  "I had to do that to survive.": {
-   "tr": "为了活下去，我不得不这么做。"
-  },
-  "I've caught a terrible cold.": {
-   "tr": "我得了重感冒。"
-  },
-  "Don't threaten me with a good time.": {
-   "drop": true
-  },
-  "Tom has a tiny dick.": {
-   "drop": true
-  },
-  "The buildings look so tiny.": {
-   "tr": "那些楼看上去好小。"
-  },
-  "Tom is totally into you.": {
-   "tr": "汤姆完全被你迷住了。"
-  },
-  "Life is tough.": {
-   "tr": "生活很艰难。"
-  },
-  "Tom seems tough.": {
-   "tr": "汤姆看起来很强硬。"
-  },
-  "Tom certainly has a tough job.": {
-   "tr": "汤姆的工作确实很辛苦。"
-  },
-  "He is a typical Japanese.": {
-   "drop": true
-  },
-  "You are unique.": {
-   "drop": true
-  },
-  "He did not speak unless spoken to.": {
-   "drop": true
-  },
-  "The shooting victim is alive, but just barely.": {
-   "drop": true
-  },
-  "Could you turn the volume down?": {
-   "drop": true
-  },
-  "Don't marry. Be happy!": {
-   "drop": true
-  },
-  "Will you marry me?": {
-   "tr": "你愿意嫁给我吗？"
-  },
-  "This bird cannot fly.": {
-   "drop": true
-  },
-  "Mr Brown is a doctor.": {
-   "drop": true
-  },
-  "Do you know Mr. Brown?": {
-   "drop": true
-  },
-  "I have brown hair.": {
-   "tr": "我的头发是棕色的。"
-  },
-  "I bought a Daily News.": {
-   "drop": true
-  },
-  "Where's your date tonight?": {
-   "tr": "你今晚的约会对象在哪儿？"
-  },
-  "Damn, she's going to score.": {
-   "drop": true
-  },
-  "Every cloud has a silver lining.": {
-   "drop": true
-  },
-  "There's not a cloud in sight.": {
-   "tr": "一朵云也看不到。"
-  },
-  "It's about to rain.": {
-   "drop": true
-  },
-  "Snow has begun to melt.": {
-   "tr": "雪已经开始融化了。"
-  },
-  "My mother took my temperature.": {
-   "drop": true
-  },
-  "I made a desk of wood.": {
-   "drop": true
-  },
-  "This desk is used by Tom.": {
-   "tr": "这张桌子是汤姆在用的。"
-  },
-  "She wore a white dress.": {
-   "tr": "她穿了一条白色的连衣裙。"
-  },
-  "Fashion isn't my specialty.": {
-   "tr": "时尚不是我的专长。"
-  },
-  "Put the money in my pocket.": {
-   "tr": "把钱放进我的口袋里。"
-  },
-  "I'll give you a ring.": {
-   "drop": true
-  },
-  "Give me a ring tomorrow.": {
-   "drop": true
-  },
-  "Whose ring is that?": {
-   "tr": "那是谁的戒指？"
-  },
-  "Tom drinks craft beer.": {
-   "drop": true
-  },
-  "She hopes to become a designer.": {
-   "drop": true
-  },
-  "These dresses were designed by the same designer.": {
-   "tr": "这几件衣服是同一位设计师设计的。"
-  },
-  "A great Empire, like a great Cake, is most easily diminished at the Edges.": {
-   "drop": true
-  },
-  "To govern a country is not an easy job.": {
-   "drop": true
-  },
-  "To govern a country is no easy job.": {
-   "tr": "治理一个国家不是件容易的事。"
-  },
-  "Tom is a journalist.": {
-   "drop": true
-  },
-  "She is a journalist.": {
-   "drop": true
-  },
-  "He is something of a musician.": {
-   "tr": "他算得上是个音乐家。"
-  },
-  "Mennad's anxiety was kicking.": {
-   "drop": true
-  },
-  "Wish big, aim high, be gentle, be careful.": {
-   "tr": "心怀大愿，志存高远，待人温和，做事细心。"
-  },
-  "I am an honest person.": {
-   "drop": true
-  },
-  "To travel hopefully is a better thing than to arrive.": {
-   "drop": true
-  },
-  "It's not a joke.": {
-   "drop": true
-  },
-  "It is no joke.": {
-   "tr": "这可不是开玩笑的。"
-  },
-  "The demon grabbed my sister and, with howling laughter, cast her into a bottomless pit.": {
-   "drop": true
-  },
-  "A day without laughter is a day wasted.": {
-   "tr": "没有欢笑的一天就是虚度的一天。"
-  },
-  "You have lovely eyes, don't you?": {
-   "drop": true
-  },
-  "He is a lover of sports.": {
-   "drop": true
-  },
-  "I will not abandon you.": {
-   "drop": true
-  },
-  "In addition, coincidences inevitably come in threes.": {
-   "drop": true
-  },
-  "In addition to being a great statesman, Churchill was a great writer.": {
-   "tr": "丘吉尔不仅是一位伟大的政治家，还是一位伟大的作家。"
-  },
-  "We should approach this problem from different angles.": {
-   "tr": "我们应该从不同的角度来处理这个问题。"
-  },
-  "Many on-line companies need to have a new approach to business to survive.": {
-   "tr": "许多网络公司要想生存，需要采用新的经营方式。"
-  },
-  "Arise!": {
-   "drop": true
-  },
-  "He will assist this project.": {
-   "drop": true
-  },
-  "Tom knows how to behave in public.": {
-   "tr": "汤姆知道在公共场合该怎么表现。"
-  },
-  "I bet he doesn't make it.": {
-   "tr": "我打赌他做不到。"
-  },
-  "I want to brush up my English.": {
-   "drop": true
-  },
-  "The cow cast a calf.": {
-   "drop": true
-  },
-  "His leg was put in a cast.": {
-   "drop": true
-  },
-  "The spatulas, ramekins, plates, and mugs are all from the collection.": {
-   "tr": "这些锅铲、烤盅、盘子和马克杯都出自这个系列。"
-  },
-  "I learned to use a command block today.": {
-   "drop": true
-  },
-  "They had a good command of French.": {
-   "tr": "他们的法语掌握得很好。"
-  },
-  "How did you arrive at that conclusion?": {
-   "drop": true
-  },
-  "My internet connection was cut off.": {
-   "tr": "我的网络连接断了。"
-  },
-  "That parrot was Tobias's only connection with his late father.": {
-   "tr": "那只鹦鹉是托比亚斯与已故父亲之间唯一的联系。"
-  },
-  "I don't approve your decision.": {
-   "drop": true
-  },
-  "Let's leave the decision to Tom.": {
-   "tr": "让汤姆来做决定吧。"
-  },
-  "To those who would tear the world down: we will defeat you.": {
-   "drop": true
-  },
-  "But a man is not made for defeat. A man can be destroyed but not defeated.": {
-   "tr": "人不是为失败而生的。一个人可以被毁灭，但不能被打败。"
-  },
-  "I have already missed the delivery time, what should I do next?": {
-   "drop": true
-  },
-  "I have missed the delivery time, what should I do next?": {
-   "tr": "已经错过了交货时间，接下来该怎么办？"
-  },
-  "Nowadays it's not possible to protect oneself against weapons of mass destruction.": {
-   "drop": true
-  },
-  "Is France trying to suppress Algeria's development?": {
-   "drop": true
-  },
-  "Can you give me a discount?": {
-   "tr": "能给我打个折吗？"
-  },
-  "Why do women want to sleep in a man's embrace?": {
-   "drop": true
-  },
-  "If a person doesn't have a strong will, he will be unable to embrace profound wisdom.": {
-   "drop": true
-  },
-  "Could you do me a favor?": {
-   "drop": true
-  },
-  "Would you do me a favor?": {
-   "drop": true
-  },
-  "I found this book interesting.": {
-   "drop": true
-  },
-  "I greet my teacher on the street.": {
-   "tr": "我在街上向老师问好。"
-  },
-  "The witch hunt has begun.": {
-   "drop": true
-  },
-  "Bats hunt at night.": {
-   "tr": "蝙蝠在夜间捕食。"
-  },
-  "It's just your imagination.": {
-   "tr": "这只是你的想象而已。"
-  },
-  "I want you to use your imagination.": {
-   "tr": "我希望你发挥自己的想象力。"
-  },
-  "It was not my intention.": {
-   "drop": true
-  },
-  "That wasn't my intention.": {
-   "drop": true
-  },
-  "Let's invest in Taiwan.": {
-   "drop": true
-  },
-  "Tom doubled his investment in a year.": {
-   "tr": "汤姆一年内让投资翻了一番。"
-  },
-  "Kiss me, you fool!": {
-   "drop": true
-  },
-  "Will you lend me your bicycle?": {
-   "drop": true
-  },
-  "It's mate in three.": {
-   "drop": true
-  },
-  "My beer was finished off by my room-mate.": {
-   "tr": "我的啤酒被我的室友喝光了。"
-  },
-  "Don't mention it.": {
-   "tr": "不客气。"
-  },
-  "They looked relieved only when it was in motion.": {
-   "drop": true
-  },
-  "The \"drop the T\" movement was started by a guy who now identifies as ex-gay.": {
-   "drop": true
-  },
-  "He is an aggressive person.": {
-   "tr": "他是个咄咄逼人的人。"
-  },
-  "Tom was driving too fast on the bend and ended up in the ditch.": {
-   "drop": true
-  },
-  "I feel that I am a burden to everyone, that no one will ever love me.": {
-   "drop": true
-  },
-  "Tom is looking closely at the map.": {
-   "tr": "汤姆正仔细地看地图。"
-  },
-  "They are watching what's happening closely.": {
-   "tr": "他们正密切关注事态的发展。"
-  },
-  "Let's decide with a coin toss.": {
-   "drop": true
-  },
-  "The next four to six weeks are crucial in controlling the massive Ebola outbreak.": {
-   "tr": "接下来的四到六周对控制埃博拉疫情的大规模暴发至关重要。"
-  },
-  "I am curious.": {
-   "drop": true
-  },
-  "Every time I read the Bible, I am deeply moved.": {
-   "drop": true
-  },
-  "My camera can shoot high-definition video.": {
-   "tr": "我的相机能拍高清视频。"
-  },
-  "The beauty of the scene was beyond description.": {
-   "drop": true
-  },
-  "He gave a detailed description of the accident.": {
-   "tr": "他详细地叙述了那场事故的经过。"
-  },
-  "“One dollar store” is my favorite store.": {
-   "drop": true
-  },
-  "As people get older, their brain cells become less efficient.": {
-   "tr": "随着年龄的增长，人的脑细胞效率会降低。"
-  },
-  "It's stable because all the roots of this equation are negative.": {
-   "tr": "它是稳定的，因为这个方程的所有根都是负的。"
-  },
-  "When did the error occur?": {
-   "tr": "错误是什么时候发生的？"
-  },
-  "He put his hand gently on her shoulder.": {
-   "drop": true
-  },
-  "He's making it clear that he's an ideal husband.": {
-   "drop": true
-  },
-  "He proved to be an ideal husband.": {
-   "tr": "事实证明他是个理想的丈夫。"
-  },
-  "Today's paper contains nothing of importance.": {
-   "tr": "今天的报纸没有什么重要的新闻。"
-  },
-  "He took it literally.": {
-   "tr": "他按字面意思理解了。"
-  },
-  "No money, no job, no friends. He was truly at loose ends.": {
-   "drop": true
-  },
-  "This button is loose.": {
-   "tr": "这个纽扣松了。"
-  },
-  "It's too loud.": {
-   "tr": "太吵了。"
-  },
-  "Scientists deal mainly with physical matters.": {
-   "tr": "科学家主要研究物质方面的问题。"
-  },
-  "Don't come and mess around!": {
-   "drop": true
-  },
-  "What is the minimum wage in Georgia?": {
-   "tr": "请问佐治亚州的最低工资是多少？"
-  },
-  "This program cannot be run in DOS mode.": {
-   "tr": "这个程序无法在DOS模式下运行。"
-  },
-  "Are you for or against abortion?": {
-   "drop": true
-  },
-  "Absence makes the heart grow fonder.": {
-   "drop": true
-  },
-  "My prediction was accurate.": {
-   "tr": "我的预测是准确的。"
-  },
-  "How can you accuse me of such a thing? I would never lay a hand on my child.": {
-   "drop": true
-  },
-  "Our eyes take time to adjust to the darkness.": {
-   "drop": true
-  },
-  "I admire your ignorance.": {
-   "drop": true
-  },
-  "Our plans are to advance toward the city.": {
-   "tr": "我们的计划是向那座城市推进。"
-  },
-  "We made an agreement to meet exactly at ten.": {
-   "tr": "我们约好十点整见面。"
-  },
-  "My album is here.": {
-   "tr": "我的相册在这里。"
-  },
-  "She showed me her album.": {
-   "tr": "她给我看了她的相册。"
-  },
-  "Ally loves playing with her twin sister Anne.": {
-   "drop": true
-  },
-  "Algeria is a close ally of both Russia and China.": {
-   "drop": true
-  },
-  "Tom is anxious to see you.": {
-   "drop": true
-  },
-  "She lives in an apartment alone.": {
-   "drop": true
-  },
-  "Can you arrange for a night tour bus?": {
-   "tr": "你能帮我安排夜游观光巴士吗？"
-  },
-  "Trump is a Russian asset.": {
-   "drop": true
-  },
-  "I can assure success.": {
-   "drop": true
-  },
-  "My aunt gave me a camera.": {
-   "tr": "我姑姑给了我一台相机。"
-  },
-  "All plans automatically renew until cancelled.": {
-   "tr": "所有套餐都会自动续订，直到取消为止。"
-  },
-  "What an awful lot of books you have!": {
-   "drop": true
-  },
-  "Tom lost his balance and fell down.": {
-   "drop": true
-  },
-  "Tom lost his balance and fell.": {
-   "tr": "汤姆失去平衡摔倒了。"
-  },
-  "I bid you greetings and may there be peace through fellowship between us.": {
-   "drop": true
-  },
-  "God bless America.": {
-   "drop": true
-  },
-  "They say love is blind.": {
-   "drop": true
-  },
-  "Do you need as many licenses as you have operating systems installed in a multi-boot PC?": {
-   "drop": true
-  },
-  "There is a fence marking the boundary between our yard and the neighbor's.": {
-   "tr": "我家院子和邻居家院子之间有一道篱笆作为分界线。"
-  },
-  "It's brand new.": {
-   "drop": true
-  },
-  "Tom bought a brand-new car.": {
-   "drop": true
-  },
-  "Have you bought a brand-new car?": {
-   "drop": true
-  },
-  "Breathe, damn you!": {
-   "drop": true
-  },
-  "I've had a brilliant idea.": {
-   "tr": "我想到了一个绝妙的主意。"
-  },
-  "Stay calm whatever happens.": {
-   "tr": "无论发生什么事，你都要保持镇定。"
-  },
-  "We want a new carpet.": {
-   "tr": "我们想要一条新地毯。"
-  },
-  "I held a wedding ceremony last month.": {
-   "tr": "我上个月举行了婚礼。"
-  },
-  "Welcome to the channel.": {
-   "drop": true
-  },
-  "What is on Channel 10?": {
-   "tr": "第十频道在播什么节目？"
-  },
-  "The old cottage has a certain charm about it.": {
-   "tr": "这座老农舍别有一番魅力。"
-  },
-  "Let's chase out corrupt politicians!": {
-   "drop": true
-  },
-  "Yanni has a star chip in his windshield.": {
-   "drop": true
-  },
-  "The chip in Yanni's windshield became a huge crack.": {
-   "drop": true
-  },
-  "How about some chocolate cheese?": {
-   "drop": true
-  },
-  "Betty likes classical music.": {
-   "drop": true
-  },
-  "Did you hear the click?": {
-   "tr": "你听到咔嗒一声了吗？"
-  },
-  "The prices of raw materials such as oil or coal continue to rise.": {
-   "tr": "石油、煤炭等原材料的价格持续上涨。"
-  },
-  "Algeria will not collapse.": {
-   "drop": true
-  },
-  "His regime is bound to collapse.": {
-   "drop": true
-  },
-  "Algeria isn't going to collapse.": {
-   "drop": true
-  },
-  "Tom is an activist in his community.": {
-   "tr": "汤姆是他所在社区的积极分子。"
-  },
-  "I had Mr. Jones correct my composition.": {
-   "drop": true
-  },
-  "I'm fairly confident that I can do that.": {
-   "drop": true
-  },
-  "We must never confuse the two.": {
-   "tr": "我们决不能把这两者混淆。"
-  },
-  "Tom found Mary's constant criticism of him hard to cope with.": {
-   "tr": "汤姆觉得玛丽对他没完没了的批评让他难以应对。"
-  },
-  "Constantly blowing his nose in allergy season.": {
-   "drop": true
-  },
-  "After reading his books I feel I can construct a house.": {
-   "tr": "读了他的书之后，我觉得自己能盖一栋房子。"
-  },
-  "You'd better consult your doctor.": {
-   "drop": true
-  },
-  "Zeal for your house will consume me.": {
-   "drop": true
-  },
-  "She won first prize in the speech contest.": {
-   "drop": true
-  },
-  "Get the meaning of a word from its context.": {
-   "tr": "根据上下文推断一个词的意思。"
-  },
-  "But your function isn't Lipschitz continuous!": {
-   "drop": true
-  },
-  "You should run for city council.": {
-   "tr": "你应该去竞选市议员。"
-  },
-  "The plane crash was only last week.": {
-   "tr": "那次空难就发生在上周。"
-  },
-  "Love is what gives joy to all creation.": {
-   "tr": "爱给万物带来喜悦。"
-  },
-  "I don't know how long I'll have to wait before I become more creative.": {
-   "tr": "我不知道还要等多久才能变得更有创造力。"
-  },
-  "Algeria is in the midst of a political crisis.": {
-   "drop": true
-  },
-  "What currency do you use in England?": {
-   "tr": "在英国用什么货币？"
-  },
-  "Bob got impatient at his wife's delay.": {
-   "tr": "鲍勃因妻子的拖延而不耐烦了。"
-  },
-  "Excuse me, do you know where the economics department library is?": {
-   "tr": "不好意思，请问你知道经济系图书馆在哪里吗？"
-  },
-  "It doesn’t matter what you say, he’ll be acquitted because of depression.": {
-   "drop": true
-  },
-  "She seems to devote all her effects to her career.": {
-   "drop": true
-  },
-  "Is there any difference between your idea and hers?": {
-   "tr": "你的想法和她的想法有什么不同吗？"
-  },
-  "A person views things differently according to whether they are rich or poor.": {
-   "drop": true
-  },
-  "People look at things differently depending on whether they are rich or poor.": {
-   "drop": true
-  },
-  "One views things differently according to whether one is rich or poor.": {
-   "tr": "人们看待事物的方式因贫富不同而有所不同。"
-  },
-  "You may disagree with me.": {
-   "tr": "你可能不同意我的看法。"
-  },
-  "This discovery will be recorded in history.": {
-   "tr": "这一发现将被载入史册。"
-  },
-  "Edit your work better before you submit it, it's sloppy.": {
-   "tr": "提交之前把你的作品好好修改一下，太粗糙了。"
-  },
-  "It will be able to edit the pictures you don't like, then print them out.": {
-   "tr": "它能修改你不喜欢的照片，然后把它们打印出来。"
-  },
-  "My father is an electric engineer.": {
-   "tr": "我父亲是电气工程师。"
-  },
-  "This man is like a filthy electronic without a battery.": {
-   "drop": true
-  },
-  "When you encounter difficulties, friends can help you deal with them.": {
-   "tr": "遇到困难时，朋友可以帮你应对。"
-  },
-  "Stick another stamp on the envelope.": {
-   "drop": true
-  },
-  "That has been an evil rabbit.": {
-   "drop": true
-  },
-  "That was an evil bunny.": {
-   "tr": "那是一只邪恶的兔子。"
-  },
-  "I'm not a woman hater; and if I were, I would make an exception for you.": {
-   "drop": true
-  },
-  "How can he deny God's existence?": {
-   "tr": "他怎么能否认上帝的存在呢？"
-  },
-  "Save it on the external hard drive.": {
-   "tr": "把它保存到外接硬盘上。"
-  },
-  "Extreme cold covered Europe.": {
-   "tr": "极度的严寒笼罩了欧洲。"
-  },
-  "When applying to American universities, your TOEFL score is only one factor.": {
-   "tr": "申请美国大学时，托福成绩只是其中一个因素。"
-  },
-  "You are fantastic.": {
-   "tr": "你太棒了。"
-  },
-  "He is a good fellow.": {
-   "drop": true
-  },
-  "I left your flash drive at home.": {
-   "drop": true
-  },
-  "Thanks God, Apple is dumping that Flash crap!": {
-   "drop": true
-  },
-  "Shit! I've got a flat.": {
-   "drop": true
-  },
-  "One of your tires is flat.": {
-   "tr": "你有一个轮胎瘪了。"
-  },
-  "Bill, if you'll come with me, you'll float, too.": {
-   "drop": true
-  },
-  "I waited for her forever.": {
-   "tr": "我等了她好久好久。"
-  },
-  "Fred left his wife a large fortune.": {
-   "drop": true
-  },
-  "We need to keep Algeria within the socialist framework.": {
-   "drop": true
-  },
-  "The third most frequent letter in Esperanto is \"e\".": {
-   "tr": "在世界语中，出现频率第三高的字母是“e”。"
-  },
-  "Nothing is more important than friendship.": {
-   "drop": true
-  },
-  "Furthermore, I still don't think this a huge cultural difference.": {
-   "drop": true
-  },
-  "The best hairdressers are gay.": {
-   "drop": true
-  },
-  "Should we use genetic engineering on people?": {
-   "tr": "我们应该对人类使用基因工程吗？"
-  },
-  "Through genetic modification, we can improve crops.": {
-   "tr": "通过基因改造，我们可以改良农作物。"
-  },
-  "Giant pandas live only in China.": {
-   "tr": "大熊猫只生活在中国。"
-  },
-  "God willing...": {
-   "tr": "如果老天允许的话……"
-  },
-  "Why does the US government let people have guns?": {
-   "drop": true
-  },
-  "A stable economy is the aim of every government.": {
-   "tr": "稳定的经济是每个政府的目标。"
-  },
-  "No matter what grand and lofty reason you have, it's not right to do this.": {
-   "drop": true
-  },
-  "They guarantee this clock for a year.": {
-   "tr": "他们为这个钟提供一年保修。"
-  },
-  "We guarantee our products for one year.": {
-   "tr": "我们的产品保修一年。"
-  },
-  "Writing in a diary is a good habit.": {
-   "drop": true
-  },
-  "I don't mean to harm you.": {
-   "drop": true
-  },
-  "Reporters do not hesitate to intrude into people's privacy.": {
-   "tr": "记者会毫不犹豫地侵犯他人隐私。"
-  },
-  "A farewell meeting was held in honor of Mr Jones.": {
-   "tr": "为琼斯先生举行了一场欢送会。"
-  },
-  "He asked me to do what I can to hook them up.": {
-   "drop": true
-  },
-  "What horrible weather!": {
-   "drop": true
-  },
-  "Humor me.": {
-   "drop": true
-  },
-  "I find her very impressive.": {
-   "tr": "我觉得她很了不起。"
-  },
-  "Lachin hosted concert marking May 28 – Independence Day.": {
-   "drop": true
-  },
-  "You may injure yourself if you don't follow safety procedures.": {
-   "tr": "如果你不遵守安全规程，可能会受伤。"
-  },
-  "Politicians never tell us their inner thoughts.": {
-   "drop": true
-  },
-  "Is mayonnaise an instrument?": {
-   "drop": true
-  },
-  "Do you play any instrument other than the piano?": {
-   "tr": "除了钢琴，你还会演奏别的乐器吗？"
-  },
-  "If you sign up to Facebook, your information will be sent to intelligence agencies.": {
-   "drop": true
-  },
-  "It is subject to interpretation.": {
-   "tr": "这可以有不同的解读。"
-  },
-  "I came to work here though his introduction.": {
-   "drop": true
-  },
-  "Children were apt to invent their own games.": {
-   "tr": "孩子们总爱发明自己的游戏。"
-  },
-  "Don't use \"discover\" when you mean \"invent\".": {
-   "tr": "当你想说“发明”时，不要用“发现”这个词。"
-  },
-  "No investigation, no right to speak.": {
-   "drop": true
-  },
-  "The report proved true as a result of their investigation.": {
-   "tr": "他们的调查证明这篇报道属实。"
-  },
-  "Iron is a useful metal.": {
-   "tr": "铁是一种有用的金属。"
-  },
-  "The end does not always justify the means.": {
-   "tr": "目的正当并不总能使手段正当。"
-  },
-  "The king crushed his enemies.": {
-   "drop": true
-  },
-  "\"Thanks a lot for letting me play with your Xbox.\" \"No problem dude, knock yourself out.\"": {
-   "drop": true
-  },
-  "I prefer Noh to Kabuki because I find the former to be more elegant than the latter.": {
-   "tr": "比起歌舞伎，我更喜欢能乐，因为我觉得前者比后者更优雅。"
-  },
-  "I cannot follow your logic.": {
-   "drop": true
-  },
-  "The girl vanished like magic.": {
-   "tr": "女孩像变魔术一样消失了。"
-  },
-  "Do you have an e-mail address?": {
-   "drop": true
-  },
-  "You are no longer a mere child.": {
-   "drop": true
-  },
-  "This bag is mine.": {
-   "tr": "这个包是我的。"
-  },
-  "Can you play the key of C minor?": {
-   "drop": true
-  },
-  "Air is a mixture of various gases.": {
-   "drop": true
-  },
-  "The mixture of these substances is dangerous.": {
-   "tr": "这些物质的混合物很危险。"
-  },
-  "My mobile has been stolen.": {
-   "tr": "我的手机被偷了。"
-  },
-  "The USS Monitor was designated the first National Marine Sanctuary on January 30, 1975.": {
-   "drop": true
-  },
-  "Moreover, I can fly.": {
-   "drop": true
-  },
-  "They want to talk to you about areas of mutual interest.": {
-   "tr": "他们想和你谈谈双方共同感兴趣的领域。"
-  },
-  "Nature is full of mystery.": {
-   "tr": "大自然充满了奥秘。"
-  },
-  "There's a big supermarket in my neighborhood.": {
-   "tr": "我家附近有一家大超市。"
-  },
-  "I'm not allowed to drink alcohol.": {
-   "tr": "我不可以喝酒。"
-  },
-  "We eat butter on bread.": {
-   "tr": "我们在面包上抹黄油吃。"
-  },
-  "The cake tastes divine!": {
-   "tr": "这蛋糕太好吃了！"
-  },
-  "Don't you know cheese is made from milk?": {
-   "drop": true
-  },
-  "Jane wanted an ice cream cone.": {
-   "drop": true
-  },
-  "We don't sell draft beer.": {
-   "drop": true
-  },
-  "I'd like to buy menu of the day.": {
-   "drop": true
-  },
-  "Please stand one meter away.": {
-   "drop": true
-  },
-  "I need it for the parking meter.": {
-   "tr": "我要用它来付停车计时器的费用。"
-  },
-  "Butter is made from milk.": {
-   "tr": "黄油是用牛奶做的。"
-  },
-  "Holy cow!": {
-   "drop": true
-  },
-  "When did you learn of Mary's divorce?": {
-   "tr": "你什么时候得知玛丽离婚的？"
-  },
-  "My grandmother can't see very well.": {
-   "tr": "我祖母视力不太好。"
-  },
-  "Always fasten your seat belt.": {
-   "drop": true
-  },
-  "The gap between them has narrowed.": {
-   "tr": "他们之间的差距已经缩小了。"
-  },
-  "What a tender gesture.": {
-   "tr": "多么体贴的举动啊。"
-  },
-  "He cured my illness.": {
-   "tr": "他治好了我的病。"
-  },
-  "How do you interpret these words?": {
-   "tr": "你怎么理解这些话？"
-  },
-  "A dragon is a creature of fancy.": {
-   "drop": true
-  },
-  "Smokers are a bunch of idiots.": {
-   "drop": true
-  },
-  "He foisted a bunch of hard work on me.": {
-   "tr": "他把一大堆难做的活儿推给了我。"
-  },
-  "My cell phone has a built-in digital camera.": {
-   "tr": "我的手机内置数码相机。"
-  },
-  "With a glance of her, he left swiftly.": {
-   "drop": true
-  },
-  "I overslept because my alarm didn't go off.": {
-   "tr": "因为闹钟没响，我睡过头了。"
-  },
-  "I studied around the clock.": {
-   "drop": true
-  },
-  "How much is your monthly gas bill?": {
-   "tr": "你每个月的燃气费是多少钱？"
-  },
-  "Smoking one cigarette a day is a good habit.": {
-   "drop": true
-  },
-  "If only I can go to the concert!": {
-   "drop": true
-  },
-  "Education in this world disappoints me.": {
-   "drop": true
-  },
-  "I think exams ruin education.": {
-   "tr": "我认为考试毁了教育。"
-  },
-  "We took an examination in math last week.": {
-   "tr": "我们上星期参加了数学考试。"
-  },
-  "He won't go on to graduate school.": {
-   "tr": "他不会继续读研究生。"
-  },
-  "An intellectual is a person who has discovered something more interesting than sex.": {
-   "drop": true
-  },
-  "In China, software piracy is a serious issue.": {
-   "drop": true
-  },
-  "How do you feel about the issue?": {
-   "tr": "你对这个问题有什么看法？"
-  },
-  "I need to go to the China Construction Bank.": {
-   "drop": true
-  },
-  "The construction straddled two centuries.": {
-   "tr": "这项工程跨越了两个世纪。"
-  },
-  "A green carpet will not go with this blue curtain.": {
-   "tr": "绿色地毯和这条蓝色窗帘不搭。"
-  },
-  "No language, no nation.": {
-   "drop": true
-  },
-  "Taiwan is an island nation.": {
-   "drop": true
-  },
-  "He gave his life for the nation.": {
-   "tr": "他为国家献出了生命。"
-  },
-  "This boy is a wolf in sheep's clothing.": {
-   "drop": true
-  },
-  "I don't like this jacket.": {
-   "tr": "我不喜欢这件夹克。"
-  },
-  "His cottage is on the coast.": {
-   "tr": "他的小屋在海边。"
-  },
-  "When we looked down, we saw a concrete jungle.": {
-   "drop": true
-  },
-  "They were marooned on a desert isle.": {
-   "tr": "他们被困在一座荒岛上。"
-  },
-  "Skilled soldiers know how to use their environment as a weapon.": {
-   "drop": true
-  },
-  "The rest follows naturally.": {
-   "tr": "其余的自然就水到渠成了。"
-  },
-  "This pub has very beautiful waitresses.": {
-   "drop": true
-  },
-  "What's your favorite soda?": {
-   "tr": "你最喜欢哪种汽水？"
-  },
-  "Lemons are sour.": {
-   "drop": true
-  },
-  "This politician is a typical champagne socialist.": {
-   "drop": true
-  },
-  "Hi, I'd like a deep-fried pizza roll.": {
-   "tr": "嗨，我要一个油炸披萨卷。"
-  },
-  "You're such a jerk.": {
-   "tr": "你真是个混蛋。"
-  },
-  "Lips that touch liquor shall not touch mine.": {
-   "drop": true
-  },
-  "Love and cough cannot be hidden.": {
-   "drop": true
-  },
-  "What helps cure a cough?": {
-   "tr": "什么能帮助治好咳嗽？"
-  },
-  "If only I read the user manual properly.": {
-   "drop": true
-  },
-  "Never trust a woman with a pistol in hand.": {
-   "drop": true
-  },
-  "He showed me the manuscript of his new play.": {
-   "tr": "他给我看了他新剧本的手稿。"
-  },
-  "He got injured in a traffic accident.": {
-   "drop": true
-  },
-  "One man's meat is another man's poison.": {
-   "drop": true
-  },
-  "Plug your nose.": {
-   "tr": "堵住你的鼻子。"
-  },
-  "I put my suitcase in the trunk.": {
-   "tr": "我把手提箱放进了汽车后备箱。"
-  },
-  "The thermometer fell to zero last night.": {
-   "drop": true
-  },
-  "One out of 455 women doesn't realize she's pregnant until the twentieth week of pregnancy.": {
-   "tr": "每455名女性中就有一人直到怀孕第二十周才意识到自己怀孕。"
-  },
-  "\"How old are you?\" \"I'm sixteen.\"": {
-   "tr": "“你几岁？”“我十六岁。”"
-  },
-  "My mother put thirteen candles on my birthday cake.": {
-   "tr": "母亲在我的生日蛋糕上插了十三支蜡烛。"
-  },
-  "It was a fabulous show which brought us an endless delight.": {
-   "tr": "那是一场精彩的演出，给我们带来了无穷的乐趣。"
-  },
-  "You'll embarrass her.": {
-   "tr": "你会让她难堪的。"
-  },
-  "We're troubled.": {
-   "drop": true
-  },
-  "He was troubled.": {
-   "drop": true
-  },
-  "He's troubled.": {
-   "tr": "他心烦意乱。"
-  },
-  "The girl made an awkward bow.": {
-   "tr": "这个女孩笨拙地鞠了一躬。"
-  },
-  "She was satisfied with the new skirt.": {
-   "drop": true
-  },
-  "I feel hopeful about the future.": {
-   "tr": "我对未来充满希望。"
-  },
-  "Though passion may have strained, it must not break our bonds of affection.": {
-   "drop": true
-  },
-  "Optimism is like the lamp of hope. Pessimism [or negativity] is like a drug of sorrow.": {
-   "drop": true
-  },
-  "Sammy spends most of the time crying in despair.": {
-   "drop": true
-  },
-  "His class makes us despair.": {
-   "tr": "他的课让我们绝望。"
-  },
-  "She helped him overcome his sadness.": {
-   "tr": "她帮他走出了悲伤。"
-  },
-  "My mother did nothing but weep.": {
-   "tr": "我母亲只是一个劲地哭。"
-  },
-  "\"He used to love me,\" she answered sadly.": {
-   "tr": "“他以前爱我。”她伤心地回答。"
-  },
-  "Is this the bus for Park Ridge?": {
-   "drop": true
-  },
-  "Tom is studying to become a marine biologist.": {
-   "tr": "汤姆正在为成为海洋生物学家而学习。"
-  },
-  "If and only if the ice-cream is vanilla flavour will Xiao Wang eat it.": {
-   "drop": true
-  },
-  "Your sentences were like a green meadow in winter.": {
-   "drop": true
-  },
-  "I'm not a cherry! I've gotten laid lots of times!": {
-   "drop": true
-  },
-  "It's almost time for the cherry blossoms.": {
-   "tr": "樱花快开了。"
-  },
-  "I'll wait here till he comes back.": {
-   "drop": true
-  },
-  "Am I disturbing you?": {
-   "drop": true
-  },
-  "I hope I'm not disturbing you.": {
-   "drop": true
-  },
-  "I hope I am not disturbing you.": {
-   "drop": true
-  },
-  "I honestly don't think Tom and Mary care.": {
-   "tr": "说实话，我觉得汤姆和玛丽并不在乎。"
-  },
-  "He is doing very well considering he lacks experience.": {
-   "tr": "考虑到他缺乏经验，他已经做得非常好了。"
-  },
-  "Loser!": {
-   "drop": true
-  },
-  "If you're not a loser by nature, then people won't trust you.": {
-   "drop": true
-  },
-  "I'm a loser.": {
-   "tr": "我是个失败者。"
-  },
-  "If Tom doesn't surrender, shoot him.": {
-   "drop": true
-  },
-  "I borrowed this comic from his sister.": {
-   "tr": "我向他妹妹借了这本漫画。"
-  },
-  "I don't care a rap.": {
-   "drop": true
-  },
-  "She has blonde hair and a slim figure.": {
-   "tr": "她有一头金发，身材苗条。"
-  },
-  "Alert, in Nunavut, Canada, is the northernmost permanently inhabited place in the world.": {
-   "drop": true
-  },
-  "Xueyou is holding a map of China.": {
-   "tr": "学友正拿着一张中国地图。"
-  },
-  "Avoid sudden movements around the rabbit, they can startle them.": {
-   "drop": true
-  },
-  "Your hair wants cutting.": {
-   "tr": "你的头发该剪了。"
-  },
-  "He's also a salesman.": {
-   "drop": true
-  },
-  "Hop in.": {
-   "tr": "上车吧。"
-  },
-  "Monopoly is a popular game for families to play.": {
-   "drop": true
-  },
-  "He looks every inch a gentleman.": {
-   "drop": true
-  },
-  "He knows every inch of this area.": {
-   "tr": "他对这一带了如指掌。"
-  },
-  "Update the app.": {
-   "tr": "更新这个应用。"
-  },
-  "Straighten up.": {
-   "drop": true
-  },
-  "He seldom writes to his parents.": {
-   "drop": true
-  },
-  "It started raining on my way to the convenience store.": {
-   "tr": "在我去便利店的路上，天开始下雨了。"
-  },
-  "A cat abhors a vacuum.": {
-   "drop": true
-  },
-  "What's the number for the Tokyo Dome?": {
-   "drop": true
-  },
-  "He is a thief.": {
-   "tr": "他是个小偷。"
-  },
-  "The poor people were at the mercy of the cruel dictator.": {
-   "drop": true
-  },
-  "Have mercy.": {
-   "tr": "发发慈悲吧。"
-  },
-  "Life is a magnificent gown full of lice.": {
-   "drop": true
-  },
-  "I think you will find it convenient to put a short-cut on the desktop.": {
-   "tr": "我想你会发现在桌面上建一个快捷方式很方便。"
-  },
-  "I need to renew my passport.": {
-   "drop": true
-  },
-  "I have to renew my passport.": {
-   "drop": true
-  },
-  "She repeated her name slowly.": {
-   "drop": true
-  },
-  "He thought to himself, \"No!\" Aloud he said, \"Yes.\"": {
-   "tr": "他心里想：“不！”嘴上却说：“好。”"
-  },
-  "This measure is in accord with our policy.": {
-   "tr": "这项措施符合我们的政策。"
-  },
-  "Bill was in Japan.": {
-   "drop": true
-  },
-  "Bill called me last night.": {
-   "drop": true
-  },
-  "Bung it in the bin.": {
-   "drop": true
-  },
-  "Throw it in the bin.": {
-   "tr": "把它扔进垃圾桶。"
-  },
-  "She's a blog addict.": {
-   "tr": "她是个博客迷。"
-  },
-  "When was the castle built?": {
-   "tr": "这座城堡是什么时候建成的？"
-  },
-  "I am fortunate compared with him.": {
-   "tr": "和他比起来，我还算幸运。"
-  },
-  "Luxury!": {
-   "drop": true
-  },
-  "The sun rose from the sea.": {
-   "drop": true
-  },
-  "Every rose has its thorns.": {
-   "drop": true
-  },
-  "Please specify any conditions you have for the use of this information.": {
-   "tr": "如果您对这些信息的使用有任何条件，请具体说明。"
-  },
-  "I need to get a stamp.": {
-   "drop": true
-  },
-  "Summarize the contents in 60 English words.": {
-   "tr": "请用60个英语单词概括内容。"
-  },
-  "A complete intransitive verb takes neither complement nor object.": {
-   "tr": "完全不及物动词既不带补语也不带宾语。"
-  },
-  "He paid the prostitute the fee without being aware of the surveillance camera.": {
-   "drop": true
-  },
-  "He believes that there is a spy among us.": {
-   "drop": true
-  },
-  "She had a vague feeling of guilt.": {
-   "tr": "她隐约有一种内疚感。"
-  },
-  "My father is a skilled fisherman.": {
-   "tr": "我爸爸是个技术娴熟的渔夫。"
-  },
-  "The position requires applicants to be skilled in spoken English.": {
-   "tr": "这个职位要求应聘者精通英语口语。"
-  },
-  "Don't shoot the devil in the back. You might miss.": {
-   "drop": true
-  },
-  "What a bizarre story!": {
-   "drop": true
-  },
-  "We've been horsing around too much; it's high time we got down to brass tacks.": {
-   "drop": true
-  },
-  "Why are you so unfortunate?": {
-   "tr": "你怎么这么倒霉？"
-  },
-  "Algeria needs to get rid of its bureaucracy.": {
-   "drop": true
-  },
-  "Old pal! Where are you working now?": {
-   "tr": "老朋友！你现在在哪儿工作？"
-  },
-  "She writes to her pen pal in London twice a month.": {
-   "tr": "她每个月给伦敦的笔友写两封信。"
-  },
-  "I'll still have a scar from that accident.": {
-   "tr": "那次事故会给我留下伤疤。"
-  },
-  "Meet me at the lobby of the Imperial Hotel at 6:30 p.m.": {
-   "drop": true
-  },
-  "In fact, there are countless, varied uses for the Internet.": {
-   "tr": "事实上，互联网有无数种不同的用途。"
-  },
-  "I used to feel it dull.": {
-   "drop": true
-  },
-  "The Queen's crown was made of gold.": {
-   "tr": "女王的王冠是用黄金制成的。"
-  },
-  "Sometimes it's fun to creep yourself out thinking about it.": {
-   "drop": true
-  },
-  "He thought, If I don't study hard, how can I be worthy of my countrymen?": {
-   "drop": true
-  },
-  "Capitalism is poverty.": {
-   "drop": true
-  },
-  "Instead of eating real food, we just ate junk food all day.": {
-   "tr": "我们没吃正经饭，整天只吃垃圾食品。"
-  },
-  "Everyone ought to be a master of his own destiny.": {
-   "drop": true
-  },
-  "He did pioneering work in the field of physical geography.": {
-   "tr": "他在自然地理学领域做了开创性的工作。"
-  },
-  "Famous vibraphonist Stefon Harris has recorded at least one balafon solo.": {
-   "drop": true
-  },
-  "The explosion may have been caused by a gas leak.": {
-   "tr": "这场爆炸可能是燃气泄漏引起的。"
-  },
-  "He bent over backward to please his wife.": {
-   "drop": true
-  },
-  "The condom broke.": {
-   "drop": true
-  },
-  "Do you have a condom?": {
-   "drop": true
-  },
-  "Did you use a condom?": {
-   "drop": true
-  },
-  "I felt my hands tremble.": {
-   "tr": "我感觉到我的手在发抖。"
-  },
-  "The terrible scene made him tremble in fear.": {
-   "tr": "可怕的场面让他吓得发抖。"
-  },
-  "His success is due more to his persistent hard work than to his talent.": {
-   "tr": "他的成功更多归功于他坚持不懈的努力，而不是天赋。"
-  },
-  "The phrase \"humanitarian bombing\" is an oxymoron.": {
-   "drop": true
-  },
-  "You killed my father. Today, I want revenge.": {
-   "drop": true
-  },
-  "They set fire to their neighbor's house in revenge.": {
-   "drop": true
-  },
-  "They set fire to their neighbour's house in revenge.": {
-   "drop": true
-  },
-  "No man can resist the lure of a woman.": {
-   "drop": true
-  },
-  "I am not a witch.": {
-   "drop": true
-  },
-  "I'm not a witch.": {
-   "tr": "我不是女巫。"
-  },
-  "This is the fifth concert by this orchestra.": {
-   "tr": "这是这个管弦乐团的第五场音乐会。"
-  },
-  "He works for a newspaper with a large circulation.": {
-   "tr": "他在一家发行量很大的报社工作。"
-  },
-  "I don't care that you're the Pope; you can't touch my feet.": {
-   "drop": true
-  },
-  "Your team is very good, but theirs is the best.": {
-   "tr": "你们队很棒，但他们队是最好的。"
-  },
-  "The atomic number for iron is 26.": {
-   "drop": true
-  },
-  "Tom ran downstairs.": {
-   "tr": "汤姆跑下了楼。"
-  },
-  "She used apples to do the jam.": {
-   "drop": true
-  },
-  "And yet, the contrary is always true as well.": {
-   "tr": "然而，反过来也总是成立的。"
-  },
-  "Men are hunters, and women are prey.": {
-   "drop": true
-  },
-  "\"God is our salvation,\" said the priest.": {
-   "tr": "“上帝是我们的救赎。”牧师说。"
-  },
-  "The Swiss keyboard doesn't have a ß.": {
-   "tr": "瑞士键盘上没有“ß”这个字母。"
-  },
-  "I'm a communist.": {
-   "drop": true
-  },
-  "Tom is a communist.": {
-   "drop": true
-  },
-  "Comrades! Let's transform Moscow into a model communist city.": {
-   "drop": true
-  },
-  "Tom is a socialist.": {
-   "drop": true
-  },
-  "Jesus was a socialist.": {
-   "drop": true
-  },
-  "The Socialist Party only got 18% of the votes.": {
-   "drop": true
-  },
-  "When it comes to love, women are experts and men eternal novices.": {
-   "drop": true
-  },
-  "She is a nursery-school teacher.": {
-   "drop": true
-  },
-  "She's a nursery-school teacher.": {
-   "tr": "她是幼儿园老师。"
-  },
-  "Matías is from Uruguay. He is Uruguayan.": {
-   "drop": true
-  },
-  "She will be the first Japanese woman astronaut.": {
-   "tr": "她将成为日本第一位女宇航员。"
-  },
-  "That's just useless.": {
-   "tr": "这根本没用。"
-  },
-  "He was discovered unconscious on the floor of the kitchen.": {
-   "drop": true
-  },
-  "Being challenged in life is inevitable, being defeated is optional.": {
-   "tr": "人生中遭遇挑战不可避免，但是否被打败可以由自己选择。"
-  },
-  "Legal frameworks exist to hold war criminals accountable.": {
-   "drop": true
-  },
-  "The Japanese attacked Pearl Harbor on December 7, 1941.": {
-   "drop": true
-  },
-  "That way is very far, so we took a taxi.": {
-   "tr": "那条路很远，所以我们打了车。"
-  },
-  "A huge tanker just pulled out from the dock.": {
-   "drop": true
-  },
-  "The huge tanker has just left the dock.": {
-   "tr": "一艘巨大的油轮刚刚驶离码头。"
-  },
-  "Turn here to get on the subway.": {
-   "tr": "在这里拐弯就能去坐地铁。"
-  },
-  "Could I have a subway map, please?": {
-   "tr": "能给我一张地铁线路图吗？"
-  },
-  "Tom is a flight attendant.": {
-   "tr": "汤姆是空乘人员。"
-  },
-  "I'm a waiter.": {
-   "tr": "我是服务员。"
-  },
-  "Who's your daddy?": {
-   "drop": true
-  },
-  "A beard does not make a philosopher.": {
-   "drop": true
-  },
-  "I have a frog in my throat.": {
-   "drop": true
-  },
-  "He is like a frog in a well.": {
-   "drop": true
-  },
-  "Our goose is cooked.": {
-   "drop": true
-  },
-  "When I hear the news, I get goose bumps. How could there be such a dangerous thing?": {
-   "drop": true
-  },
-  "I'm a starved spider.": {
-   "drop": true
-  },
-  "The spider was black.": {
-   "drop": true
-  },
-  "Her dress was made of coarse wool.": {
-   "tr": "她的裙子是用粗羊毛做的。"
-  },
-  "Minnesota's state bird is the mosquito.": {
-   "drop": true
-  },
-  "My blue dress appeared with a blood stain.": {
-   "drop": true
-  },
-  "The first time feels like a sunny day.": {
-   "drop": true
-  },
-  "I left my umbrella on the train.": {
-   "tr": "我把雨伞落在火车上了。"
-  },
-  "Tom had a cigar in his mouth.": {
-   "tr": "汤姆嘴里叼着一根雪茄。"
-  },
-  "It's all grammar nazis up in here.": {
-   "drop": true
-  },
-  "In the light of what you told us, I think we should revise our plan.": {
-   "tr": "根据你告诉我们的情况，我认为我们应该修改计划。"
-  },
-  "My fountain pen is new.": {
-   "drop": true
-  },
-  "I lost my fountain pen.": {
-   "drop": true
-  },
-  "I've lost my new fountain pen.": {
-   "drop": true
-  },
-  "This hut is a very special place.": {
-   "tr": "这间小屋是个很特别的地方。"
-  },
-  "I am not sure how to pronounce the word.": {
-   "drop": true
-  }
- }
 }
