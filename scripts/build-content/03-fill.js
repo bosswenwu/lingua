@@ -29,8 +29,8 @@ const CONC = Math.max(1, Math.min(10, parseInt(process.env.LINGUA_LLM_CONCURRENC
 const BATCH = 25;
 
 const LANG_NAME = { en: "英语", ja: "日语", ko: "韩语" };
-/* 需要联网重生的语言：日、韩释义经英语转译误差大，全量重生；英语走离线精简 */
-const LLM_LANGS = { ja: true, ko: true, en: false };
+/* 需要联网重生的语言：三语全量重生（en 离线精简错误率 16% 超验收线，同样走 LLM） */
+const LLM_LANGS = { ja: true, ko: true, en: true };
 /* v2：提示词改为「原词+读音+词性+例句」（不再给英文释义），缓存与自查结果全部换新文件 */
 const CACHE_FILE = "llm-cache-v2-";
 const MISMATCH_FILE = "llm-mismatch-v2-";
