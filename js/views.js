@@ -441,18 +441,29 @@
         '<div class="pm-sub">' + esc(ls.focus) + "</div>" + meta + "</div></div>";
     }
 
-    var levelsHtml = lang.levels.map(function (level) {
-      var units = level.units.map(function (unit) {
-        var rows = unit.lessons.map(function (ls, li) {
-          return pmNode(ls, li === unit.lessons.length - 1);
-        }).join("");
-        var unitDone = unit.lessons.filter(function (l) { return st.lessons[l.id] && st.lessons[l.id].done; }).length;
-        return '<div class="pm-unit"><div class="pm-unit-head"><h3>' + esc(unit.name) +
-          (unit.sub ? ' <span class="sub-lang">' + esc(unit.sub) + "</span>" : "") + "</h3>" +
-          '<span class="tiny muted">' + esc(unit.theme) + "</span>" +
-          '<span class="chip chip-plain" style="margin-left:auto">' + unitDone + " / " + unit.lessons.length + "</span></div>" +
-          '<div class="pm-track">' + rows + "</div></div>";
+    function unitHtml(unit) {
+      var rows = unit.lessons.map(function (ls, li) {
+        return pmNode(ls, li === unit.lessons.length - 1);
       }).join("");
+      var unitDone = unit.lessons.filter(function (l) { return st.lessons[l.id] && st.lessons[l.id].done; }).length;
+      return '<div class="pm-unit"><div class="pm-unit-head"><h3>' + esc(unit.name) +
+        (unit.sub ? ' <span class="sub-lang">' + esc(unit.sub) + "</span>" : "") + "</h3>" +
+        '<span class="tiny muted">' + esc(unit.theme) + "</span>" +
+        '<span class="chip chip-plain" style="margin-left:auto">' + unitDone + " / " + unit.lessons.length + "</span></div>" +
+        '<div class="pm-track">' + rows + "</div></div>";
+    }
+
+    /* 按来源分节：手写「情景课」与自动生成的「词汇扩展」分开呈现 */
+    function groupHtml(heading, list) {
+      if (!list.length) return "";
+      return '<div class="pm-group"><div class="pm-group-head">' + heading + "</div>" +
+        list.map(unitHtml).join("") + "</div>";
+    }
+
+    var levelsHtml = lang.levels.map(function (level) {
+      var mainUnits = level.units.filter(function (un) { return un.group === "main"; });
+      var extUnits = level.units.filter(function (un) { return un.group === "ext"; });
+      var units = groupHtml("主线 · 情景课", mainUnits) + groupHtml("词汇扩展", extUnits);
 
       var doneCount = level.units.reduce(function (a, un) {
         return a + un.lessons.filter(function (l) { return st.lessons[l.id] && st.lessons[l.id].done; }).length;

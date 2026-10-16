@@ -153,6 +153,23 @@ t("课程地图渲染出生成课标题（不再只有手写课）", () => {
   has(html, DATA.lessonOf(genId).lesson.title, "课程地图应含生成课标题");
   has(html, "en-l1", "课程地图应含手写课");
 });
+t("课程目录按来源分节：情景课与词汇扩展分开呈现", () => {
+  const html = Views.courses("en");
+  has(html, "主线 · 情景课", "缺少「主线 · 情景课」分节标题");
+  has(html, "词汇扩展", "缺少「词汇扩展」分节标题");
+  const mainAt = html.indexOf("主线 · 情景课");
+  const extAt = html.indexOf("词汇扩展");
+  ok(extAt > mainAt, "「词汇扩展」应排在「主线 · 情景课」之后");
+  const nextMain = html.indexOf("主线 · 情景课", extAt + 1);
+  const mainHtml = html.slice(mainAt, extAt);
+  const extHtml = html.slice(extAt, nextMain < 0 ? html.length : nextMain);
+  const handTitle = DATA.lessonOf("en-l1").lesson.title;            // 手写情景课
+  const genTitle = DATA.lessonOf("en-a1-u1-l1").lesson.title;       // 生成扩展课
+  has(mainHtml, handTitle, "主线分节应含手写情景课 " + handTitle);
+  notHas(mainHtml, genTitle, "主线分节不应混入生成课 " + genTitle);
+  has(extHtml, genTitle, "词汇扩展分节应含生成课 " + genTitle);
+  notHas(extHtml, handTitle, "词汇扩展分节不应混入手写课 " + handTitle);
+});
 
 await ensureAll();
 

@@ -220,6 +220,8 @@
       if (real) {
         (real.levels || []).forEach(function (level) {
           (level.units || []).forEach(function (unit) {
+            /* 来源标记：手写单元默认 main，生成单元已在 applyGenLevel 标记为 ext */
+            if (!unit.group) unit.group = "main";
             (unit.lessons || []).forEach(function (lesson) {
               if (INDEX[lesson.id]) return; // 去重保护
               lesson._lang = code;
@@ -339,7 +341,10 @@
       target = { id: json.id, name: json.name, badge: json.badge, target: json.target, goal: json.goal, units: [] };
       lang.levels.push(target);
     }
-    (json.units || []).forEach(function (u) { target.units.push(u); });
+    (json.units || []).forEach(function (u) {
+      u.group = "ext";   // 生成单元来源标记
+      target.units.push(u);
+    });
   }
 
   /* 确保某语言的某个级别（生成数据）已加载，幂等 */

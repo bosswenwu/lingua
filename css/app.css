@@ -828,6 +828,10 @@ ul{margin:0;padding:0;list-style:none}
 .q-reward{flex:none;font-size:12px}
 
 /* ---- 课程路径地图 ---- */
+.pm-group{margin-bottom:4px}
+.pm-group+.pm-group{margin-top:16px;padding-top:12px;border-top:1px dashed var(--line)}
+.pm-group-head{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:14px;font-weight:700;color:var(--muted);letter-spacing:.02em;padding:6px 2px 0}
+.pm-group-head::before{content:"";width:4px;height:14px;border-radius:var(--r-pill);background:var(--jade);flex:none}
 .pm-unit{margin-bottom:6px}
 .pm-unit-head{display:flex;align-items:baseline;gap:10px;padding:12px 2px 2px}
 .pm-unit-head h3{font-size:16px}
