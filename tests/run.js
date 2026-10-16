@@ -416,12 +416,18 @@ t("每题选项与答案下标有效", () => {
     ok(typeof q.opts[q.a] === "string" && q.opts[q.a].length > 0, "答案为空");
   });
 });
-t("词汇题为 3 个互不相同的选项", () => {
+t("词汇题选项合法且互不相同", () => {
   const vocab = pool.filter(q => q.kind === "vocab");
   ok(vocab.length > 0);
   vocab.forEach(q => {
-    eq(q.opts.length, 3, "词汇题选项数");
-    eq(new Set(q.opts).size, 3, "干扰项重复：" + q.prompt);
+    /* 释义三选一题为 3 个选项；Exercise 生成的词义题为 4 个选项，均须 ≥3 且互不相同 */
+    if (q.sub && q.sub.indexOf("选出正确释义") >= 0) {
+      eq(q.opts.length, 3, "词汇题选项数");
+      eq(new Set(q.opts).size, 3, "干扰项重复：" + q.prompt);
+    } else {
+      ok(q.opts.length >= 3, "选项数不足：" + q.prompt);
+      eq(new Set(q.opts).size, q.opts.length, "选项重复：" + q.prompt);
+    }
   });
 });
 t("听力题携带 speakText 供播放", () => {

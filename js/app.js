@@ -324,8 +324,9 @@
     var p = Store.progress();
     Store.recordSkill(p, mode, correct);
     if (!correct) {
+      /* 词义类题（Exercise 生成，qtype:"meaning"）记「词汇」；手写语法题保持「语法」 */
       Store.recordMistake(p, {
-        lang: LC.lang.code, mode: mode, lessonId: LC.id,
+        lang: LC.lang.code, mode: mode === "grammar" && item.qtype === "meaning" ? "vocab" : mode, lessonId: LC.id,
         prompt: item.q, opts: item.opts || [], answer: item.a,
         why: item.why || (item.text ? item.text + " —— " + item.tr : ""),
         text: mode === "listening" ? item.text : "",
@@ -461,10 +462,10 @@
     var p = Store.progress();
     Store.recordSkill(p, mode, correct);
     if (!correct) {
-      /* 转成选择题存入错题本，重练时仍可用 */
+      /* 转成选择题存入错题本，重练时仍可用；拼写为词义类，标「词汇」 */
       var ropts = DATA.shuffle([item.answer].concat(item.distract || []));
       Store.recordMistake(p, {
-        lang: LC.lang.code, mode: mode, lessonId: LC.id,
+        lang: LC.lang.code, mode: mode === "grammar" && item.qtype === "meaning" ? "vocab" : mode, lessonId: LC.id,
         prompt: "拼写：" + (item.hint || ""), opts: ropts, answer: ropts.indexOf(item.answer),
         why: item.why || ""
       });

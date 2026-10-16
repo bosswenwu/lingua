@@ -84,13 +84,15 @@
 
     var grammar = [], listening = [], speaking = [];
 
+    /* 生成题均为词义类（qtype:"meaning"），错题本据此记「词汇」而非「语法」 */
+
     /* 1) 释义选择：看目标词，选中文释义 */
     sample(withZh, 2).forEach(function (v) {
       var d = takeDistract(zhPool, v.m, 3);
       if (d.length < 2) return;
       var c = withAnswer(v.m, d);
       grammar.push({
-        type: "choice", point: "词义辨析",
+        type: "choice", qtype: "meaning", point: "词义辨析",
         q: "「" + v.t + "」的意思是？", opts: c.opts, a: c.a,
         why: v.t + " —— " + v.m
       });
@@ -102,7 +104,7 @@
       if (d.length < 2) return;
       var c = withAnswer(v.t, d);
       grammar.push({
-        type: "choice", point: "中译外",
+        type: "choice", qtype: "meaning", point: "中译外",
         q: "「" + v.m + "」对应哪个词？", opts: c.opts, a: c.a,
         why: v.m + " → " + v.t
       });
@@ -119,7 +121,7 @@
       if (!q || d.length < 2) return;
       var c = withAnswer(v.t, d);
       grammar.push({
-        type: "choice", point: "例句填词",
+        type: "choice", qtype: "meaning", point: "例句填词",
         q: "选出合适的词补全句子：" + q, opts: c.opts, a: c.a,
         why: e.t + " —— " + e.tr
       });
@@ -131,7 +133,7 @@
         if (v.t.length < 3 || !/^[a-z]+$/i.test(v.t)) return;
         var d = takeDistract(tPool, v.t, 3);
         grammar.push({
-          type: "spell", point: "单词拼写",
+          type: "spell", qtype: "meaning", point: "单词拼写",
           q: "根据释义拼出英文单词", hint: v.m, answer: v.t,
           distract: d, why: v.t + " —— " + v.m
         });

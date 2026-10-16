@@ -173,12 +173,14 @@
             speakText: v.t, opts: opts, a: opts.indexOf(v.m), why: exText(v)
           });
         });
-        /* 语法 / 听力：手写题目优先，缺的部分由 Exercise 即时生成 */
+        /* 语法 / 听力：手写题目优先，缺的部分由 Exercise 即时生成；
+           Exercise 生成的是词义类题（qtype=meaning），标注走「词汇」口径 */
         var gen = null;
-        if ((!(ls.grammar || []).length || !(ls.listening || []).length) && window.Exercise) {
+        var genGrammar = !(ls.grammar || []).length;
+        if ((genGrammar || !(ls.listening || []).length) && window.Exercise) {
           gen = window.Exercise.generate(ls, lang);
         }
-        var gItems = (ls.grammar || []).length
+        var gItems = !genGrammar
           ? ls.grammar.reduce(function (acc, g) {
               return acc.concat((g.drills || []).map(function (d) {
                 return { q: d.q, opts: d.opts, a: d.a, why: d.why, point: g.point };
@@ -188,8 +190,8 @@
         gItems.forEach(function (d) {
           if (!d.opts || d.opts.length < 2 || d.type === "spell") return;
           pool.push({
-            kind: "grammar", lang: lang.code, locale: lang.locale,
-            prompt: d.q, sub: "语法 · " + d.point,
+            kind: genGrammar ? "vocab" : "grammar", lang: lang.code, locale: lang.locale,
+            prompt: d.q, sub: (genGrammar ? "词汇" : "语法 · " + d.point),
             opts: d.opts.slice(), a: d.a, why: d.why || ""
           });
         });
