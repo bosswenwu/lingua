@@ -9,45 +9,45 @@
 | 1 | spider | /spˈaɪdər/ | 蜘蛛 | The spider is black. ／ 那只蜘蛛是黑色的。 | 待复核 |
 | 2 | barely | /bˈɛrliː/ | 几乎不；勉强 | I can barely see you. ／ 我快看不到你了。 | 待复核 |
 | 3 | conduct | /kˈɑndəkt/ | 行为；实施 | You must account for your conduct. ／ 你必须为自己的行为负责。 | 待复核 |
-| 4 | abortion | /əbˈɔːrʃən/ | 堕胎；流产 | （无） | 待复核 |
-| 5 | hierarchy | /hˈaɪərˌɑrkiː/ | 等级制度；层级 | （无） | 待复核 |
+| 4 | abortion | /əbˈɔːrʃən/ | 堕胎；流产 | We learn that abortion is a serious topic for adults. ／ 我们了解到堕胎对成年人来说是个严肃的话题。 | 待复核 |
+| 5 | hierarchy | /hˈaɪərˌɑrkiː/ | 等级制度；层级 | Our school has a clear hierarchy of classes. ／ 我们学校有清晰的班级层级。 | 待复核 |
 | 6 | notice | /nˈoʊtəs/ | 注意到；通知 | Didn't you notice? ／ 你没注意到吗？ | 待复核 |
 | 7 | collection | /kəlˈɛkʃən/ | 收藏；收集 | The spatulas, ramekins, plates, and mugs are all from the collection. ／ 这些锅铲、烤盅、盘子和马克杯都出自这个系列。 | 待复核 |
 | 8 | game | /ɡˈeɪm/ | 游戏；比赛 | He is likely to win the game. ／ 他有可能赢得比赛。 | 待复核 |
 | 9 | era | /ˈɛrə/ | 时代；纪元 | The current era is the atomic era. ／ 现在的时代是原子时代。 | 待复核 |
-| 10 | bottom | /bˈɑtəm/ | 底部；底端 | （无） | 待复核 |
-| 11 | frequency | /frˈiːkwənsiː/ | 频率；频度 | （无） | 待复核 |
+| 10 | bottom | /bˈɑtəm/ | 底部；底端 | The keys are at the bottom of my bag. ／ 钥匙在我包的底部。 | 待复核 |
+| 11 | frequency | /frˈiːkwənsiː/ | 频率；频度 | The frequency of buses here is very high. ／ 这里公交车的频率很高。 | 待复核 |
 | 12 | somewhere | /sˈʌmwˌɛr/ | 某处；某个地方 | He lives somewhere about here. ／ 他住在这附近某个地方。 | 待复核 |
 | 13 | think | /θˈɪŋk/ | 想；认为 | Don't you think so? ／ 你不这么认为吗？ | 待复核 |
 | 14 | electronic | /ˌɪlˌɛktrˈɑnɪk/ | 电子的 | Clive wants to be an electronic engineer. ／ 克里夫想成为一名电子工程师。 | 待复核 |
 | 15 | research | /riːsˈɜːrtʃ/ | 研究；调查 | They are engaged in cancer research. ／ 他们从事癌症研究工作。 | 待复核 |
 | 16 | judgment | /dʒˈʌdʒmənt/ | 判断力；判断 | I've always trusted your judgment. ／ 我一直都相信你的判断。 | 待复核 |
-| 17 | trader | /trˈeɪdər/ | 商人；交易者 | （无） | 待复核 |
-| 18 | database | /dˈeɪtəbˌeɪs/ | 数据库 | （无） | 待复核 |
+| 17 | trader | /trˈeɪdər/ | 商人；交易者 | The trader sells fruit at the market. ／ 那个商人在市场上卖水果。 | 待复核 |
+| 18 | database | /dˈeɪtəbˌeɪs/ | 数据库 | Our teacher keeps class records in a database. ／ 我们的老师把班级记录保存在一个数据库里。 | 待复核 |
 | 19 | competitive | /kəmpˈɛtətɪv/ | 有竞争力的；好胜的 | She is overly competitive. ／ 她是个任何事情都喜欢和别人一比高下的人。 | 待复核 |
 | 20 | loss | /lˈɔːs/ | 损失；丧失 | I'm at a loss for words. ／ 我不知道应该说什么才好。 | 待复核 |
 | 21 | speak | /spˈiːk/ | 说话；讲 | I can speak French. ／ 我会说法语。 | 待复核 |
 | 22 | twentieth | /twˈɛntiːˌɛθ/ | 第二十；二十分之一 | My birthday is October twentieth. ／ 我的生日是十月二十号。 | 待复核 |
-| 23 | magnetic | /mæɡnˈɛtɪk/ | 磁性的；有吸引力的 | （无） | 待复核 |
+| 23 | magnetic | /mæɡnˈɛtɪk/ | 磁性的；有吸引力的 | The magnetic board holds our class photos. ／ 这块磁性板贴着我们的班级照片。 | 待复核 |
 | 24 | bone | /bˈoʊn/ | 骨头；骨骼 | She is all skin and bone. ／ 她瘦得只剩皮包骨了。 | 待复核 |
-| 25 | aftermath | /ˈæftərmˌæθ/ | 后果；余波 | （无） | 待复核 |
-| 26 | experimental | /ɪkspˌɛrɪmˈɛntəl/ | 实验的；试验性 | （无） | 待复核 |
+| 25 | aftermath | /ˈæftərmˌæθ/ | 后果；余波 | In the aftermath of the storm, we cleaned the yard. ／ 暴风雨过后，我们打扫了院子。 | 待复核 |
+| 26 | experimental | /ɪkspˌɛrɪmˈɛntəl/ | 实验的；试验性 | We do an experimental test in the science class. ／ 我们在科学课上做一个实验测试。 | 待复核 |
 | 27 | difference | /dˈɪfərəns/ | 差别；差异 | The difference is this: he works harder than you. ／ 不同之处在于： 他比你更努力工作。 | 待复核 |
-| 28 | ridge | /rˈɪdʒ/ | 山脊；岭 | （无） | 待复核 |
+| 28 | ridge | /rˈɪdʒ/ | 山脊；岭 | We walked along the mountain ridge together. ／ 我们一起沿着山脊走。 | 待复核 |
 | 29 | describe | /dɪskrˈaɪb/ | 描述；形容 | I can't really describe it. ／ 我不知道该怎么形容。 | 待复核 |
 | 30 | eye | /ˈaɪ/ | 眼睛；目光 | I opened an eye. ／ 我睁开一只眼睛。 | 待复核 |
 | 31 | devote | /dɪvˈoʊt/ | 奉献；致力于 | （无） | 对 |
-| 32 | gear | /ɡˈɪr/ | 齿轮；装备 | （无） | 待复核 |
-| 33 | faction | /fˈækʃən/ | 派系；小集团 | （无） | 对 |
+| 32 | gear | /ɡˈɪr/ | 齿轮；装备 | I put my sports gear in the school bag. ／ 我把运动装备放进书包里。 | 待复核 |
+| 33 | faction | /fˈækʃən/ | 派系；小集团 | Our class has no small faction. ／ 我们班没有小派系。 | 对 |
 | 34 | fact | /fˈækt/ | 事实；实际 | In fact she lied. ／ 事实上，她撒谎了。 | 待复核 |
 | 35 | proposal | /prəpˈoʊzəl/ | 提议；建议 | I agreed to the proposal. ／ 我同意这项建议。 | 待复核 |
 | 36 | pilot | /pˈaɪlət/ | 飞行员；驾驶员 | Tom wants to be a pilot. ／ 汤姆想成为一名飞行员。 | 待复核 |
 | 37 | sing | /sˈɪŋ/ | 唱歌；歌唱 | I like to sing. ／ 我喜欢唱歌。 | 待复核 |
-| 38 | meantime | /mˈiːntˌaɪm/ | 其间；同时 | （无） | 对 |
-| 39 | crude | /krˈuːd/ | 粗糙的；未加工的 | （无） | 待复核 |
-| 40 | restoration | /rˌɛstərˈeɪʃən/ | 恢复；修复 | （无） | 待复核 |
-| 41 | tilt | /tˈɪlt/ | 倾斜；倾向 | （无） | 待复核 |
-| 42 | stretch | /strˈɛtʃ/ | 伸展；拉长 | （无） | 待复核 |
+| 38 | meantime | /mˈiːntˌaɪm/ | 其间；同时 | In the meantime, please open your books. ／ 与此同时，请打开你们的书。 | 对 |
+| 39 | crude | /krˈuːd/ | 粗糙的；未加工的 | The table is made of crude wood. ／ 这张桌子是用粗糙的木头做的。 | 待复核 |
+| 40 | restoration | /rˌɛstərˈeɪʃən/ | 恢复；修复 | The restoration of the old library took months. ／ 旧图书馆的修复花了几个月。 | 待复核 |
+| 41 | tilt | /tˈɪlt/ | 倾斜；倾向 | Please tilt the box to the left. ／ 请把箱子向左倾斜。 | 待复核 |
+| 42 | stretch | /strˈɛtʃ/ | 伸展；拉长 | We stretch our arms in PE class. ／ 我们在体育课上伸展手臂。 | 待复核 |
 | 43 | supper | /sˈʌpər/ | 晚餐；晚饭 | I watch television after supper. ／ 我吃完晚饭后看电视。 | 待复核 |
 | 44 | crab | /krˈæb/ | 螃蟹；蟹肉 | Look, look! On the branch of the orange tree, there is a blue hermit crab! ／ 快看快看！橙子树的树枝上有一只蓝色的寄居蟹！ | 待复核 |
 | 45 | mention | /mˈɛnʃən/ | 提到；提及 | Don't mention it. ／ 不客气。 | 待复核 |
@@ -63,7 +63,7 @@
 | 55 | soda | /sˈoʊdə/ | 苏打水；汽水 | I prefer soda to juice. ／ 比起果汁，我更喜欢苏打水。 | 待复核 |
 | 56 | earn | /ˈɜːrn/ | 赚得；挣得 | We work to earn money. ／ 我们为了赚钱而工作。 | 待复核 |
 | 57 | task | /tˈæsk/ | 任务；工作 | This is an impossible task. ／ 这是个不可能的任务。 | 待复核 |
-| 58 | substantially | /səbstˈænʃəliː/ | 大幅地；实质上 | （无） | 待复核 |
+| 58 | substantially | /səbstˈænʃəliː/ | 大幅地；实质上 | Our school has changed substantially this year. ／ 我们学校今年有了很大变化。 | 待复核 |
 | 59 | stand | /stˈænd/ | 站立；忍受 | I can't stand him. ／ 我受不了他。 | 待复核 |
 | 60 | thirteen | /θˈɜːrtˈiːn/ | 十三；十三个 | I have thirteen cats. ／ 我有十三只猫。 | 待复核 |
 | 61 | ourselves | /aʊərsˈɛlvz/ | 我们自己；我们亲自 | We did it ourselves. ／ 我们自己做的。 | 待复核 |
@@ -73,30 +73,30 @@
 | 65 | float | /flˈoʊt/ | 漂浮；飘浮 | He was the first man to float in space. ／ 他是世上第一个在太空中飘浮的人。 | 待复核 |
 | 66 | smoking | /smˈoʊkɪŋ/ | 吸烟；抽烟 | Stop smoking. ／ 别再吸烟了。 | 待复核 |
 | 67 | equal | /ˈiːkwəl/ | 平等的；相等的 | All people are equal. ／ 所有人都是平等的。 | 错（复核改：相等的；平等的） |
-| 68 | relief | /rɪlˈiːf/ | 宽慰；缓解 | （无） | 待复核 |
+| 68 | relief | /rɪlˈiːf/ | 宽慰；缓解 | It was a relief to finish the test. ／ 完成考试让人松了一口气。 | 待复核 |
 | 69 | introduce | /ˌɪntrədˈuːs/ | 介绍；引进 | May I introduce myself? ／ 我可以自我介绍吗？ | 待复核 |
 | 70 | completely | /kəmplˈiːtliː/ | 完全地；彻底地 | I completely forgot it. ／ 我完全忘记了这件事。 | 待复核 |
 | 71 | mine | /mˈaɪn/ | 我的；矿 | This bag is mine. ／ 这个包是我的。 | 待复核 |
 | 72 | middle | /mˈɪdəl/ | 中间；中部 | China has a growing middle class. ／ 中国有日益壮大的中产阶层。 | 待复核 |
-| 73 | inability | /ˌɪnəbˈɪlɪtiː/ | 无能；无力 | （无） | 待复核 |
+| 73 | inability | /ˌɪnəbˈɪlɪtiː/ | 无能；无力 | His inability to swim made him afraid of water. ／ 他不会游泳，这让他怕水。 | 待复核 |
 | 74 | total | /tˈoʊtəl/ | 总的；总数 | We sat in total silence. ／ 我们一言不发地坐着。 | 待复核 |
 | 75 | record | /ˈrɛkərd/ | 记录；唱片 | His new record sells well. ／ 他的新唱片销路很好。 | 待复核 |
 | 76 | then | /ðˈɛn/ | 那时；然后 | He was tired then. ／ 他当时很累。 | 待复核 |
 | 77 | overwhelm | /ˌoʊvərwˈɛlm/ | 压倒；淹没 | I didn't mean to overwhelm you. ／ 我没有想要让你不知所措。 | 待复核 |
-| 78 | agricultural | /ˌæɡrɪkˈʌltʃərəl/ | 农业的；农艺的 | （无） | 待复核 |
-| 79 | biological | /bˌaɪəlˈɑdʒɪkəl/ | 生物的；生物学的 | （无） | 对 |
+| 78 | agricultural | /ˌæɡrɪkˈʌltʃərəl/ | 农业的；农艺的 | My uncle works on an agricultural farm in the countryside. ／ 我叔叔在乡下的一个农业农场工作。 | 待复核 |
+| 79 | biological | /bˌaɪəlˈɑdʒɪkəl/ | 生物的；生物学的 | Our class visited a biological lab on Monday. ／ 我们班星期一参观了一个生物实验室。 | 对 |
 | 80 | forget | /fərɡˈɛt/ | 忘记；遗忘 | Forget it. ／ 算了吧。 | 待复核 |
 | 81 | beautiful | /bjˈuːtəfəl/ | 美丽的；漂亮的 | Life is beautiful. ／ 生命是美丽的。 | 对 |
-| 82 | assure | /əʃˈʊr/ | 保证；使确信 | （无） | 待复核 |
-| 83 | creep | /krˈiːp/ | 爬行；蔓延 | （无） | 待复核 |
+| 82 | assure | /əʃˈʊr/ | 保证；使确信 | I assure you that the cat is safe at home. ／ 我向你保证那只猫在家很安全。 | 待复核 |
+| 83 | creep | /krˈiːp/ | 爬行；蔓延 | The cat likes to creep under the bed. ／ 猫喜欢爬到床底下。 | 待复核 |
 | 84 | kill | /kˈɪl/ | 杀死；毁灭 | It can also kill crops. ／ 它也会杀死庄稼。 | 待复核 |
 | 85 | directly | /dərˈɛktliː/ | 直接地；径直 | This directly concerns you. ／ 这与你有直接关系。 | 待复核 |
-| 86 | compensate | /kˈɑmpənsˌeɪt/ | 补偿；赔偿 | （无） | 待复核 |
+| 86 | compensate | /kˈɑmpənsˌeɪt/ | 补偿；赔偿 | He gave me a gift to compensate for my lost book. ／ 他送给我一份礼物来补偿我丢失的书。 | 待复核 |
 | 87 | sorry | /sˈɑriː/ | 抱歉；对不起 | Sorry... ／ 不好意思…… | 待复核 |
 | 88 | urgent | /ˈɜːrdʒənt/ | 紧急的；急迫的 | I have an urgent message from Tom. ／ 我收到汤姆的一条紧急消息。 | 待复核 |
-| 89 | listener | /lˈɪsənər/ | 听众；倾听者 | （无） | 待复核 |
-| 90 | sample | /sˈæmpəl/ | 样品；样本 | （无） | 待复核 |
-| 91 | parallel | /pˈɛrəlˌɛl/ | 平行的；类似的 | （无） | 待复核 |
+| 89 | listener | /lˈɪsənər/ | 听众；倾听者 | She is a good listener in class. ／ 她在课堂上是个好的倾听者。 | 待复核 |
+| 90 | sample | /sˈæmpəl/ | 样品；样本 | The teacher showed us a sample of the rock. ／ 老师给我们看了一块岩石样本。 | 待复核 |
+| 91 | parallel | /pˈɛrəlˌɛl/ | 平行的；类似的 | The two streets are parallel to each other. ／ 这两条街彼此平行。 | 待复核 |
 | 92 | afraid | /əfrˈeɪd/ | 害怕的；恐怕 | I'm afraid not. ／ 恐怕不行。 | 待复核 |
 | 93 | such | /sˈʌtʃ/ | 这样的；如此的 | He had never seen such a bad boy. ／ 他从没见过那么坏的男孩。 | 待复核 |
 | 94 | drive | /drˈaɪv/ | 驾驶；驱动 | Can you drive a car? ／ 你会驾车吗？ | 待复核 |

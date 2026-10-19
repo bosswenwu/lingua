@@ -5,21 +5,23 @@
       → overrides/en-middle.json  {"examples": { "<例句原文>": { "drop": true } }}
    2) 词汇难偏审查（报告性质，不改数据）：按人教版初中考纲常识分
       core（初中重点）/ general（一般常用）/ beyond（超纲偏词）。
-   用法：node 11-check-grade7.js
+   用法：node 11-check-grade7.js [a1|a2]   （默认 a1；a2 的删句合并进同一个 en-middle.json）
    环境变量：LINGUA_LLM_API_KEY 必填；LINGUA_LLM_BASE_URL / LINGUA_LLM_MODEL 可选。
-   缓存：raw/build/grade7-cache.json（按例句原文 / 词形缓存，重跑不重复烧钱）。 */
+   缓存：raw/build/grade7-cache.json（a1）/-grade7-cache-a2.json（a2）；例句按原文缓存，
+   两个级别可复用同名例句的判定结果，重跑不重复烧钱。 */
 const fs = require("fs");
 const path = require("path");
 const U = require("./lib/util");
 
+const LEVEL = ["a1", "a2"].includes(process.argv[2]) ? process.argv[2] : "a1";
 const KEY = process.env.LINGUA_LLM_API_KEY || "";
 const BASE = (process.env.LINGUA_LLM_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, "");
 const MODEL = process.env.LINGUA_LLM_MODEL || "gpt-4o-mini";
 const CONC = 6;
 const BATCH = 25;
 
-const CACHE_FILE = path.join(U.RAW, "build", "grade7-cache.json");
-const REPORT_FILE = path.join(U.RAW, "build", "grade7-report.json");
+const CACHE_FILE = path.join(U.RAW, "build", LEVEL === "a1" ? "grade7-cache.json" : "grade7-cache-" + LEVEL + ".json");
+const REPORT_FILE = path.join(U.RAW, "build", LEVEL === "a1" ? "grade7-report.json" : "grade7-report-" + LEVEL + ".json");
 const OV_FILE = path.join(__dirname, "overrides", "en-middle.json");
 
 /* 人工终审保留名单：抽查发现误删的例句原文加进来，重跑即生效（宁少删勿误删） */
@@ -97,8 +99,8 @@ function chunksOf(list, size) {
 
 /* ---------- 数据装载（data/ 只读） ---------- */
 
-function loadA1() {
-  const file = path.join(U.DATA, "en", "a1.json");
+function loadLevel() {
+  const file = path.join(U.DATA, "en", LEVEL + ".json");
   const data = JSON.parse(U.readText(file));
   const words = new Map();                      // t → {t, m}
   const exs = new Map();                        // 例句原文 → {t, tr, word, wordM}
@@ -121,7 +123,7 @@ function exPrompt(batch) {
   const lines = batch.map((e, i) =>
     (i + 1) + ". 词：" + e.word + (e.wordM ? "（" + e.wordM + "）" : "") + " 例句：" + e.t
   ).join("\n");
-  return "目标读者：中国初一学生（12–13 岁）。下面每行一个词条及其英语例句，请判定该例句是否适合初一学生朗读学习。\n" +
+  return "目标读者：中国初中生（初一为主，12–15 岁）。下面每行一个词条及其英语例句，请判定该例句是否适合初中生朗读学习。\n" +
     "判 ok=false（不适合）仅限明显成人主题：酗酒/酒吧夜店场景、吸烟吸毒、恋爱约会亲昵、赌博、暴力凶杀、战争恐怖、死亡葬礼、性。\n" +
     "判 ok=true：校园、家庭、食物饮料、动物、运动、天气、日常作息等一切中性主题。\n" +
     "边界：酒吧里喝酒、约会情节 → false；仅在名词层面提到酒水食物（如菜单/餐桌上的 wine、beer、coffee）且画面中性的句子 → true；\n" +
@@ -155,11 +157,19 @@ function wcPrompt(batch) {
 
 async function main() {
   if (!KEY) { console.error("未设置 LINGUA_LLM_API_KEY，无法审查"); process.exit(1); }
-  U.log("== 11 英语 A1 初一适配审查（" + MODEL + "，并发 " + CONC + "，批 " + BATCH + "）==");
-  const { words, exs } = loadA1();
-  U.log("载入 a1.json：" + words.length + " 词，" + exs.length + " 条不重复例句");
+  U.log("== 11 英语 " + LEVEL.toUpperCase() + " 初中适配审查（" + MODEL + "，并发 " + CONC + "，批 " + BATCH + "）==");
+  const { words, exs } = loadLevel();
+  U.log("载入 " + LEVEL + ".json：" + words.length + " 词，" + exs.length + " 条不重复例句");
 
   const cache = fs.existsSync(CACHE_FILE) ? JSON.parse(U.readText(CACHE_FILE)) : {};
+  /* a2 复用 a1 缓存作初始状态（同条例句不重复烧钱） */
+  if (LEVEL !== "a1") {
+    const base = path.join(U.RAW, "build", "grade7-cache.json");
+    if (fs.existsSync(base)) {
+      const b = JSON.parse(U.readText(base));
+      cache.ex = Object.assign({}, b.ex || {}, cache.ex || {});
+    }
+  }
   cache.ex = cache.ex || {};
   cache.wc = cache.wc || {};
 
@@ -238,6 +248,14 @@ async function main() {
   });
   const manualDropped = dropped.filter(e => FORCE_DROP.has(e.t));
   const ov = { examples: {} };
+  /* 合并模式：a1/a2 先后跑，保留此前级别已写入的删句，同句不覆盖 */
+  if (fs.existsSync(OV_FILE)) {
+    const prev = JSON.parse(U.readText(OV_FILE));
+    for (const [k, val] of Object.entries(prev.examples || {})) {
+      if (!val || !val.drop) continue;           // 只继承 drop 类条目
+      ov.examples[k] = val;
+    }
+  }
   for (const e of dropped) ov.examples[e.t] = { drop: true };
   U.writeJson(OV_FILE, ov, true);
 
@@ -268,7 +286,7 @@ async function main() {
   U.log("→ 词汇分级：重点 " + wcCount.core + "（" + report.corePct + "）/ 一般 " + wcCount.general +
     " / 超纲偏词 " + wcCount.beyond);
   U.log("→ overrides/en-middle.json：examples.drop " + Object.keys(ov.examples).length + " 条");
-  U.log("→ 报告：raw/build/grade7-report.json");
+  U.log("→ 报告：raw/build/" + path.basename(REPORT_FILE));
 }
 
 main().catch(e => { console.error(e); process.exit(1); });

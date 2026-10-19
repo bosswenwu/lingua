@@ -16,7 +16,7 @@ function load(lang) {
   /* 主文件 overrides/{lang}.json 优先；en-calib.json（校准修正）、en-addex.json（补例句）、
      en-middle.json（初一适龄删句）按域合并进来，同词字段互补、后者不覆盖前者已有键 */
   const merged = { words: {}, examples: {} };
-  const extra = { en: ["en-calib.json", "en-addex.json", "en-middle.json"] };
+  const extra = { en: ["en-calib.json", "en-addex.json", "en-middle.json", "en-genex.json"] };
   const files = [lang + ".json"].concat(extra[lang] || []);
   for (const name of files) {
     const f = path.join(DIR, name);

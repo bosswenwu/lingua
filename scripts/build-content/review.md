@@ -7,7 +7,7 @@
 | # | 原词 | 读音 | 释义 | 例句 | 判定 |
 |---|---|---|---|---|---|
 | 1 | locate | /lˈoʊkˌeɪt/ | 定位；位于 | Bats use ultrasound to locate obstacles. ／ 蝙蝠使用超音波来定位障碍物。 | 待复核 |
-| 2 | outcome | /ˈaʊtkˌʌm/ | 结果；成果 | （无） | 待复核 |
+| 2 | outcome | /ˈaʊtkˌʌm/ | 结果；成果 | The match outcome made everyone happy. ／ 比赛结果让每个人都很开心。 | 待复核 |
 | 3 | march | /mˈɑrtʃ/ | 三月；游行 | Today is March 5th. ／ 今天是三月五号。 | 待复核 |
 | 4 | accomplish | /əkˈɑmplɪʃ/ | 完成；实现 | We didn't accomplish much. ／ 我们没取得什么成果。 | 待复核 |
 | 5 | smile | /smˈaɪl/ | 微笑；笑容 | But he did not often smile. ／ 但是他不常微笑。 | 待复核 |
@@ -19,40 +19,40 @@
 | 11 | pressure | /prˈɛʃər/ | 压力；压强 | Venus' air pressure is very high. ／ 金星的大气压力非常高。 | 待复核 |
 | 12 | drown | /drˈaʊn/ | 淹死；溺水 | The child knows how to swim, so she won't drown in the water. ／ 这个孩子知道如何游泳，所以她不会在水里溺死。 | 待复核 |
 | 13 | absence | /ˈæbsəns/ | 缺席；不在 | Did anyone come in my absence? ／ 我不在的时候有没有人来？ | 待复核 |
-| 14 | humanitarian | /hjˌuːmˌænətˈɛriːən/ | 人道主义的 | （无） | 待复核 |
-| 15 | joint | /dʒˈɔɪnt/ | 关节；联合的 | （无） | 对 |
+| 14 | humanitarian | /hjˌuːmˌænətˈɛriːən/ | 人道主义的 | The students sent humanitarian help to the poor area. ／ 学生们向贫困地区提供了人道主义援助。 | 待复核 |
+| 15 | joint | /dʒˈɔɪnt/ | 关节；联合的 | My knee joint hurts after running. ／ 跑步后我的膝关节疼。 | 对 |
 | 16 | earth | /ˈɜːrθ/ | 地球；泥土 | Earth is a planet. ／ 地球是一个行星。 | 对 |
-| 17 | choke | /tʃˈoʊk/ | 窒息；噎住 | （无） | 待复核 |
-| 18 | trillion | /trˈɪljən/ | 万亿；兆 | （无） | 待复核 |
-| 19 | household | /hˈaʊshˌoʊld/ | 家庭；家户 | （无） | 待复核 |
+| 17 | choke | /tʃˈoʊk/ | 窒息；噎住 | The boy began to choke on a small piece of bread. ／ 那个男孩被一小块面包噎住了。 | 待复核 |
+| 18 | trillion | /trˈɪljən/ | 万亿；兆 | There are a trillion stars in the sky. ／ 天空中有万亿颗星星。 | 待复核 |
+| 19 | household | /hˈaʊshˌoʊld/ | 家庭；家户 | Every household in our town has clean water. ／ 我们镇上的每个家庭都有干净的水。 | 待复核 |
 | 20 | govern | /ɡˈʌvərn/ | 统治；管理 | To govern a country is no easy job. ／ 治理一个国家不是件容易的事。 | 待复核 |
 | 21 | climate | /klˈaɪmət/ | 气候；氛围 | What's your favorite climate? ／ 你最喜欢什么气候？ | 待复核 |
 | 22 | include | /ˌɪnklˈuːd/ | 包括；包含 | The price does not include the box. ／ 这个价格不包含这个箱子。 | 待复核 |
 | 23 | advantage | /ædvˈæntɪdʒ/ | 优势；有利条件 | You have the advantage of a good education. ／ 你受过良好教育，这是你的优势。 | 待复核 |
 | 24 | monthly | /mˈʌnθliː/ | 每月的；月刊 | Attached is my monthly report. ／ 附上我这个月的报告。 | 待复核 |
-| 25 | leap | /lˈiːp/ | 跳跃；跃过 | （无） | 待复核 |
-| 26 | fountain | /fˈaʊntən/ | 喷泉；泉源 | （无） | 待复核 |
+| 25 | leap | /lˈiːp/ | 跳跃；跃过 | The cat can leap over the small box. ／ 这只猫能跃过那个小盒子。 | 待复核 |
+| 26 | fountain | /fˈaʊntən/ | 喷泉；泉源 | There is a fountain in the park. ／ 公园里有一个喷泉。 | 待复核 |
 | 27 | commentator | /kˈɑməntˌeɪtər/ | 评论员；解说员 | Tom is a sports commentator. ／ 汤姆是体育解说员。 | 待复核 |
-| 28 | elect | /ɪlˈɛkt/ | 选举；选择 | （无） | 待复核 |
-| 29 | establishment | /ɪstˈæblɪʃmənt/ | 建立；机构 | （无） | 待复核 |
+| 28 | elect | /ɪlˈɛkt/ | 选举；选择 | We elect a new class monitor every term. ／ 我们每学期选举一位新班长。 | 待复核 |
+| 29 | establishment | /ɪstˈæblɪʃmənt/ | 建立；机构 | The establishment of the new library took a year. ／ 新图书馆的建立花了一年时间。 | 待复核 |
 | 30 | modification | /mˌɑdəfəkˈeɪʃən/ | 修改；改进 | Through genetic modification, we can improve crops. ／ 通过基因改造，我们可以改良农作物。 | 待复核 |
 | 31 | not | /nˈɑt/ | 不；没有 | It's not important. ／ 这个不重要。 | 待复核 |
 | 32 | star | /stˈɑr/ | 星星；明星 | Antares is a red star. ／ 心宿二是一颗红色的星星。 | 待复核 |
-| 33 | release | /riːlˈiːs/ | 释放；发布 | （无） | 待复核 |
+| 33 | release | /riːlˈiːs/ | 释放；发布 | The students will release the birds this afternoon. ／ 学生们今天下午将把鸟放走。 | 待复核 |
 | 34 | order | /ˈɔːrdər/ | 命令；订购 | I didn't order this. ／ 我没有点这个。 | 待复核 |
 | 35 | constitute | /kˈɑnstətˌuːt/ | 构成；组成 | These things constitute a balanced meal. ／ 这些东西构成了一顿营养均衡的饭。 | 待复核 |
 | 36 | stamp | /stˈæmp/ | 邮票；印章 | I need a stamp. ／ 我需要一张邮票。 | 待复核 |
 | 37 | precision | /priːsˈɪʒən/ | 精确；精密 | Precision is important in math. ／ 精确性在数学中很重要。 | 待复核 |
-| 38 | bottom | /bˈɑtəm/ | 底部；底端 | （无） | 待复核 |
+| 38 | bottom | /bˈɑtəm/ | 底部；底端 | The keys are at the bottom of my bag. ／ 钥匙在我包的底部。 | 待复核 |
 | 39 | ever | /ˈɛvər/ | 曾经；从来 | He hardly ever opens a book. ／ 他几乎从来不翻书。 | 对 |
 | 40 | also | /ˈɔːlsoʊ/ | 也；同样 | I also went. ／ 我也去了。 | 待复核 |
 | 41 | run | /rˈʌn/ | 跑；经营 | Fire! Run! ／ 着火了！快跑啊！ | 待复核 |
 | 42 | further | /fˈɜːrðər/ | 更远；进一步 | I can't walk any further. ／ 我不能再往前走了。 | 待复核 |
-| 43 | confirmation | /kˌɑnfərmˈeɪʃən/ | 确认；证实 | （无） | 待复核 |
+| 43 | confirmation | /kˌɑnfərmˈeɪʃən/ | 确认；证实 | I got confirmation about the match time. ／ 我得到了比赛时间的确认。 | 待复核 |
 | 44 | box | /bˈɑks/ | 盒子；箱子 | The box is almost empty. ／ 盒子几乎是空的。 | 待复核 |
 | 45 | bloody | /blˈʌdiː/ | 血腥的；血淋淋的 | Because American dramas are very bloody, he doesn't like watching them. ／ 因为他认为美剧镜头很血腥，所以他不喜欢看美剧。 | 待复核 |
 | 46 | encourage | /ɛnkˈɜːrɪdʒ/ | 鼓励；激励 | Encourage others. ／ 多多鼓励他人。 | 待复核 |
-| 47 | consequently | /kˈɑnsəkwəntliː/ | 因此；所以 | （无） | 待复核 |
+| 47 | consequently | /kˈɑnsəkwəntliː/ | 因此；所以 | It rained, and consequently the match was canceled. ／ 下雨了，因此比赛被取消了。 | 待复核 |
 | 48 | hunt | /hˈʌnt/ | 打猎；搜寻 | He likes to hunt. ／ 他喜欢打猎。 | 待复核 |
 | 49 | fear | /fˈɪr/ | 害怕；恐惧 | Tom admitted his fear. ／ 汤姆承认了他的恐惧。 | 待复核 |
 | 50 | competitive | /kəmpˈɛtətɪv/ | 有竞争力的；好胜的 | She is overly competitive. ／ 她是个任何事情都喜欢和别人一比高下的人。 | 待复核 |
